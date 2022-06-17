@@ -14,11 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'easy_sidemenu Demo',
+      title: 'Mechadeli',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'easy_sidemenu Demo'),
+      home: const MyHomePage(title: 'Mechadeli MyPage'),
       debugShowCheckedModeBanner: false,
     );
   }

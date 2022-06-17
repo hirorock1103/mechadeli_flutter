@@ -17,10 +17,44 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    print(size.width);
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
-        centerTitle: true,
+        actions: [
+          InkWell(
+              onTap: () {
+                print("lll");
+              },
+              child: CircleAvatar(
+                child: Icon(Icons.person_add),
+              )),
+          if(size.width > 800)
+            Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                child: Center(
+                    child: Text(
+                      "Test テスト　様",
+                      style: TextStyle(color: Colors.black54),
+                    ))),
+          Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              margin: EdgeInsets.fromLTRB(21, 0, 0, 0),
+              color: Colors.black54,
+              height: double.infinity,
+              child: Center(
+                  child: Text(
+                "ログアウト",
+                style: TextStyle(color: Colors.white),
+              ))),
+        ],
+        title: Text(
+          widget.title,
+          style: TextStyle(color: Colors.black54),
+        ),
+        centerTitle: false,
+        backgroundColor: Colors.white,
       ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -33,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
             style: SideMenuStyle(
               displayMode: SideMenuDisplayMode.auto,
               hoverColor: Colors.blue[100],
-              selectedColor: Colors.lightBlue,
+              selectedColor: Colors.lightBlueAccent,
               selectedTitleTextStyle: const TextStyle(color: Colors.white),
               selectedIconColor: Colors.white,
               // decoration: BoxDecoration(
