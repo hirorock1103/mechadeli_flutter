@@ -65,6 +65,17 @@ class _MyHomePageState extends State<MyHomePage> {
             //   print(mode);
             // },
             style: SideMenuStyle(
+              backgroundColor: Colors.white,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    spreadRadius: 1.0,
+                    blurRadius: 10.0,
+                    offset: Offset(0, 5),
+                  ),
+                ]
+              ),
               displayMode: SideMenuDisplayMode.auto,
               hoverColor: Colors.blue[100],
               selectedColor: Colors.lightBlueAccent,

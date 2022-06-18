@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$DashboardState {
   int get count => throw _privateConstructorUsedError;
+  MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DashboardStateCopyWith<DashboardState> get copyWith =>
@@ -28,7 +29,7 @@ abstract class $DashboardStateCopyWith<$Res> {
   factory $DashboardStateCopyWith(
           DashboardState value, $Res Function(DashboardState) then) =
       _$DashboardStateCopyWithImpl<$Res>;
-  $Res call({int count});
+  $Res call({int count, MechadeliFlow currentFlow});
 }
 
 /// @nodoc
@@ -43,12 +44,17 @@ class _$DashboardStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? count = freezed,
+    Object? currentFlow = freezed,
   }) {
     return _then(_value.copyWith(
       count: count == freezed
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      currentFlow: currentFlow == freezed
+          ? _value.currentFlow
+          : currentFlow // ignore: cast_nullable_to_non_nullable
+              as MechadeliFlow,
     ));
   }
 }
@@ -60,7 +66,7 @@ abstract class _$$_DashboardStateCopyWith<$Res>
           _$_DashboardState value, $Res Function(_$_DashboardState) then) =
       __$$_DashboardStateCopyWithImpl<$Res>;
   @override
-  $Res call({int count});
+  $Res call({int count, MechadeliFlow currentFlow});
 }
 
 /// @nodoc
@@ -77,12 +83,17 @@ class __$$_DashboardStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? count = freezed,
+    Object? currentFlow = freezed,
   }) {
     return _then(_$_DashboardState(
       count: count == freezed
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      currentFlow: currentFlow == freezed
+          ? _value.currentFlow
+          : currentFlow // ignore: cast_nullable_to_non_nullable
+              as MechadeliFlow,
     ));
   }
 }
@@ -92,15 +103,19 @@ class __$$_DashboardStateCopyWithImpl<$Res>
 class _$_DashboardState
     with DiagnosticableTreeMixin
     implements _DashboardState {
-  const _$_DashboardState({this.count = 0});
+  const _$_DashboardState(
+      {this.count = 0, this.currentFlow = MechadeliFlow.cancel});
 
   @override
   @JsonKey()
   final int count;
+  @override
+  @JsonKey()
+  final MechadeliFlow currentFlow;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DashboardState(count: $count)';
+    return 'DashboardState(count: $count, currentFlow: $currentFlow)';
   }
 
   @override
@@ -108,7 +123,8 @@ class _$_DashboardState
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'DashboardState'))
-      ..add(DiagnosticsProperty('count', count));
+      ..add(DiagnosticsProperty('count', count))
+      ..add(DiagnosticsProperty('currentFlow', currentFlow));
   }
 
   @override
@@ -116,12 +132,16 @@ class _$_DashboardState
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DashboardState &&
-            const DeepCollectionEquality().equals(other.count, count));
+            const DeepCollectionEquality().equals(other.count, count) &&
+            const DeepCollectionEquality()
+                .equals(other.currentFlow, currentFlow));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(count));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(count),
+      const DeepCollectionEquality().hash(currentFlow));
 
   @JsonKey(ignore: true)
   @override
@@ -130,10 +150,13 @@ class _$_DashboardState
 }
 
 abstract class _DashboardState implements DashboardState {
-  const factory _DashboardState({final int count}) = _$_DashboardState;
+  const factory _DashboardState(
+      {final int count, final MechadeliFlow currentFlow}) = _$_DashboardState;
 
   @override
   int get count => throw _privateConstructorUsedError;
+  @override
+  MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_DashboardStateCopyWith<_$_DashboardState> get copyWith =>

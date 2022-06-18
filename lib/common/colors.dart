@@ -8,6 +8,7 @@ class AppColors {
   static const appBarBackground = Color(0xFF4e4e4e);
   static const background = Color(0xFFF1F3F8);
   static const sideBackground = Color(0xFFFFFFFF);
+  static const titleBackground = Color(0xFFE8E8E8);
   static const contentsBackground = Color(0xFFFFFFFF);
   static const error = Color(0xFFEF4B5F);
   static const textMain = Color(0xFF3a3a3a);
@@ -17,8 +18,8 @@ class AppColors {
   static const buttonColor = primary;
   static const buttonDisabledColor = Color(0xFFF1F3F8);
   static const inputColor = Color(0xFFF1F3F8);
-  static const active = Color(0xFF0097FC);
   static const barBackground = Color(0xFF4E4E4E);
+  static const active = Color(0xFF0097FC);
   static const inactive = Color(0xFF3A3A3A);
 
 // static const natural2 = Color(0xFFF1F3F8);

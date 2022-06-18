@@ -16,7 +16,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Mechadeli',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
+
       ),
       home: const MyHomePage(title: 'Mechadeli MyPage'),
       debugShowCheckedModeBanner: false,
