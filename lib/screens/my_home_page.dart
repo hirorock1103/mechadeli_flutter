@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
+import 'package:mechadeli_flutter/common/constants.dart';
 import 'package:mechadeli_flutter/screens/inquiry/inquiry.dart';
 
 import 'dashboard/dashboard.dart';
@@ -16,6 +17,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  SideMenuDisplayMode displayMode = SideMenuDisplayMode.auto;
   PageController page = PageController();
 
   @override
@@ -27,7 +29,16 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           InkWell(
               onTap: () {
-                print("lll");
+                setState(() {
+                  if( size.width > AppConstant.phoneMaxSize ){
+                    //tablet以上
+                    displayMode = (displayMode == SideMenuDisplayMode.compact) ? SideMenuDisplayMode.auto : SideMenuDisplayMode.compact;
+
+                  }else{
+                    //スマホ
+                    displayMode = SideMenuDisplayMode.auto;
+                  }
+                });
               },
               child: CircleAvatar(
                 child: Icon(Icons.person_add),
@@ -52,9 +63,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(color: Colors.white),
               ))),
         ],
-        title: Text(
-          widget.title,
-          style: TextStyle(color: Colors.black54),
+        title: InkWell(
+          onTap: () => page.jumpToPage(0),
+          child: Text(
+            widget.title,
+            style: TextStyle(color: Colors.black54),
+          ),
         ),
         centerTitle: false,
         backgroundColor: Colors.white,
@@ -79,11 +93,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ]
               ),
-              displayMode: SideMenuDisplayMode.auto,
+              displayMode: displayMode,
               hoverColor: Colors.blue[100],
               selectedColor: Colors.lightBlueAccent,
               selectedTitleTextStyle: const TextStyle(color: Colors.white),
               selectedIconColor: Colors.white,
+              openSideMenuWidth: 200,
               // decoration: BoxDecoration(
               //   borderRadius: BorderRadius.all(Radius.circular(10)),
               // ),
@@ -132,11 +147,27 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: () {
                   page.jumpToPage(1);
                 },
-                icon: const Icon(Icons.supervisor_account),
+                icon: const Icon(Icons.event_available),
+              ),
+              SideMenuItem(
+                priority: 1,
+                title: 'Chat',
+                onTap: () {
+                  page.jumpToPage(1);
+                },
+                icon: const Icon(Icons.chat),
               ),
               SideMenuItem(
                 priority: 3,
                 title: 'よくあるご質問',
+                onTap: () {
+                  page.jumpToPage(3);
+                },
+                icon: const Icon(Icons.question_answer),
+              ),
+              SideMenuItem(
+                priority: 3,
+                title: 'プロフィール設定',
                 onTap: () {
                   page.jumpToPage(3);
                 },
@@ -148,7 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: () {
                   page.jumpToPage(2);
                 },
-                icon: const Icon(Icons.file_copy_rounded),
+                icon: const Icon(Icons.contact_support),
               ),
               SideMenuItem(
                 priority: 4,

@@ -33,155 +33,162 @@ class DashBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      // padding: const EdgeInsets.only(left: 10),
-      child: Column(
-        children: [
-          //
-          PageTitle(title: "ダッシュボード"),
+    return PageView(
+      controller: page,
+      children: [
+        SingleChildScrollView(
+          // padding: const EdgeInsets.only(left: 10),
+          child: Column(
+            children: [
+              //
+              PageTitle(title: "ダッシュボード"),
 
-          Builder(builder: (context) {
-            //watch selected flow
-            MechadeliFlow selectedFlow =
-                context.select((DashboardState state) => state).currentFlow;
-            //button list
-            List<Widget> list = MechadeliFlow.values
-                .map((e) => Container(
-                      margin: EdgeInsets.all(5),
-                      child: ElevatedButton(
-                          style: selectedFlow == e
-                              ? ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Colors.blue))
-                              : null,
-                          onPressed: () {
-                            context.read<DashboardNotifier>().selectFlow(e);
-                          },
-                          child: Text(
-                              MechadeliFlowContents[e]['title'].toString())),
-                    ))
-                .toList();
+              Builder(builder: (context) {
+                //watch selected flow
+                MechadeliFlow selectedFlow =
+                    context.select((DashboardState state) => state).currentFlow;
+                //button list
+                List<Widget> list = MechadeliFlow.values
+                    .map((e) => Container(
+                          margin: EdgeInsets.all(5),
+                          child: ElevatedButton(
+                              style: selectedFlow == e
+                                  ? ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(Colors.blue))
+                                  : null,
+                              onPressed: () {
+                                context.read<DashboardNotifier>().selectFlow(e);
+                              },
+                              child: Text(
+                                  MechadeliFlowContents[e]['title'].toString())),
+                        ))
+                    .toList();
 
-            return MyCard(
-              contents: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                return MyCard(
+                  contents: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      H1Title(title: "予約状況"),
+                      Wrap(
+                        children: list,
+                      ),
+                    ],
+                  ),
+                );
+              }),
+
+              MyCard(
+                  contents: Column(
                 children: [
-                  H1Title(title: "予約状況"),
-                  Wrap(
-                    children: list,
+                  H1Title(title: "メッセージ"),
+                  MyTable(
+                    rowList: [
+                      TableRow(children: [
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: Text("受信日時"),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: Text("メッセージ"),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: Text("予約ID"),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: Text("room"),
+                        ),
+                      ]),
+                      TableRow(children: [
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: Text("受信日時"),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: Text("メッセージ"),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: Text("予約ID"),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              page.jumpToPage(1);
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => TalkRoom()));
+                            },
+                            child: Text("chat room"),
+                          ),
+                        ),
+                      ])
+                    ],
                   ),
                 ],
-              ),
-            );
-          }),
-
-          MyCard(
-              contents: Column(
-            children: [
-              H1Title(title: "メッセージ"),
-              MyTable(
-                rowList: [
-                  TableRow(children: [
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      child: Text("受信日時"),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      child: Text("メッセージ"),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      child: Text("予約ID"),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      child: Text("room"),
-                    ),
-                  ]),
-                  TableRow(children: [
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      child: Text("受信日時"),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      child: Text("メッセージ"),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      child: Text("予約ID"),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => TalkRoom()));
-                        },
-                        child: Text("chat room"),
-                      ),
-                    ),
-                  ])
+              )),
+              MyCard(
+                  contents: Column(
+                children: [
+                  H1Title(title: "お知らせ"),
+                  MyTable(
+                    rowList: [
+                      TableRow(children: [
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: Text("受信日時"),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: Text("メッセージ"),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: Text("予約ID"),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: Text("room"),
+                        ),
+                      ]),
+                      TableRow(children: [
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: Text("受信日時"),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: Text("メッセージ"),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: Text("予約ID"),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              print("");
+                            },
+                            child: Text("chat room"),
+                          ),
+                        ),
+                      ])
+                    ],
+                  ),
                 ],
-              ),
+              )),
             ],
-          )),
-          MyCard(
-              contents: Column(
-            children: [
-              H1Title(title: "お知らせ"),
-              MyTable(
-                rowList: [
-                  TableRow(children: [
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      child: Text("受信日時"),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      child: Text("メッセージ"),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      child: Text("予約ID"),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      child: Text("room"),
-                    ),
-                  ]),
-                  TableRow(children: [
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      child: Text("受信日時"),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      child: Text("メッセージ"),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      child: Text("予約ID"),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          print("");
-                        },
-                        child: Text("chat room"),
-                      ),
-                    ),
-                  ])
-                ],
-              ),
-            ],
-          )),
-        ],
-      ),
+          ),
+        ),
+        SingleChildScrollView(child: TalkRoom()),
+      ],
     );
   }
 }
