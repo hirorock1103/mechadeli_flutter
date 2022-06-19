@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
+import 'package:mechadeli_flutter/screens/inquiry/inquiry.dart';
 
 import 'dashboard/dashboard.dart';
+import 'questions/question.dart';
+import 'schedule/schedule.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -125,27 +128,27 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               SideMenuItem(
                 priority: 1,
-                title: 'Users',
+                title: '予約',
                 onTap: () {
                   page.jumpToPage(1);
                 },
                 icon: const Icon(Icons.supervisor_account),
               ),
               SideMenuItem(
+                priority: 3,
+                title: 'よくあるご質問',
+                onTap: () {
+                  page.jumpToPage(3);
+                },
+                icon: const Icon(Icons.supervisor_account),
+              ),
+              SideMenuItem(
                 priority: 2,
-                title: 'Files',
+                title: 'お問い合わせ',
                 onTap: () {
                   page.jumpToPage(2);
                 },
                 icon: const Icon(Icons.file_copy_rounded),
-              ),
-              SideMenuItem(
-                priority: 3,
-                title: 'Download',
-                onTap: () {
-                  page.jumpToPage(3);
-                },
-                icon: const Icon(Icons.download),
               ),
               SideMenuItem(
                 priority: 4,
@@ -168,42 +171,9 @@ class _MyHomePageState extends State<MyHomePage> {
               controller: page,
               children: [
                 DashBoard.wrapped(),
-                Container(
-                  color: Colors.white,
-                  child: const Center(
-                    child: Text(
-                      'Users',
-                      style: TextStyle(fontSize: 35),
-                    ),
-                  ),
-                ),
-                Container(
-                  color: Colors.white,
-                  child: const Center(
-                    child: Text(
-                      'Files',
-                      style: TextStyle(fontSize: 35),
-                    ),
-                  ),
-                ),
-                Container(
-                  color: Colors.white,
-                  child: const Center(
-                    child: Text(
-                      'Download',
-                      style: TextStyle(fontSize: 35),
-                    ),
-                  ),
-                ),
-                Container(
-                  color: Colors.white,
-                  child: const Center(
-                    child: Text(
-                      'Settings',
-                      style: TextStyle(fontSize: 35),
-                    ),
-                  ),
-                ),
+                Schedule.wrapped(),
+                Inquiry.wrapped(),
+                Question(),
               ],
             ),
           ),

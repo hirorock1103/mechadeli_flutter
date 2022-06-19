@@ -3,23 +3,23 @@ import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../../domain/notifiers/app_notifier.dart';
-import 'dashboard_notifier.dart';
+import 'schedule_notifier.dart';
 
-class DashBoard extends StatelessWidget {
+class Schedule extends StatelessWidget {
   static Widget wrapped() {
     return MultiProvider(
       providers: [
-        StateNotifierProvider<DashboardNotifier, DashboardState>(
-          create: (context) => DashboardNotifier(
+        StateNotifierProvider<ScheduleNotifier, ScheduleState>(
+          create: (context) => ScheduleNotifier(
             context: context,
           ),
         )
       ],
-      child: DashBoard(),
+      child: Schedule(),
     );
   }
 
-  const DashBoard({Key? key}) : super(key: key);
+  const Schedule({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class DashBoard extends StatelessWidget {
             height: 150,
             color: Colors.blue,
             child: ElevatedButton(
-              onPressed: () => context.read<DashboardNotifier>().addCount(),
+              onPressed: () => context.read<ScheduleNotifier>().addCount(),
               child: Text(
                 "push(ページごと状態管理)",
                 style: TextStyle(fontSize: 20),
@@ -48,7 +48,7 @@ class DashBoard extends StatelessWidget {
               child: Center(
                 child: Text(
                   context
-                      .select((DashboardState state) => state)
+                      .select((ScheduleState state) => state)
                       .count
                       .toString(),
                   style: TextStyle(fontSize: 30),
