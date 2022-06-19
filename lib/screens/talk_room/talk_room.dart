@@ -3,14 +3,14 @@ import 'package:mechadeli_flutter/widgets/common/layout/my_card.dart';
 import 'package:mechadeli_flutter/widgets/common/titles/h1_title.dart';
 import 'package:mechadeli_flutter/widgets/common/titles/page_title.dart';
 
-class Question extends StatefulWidget {
-  const Question({Key? key}) : super(key: key);
+class TalkRoom extends StatefulWidget {
+  const TalkRoom({Key? key}) : super(key: key);
 
   @override
-  _QuestionState createState() => _QuestionState();
+  _TalkRoomState createState() => _TalkRoomState();
 }
 
-class _QuestionState extends State<Question> {
+class _TalkRoomState extends State<TalkRoom> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
