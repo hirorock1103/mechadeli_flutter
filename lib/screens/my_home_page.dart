@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:mechadeli_flutter/common/constants.dart';
+import 'package:mechadeli_flutter/screens/chat/chat.dart';
 import 'package:mechadeli_flutter/screens/inquiry/inquiry.dart';
+import 'package:mechadeli_flutter/screens/profile/profile.dart';
+import 'package:mechadeli_flutter/screens/setting/setting.dart';
 
 import 'dashboard/dashboard.dart';
 import 'questions/question.dart';
@@ -77,6 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SideMenu(
+            showToggle: true,
             controller: page,
             // onDisplayModeChanged: (mode) {
             //   print(mode);
@@ -104,27 +108,28 @@ class _MyHomePageState extends State<MyHomePage> {
               // ),
               // backgroundColor: Colors.blueGrey[700]
             ),
-            title: Column(
-              children: [
-                ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    maxHeight: 150,
-                    maxWidth: 150,
-                  ),
-                  child: Image.asset(
-                    'assets/images/1.png',
-                  ),
-                ),
-                const Divider(
-                  indent: 8.0,
-                  endIndent: 8.0,
-                ),
-              ],
-            ),
+            // title: Column(
+            //   children: [
+            //     ConstrainedBox(
+            //       constraints: const BoxConstraints(
+            //         maxHeight: 150,
+            //         maxWidth: 150,
+            //       ),
+            //       child: Image.asset(
+            //         'assets/images/1.png',
+            //       ),
+            //     ),
+            //     const Divider(
+            //       indent: 8.0,
+            //       endIndent: 8.0,
+            //     ),
+            //   ],
+            // ),
+            title: Container(height: 10,),
             footer: const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
-                'mohada',
+                'mechadeli',
                 style: TextStyle(fontSize: 15),
               ),
             ),
@@ -150,10 +155,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: const Icon(Icons.event_available),
               ),
               SideMenuItem(
-                priority: 1,
+                priority: 2,
                 title: 'Chat',
                 onTap: () {
-                  page.jumpToPage(1);
+                  print("chat");
+                  page.jumpToPage(2);
                 },
                 icon: const Icon(Icons.chat),
               ),
@@ -166,31 +172,31 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: const Icon(Icons.question_answer),
               ),
               SideMenuItem(
-                priority: 3,
+                priority: 5,
                 title: 'プロフィール設定',
                 onTap: () {
-                  page.jumpToPage(3);
+                  page.jumpToPage(5);
                 },
                 icon: const Icon(Icons.supervisor_account),
               ),
               SideMenuItem(
-                priority: 2,
+                priority: 4,
                 title: 'お問い合わせ',
                 onTap: () {
-                  page.jumpToPage(2);
+                  page.jumpToPage(4);
                 },
                 icon: const Icon(Icons.contact_support),
               ),
               SideMenuItem(
-                priority: 4,
+                priority: 6,
                 title: 'Settings',
                 onTap: () {
-                  page.jumpToPage(4);
+                  page.jumpToPage(6);
                 },
                 icon: const Icon(Icons.settings),
               ),
               SideMenuItem(
-                priority: 6,
+                priority: 8,
                 title: 'Exit',
                 onTap: () async {},
                 icon: const Icon(Icons.exit_to_app),
@@ -201,10 +207,13 @@ class _MyHomePageState extends State<MyHomePage> {
             child: PageView(
               controller: page,
               children: [
-                DashBoard.wrapped(),
-                Schedule.wrapped(),
-                Inquiry.wrapped(),
-                Question(),
+                DashBoard.wrapped(),//ダッシュボード
+                Schedule.wrapped(),//予約
+                Chat(),//チャット
+                Question(),//よくある質問
+                Inquiry.wrapped(),//お問い合わせ
+                Profile(),//プロフィール設定
+                Setting(),//設定
               ],
             ),
           ),

@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
 
       ),
-      home: const MyHomePage(title: 'Mechadeli MyPage'),
+      home: const MyHomePage(title: 'Mechadeli MyPage(User)'),
       debugShowCheckedModeBanner: false,
     );
   }
