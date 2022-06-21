@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:mechadeli_flutter/common/constants.dart';
 import 'package:mechadeli_flutter/screens/chat/chat.dart';
+import 'package:mechadeli_flutter/screens/dashboard/dashboard_notifier.dart';
 import 'package:mechadeli_flutter/screens/inquiry/inquiry.dart';
 import 'package:mechadeli_flutter/screens/profile/profile.dart';
 import 'package:mechadeli_flutter/screens/setting/setting.dart';
@@ -25,6 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final dashboardKey = GlobalKey();//TODO stateless用のkey設定が必要
     final Size size = MediaQuery.of(context).size;
     print(size.width);
     return Scaffold(
@@ -67,7 +69,10 @@ class _MyHomePageState extends State<MyHomePage> {
               ))),
         ],
         title: InkWell(
-          onTap: () => page.jumpToPage(0),
+          onTap: () {
+            // dashboardKey.currentState.initialize();
+            page.jumpToPage(0);
+          },
           child: Text(
             widget.title,
             style: TextStyle(color: Colors.black54),
@@ -207,7 +212,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: PageView(
               controller: page,
               children: [
-                DashBoard.wrapped(),//ダッシュボード
+                DashBoard.wrapped(dashboardKey),//ダッシュボード
                 Schedule.wrapped(),//予約
                 Chat(),//チャット
                 Question(),//よくある質問

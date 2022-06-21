@@ -16,7 +16,7 @@ class DashBoard extends StatelessWidget {
   int testCount = 10;
   PageController page = PageController();
 
-  static Widget wrapped() {
+  static Widget wrapped( GlobalKey key ) {
     return MultiProvider(
       providers: [
         StateNotifierProvider<DashboardNotifier, DashboardState>(
@@ -25,7 +25,7 @@ class DashBoard extends StatelessWidget {
           ),
         )
       ],
-      child: DashBoard(),
+      child: DashBoard(key: key,),
     );
   }
 

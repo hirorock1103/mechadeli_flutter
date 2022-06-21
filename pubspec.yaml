@@ -39,6 +39,13 @@ dependencies:
   shared_preferences: ^2.0.15
   chopper: ^4.0.5
   http: ^0.13.4
+  # chat
+  flutter_chat_ui: ^1.6.2
+  file_picker: ^4.6.1
+  image_picker: ^0.8.5+3
+  open_file: ^3.2.1
+  path_provider: ^2.0.11
+  uuid: ^3.0.6
 
 
   # The following adds the Cupertino Icons font to your application.

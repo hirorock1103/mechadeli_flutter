@@ -32,7 +32,6 @@ class DashboardNotifier extends StateNotifier<DashboardState> with LocatorMixin 
   @override
   void initState() {}
 
-
   ///flow select
   void selectFlow( MechadeliFlow flow ){
     state = state.copyWith(currentFlow: flow);
@@ -41,6 +40,8 @@ class DashboardNotifier extends StateNotifier<DashboardState> with LocatorMixin 
 
 
   }
+
+
 
   void addCount(){
     state = state.copyWith(count: state.count + 1);
