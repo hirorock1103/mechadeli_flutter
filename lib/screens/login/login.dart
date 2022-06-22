@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'package:mechadeli_flutter/common/colors.dart';
+import 'package:mechadeli_flutter/common/constants.dart';
 import 'package:provider/provider.dart';
 
 import '../../../domain/notifiers/app_notifier.dart';
@@ -23,25 +26,41 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     TextEditingController userIdController = TextEditingController();
     TextEditingController userPwController = TextEditingController();
 
     final size = MediaQuery.of(context).size;
-
+    final contentWidth = size.width / 1.5;
     return Scaffold(
-      appBar: AppBar(
-        title: Text("login"),
-      ),
+      // appBar: AppBar(
+      //   title: Text("login"),
+      // ),
       body: Center(
         child: Container(
-          width: (size.width / 1.5) as double,
+          width: contentWidth <= (AppConstant.tabletMaxSize as double)
+              ? contentWidth
+              : AppConstant.tabletMaxSize as double,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Spacer(flex: 1,),
+              title(),
+              SizedBox(
+                height: 30,
+              ),
               userInput(userIdController, "ID", TextInputType.text),
               userInput(userPwController, "password", TextInputType.text),
+              const SizedBox(
+                height: 20,
+              ),
+              signInButton(),
+              Spacer(flex: 1,),
+              Text("利用規約"),
+              Text("プライバシーポリシー"),
+              const SizedBox(
+                height: 20,
+              ),
             ],
           ),
         ),
@@ -49,44 +68,92 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  ///userInput
-  Widget signIn(){
+  ///title
+  Widget title() {
     return Container(
-      child: ElevatedButton(
-        onPressed: (){ print("test"); },
-        child: Text("test"),
+      child: Text(
+        "Mechadeli User Login",
+        style: TextStyle(fontSize: 30),
       ),
     );
   }
 
+  ///userInput
+  Widget signInButton() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(horizontal: 80, vertical: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30))),
+            onPressed: () {
+              print("test");
+            },
+            child: Text(
+              "ログイン",
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 60,
+        ),
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            CircleAvatar(
+              radius: 10,
+              child: ClipOval(child: Icon(Icons.arrow_forward, size: 12,)),
+            ),
+            SizedBox(width: 10,),
+            Text("パスワードを忘れた方"),
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            CircleAvatar(
+              radius: 10,
+              child: ClipOval(child: Icon(Icons.arrow_forward, size: 12,)),
+            ),
+            SizedBox(width: 10,),
+            Text("新規ユーザー登録"),
+          ],
+        )
+      ],
+    );
+  }
+
   ///input id
-  Widget userInput( TextEditingController userInput ,String hintTitle, TextInputType keyboardType) {
+  Widget userInput(TextEditingController userInput, String hintTitle,
+      TextInputType keyboardType) {
     return Builder(builder: (context) {
       return Container(
         height: 55,
         margin: EdgeInsets.only(bottom: 15),
         decoration: BoxDecoration(
-            color: Colors.blueGrey.shade200,
+            color: Colors.blueGrey[100],
             borderRadius: BorderRadius.circular(30)),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 25.0, top: 15, right: 25),
-          child: TextField(
-            controller: userInput,
-            autocorrect: false,
-            enableSuggestions: false,
-            autofocus: false,
-            decoration: InputDecoration.collapsed(
-              hintText: hintTitle,
-              hintStyle: TextStyle(
-                  fontSize: 18,
-                  color: Colors.white70,
-                  fontStyle: FontStyle.italic),
-            ),
-            keyboardType: keyboardType,
+        child: TextField(
+          controller: userInput,
+          autocorrect: false,
+          enableSuggestions: false,
+          autofocus: false,
+          decoration: InputDecoration(
+            hintText: hintTitle,
+            contentPadding: EdgeInsets.all(20),
+            border: InputBorder.none,
           ),
+          keyboardType: keyboardType,
         ),
       );
     });
   }
-
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mechadeli_flutter/common/colors.dart';
 import 'package:provider/provider.dart';
 
 import 'di_container.dart';
@@ -16,8 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Mechadeli',
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-
+        primarySwatch: AppColors.primary ,
       ),
       home: const MyHomePage(title: 'Mechadeli MyPage(User)'),
       debugShowCheckedModeBanner: false,

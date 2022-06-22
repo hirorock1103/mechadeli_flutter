@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
+import 'package:mechadeli_flutter/common/colors.dart';
 import 'package:mechadeli_flutter/common/constants.dart';
 import 'package:mechadeli_flutter/screens/login/login.dart';
 import 'package:mechadeli_flutter/screens/chat/chat.dart';
@@ -101,23 +102,9 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.grey),
         actions: [
-          InkWell(
-              onTap: () {
-                setState(() {
-                  if (size.width > AppConstant.phoneMaxSize) {
-                    //tablet以上
-                    displayMode = (displayMode == SideMenuDisplayMode.compact)
-                        ? SideMenuDisplayMode.auto
-                        : SideMenuDisplayMode.compact;
-                  } else {
-                    //スマホ
-                    displayMode = SideMenuDisplayMode.auto;
-                  }
-                });
-              },
-              child: CircleAvatar(
-                child: Icon(Icons.person_add),
-              )),
+          CircleAvatar(
+            child: Icon(Icons.person_add),
+          ),
           if (size.width > 800)
             Container(
                 padding: EdgeInsets.symmetric(horizontal: 10),
@@ -162,8 +149,6 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SideMenu(
-
-
             showToggle: true,
             controller: page,
             // onDisplayModeChanged: (mode) {
@@ -180,8 +165,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ]),
               displayMode: displayMode,
-              hoverColor: Colors.blue[100],
-              selectedColor: Colors.lightBlueAccent,
+              hoverColor: AppColors.primary[50],
+              selectedColor: AppColors.primary,
               selectedTitleTextStyle: const TextStyle(color: Colors.white),
               selectedIconColor: Colors.white,
               openSideMenuWidth: 200,
