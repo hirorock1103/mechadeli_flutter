@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'dashboard_notifier.dart';
+part of 'register_notifier.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,31 +15,31 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$DashboardState {
+mixin _$RegisterState {
   int get count => throw _privateConstructorUsedError;
   MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $DashboardStateCopyWith<DashboardState> get copyWith =>
+  $RegisterStateCopyWith<RegisterState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DashboardStateCopyWith<$Res> {
-  factory $DashboardStateCopyWith(
-          DashboardState value, $Res Function(DashboardState) then) =
-      _$DashboardStateCopyWithImpl<$Res>;
+abstract class $RegisterStateCopyWith<$Res> {
+  factory $RegisterStateCopyWith(
+          RegisterState value, $Res Function(RegisterState) then) =
+      _$RegisterStateCopyWithImpl<$Res>;
   $Res call({int count, MechadeliFlow currentFlow});
 }
 
 /// @nodoc
-class _$DashboardStateCopyWithImpl<$Res>
-    implements $DashboardStateCopyWith<$Res> {
-  _$DashboardStateCopyWithImpl(this._value, this._then);
+class _$RegisterStateCopyWithImpl<$Res>
+    implements $RegisterStateCopyWith<$Res> {
+  _$RegisterStateCopyWithImpl(this._value, this._then);
 
-  final DashboardState _value;
+  final RegisterState _value;
   // ignore: unused_field
-  final $Res Function(DashboardState) _then;
+  final $Res Function(RegisterState) _then;
 
   @override
   $Res call({
@@ -60,32 +60,32 @@ class _$DashboardStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_DashboardStateCopyWith<$Res>
-    implements $DashboardStateCopyWith<$Res> {
-  factory _$$_DashboardStateCopyWith(
-          _$_DashboardState value, $Res Function(_$_DashboardState) then) =
-      __$$_DashboardStateCopyWithImpl<$Res>;
+abstract class _$$_RegisterStateCopyWith<$Res>
+    implements $RegisterStateCopyWith<$Res> {
+  factory _$$_RegisterStateCopyWith(
+          _$_RegisterState value, $Res Function(_$_RegisterState) then) =
+      __$$_RegisterStateCopyWithImpl<$Res>;
   @override
   $Res call({int count, MechadeliFlow currentFlow});
 }
 
 /// @nodoc
-class __$$_DashboardStateCopyWithImpl<$Res>
-    extends _$DashboardStateCopyWithImpl<$Res>
-    implements _$$_DashboardStateCopyWith<$Res> {
-  __$$_DashboardStateCopyWithImpl(
-      _$_DashboardState _value, $Res Function(_$_DashboardState) _then)
-      : super(_value, (v) => _then(v as _$_DashboardState));
+class __$$_RegisterStateCopyWithImpl<$Res>
+    extends _$RegisterStateCopyWithImpl<$Res>
+    implements _$$_RegisterStateCopyWith<$Res> {
+  __$$_RegisterStateCopyWithImpl(
+      _$_RegisterState _value, $Res Function(_$_RegisterState) _then)
+      : super(_value, (v) => _then(v as _$_RegisterState));
 
   @override
-  _$_DashboardState get _value => super._value as _$_DashboardState;
+  _$_RegisterState get _value => super._value as _$_RegisterState;
 
   @override
   $Res call({
     Object? count = freezed,
     Object? currentFlow = freezed,
   }) {
-    return _then(_$_DashboardState(
+    return _then(_$_RegisterState(
       count: count == freezed
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -100,10 +100,8 @@ class __$$_DashboardStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DashboardState
-    with DiagnosticableTreeMixin
-    implements _DashboardState {
-  const _$_DashboardState(
+class _$_RegisterState with DiagnosticableTreeMixin implements _RegisterState {
+  const _$_RegisterState(
       {this.count = 0, this.currentFlow = MechadeliFlow.cancel});
 
   @override
@@ -115,14 +113,14 @@ class _$_DashboardState
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DashboardState(count: $count, currentFlow: $currentFlow)';
+    return 'RegisterState(count: $count, currentFlow: $currentFlow)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'DashboardState'))
+      ..add(DiagnosticsProperty('type', 'RegisterState'))
       ..add(DiagnosticsProperty('count', count))
       ..add(DiagnosticsProperty('currentFlow', currentFlow));
   }
@@ -131,7 +129,7 @@ class _$_DashboardState
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DashboardState &&
+            other is _$_RegisterState &&
             const DeepCollectionEquality().equals(other.count, count) &&
             const DeepCollectionEquality()
                 .equals(other.currentFlow, currentFlow));
@@ -145,13 +143,13 @@ class _$_DashboardState
 
   @JsonKey(ignore: true)
   @override
-  _$$_DashboardStateCopyWith<_$_DashboardState> get copyWith =>
-      __$$_DashboardStateCopyWithImpl<_$_DashboardState>(this, _$identity);
+  _$$_RegisterStateCopyWith<_$_RegisterState> get copyWith =>
+      __$$_RegisterStateCopyWithImpl<_$_RegisterState>(this, _$identity);
 }
 
-abstract class _DashboardState implements DashboardState {
-  const factory _DashboardState(
-      {final int count, final MechadeliFlow currentFlow}) = _$_DashboardState;
+abstract class _RegisterState implements RegisterState {
+  const factory _RegisterState(
+      {final int count, final MechadeliFlow currentFlow}) = _$_RegisterState;
 
   @override
   int get count => throw _privateConstructorUsedError;
@@ -159,6 +157,6 @@ abstract class _DashboardState implements DashboardState {
   MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_DashboardStateCopyWith<_$_DashboardState> get copyWith =>
+  _$$_RegisterStateCopyWith<_$_RegisterState> get copyWith =>
       throw _privateConstructorUsedError;
 }

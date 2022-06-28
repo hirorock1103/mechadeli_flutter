@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mechadeli_flutter/common/colors.dart';
 import 'package:mechadeli_flutter/screens/home_page/home_page.dart';
+import 'package:mechadeli_flutter/screens/start.dart';
 import 'package:provider/provider.dart';
 
 import 'di_container.dart';
@@ -22,8 +23,8 @@ class MyApp extends StatelessWidget {
       ),
       // home: const MyHomePage(title: 'Mechadeli MyPage(User)'),
       // home: const LoginPage(),
-      // home: const LoginPage(),
-      home: const HomePage(title: "userpage"),
+      home: const Start(),
+      // home: const HomePage(title: "Mechadeli HomePage"),
       debugShowCheckedModeBanner: false,
     );
   }

@@ -5,20 +5,20 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mechadeli_flutter/common/enum.dart';
 import 'package:state_notifier/state_notifier.dart';
 
-part 'dashboard_notifier.freezed.dart';
+part 'register_notifier.freezed.dart';
 
 @freezed
-abstract class DashboardState with _$DashboardState {
-  const factory DashboardState({
+abstract class RegisterState with _$RegisterState {
+  const factory RegisterState({
     @Default(0) int count,
     @Default(MechadeliFlow.cancel) MechadeliFlow currentFlow,
-  }) = _DashboardState;
+  }) = _RegisterState;
 }
 
-class DashboardNotifier extends StateNotifier<DashboardState> with LocatorMixin {
-  DashboardNotifier({
+class RegisterNotifier extends StateNotifier<RegisterState> with LocatorMixin {
+  RegisterNotifier({
     required this.context,
-  }) : super(const DashboardState());
+  }) : super(const RegisterState());
 
   final BuildContext context;
 

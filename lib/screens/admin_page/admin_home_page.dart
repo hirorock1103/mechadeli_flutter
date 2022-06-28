@@ -7,16 +7,16 @@ import 'package:mechadeli_flutter/screens/user_page/login/login.dart';
 
 // import 'dashboard/dashboard.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.title}) : super(key: key);
+class AdminHomePage extends StatefulWidget {
+  const AdminHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _AdminHomePageState createState() => _AdminHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _AdminHomePageState extends State<AdminHomePage> {
   SideMenuDisplayMode displayMode = SideMenuDisplayMode.auto;
   PageController page = PageController();
 

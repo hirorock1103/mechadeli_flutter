@@ -150,9 +150,9 @@ class _MyHomePageState extends State<MyHomePage> {
           SideMenu(
             showToggle: true,
             controller: page,
-            // onDisplayModeChanged: (mode) {
-            //   print(mode);
-            // },
+            onDisplayModeChanged: (mode) {
+              print(mode);
+            },
             style: SideMenuStyle(
               backgroundColor: Colors.white,
               decoration: BoxDecoration(boxShadow: [
