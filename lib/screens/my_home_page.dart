@@ -27,7 +27,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final dashboardKey = GlobalKey(); //TODO stateless用のkey設定が必要
     final Size size = MediaQuery.of(context).size;
     print(size.width);
     return Scaffold(
@@ -266,9 +265,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: const Icon(Icons.settings),
               ),
               SideMenuItem(
-                priority: 8,
+                priority: 7,
                 title: 'Exit',
-                onTap: () async {},
+                onTap: () async {
+                  // page.jumpToPage(7);
+                },
                 icon: const Icon(Icons.exit_to_app),
               ),
             ],
@@ -277,7 +278,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: PageView(
               controller: page,
               children: [
-                DashBoard.wrapped(dashboardKey), //ダッシュボード
+                DashBoard.wrapped(), //ダッシュボード
                 Schedule.wrapped(), //予約
                 Chat(), //チャット
                 Question(), //よくある質問

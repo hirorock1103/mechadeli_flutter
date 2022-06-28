@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mechadeli_flutter/widgets/common/forms/my_toggle.dart';
 import 'package:mechadeli_flutter/widgets/common/layout/my_card.dart';
 import 'package:mechadeli_flutter/widgets/common/titles/h1_title.dart';
 import 'package:mechadeli_flutter/widgets/common/titles/page_title.dart';
@@ -21,9 +22,14 @@ class _SettingState extends State<Setting> {
               contents: Column(
                 children: [
                   H1Title(
-                    title: "お支払いはどうすればいいでしょうか？",
+                    title: "各種設定",
                   ),
-                  Container(child: Text("テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト"),)
+                  Row(children: [
+                    Text("プッシュ通知"),
+                    SizedBox(width: 10,),
+                    MyToggle(value: false, onChange: (value){ print("push: $value"); })
+
+                  ],)
                 ],
               )),
           MyCard(

@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:mechadeli_flutter/common/colors.dart';
 import 'package:mechadeli_flutter/common/constants.dart';
+import 'package:mechadeli_flutter/main.dart';
+import 'package:mechadeli_flutter/screens/dashboard/dashboard.dart';
+import 'package:mechadeli_flutter/screens/my_home_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../../domain/notifiers/app_notifier.dart';
@@ -56,8 +59,8 @@ class LoginPage extends StatelessWidget {
               ),
               signInButton(),
               Spacer(flex: 1,),
-              Text("利用規約"),
-              Text("プライバシーポリシー"),
+              InkWell( onTap: (){ print("test"); } , child: Text("利用規約")),
+              InkWell( onTap: (){ print("test"); } , child: Text("プライバシーポリシー")),
               const SizedBox(
                 height: 20,
               ),
@@ -80,54 +83,62 @@ class LoginPage extends StatelessWidget {
 
   ///userInput
   Widget signInButton() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 80, vertical: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30))),
-            onPressed: () {
-              print("test");
-            },
-            child: Text(
-              "ログイン",
-              style: TextStyle(fontSize: 18),
+    return Builder(
+      builder: (context) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(horizontal: 80, vertical: 20),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30))),
+                onPressed: () {
+                  // Navigator.push(context, MaterialPageRoute(builder: (_){ return main(); }));
+                  Navigator.push(context, MaterialPageRoute(builder: (_){ return MyHomePage(title: "",); }));
+                },
+                child: Text(
+                  "ログイン",
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
             ),
-          ),
-        ),
-        SizedBox(
-          height: 60,
-        ),
+            SizedBox(
+              height: 60,
+            ),
 
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            CircleAvatar(
-              radius: 10,
-              child: ClipOval(child: Icon(Icons.arrow_forward, size: 12,)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                CircleAvatar(
+                  radius: 10,
+                  child: ClipOval(child: Icon(Icons.arrow_forward, size: 12,)),
+                ),
+                SizedBox(width: 10,),
+                InkWell( onTap: (){print("test");}, child: Text("パスワードを忘れた方")),
+              ],
             ),
-            SizedBox(width: 10,),
-            Text("パスワードを忘れた方"),
-          ],
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            CircleAvatar(
-              radius: 10,
-              child: ClipOval(child: Icon(Icons.arrow_forward, size: 12,)),
+            SizedBox(
+              height: 20,
             ),
-            SizedBox(width: 10,),
-            Text("新規ユーザー登録"),
+            InkWell(
+              onTap: (){ print("ea"); },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  CircleAvatar(
+                    radius: 10,
+                    child: ClipOval(child: Icon(Icons.arrow_forward, size: 12,)),
+                  ),
+                  SizedBox(width: 10,),
+                  InkWell( onTap: (){print("test");}, child: Text("新規ユーザー登録")),
+                ],
+              ),
+            )
           ],
-        )
-      ],
+        );
+      }
     );
   }
 

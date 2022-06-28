@@ -16,7 +16,7 @@ class DashBoard extends StatelessWidget {
   int testCount = 10;
   PageController page = PageController();
 
-  static Widget wrapped( GlobalKey key ) {
+  static Widget wrapped() {
     return MultiProvider(
       providers: [
         StateNotifierProvider<DashboardNotifier, DashboardState>(
@@ -25,7 +25,7 @@ class DashBoard extends StatelessWidget {
           ),
         )
       ],
-      child: DashBoard(key: key,),
+      child: DashBoard(),
     );
   }
 
@@ -55,7 +55,7 @@ class DashBoard extends StatelessWidget {
                               style: selectedFlow == e
                                   ? ButtonStyle(
                                       backgroundColor:
-                                          MaterialStateProperty.all(Colors.blue))
+                                          MaterialStateProperty.all(Colors.cyan))
                                   : null,
                               onPressed: () {
                                 context.read<DashboardNotifier>().selectFlow(e);
