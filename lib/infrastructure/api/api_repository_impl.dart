@@ -52,9 +52,27 @@ class ApiRepositoryImpl implements ApiRepository {
   }
 
   @override
-  Future<Admin?> registerAdmin(Map<String, dynamic> data) {
+  Future<Admin?> registerAdmin(Map<String, dynamic> data) async {
     // TODO: implement registerAdmin
-    throw UnimplementedError();
+    Admin admin = Admin();
+
+    print(data);
+    //
+    final response = await _apiClient.registerAdmin(data);
+
+    print(response);
+
+    if (response.isSuccessful) {
+      final body = response.body;
+      //print(body);
+      if (body != null) {
+        final result = MapResponse.fromJson(body);
+        admin = Admin.fromJson(result.data["user"]);
+      }
+    }
+    return admin;
+
+
   }
 
 }
