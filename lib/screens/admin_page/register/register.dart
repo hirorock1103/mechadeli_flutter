@@ -28,6 +28,7 @@ class Register extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController userIdController = TextEditingController();
     TextEditingController userPwController = TextEditingController();
+    TextEditingController userPwConfirmController = TextEditingController();
     TextEditingController userNameController = TextEditingController();
 
     final size = MediaQuery.of(context).size;
@@ -52,11 +53,12 @@ class Register extends StatelessWidget {
               ),
               userInput(userIdController, "ID(メールアドレス)", TextInputType.text),
               userInput(userPwController, "password(8文字以上)", TextInputType.text),
+              userInput(userPwConfirmController, "password(確認用)", TextInputType.text),
               userInput(userNameController, "お名前", TextInputType.text),
               const SizedBox(
                 height: 20,
               ),
-              signInButton(),
+              signInButton( ),
               Spacer(flex: 1,),
               InkWell( onTap: (){ print("test"); } , child: Text("利用規約")),
               InkWell( onTap: (){ print("test"); } , child: Text("プライバシーポリシー")),
@@ -95,7 +97,9 @@ class Register extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30))),
                 onPressed: () {
                   // Navigator.push(context, MaterialPageRoute(builder: (_){ return main(); }));
-                  Navigator.push(context, MaterialPageRoute(builder: (_){ return AdminHomePage(title: "Admin管理画面",); }));
+                  context.read<RegisterNotifier>().registerUser();
+
+                  // Navigator.push(context, MaterialPageRoute(builder: (_){ return AdminHomePage(title: "Admin管理画面",); }));
                 },
                 child: Text(
                   "管理者登録",
@@ -153,6 +157,7 @@ class Register extends StatelessWidget {
           autocorrect: false,
           enableSuggestions: false,
           autofocus: false,
+          onChanged: (String text){ print(text); },
           decoration: InputDecoration(
             hintText: hintTitle,
             contentPadding: EdgeInsets.all(20),

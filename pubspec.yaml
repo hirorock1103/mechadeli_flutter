@@ -30,22 +30,26 @@ dependencies:
   flutter:
     sdk: flutter
 
-  easy_sidemenu: ^0.3.1
-  provider: ^6.0.3
-  state_notifier: ^0.7.2+1
-  flutter_state_notifier: ^0.7.1
-  freezed_annotation: ^2.0.3
-  intl: ^0.17.0
-  shared_preferences: ^2.0.15
-  chopper: ^4.0.5
-  http: ^0.13.4
+  easy_sidemenu:
+  provider:
+  state_notifier:
+  flutter_state_notifier:
+  freezed_annotation:
+  intl:
+  shared_preferences:
+  chopper:
+  http:
+  json_serializable:
+  chopper_generator: ^4.0.5
+  json_annotation: ^4.5.0
   # chat
-  flutter_chat_ui: ^1.6.2
-  file_picker: ^4.6.1
-  image_picker: ^0.8.5+3
-  open_file: ^3.2.1
-  path_provider: ^2.0.11
-  uuid: ^3.0.6
+  flutter_chat_ui:
+  file_picker:
+  image_picker:
+  open_file:
+  path_provider:
+  uuid:
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -61,9 +65,9 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
-  build_runner: ^2.1.11
-  freezed: ^2.0.3+1
+  flutter_lints:
+  build_runner:
+  freezed:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

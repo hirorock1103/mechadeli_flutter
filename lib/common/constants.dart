@@ -8,7 +8,7 @@ class AppConstant {
   // エミュレータ環境
   // static const apiUrl = "http://10.0.2.2:8080/Site/Amb/MoneyBoard-Api/public/";
   // 開発サーバ
-  static const apiUrl = "http://mb-kdev-api.amb-dev.com";
+  static const apiUrl = "https://mechaful.phantom-design.net/api/public";
   // static const apiUrl = "http://money-board-api.amb-dev.com";
   // static const apiUrl = "http://49.212.202.230/api";
   // static const apiUrl = "http://mb-kdev-api.amb-dev.com";

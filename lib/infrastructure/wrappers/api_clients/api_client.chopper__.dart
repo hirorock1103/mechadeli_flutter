@@ -230,4 +230,5 @@ class _$ApiClient extends ApiClient {
     final $request = Request('POST', $url, client.baseUrl);
     return client.send<dynamic, dynamic>($request);
   }
+
 }

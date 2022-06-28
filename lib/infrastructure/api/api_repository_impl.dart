@@ -1,6 +1,7 @@
 import 'package:chopper/chopper.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' show MultipartFile;
+import 'package:mechadeli_flutter/domain/entities/admin.dart';
 
 import '../../domain/entities/map_response.dart';
 import '../../domain/entities/user.dart';
@@ -47,6 +48,12 @@ class ApiRepositoryImpl implements ApiRepository {
   @override
   Future<List<User>> userList({String? companyCode}) {
     // TODO: implement userList
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Admin?> registerAdmin(Map<String, dynamic> data) {
+    // TODO: implement registerAdmin
     throw UnimplementedError();
   }
 
