@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:mechadeli_flutter/common/colors.dart';
 import 'package:mechadeli_flutter/common/constants.dart';
-import 'package:mechadeli_flutter/screens/login/login.dart';
-import 'package:mechadeli_flutter/screens/chat/chat.dart';
-import 'package:mechadeli_flutter/screens/inquiry/inquiry.dart';
-import 'package:mechadeli_flutter/screens/profile/profile.dart';
-import 'package:mechadeli_flutter/screens/setting/setting.dart';
+import 'package:mechadeli_flutter/screens/user_page/login/login.dart';
+import 'package:mechadeli_flutter/screens/user_page/chat/chat.dart';
+import 'package:mechadeli_flutter/screens/user_page/inquiry/inquiry.dart';
+import 'package:mechadeli_flutter/screens/user_page/profile/profile.dart';
+import 'package:mechadeli_flutter/screens/user_page/setting/setting.dart';
 
 import 'dashboard/dashboard.dart';
 import 'questions/question.dart';

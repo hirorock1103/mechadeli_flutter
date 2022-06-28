@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:mechadeli_flutter/common/colors.dart';
 import 'package:mechadeli_flutter/common/enum.dart';
-import 'package:mechadeli_flutter/screens/talk_room/talk_room.dart';
+import 'package:mechadeli_flutter/screens/user_page/talk_room/talk_room.dart';
 import 'package:mechadeli_flutter/widgets/common/layout/my_card.dart';
 import 'package:mechadeli_flutter/widgets/common/layout/my_table.dart';
 import 'package:mechadeli_flutter/widgets/common/titles/h1_title.dart';
 import 'package:mechadeli_flutter/widgets/common/titles/page_title.dart';
 import 'package:provider/provider.dart';
 
-import '../../domain/notifiers/app_notifier.dart';
+import '../../../domain/notifiers/app_notifier.dart';
 import 'dashboard_notifier.dart';
 
 class DashBoard extends StatelessWidget {

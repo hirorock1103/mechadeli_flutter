@@ -3,7 +3,7 @@ import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:mechadeli_flutter/widgets/common/titles/page_title.dart';
 import 'package:provider/provider.dart';
 
-import '../../domain/notifiers/app_notifier.dart';
+import '../../../domain/notifiers/app_notifier.dart';
 import 'inquiry_notifier.dart';
 
 class Inquiry extends StatelessWidget {

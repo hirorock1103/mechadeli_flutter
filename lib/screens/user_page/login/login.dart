@@ -4,8 +4,8 @@ import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:mechadeli_flutter/common/colors.dart';
 import 'package:mechadeli_flutter/common/constants.dart';
 import 'package:mechadeli_flutter/main.dart';
-import 'package:mechadeli_flutter/screens/dashboard/dashboard.dart';
-import 'package:mechadeli_flutter/screens/my_home_page.dart';
+import 'package:mechadeli_flutter/screens/user_page/dashboard/dashboard.dart';
+import 'package:mechadeli_flutter/screens/user_page/my_home_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../../domain/notifiers/app_notifier.dart';

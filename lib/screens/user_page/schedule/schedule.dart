@@ -3,11 +3,11 @@ import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:mechadeli_flutter/widgets/common/titles/page_title.dart';
 import 'package:provider/provider.dart';
 
-import '../../common/enum.dart';
-import '../../domain/notifiers/app_notifier.dart';
-import '../../widgets/common/layout/my_card.dart';
-import '../../widgets/common/layout/my_table.dart';
-import '../../widgets/common/titles/h1_title.dart';
+import '../../../common/enum.dart';
+import '../../../domain/notifiers/app_notifier.dart';
+import '../../../widgets/common/layout/my_card.dart';
+import '../../../widgets/common/layout/my_table.dart';
+import '../../../widgets/common/titles/h1_title.dart';
 import 'schedule_notifier.dart';
 
 class Schedule extends StatelessWidget {

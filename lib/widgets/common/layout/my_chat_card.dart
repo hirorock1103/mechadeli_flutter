@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mechadeli_flutter/screens/chat/room.dart';
+import 'package:mechadeli_flutter/screens/user_page/chat/room.dart';
 
 import '../../../common/colors.dart';
 

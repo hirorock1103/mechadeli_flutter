@@ -6,7 +6,7 @@ import 'package:mechadeli_flutter/widgets/common/titles/h1_title.dart';
 import 'package:mechadeli_flutter/widgets/common/titles/page_title.dart';
 import 'package:provider/provider.dart';
 
-import '../../widgets/common/layout/my_table.dart';
+import '../../../widgets/common/layout/my_table.dart';
 import '../dashboard/dashboard_notifier.dart';
 
 class TalkRoom extends StatefulWidget {
