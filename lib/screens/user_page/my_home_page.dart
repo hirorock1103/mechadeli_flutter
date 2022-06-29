@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:mechadeli_flutter/common/colors.dart';
 import 'package:mechadeli_flutter/common/constants.dart';
 import 'package:mechadeli_flutter/screens/user_page/login/login.dart';
@@ -22,9 +21,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  SideMenuDisplayMode displayMode = SideMenuDisplayMode.auto;
-  PageController page = PageController();
-
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -41,7 +37,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               onTap: (){
-                page.jumpToPage(0);
                 Navigator.pop(context);
               },
               title: Text("ダッシュボード"),
@@ -49,7 +44,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               onTap: (){
-                page.jumpToPage(1);
                 Navigator.pop(context);
               },
               title: Text("予約"),
@@ -57,7 +51,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               onTap: (){
-                page.jumpToPage(2);
                 Navigator.pop(context);
               },
               title: Text("chat"),
@@ -65,7 +58,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               onTap: (){
-                page.jumpToPage(3);
                 Navigator.pop(context);
               },
               title: Text("よくある質問"),
@@ -73,7 +65,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               onTap: (){
-                page.jumpToPage(4);
                 Navigator.pop(context);
               },
               title: Text("お問い合わせ"),
@@ -81,7 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               onTap: (){
-                page.jumpToPage(5);
                 Navigator.pop(context);
               },
               title: Text("プロフィール設定"),
@@ -89,7 +79,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               onTap: (){
-                page.jumpToPage(6);
                 Navigator.pop(context);
               },
               title: Text("設定"),
@@ -134,7 +123,6 @@ class _MyHomePageState extends State<MyHomePage> {
         title: InkWell(
           onTap: () {
             // dashboardKey.currentState.initialize();
-            page.jumpToPage(0);
           },
           child: Text(
             widget.title,
@@ -147,146 +135,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SideMenu(
-            showToggle: true,
-            controller: page,
-            onDisplayModeChanged: (mode) {
-              print(mode);
-            },
-            style: SideMenuStyle(
-              backgroundColor: Colors.white,
-              decoration: BoxDecoration(boxShadow: [
-                BoxShadow(
-                  color: Colors.black26,
-                  spreadRadius: 1.0,
-                  blurRadius: 10.0,
-                  offset: Offset(0, 5),
-                ),
-              ]),
-              displayMode: displayMode,
-              hoverColor: AppColors.primary[50],
-              selectedColor: AppColors.primary,
-              selectedTitleTextStyle: const TextStyle(color: Colors.white),
-              selectedIconColor: Colors.white,
-              openSideMenuWidth: 200,
-
-              // decoration: BoxDecoration(
-              //   borderRadius: BorderRadius.all(Radius.circular(10)),
-              // ),
-              // backgroundColor: Colors.blueGrey[700]
-            ),
-            // title: Column(
-            //   children: [
-            //     ConstrainedBox(
-            //       constraints: const BoxConstraints(
-            //         maxHeight: 150,
-            //         maxWidth: 150,
-            //       ),
-            //       child: Image.asset(
-            //         'assets/images/1.png',
-            //       ),
-            //     ),
-            //     const Divider(
-            //       indent: 8.0,
-            //       endIndent: 8.0,
-            //     ),
-            //   ],
-            // ),
-            title: Container(
-              height: 10,
-            ),
-            footer: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                'mechadeli',
-                style: TextStyle(fontSize: 15),
-              ),
-            ),
-            items: [
-              SideMenuItem(
-                priority: 0,
-                title: 'Dashboard',
-                onTap: () {
-                  page.jumpToPage(0);
-                },
-                icon: const Icon(Icons.home),
-                badgeContent: const Text(
-                  '3',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              SideMenuItem(
-                priority: 1,
-                title: '予約',
-                onTap: () {
-                  page.jumpToPage(1);
-                },
-                icon: const Icon(Icons.event_available),
-              ),
-              SideMenuItem(
-                priority: 2,
-                title: 'Chat',
-                onTap: () {
-                  print("chat");
-                  page.jumpToPage(2);
-                },
-                icon: const Icon(Icons.chat),
-              ),
-              SideMenuItem(
-                priority: 3,
-                title: 'よくあるご質問',
-                onTap: () {
-                  page.jumpToPage(3);
-                },
-                icon: const Icon(Icons.question_answer),
-              ),
-              SideMenuItem(
-                priority: 5,
-                title: 'プロフィール設定',
-                onTap: () {
-                  page.jumpToPage(5);
-                },
-                icon: const Icon(Icons.supervisor_account),
-              ),
-              SideMenuItem(
-                priority: 4,
-                title: 'お問い合わせ',
-                onTap: () {
-                  page.jumpToPage(4);
-                },
-                icon: const Icon(Icons.contact_support),
-              ),
-              SideMenuItem(
-                priority: 6,
-                title: 'Settings',
-                onTap: () {
-                  page.jumpToPage(6);
-                },
-                icon: const Icon(Icons.settings),
-              ),
-              SideMenuItem(
-                priority: 7,
-                title: 'Exit',
-                onTap: () async {
-                  // page.jumpToPage(7);
-                },
-                icon: const Icon(Icons.exit_to_app),
-              ),
-            ],
-          ),
+          size.width > AppConstant.tabletMaxSize ? Container(child: Text("test"),width: 200,) : Container()t ,
           Expanded(
-            child: PageView(
-              controller: page,
-              children: [
-                DashBoard.wrapped(), //ダッシュボード
-                Schedule.wrapped(), //予約
-                Chat(), //チャット
-                Question(), //よくある質問
-                Inquiry.wrapped(), //お問い合わせ
-                Profile(), //プロフィール設定
-                Setting(), //設定
-              ],
-            ),
+            child: DashBoard.wrapped(),
           ),
         ],
       ),

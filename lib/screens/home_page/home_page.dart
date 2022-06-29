@@ -25,26 +25,28 @@ class _HomePageState extends State<HomePage> {
     final Size size = MediaQuery.of(context).size;
     print(size.width);
     return Scaffold(
-      drawer: size.width < AppConstant.phoneMaxSize ? Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(
-              child: Text('Drawer Header'),
-              decoration: BoxDecoration(
-                color: Colors.blue,
+      drawer: size.width < AppConstant.phoneMaxSize
+          ? Drawer(
+              child: ListView(
+                children: [
+                  DrawerHeader(
+                    child: Text('Drawer Header'),
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      page.jumpToPage(0);
+                      Navigator.pop(context);
+                    },
+                    title: Text("ダッシュボード"),
+                    trailing: Icon(Icons.arrow_forward_ios_rounded),
+                  ),
+                ],
               ),
-            ),
-            ListTile(
-              onTap: (){
-                page.jumpToPage(0);
-                Navigator.pop(context);
-              },
-              title: Text("ダッシュボード"),
-              trailing: Icon(Icons.arrow_forward_ios_rounded),
-            ),
-          ],
-        ),
-      ) : null,
+            )
+          : null,
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.grey),
         actions: [
@@ -94,59 +96,8 @@ class _HomePageState extends State<HomePage> {
       body: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SideMenu(
-            showToggle: true,
-            controller: page,
-            style: SideMenuStyle(
-              backgroundColor: Colors.white,
-              decoration: BoxDecoration(boxShadow: [
-                BoxShadow(
-                  color: Colors.black26,
-                  spreadRadius: 1.0,
-                  blurRadius: 10.0,
-                  offset: Offset(0, 5),
-                ),
-              ]),
-              displayMode: displayMode,
-              hoverColor: AppColors.primary[50],
-              selectedColor: AppColors.primary,
-              selectedTitleTextStyle: const TextStyle(color: Colors.white),
-              selectedIconColor: Colors.white,
-              openSideMenuWidth: 200,
-
-            ),
-            title: Container(
-              height: 10,
-            ),
-            footer: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                'mechadeli',
-                style: TextStyle(fontSize: 15),
-              ),
-            ),
-            items: [
-              SideMenuItem(
-                priority: 0,
-                title: 'top',
-                onTap: () {
-                  page.jumpToPage(0);
-                },
-                icon: const Icon(Icons.home),
-                badgeContent: const Text(
-                  '3',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ],
-          ),
           Expanded(
-            child: PageView(
-              controller: page,
-              children: [
-                HomePageTop.wrapped(), //ダッシュボード
-              ],
-            ),
+            child: HomePageTop.wrapped(), //ダッシュボード
           ),
         ],
       ),
