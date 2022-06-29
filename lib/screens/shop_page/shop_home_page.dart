@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:mechadeli_flutter/common/colors.dart';
 import 'package:mechadeli_flutter/common/constants.dart';
 import 'package:mechadeli_flutter/screens/shop_page/top/home_page_top.dart';
@@ -17,9 +16,6 @@ class ShopHomePage extends StatefulWidget {
 }
 
 class _ShopHomePageState extends State<ShopHomePage> {
-  SideMenuDisplayMode displayMode = SideMenuDisplayMode.auto;
-  PageController page = PageController();
-
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -36,7 +32,6 @@ class _ShopHomePageState extends State<ShopHomePage> {
             ),
             ListTile(
               onTap: (){
-                page.jumpToPage(0);
                 Navigator.pop(context);
               },
               title: Text("ダッシュボード"),
@@ -81,7 +76,6 @@ class _ShopHomePageState extends State<ShopHomePage> {
         title: InkWell(
           onTap: () {
             // dashboardKey.currentState.initialize();
-            page.jumpToPage(0);
           },
           child: Text(
             widget.title,
@@ -94,59 +88,8 @@ class _ShopHomePageState extends State<ShopHomePage> {
       body: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SideMenu(
-            showToggle: true,
-            controller: page,
-            style: SideMenuStyle(
-              backgroundColor: Colors.white,
-              decoration: BoxDecoration(boxShadow: [
-                BoxShadow(
-                  color: Colors.black26,
-                  spreadRadius: 1.0,
-                  blurRadius: 10.0,
-                  offset: Offset(0, 5),
-                ),
-              ]),
-              displayMode: displayMode,
-              hoverColor: AppColors.primary[50],
-              selectedColor: AppColors.primary,
-              selectedTitleTextStyle: const TextStyle(color: Colors.white),
-              selectedIconColor: Colors.white,
-              openSideMenuWidth: 200,
-
-            ),
-            title: Container(
-              height: 10,
-            ),
-            footer: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                'mechadeli',
-                style: TextStyle(fontSize: 15),
-              ),
-            ),
-            items: [
-              SideMenuItem(
-                priority: 0,
-                title: 'top',
-                onTap: () {
-                  page.jumpToPage(0);
-                },
-                icon: const Icon(Icons.home),
-                badgeContent: const Text(
-                  '3',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ],
-          ),
           Expanded(
-            child: PageView(
-              controller: page,
-              children: [
-                HomePageTop.wrapped(), //ダッシュボード
-              ],
-            ),
+            child: HomePageTop.wrapped(),
           ),
         ],
       ),
