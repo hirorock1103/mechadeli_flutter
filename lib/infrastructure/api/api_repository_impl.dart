@@ -1,9 +1,12 @@
 import 'package:chopper/chopper.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' show MultipartFile;
+import 'package:mechadeli_flutter/common/enum.dart';
 import 'package:mechadeli_flutter/domain/entities/admin.dart';
 
+import '../../domain/entities/data_list.dart';
 import '../../domain/entities/map_response.dart';
+import '../../domain/entities/shop.dart';
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/api_repository.dart';
 import '../wrappers/api_clients/api_client.dart';
@@ -73,6 +76,60 @@ class ApiRepositoryImpl implements ApiRepository {
     return admin;
 
 
+  }
+
+  @override
+  Future<List<Shop>> shopList() async {
+
+    // final result = await _apiClient.getShopList();
+    // print(result);
+    List<Shop> list = [];
+
+    Shop shop = Shop();
+    shop = shop.copyWith(id: 1);
+    shop = shop.copyWith(email: "test@test.jp");
+    shop = shop.copyWith(name: "test name");
+    shop = shop.copyWith(apply_status: applyStatusToInt(ApplyStatus.notYet));
+    list.add(shop);
+    shop = Shop();
+    shop = shop.copyWith(id: 2);
+    shop = shop.copyWith(email: "tes2@test.jp");
+    shop = shop.copyWith(name: "test2 name");
+    shop = shop.copyWith(apply_status: applyStatusToInt(ApplyStatus.ok));
+    list.add(shop);
+    shop = Shop();
+    shop = shop.copyWith(id: 3);
+    shop = shop.copyWith(email: "tes3@test.jp");
+    shop = shop.copyWith(name: "test3 name");
+    shop = shop.copyWith(apply_status: applyStatusToInt(ApplyStatus.ng));
+    list.add(shop);
+    shop = Shop();
+    shop = shop.copyWith(id: 4);
+    shop = shop.copyWith(email: "tes4@test.jp");
+    shop = shop.copyWith(name: "test4 name");
+    shop = shop.copyWith(apply_status: applyStatusToInt(ApplyStatus.confirm));
+    list.add(shop);
+
+
+    // try {
+    //   if (result.isSuccessful) {
+    //     final body = result.body;
+    //     if (body != null) {
+    //       final response = MapResponse.fromJson(body);
+    //       final dataList = DataList.fromJson(response.data['data_list']);
+    //       final shops= dataList.data.map((e) {
+    //         var shop = Shop.fromJson(e);
+    //         return shop;
+    //       });
+    //       list = shops.toList();
+    //     }
+    //     return list;
+    //   }
+    // } on Exception catch (e) {
+    //   return list;
+    // }
+    //throw UnimplementedError();
+    return list;
   }
 
 }

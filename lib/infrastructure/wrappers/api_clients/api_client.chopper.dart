@@ -25,6 +25,14 @@ class _$ApiClient extends ApiClient {
   }
 
   @override
+  Future<Response<dynamic>> getShopList({int? user_id}) {
+    final $url = '/admin/getShopList2';
+    final $params = <String, dynamic>{'user_id': user_id};
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
   Future<Response<dynamic>> getUserList({String? company_code}) {
     final $url = '/user/index';
     final $params = <String, dynamic>{'company_code': company_code};

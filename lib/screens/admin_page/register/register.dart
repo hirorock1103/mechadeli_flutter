@@ -51,10 +51,10 @@ class Register extends StatelessWidget {
               SizedBox(
                 height: 30,
               ),
-              userInput(userIdController, "ID(メールアドレス)", TextInputType.text),
-              userInput(userPwController, "password(8文字以上)", TextInputType.text),
-              userInput(userPwConfirmController, "password(確認用)", TextInputType.text),
-              userInput(userNameController, "お名前", TextInputType.text),
+              userInput(userIdController, "ID(メールアドレス)", TextInputType.text, (value){ context.read<RegisterNotifier>().updateId(value); }),
+              userInput(userPwController, "password(8文字以上)", TextInputType.text ,(value){ context.read<RegisterNotifier>().updatePw(value); }),
+              userInput(userPwConfirmController, "password(確認用)", TextInputType.text, (value){ context.read<RegisterNotifier>().updatePwConfirm(value); }),
+              userInput(userNameController, "お名前", TextInputType.text ,(value){ context.read<RegisterNotifier>().updateName(value); }),
               const SizedBox(
                 height: 20,
               ),
@@ -144,7 +144,9 @@ class Register extends StatelessWidget {
 
   ///input id
   Widget userInput(TextEditingController userInput, String hintTitle,
-      TextInputType keyboardType) {
+      TextInputType keyboardType, ValueChanged onChanged ) {
+
+
     return Builder(builder: (context) {
       return Container(
         height: 55,
@@ -157,7 +159,7 @@ class Register extends StatelessWidget {
           autocorrect: false,
           enableSuggestions: false,
           autofocus: false,
-          onChanged: (String text){ print(text); },
+          onChanged: onChanged,
           decoration: InputDecoration(
             hintText: hintTitle,
             contentPadding: EdgeInsets.all(20),

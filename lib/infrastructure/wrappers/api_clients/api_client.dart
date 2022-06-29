@@ -13,6 +13,12 @@ abstract class ApiClient extends ChopperService {
       @Body() Map<String, dynamic> data,
       );
 
+  /// Shop ( shop )
+  @Get(path: '/admin/getShopList2')
+  //Future<Response<Map<String, dynamic>>> getUserList();
+  Future<Response> getShopList({
+    @Query() int? user_id,
+  });
 
   /// User ( 担当者 )
   @Get(path: '/user/index')
