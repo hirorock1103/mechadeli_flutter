@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ShopDetailState {
   bool get isLoading => throw _privateConstructorUsedError;
-  List<Shop> get shops => throw _privateConstructorUsedError;
+  Shop get shop => throw _privateConstructorUsedError;
   int get count => throw _privateConstructorUsedError;
   MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
 
@@ -31,8 +31,9 @@ abstract class $ShopDetailStateCopyWith<$Res> {
   factory $ShopDetailStateCopyWith(
           ShopDetailState value, $Res Function(ShopDetailState) then) =
       _$ShopDetailStateCopyWithImpl<$Res>;
-  $Res call(
-      {bool isLoading, List<Shop> shops, int count, MechadeliFlow currentFlow});
+  $Res call({bool isLoading, Shop shop, int count, MechadeliFlow currentFlow});
+
+  $ShopCopyWith<$Res> get shop;
 }
 
 /// @nodoc
@@ -47,7 +48,7 @@ class _$ShopDetailStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = freezed,
-    Object? shops = freezed,
+    Object? shop = freezed,
     Object? count = freezed,
     Object? currentFlow = freezed,
   }) {
@@ -56,10 +57,10 @@ class _$ShopDetailStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      shops: shops == freezed
-          ? _value.shops
-          : shops // ignore: cast_nullable_to_non_nullable
-              as List<Shop>,
+      shop: shop == freezed
+          ? _value.shop
+          : shop // ignore: cast_nullable_to_non_nullable
+              as Shop,
       count: count == freezed
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -70,6 +71,13 @@ class _$ShopDetailStateCopyWithImpl<$Res>
               as MechadeliFlow,
     ));
   }
+
+  @override
+  $ShopCopyWith<$Res> get shop {
+    return $ShopCopyWith<$Res>(_value.shop, (value) {
+      return _then(_value.copyWith(shop: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -79,8 +87,10 @@ abstract class _$$_ShopDetailStateCopyWith<$Res>
           _$_ShopDetailState value, $Res Function(_$_ShopDetailState) then) =
       __$$_ShopDetailStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {bool isLoading, List<Shop> shops, int count, MechadeliFlow currentFlow});
+  $Res call({bool isLoading, Shop shop, int count, MechadeliFlow currentFlow});
+
+  @override
+  $ShopCopyWith<$Res> get shop;
 }
 
 /// @nodoc
@@ -97,7 +107,7 @@ class __$$_ShopDetailStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = freezed,
-    Object? shops = freezed,
+    Object? shop = freezed,
     Object? count = freezed,
     Object? currentFlow = freezed,
   }) {
@@ -106,10 +116,10 @@ class __$$_ShopDetailStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      shops: shops == freezed
-          ? _value._shops
-          : shops // ignore: cast_nullable_to_non_nullable
-              as List<Shop>,
+      shop: shop == freezed
+          ? _value.shop
+          : shop // ignore: cast_nullable_to_non_nullable
+              as Shop,
       count: count == freezed
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -129,22 +139,15 @@ class _$_ShopDetailState
     implements _ShopDetailState {
   const _$_ShopDetailState(
       {this.isLoading = false,
-      final List<Shop> shops = const <Shop>[],
+      required this.shop,
       this.count = 0,
-      this.currentFlow = MechadeliFlow.cancel})
-      : _shops = shops;
+      this.currentFlow = MechadeliFlow.cancel});
 
   @override
   @JsonKey()
   final bool isLoading;
-  final List<Shop> _shops;
   @override
-  @JsonKey()
-  List<Shop> get shops {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_shops);
-  }
-
+  final Shop shop;
   @override
   @JsonKey()
   final int count;
@@ -154,7 +157,7 @@ class _$_ShopDetailState
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ShopDetailState(isLoading: $isLoading, shops: $shops, count: $count, currentFlow: $currentFlow)';
+    return 'ShopDetailState(isLoading: $isLoading, shop: $shop, count: $count, currentFlow: $currentFlow)';
   }
 
   @override
@@ -163,7 +166,7 @@ class _$_ShopDetailState
     properties
       ..add(DiagnosticsProperty('type', 'ShopDetailState'))
       ..add(DiagnosticsProperty('isLoading', isLoading))
-      ..add(DiagnosticsProperty('shops', shops))
+      ..add(DiagnosticsProperty('shop', shop))
       ..add(DiagnosticsProperty('count', count))
       ..add(DiagnosticsProperty('currentFlow', currentFlow));
   }
@@ -174,7 +177,7 @@ class _$_ShopDetailState
         (other.runtimeType == runtimeType &&
             other is _$_ShopDetailState &&
             const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
-            const DeepCollectionEquality().equals(other._shops, _shops) &&
+            const DeepCollectionEquality().equals(other.shop, shop) &&
             const DeepCollectionEquality().equals(other.count, count) &&
             const DeepCollectionEquality()
                 .equals(other.currentFlow, currentFlow));
@@ -184,7 +187,7 @@ class _$_ShopDetailState
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(isLoading),
-      const DeepCollectionEquality().hash(_shops),
+      const DeepCollectionEquality().hash(shop),
       const DeepCollectionEquality().hash(count),
       const DeepCollectionEquality().hash(currentFlow));
 
@@ -197,14 +200,14 @@ class _$_ShopDetailState
 abstract class _ShopDetailState implements ShopDetailState {
   const factory _ShopDetailState(
       {final bool isLoading,
-      final List<Shop> shops,
+      required final Shop shop,
       final int count,
       final MechadeliFlow currentFlow}) = _$_ShopDetailState;
 
   @override
   bool get isLoading => throw _privateConstructorUsedError;
   @override
-  List<Shop> get shops => throw _privateConstructorUsedError;
+  Shop get shop => throw _privateConstructorUsedError;
   @override
   int get count => throw _privateConstructorUsedError;
   @override

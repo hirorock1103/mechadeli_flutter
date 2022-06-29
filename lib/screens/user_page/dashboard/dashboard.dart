@@ -49,20 +49,29 @@ class DashBoard extends StatelessWidget {
                     context.select((DashboardState state) => state).currentFlow;
                 //button list
                 List<Widget> list = MechadeliFlow.values
-                    .map((e) => Container(
-                          margin: EdgeInsets.all(5),
-                          child: ElevatedButton(
-                              style: selectedFlow == e
-                                  ? ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all(Colors.cyan))
-                                  : null,
-                              onPressed: () {
-                                context.read<DashboardNotifier>().selectFlow(e);
-                              },
-                              child: Text(
-                                  MechadeliFlowContents[e]['title'].toString())),
-                        ))
+                    .map((e) => Row(
+                      children: [
+                        Container(
+                              margin: EdgeInsets.all(5),
+                              child: SizedBox(
+                                width: 150,
+                                height: 40,
+                                child: ElevatedButton(
+                                    style: selectedFlow == e
+                                        ? ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(Colors.cyan))
+                                        : null,
+                                    onPressed: () {
+                                      context.read<DashboardNotifier>().selectFlow(e);
+                                    },
+                                    child: Text(
+                                        MechadeliFlowContents[e]['title'].toString() + " (2) ")),
+                              ),
+                            ),
+                        Wrap(children:[Text("説明文章が入ります,")])
+                      ],
+                    ))
                     .toList();
 
                 return MyCard(
@@ -70,7 +79,7 @@ class DashBoard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       H1Title(title: "予約状況"),
-                      Wrap(
+                      Column(
                         children: list,
                       ),
                     ],
@@ -125,7 +134,7 @@ class DashBoard extends StatelessWidget {
                               //     MaterialPageRoute(
                               //         builder: (context) => TalkRoom()));
                             },
-                            child: Text("chat room"),
+                            child: Text("chat"),
                           ),
                         ),
                       ])

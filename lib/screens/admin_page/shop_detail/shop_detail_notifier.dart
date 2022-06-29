@@ -15,7 +15,7 @@ part 'shop_detail_notifier.freezed.dart';
 abstract class ShopDetailState with _$ShopDetailState {
   const factory ShopDetailState({
     @Default(false) bool isLoading,
-    @Default(<Shop>[]) List<Shop> shops,
+    required Shop shop,
     @Default(0) int count,
     @Default(MechadeliFlow.cancel) MechadeliFlow currentFlow,
   }) = _ShopDetailState;
@@ -24,7 +24,7 @@ abstract class ShopDetailState with _$ShopDetailState {
 class ShopDetailNotifier extends StateNotifier<ShopDetailState> with LocatorMixin {
   ShopDetailNotifier({
     required this.context,
-  }) : super(const ShopDetailState());
+  }) : super(ShopDetailState( shop: Shop() ));
 
   final BuildContext context;
 
@@ -37,31 +37,25 @@ class ShopDetailNotifier extends StateNotifier<ShopDetailState> with LocatorMixi
   void initState() {}
 
 
+  void setShopData(Shop shop){
+    state = state.copyWith(shop: shop);
+  }
+
   void getReady() async{
 
     //loading
     state = state.copyWith(isLoading: true);
-    print("getShopList");
-    await Future.delayed(Duration(seconds: 1));
-    final shops = await context.read<ApiRepository>().shopList();
-    state = state.copyWith(shops: shops);
-    print("getUserList");
+    // print("getShopList");
+    // await Future.delayed(Duration(seconds: 1));
+    // final shops = await context.read<ApiRepository>().shopList();
+    // state = state.copyWith(shops: shops);
+    // print("getUserList");
 
     //loading
     state = state.copyWith(isLoading: false);
 
   }
 
-  void getShopList() async{
-    state = state.copyWith(isLoading: true);
-    print("getShopList");
-    await Future.delayed(Duration(seconds: 1));
-    final shops = await context.read<ApiRepository>().shopList();
-    state = state.copyWith(shops: shops);
-
-
-    state = state.copyWith(isLoading: false);
-  }
 
   ///flow select
   void selectFlow( MechadeliFlow flow ){

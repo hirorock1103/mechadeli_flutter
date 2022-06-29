@@ -24,6 +24,8 @@ class AppState with _$AppState {
     // @Default(<User>[]) List<User> companyUsers,
     // @Default(ClientDataType.save) ClientDataType clientDataType,
     @Default(0) int count,
+    @Default(0) int adminSelectShopId,
+
 
   }) = _AppState;
 }
@@ -42,6 +44,10 @@ class AppNotifier extends StateNotifier<AppState> with LocatorMixin {
       print("callback $timeStamp");
       _initialize();
     });
+  }
+
+  void updateAdminSelectedShopId(int shopId){
+    state = state.copyWith(adminSelectShopId: shopId);
   }
 
   @override

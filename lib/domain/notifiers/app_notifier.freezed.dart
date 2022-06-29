@@ -23,6 +23,7 @@ mixin _$AppState {
 // @Default(<User>[]) List<User> companyUsers,
 // @Default(ClientDataType.save) ClientDataType clientDataType,
   int get count => throw _privateConstructorUsedError;
+  int get adminSelectShopId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AppStateCopyWith<AppState> get copyWith =>
@@ -33,7 +34,7 @@ mixin _$AppState {
 abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res>;
-  $Res call({LoginStatus loginStatus, int count});
+  $Res call({LoginStatus loginStatus, int count, int adminSelectShopId});
 }
 
 /// @nodoc
@@ -48,6 +49,7 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
   $Res call({
     Object? loginStatus = freezed,
     Object? count = freezed,
+    Object? adminSelectShopId = freezed,
   }) {
     return _then(_value.copyWith(
       loginStatus: loginStatus == freezed
@@ -57,6 +59,10 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
       count: count == freezed
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      adminSelectShopId: adminSelectShopId == freezed
+          ? _value.adminSelectShopId
+          : adminSelectShopId // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -68,7 +74,7 @@ abstract class _$$_AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
           _$_AppState value, $Res Function(_$_AppState) then) =
       __$$_AppStateCopyWithImpl<$Res>;
   @override
-  $Res call({LoginStatus loginStatus, int count});
+  $Res call({LoginStatus loginStatus, int count, int adminSelectShopId});
 }
 
 /// @nodoc
@@ -85,6 +91,7 @@ class __$$_AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
   $Res call({
     Object? loginStatus = freezed,
     Object? count = freezed,
+    Object? adminSelectShopId = freezed,
   }) {
     return _then(_$_AppState(
       loginStatus: loginStatus == freezed
@@ -95,6 +102,10 @@ class __$$_AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      adminSelectShopId: adminSelectShopId == freezed
+          ? _value.adminSelectShopId
+          : adminSelectShopId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -102,7 +113,10 @@ class __$$_AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AppState implements _AppState {
-  const _$_AppState({this.loginStatus = LoginStatus.logout, this.count = 0});
+  const _$_AppState(
+      {this.loginStatus = LoginStatus.logout,
+      this.count = 0,
+      this.adminSelectShopId = 0});
 
   @override
   @JsonKey()
@@ -115,10 +129,13 @@ class _$_AppState implements _AppState {
   @override
   @JsonKey()
   final int count;
+  @override
+  @JsonKey()
+  final int adminSelectShopId;
 
   @override
   String toString() {
-    return 'AppState(loginStatus: $loginStatus, count: $count)';
+    return 'AppState(loginStatus: $loginStatus, count: $count, adminSelectShopId: $adminSelectShopId)';
   }
 
   @override
@@ -128,14 +145,17 @@ class _$_AppState implements _AppState {
             other is _$_AppState &&
             const DeepCollectionEquality()
                 .equals(other.loginStatus, loginStatus) &&
-            const DeepCollectionEquality().equals(other.count, count));
+            const DeepCollectionEquality().equals(other.count, count) &&
+            const DeepCollectionEquality()
+                .equals(other.adminSelectShopId, adminSelectShopId));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(loginStatus),
-      const DeepCollectionEquality().hash(count));
+      const DeepCollectionEquality().hash(count),
+      const DeepCollectionEquality().hash(adminSelectShopId));
 
   @JsonKey(ignore: true)
   @override
@@ -144,8 +164,10 @@ class _$_AppState implements _AppState {
 }
 
 abstract class _AppState implements AppState {
-  const factory _AppState({final LoginStatus loginStatus, final int count}) =
-      _$_AppState;
+  const factory _AppState(
+      {final LoginStatus loginStatus,
+      final int count,
+      final int adminSelectShopId}) = _$_AppState;
 
   @override
   LoginStatus get loginStatus => throw _privateConstructorUsedError;
@@ -155,6 +177,8 @@ abstract class _AppState implements AppState {
 // @Default(<User>[]) List<User> companyUsers,
 // @Default(ClientDataType.save) ClientDataType clientDataType,
   int get count => throw _privateConstructorUsedError;
+  @override
+  int get adminSelectShopId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_AppStateCopyWith<_$_AppState> get copyWith =>

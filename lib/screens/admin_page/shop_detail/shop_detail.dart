@@ -10,6 +10,7 @@ import 'shop_detail_notifier.dart';
 
 class ShopDetail extends StatelessWidget {
   static Widget wrapped() {
+    print("test");
     return MultiProvider(
       providers: [
         StateNotifierProvider<ShopDetailNotifier, ShopDetailState>(
@@ -27,8 +28,10 @@ class ShopDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    //値受け渡し
+
     //必要な情報取得する
-    context.read<ShopDetailNotifier>().getShopList();
+    context.read<ShopDetailNotifier>().getReady();
 
     return Container(
       child: Builder(builder: (context) {
@@ -41,60 +44,26 @@ class ShopDetail extends StatelessWidget {
               ))
             : Column(
                 children: [
-                  H1Title(title: "ダッシュボード"),
-                  Text("店舗一覧"),
-                  _shopList(),
+                  H1Title(title: "ショップ詳細"),
+                  Builder(
+                    builder: (context) {
+                      Shop shop = context.select((ShopDetailState state) => state).shop;
+                      return Text("店舗基本情報 $shop");
+                    }
+                  ),
+                  _shopBasicInfo(),
                 ],
               );
       }),
     );
   }
 
-  Widget _shopList() {
-    return Builder(builder: (context) {
-      List<Shop> shopList =
-          context.select((ShopDetailState state) => state).shops;
-      print(shopList);
+  Widget _shopBasicInfo() {
+    return Column(children: [
 
-      return Container(
-        margin: EdgeInsets.all(10),
-        child: Table(
-          border: TableBorder.all(color: Colors.grey),
-          columnWidths: <int, TableColumnWidth>{
-            0: FlexColumnWidth(1),
-            1: FlexColumnWidth(3),
-            3: FlexColumnWidth(2),
-            4: FlexColumnWidth(2),
-          },
-          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-          children: shopList.map((e) {
-            return TableRow(children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Text(e.id.toString()),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Text(e.name.toString()),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                color: applyStatusToColor(
-                    ApplyStatusMap[e.apply_status] as ApplyStatus),
-                child: Text(applyStatusIntToString(e.apply_status)),
-              ),
-              Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      print("test");
-                    },
-                    child: Text("詳細"),
-                  )),
-            ]);
-          }).toList(),
-        ),
-      );
-    });
+
+    ],);
+
   }
+
 }
