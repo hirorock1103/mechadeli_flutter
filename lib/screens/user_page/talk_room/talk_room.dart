@@ -8,6 +8,9 @@ import 'package:provider/provider.dart';
 
 import '../../../widgets/common/layout/my_table.dart';
 import '../dashboard/dashboard_notifier.dart';
+import '../widgets/app_bar.dart';
+import '../widgets/drawer.dart';
+import '../widgets/side_navi.dart';
 
 class TalkRoom extends StatefulWidget {
   const TalkRoom({Key? key}) : super(key: key);
@@ -20,7 +23,27 @@ class _TalkRoomState extends State<TalkRoom> {
   @override
   Widget build(BuildContext context) {
 
+    ///ここから共通
     final size = MediaQuery.of(context).size;
+    return Scaffold(
+      drawer: UserDrawer(),
+      appBar: UserAppBar( title: "test",size: size, ),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          size.width > AppConstant.tabletMaxSize ? Container(child: Text("test"),width: 200,) : SideNavgation(),
+          Expanded(
+            child: buildContents(context),
+          ),
+        ],
+      ),
+    );
+    ///ここまで共通
+
+  }
+
+
+  Widget buildContents(BuildContext context){
 
     return SingleChildScrollView(
       child: Column(
@@ -28,43 +51,15 @@ class _TalkRoomState extends State<TalkRoom> {
           PageTitle(title: "トークルーム"),
           MyCard(
               contents: Column(
-            children: [
-              H1Title(
-                title: "次のステップは？",
-              ),
-              Container(
-                child: Text("予約は確定していません。店舗側とチャットでご相談いただき、日程を確定させてください。"),
-              )
-            ],
-          )),
-          Builder(builder: (context) {
-            //watch selected flow
-            MechadeliFlow selectedFlow =
-                context.select((DashboardState state) => state).currentFlow;
-            //button list
-
-            return MyCard(
-                contents: Column(
-              children: [
-                H1Title(
-                  title: "現在のステータス",
-                ),
-                Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    decoration: BoxDecoration(color: Colors.white, boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey,
-                          spreadRadius: 1,
-                          blurRadius: 2,
-                          offset: Offset(3, 3))
-                    ]),
-                    child: Text(
-                      MechadeliFlowContents[selectedFlow]['title'].toString(),
-                    ))
-              ],
-            ));
-          }),
-
+                children: [
+                  H1Title(
+                    title: "次のステップは？",
+                  ),
+                  Container(
+                    child: Text("予約は確定していません。店舗側とチャットでご相談いただき、日程を確定させてください。"),
+                  )
+                ],
+              )),
 
           Row(children: [
             Expanded(

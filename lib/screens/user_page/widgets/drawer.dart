@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mechadeli_flutter/screens/user_page/dashboard/dashboard.dart';
+import 'package:mechadeli_flutter/screens/user_page/schedule/schedule.dart';
 
 class UserDrawer extends StatelessWidget {
   const UserDrawer({Key? key}) : super(key: key);
@@ -23,14 +25,15 @@ class UserDrawer extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              Navigator.pop(context);
+
+              Navigator.of(context).push(MaterialPageRoute(builder: (_){ return DashBoard.wrapped(); }));
             },
             title: Text("ダッシュボード"),
             trailing: Icon(Icons.arrow_forward_ios_rounded),
           ),
           ListTile(
             onTap: () {
-              Navigator.pop(context);
+              Navigator.of(context).push(MaterialPageRoute(builder: (_){ return Schedule.wrapped(); }));
             },
             title: Text("予約"),
             trailing: Icon(Icons.arrow_forward_ios_rounded),

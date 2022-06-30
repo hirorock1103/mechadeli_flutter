@@ -36,7 +36,6 @@ class DashBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     ///ここから共通
     Size size = MediaQuery.of(context).size;
-    print(size);
     return Scaffold(
       drawer: UserDrawer(),
       appBar: UserAppBar( title: "test",size: size, ),
