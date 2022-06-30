@@ -14,15 +14,21 @@ class H1Title extends StatelessWidget {
       // color: AppColors.titleBackground,
       margin: EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide( color: Colors.grey, width: 1 )),
+        color: Colors.white,
+        // border: Border(bottom: BorderSide( color: Colors.grey, width: 3 )),
+        gradient: LinearGradient(begin: Alignment.bottomLeft , end: Alignment.bottomRight, colors: [ Colors.blueAccent, Colors.lightBlueAccent.shade100 ]),
       ),
-      padding: EdgeInsets.all(10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          // Icon(Icons.list),
-          Text(title, style: TextStyle( fontWeight: FontWeight.bold ),),
-        ],
+      padding: EdgeInsets.only( bottom: 3),
+      child: Container(
+        padding: EdgeInsets.only(bottom: 10,left: 5),
+        decoration: BoxDecoration(color: Colors.white),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            // Icon(Icons.list),
+            Text(title, style: TextStyle( fontWeight: FontWeight.bold ),),
+          ],
+        ),
       ),
     );
   }
