@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mechadeli_flutter/common/colors.dart';
 import 'package:mechadeli_flutter/common/constants.dart';
 import 'package:mechadeli_flutter/common/enum.dart';
 import 'package:mechadeli_flutter/widgets/common/layout/my_card.dart';
@@ -12,14 +13,14 @@ import '../widgets/app_bar.dart';
 import '../widgets/drawer.dart';
 import '../widgets/side_navi.dart';
 
-class TalkRoom extends StatefulWidget {
-  const TalkRoom({Key? key}) : super(key: key);
+class OrderDetail extends StatefulWidget {
+  const OrderDetail({Key? key}) : super(key: key);
 
   @override
-  _TalkRoomState createState() => _TalkRoomState();
+  _OrderDetailState createState() => _OrderDetailState();
 }
 
-class _TalkRoomState extends State<TalkRoom> {
+class _OrderDetailState extends State<OrderDetail> {
   @override
   Widget build(BuildContext context) {
 
@@ -101,11 +102,18 @@ class _TalkRoomState extends State<TalkRoom> {
                     title: "ご依頼詳細",
                   ),
                   MyTable(
+                    columnWidths: {
+                      0 : FlexColumnWidth(1),
+                      1 : FlexColumnWidth(2)
+                    },
                     rowList: [
                       TableRow(children: [
                         Container(
                           padding: EdgeInsets.all(20),
                           child: Text("受信日時"),
+                          decoration: BoxDecoration(
+                            color: AppColors.thBackgroundColor
+                          ),
                         ),
                         Container(
                           padding: EdgeInsets.all(20),
@@ -116,6 +124,9 @@ class _TalkRoomState extends State<TalkRoom> {
                         Container(
                           padding: EdgeInsets.all(20),
                           child: Text("#予約ID"),
+                          decoration: BoxDecoration(
+                              color: AppColors.thBackgroundColor
+                          ),
                         ),
                         Container(
                           padding: EdgeInsets.all(20),
@@ -126,6 +137,9 @@ class _TalkRoomState extends State<TalkRoom> {
                         Container(
                           padding: EdgeInsets.all(20),
                           child: Text("申込みプラン"),
+                          decoration: BoxDecoration(
+                              color: AppColors.thBackgroundColor
+                          ),
                         ),
                         Container(
                           padding: EdgeInsets.all(20),
@@ -136,6 +150,9 @@ class _TalkRoomState extends State<TalkRoom> {
                         Container(
                           padding: EdgeInsets.all(20),
                           child: Text("税込合計"),
+                          decoration: BoxDecoration(
+                              color: AppColors.thBackgroundColor
+                          ),
                         ),
                         Container(
                           padding: EdgeInsets.all(20),
@@ -146,6 +163,9 @@ class _TalkRoomState extends State<TalkRoom> {
                         Container(
                           padding: EdgeInsets.all(20),
                           child: Text("店舗名"),
+                          decoration: BoxDecoration(
+                              color: AppColors.thBackgroundColor
+                          ),
                         ),
                         Container(
                           padding: EdgeInsets.all(20),
@@ -156,6 +176,9 @@ class _TalkRoomState extends State<TalkRoom> {
                         Container(
                           padding: EdgeInsets.all(20),
                           child: Text("申込情報"),
+                          decoration: BoxDecoration(
+                              color: AppColors.thBackgroundColor
+                          ),
                         ),
                         Container(
                           padding: EdgeInsets.all(20),
@@ -166,6 +189,9 @@ class _TalkRoomState extends State<TalkRoom> {
                         Container(
                           padding: EdgeInsets.all(20),
                           child: Text("税込合計"),
+                          decoration: BoxDecoration(
+                              color: AppColors.thBackgroundColor
+                          ),
                         ),
                         Container(
                           padding: EdgeInsets.all(20),

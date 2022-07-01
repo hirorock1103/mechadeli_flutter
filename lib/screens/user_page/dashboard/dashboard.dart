@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:mechadeli_flutter/common/colors.dart';
 import 'package:mechadeli_flutter/common/enum.dart';
-import 'package:mechadeli_flutter/screens/user_page/talk_room/talk_room.dart';
 import 'package:mechadeli_flutter/screens/user_page/widgets/app_bar.dart';
 import 'package:mechadeli_flutter/screens/user_page/widgets/drawer.dart';
 import 'package:mechadeli_flutter/widgets/common/layout/my_card.dart';
@@ -13,6 +12,7 @@ import 'package:provider/provider.dart';
 
 import '../../../common/constants.dart';
 import '../../../domain/notifiers/app_notifier.dart';
+import '../order_detail/order_detail.dart';
 import '../widgets/side_navi.dart';
 import 'dashboard_notifier.dart';
 
@@ -107,6 +107,10 @@ class DashBoard extends StatelessWidget {
                   children: [
                     H1Title(title: "メッセージ"),
                     MyTable(
+                      columnWidths: {
+                        0 : FlexColumnWidth(1),
+                        1 : FlexColumnWidth(2)
+                      },
                       rowList: [
                         TableRow(children: [
                           Container(
@@ -146,7 +150,7 @@ class DashBoard extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => TalkRoom()));
+                                        builder: (context) => OrderDetail()));
                               },
                               child: Text("chat"),
                             ),
@@ -161,6 +165,10 @@ class DashBoard extends StatelessWidget {
                   children: [
                     H1Title(title: "お知らせ"),
                     MyTable(
+                      columnWidths: {
+                        0 : FlexColumnWidth(1),
+                        1 : FlexColumnWidth(2)
+                      },
                       rowList: [
                         TableRow(children: [
                           Container(

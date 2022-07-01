@@ -101,6 +101,10 @@ class Schedule extends StatelessWidget {
                     children: [
                       H1Title(title: "予約一覧"),
                       MyTable(
+                        columnWidths: {
+                          0 : FlexColumnWidth(1),
+                          1 : FlexColumnWidth(2)
+                        },
                         rowList: [
                           TableRow(children: [
                             Container(

@@ -5,8 +5,9 @@ import '../../../common/colors.dart';
 
 class MyTable extends StatelessWidget {
   List<TableRow> rowList;
+  Map<int, TableColumnWidth> columnWidths = {};
 
-  MyTable({ required this.rowList, Key? key})
+  MyTable({ required this.rowList, required this.columnWidths, Key? key})
       : super(key: key);
 
   @override
@@ -14,9 +15,7 @@ class MyTable extends StatelessWidget {
     return Table(
       border: TableBorder.all(color: Colors.grey),
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      columnWidths: const {
-        0: FractionColumnWidth(.2),
-      },
+      columnWidths:  columnWidths ,
       children: rowList
     );
   }

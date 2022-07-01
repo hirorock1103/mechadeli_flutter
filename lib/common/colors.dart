@@ -13,6 +13,8 @@ class AppColors {
   static const error = Color(0xFFEF4B5F);
   static const textMain = Color(0xFF3a3a3a);
   static const text1 = Color(0xFFFFFFFF);
+  static final thBackgroundColor = Colors.grey.shade300;
+
 
   static const natural2 = Color(0xFFF1F3F8);
   static const buttonColor = primary;

@@ -42,6 +42,11 @@ class DashboardNotifier extends StateNotifier<DashboardState> with LocatorMixin 
 
   }
 
+  void getOrderMessages(){
+
+
+  }
+
 
 
   void addCount(){
