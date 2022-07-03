@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:mechadeli_flutter/common/colors.dart';
 import 'package:mechadeli_flutter/common/enum.dart';
+import 'package:mechadeli_flutter/domain/entities/order.dart';
+import 'package:mechadeli_flutter/domain/entities/user.dart';
 import 'package:mechadeli_flutter/screens/user_page/widgets/app_bar.dart';
 import 'package:mechadeli_flutter/screens/user_page/widgets/drawer.dart';
 import 'package:mechadeli_flutter/widgets/common/layout/my_card.dart';
@@ -11,6 +13,7 @@ import 'package:mechadeli_flutter/widgets/common/titles/page_title.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/constants.dart';
+import '../../../domain/entities/notice.dart';
 import '../../../domain/notifiers/app_notifier.dart';
 import '../order_detail/order_detail.dart';
 import '../widgets/side_navi.dart';
@@ -34,6 +37,14 @@ class DashBoard extends StatelessWidget {
   DashBoard({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+
+    //sample user
+    User user = User();
+    user = user.copyWith(id: 1);
+    User.me = user;
+    context.read<DashboardNotifier>().getNoticeList();
+    context.read<DashboardNotifier>().getMyOrderList();
+
     ///ここから共通
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -53,6 +64,7 @@ class DashBoard extends StatelessWidget {
   }
 
   Widget buildContents(BuildContext context){
+
     return
       SingleChildScrollView(
         // padding: const EdgeInsets.only(left: 10),
@@ -102,119 +114,110 @@ class DashBoard extends StatelessWidget {
                 ),
               );
             }),
-            MyCard(
-                contents: Column(
-                  children: [
-                    H1Title(title: "メッセージ"),
-                    MyTable(
-                      columnWidths: {
-                        0 : FlexColumnWidth(1),
-                        1 : FlexColumnWidth(2)
-                      },
-                      rowList: [
-                        TableRow(children: [
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("受信日時"),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("メッセージ"),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("予約ID"),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("room"),
-                          ),
-                        ]),
-                        TableRow(children: [
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("受信日時"),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("メッセージ"),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("予約ID"),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => OrderDetail()));
-                              },
-                              child: Text("chat"),
-                            ),
-                          ),
-                        ])
-                      ],
+            Builder(
+              builder: (context) {
+                List<Order> list = context.select((DashboardState state) => state).orderList;
+                print(list);
+                List<TableRow> orderList = list.map((e) {
+                  return
+                  TableRow(children: [
+                    Container( padding: EdgeInsets.all(20), child: Text(e.created_at), ),
+                    Container( padding: EdgeInsets.all(20), child: Text(e.progress.toString()), ),
+                    Container(
+                      padding: EdgeInsets.all(20),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => OrderDetail()));
+                        },
+                        child: Text("chat"),
+                      ),
                     ),
-                  ],
-                )),
-            MyCard(
-                contents: Column(
-                  children: [
-                    H1Title(title: "お知らせ"),
-                    MyTable(
-                      columnWidths: {
-                        0 : FlexColumnWidth(1),
-                        1 : FlexColumnWidth(2)
-                      },
-                      rowList: [
-                        TableRow(children: [
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("受信日時"),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("メッセージ"),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("予約ID"),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("room"),
-                          ),
-                        ]),
-                        TableRow(children: [
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("受信日時"),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("メッセージ"),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("予約ID"),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                print("");
-                              },
-                              child: Text("chat room"),
-                            ),
-                          ),
-                        ])
-                      ],
+                  ]);
+                }).toList();
+
+                orderList.insert(0,
+                  TableRow(children: [
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      child: Text("受信日時"),
+                      color: AppColors.thBackgroundColor,
                     ),
-                  ],
-                )),
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      child: Text("状態"),
+                      color: AppColors.thBackgroundColor,
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      child: Text("room"),
+                      color: AppColors.thBackgroundColor,
+                    ),
+                  ]),
+                );
+
+
+                return MyCard(
+                contents: Column(
+                children: [
+                H1Title(title: "予約一覧"),
+                MyTable(
+                columnWidths: {
+                            0 : FlexColumnWidth(1),
+                            1 : FlexColumnWidth(1),
+                            2 : FlexColumnWidth(1),
+                },
+                          rowList: orderList, ),
+                      ],
+                    ));
+              }
+            ),
+            Builder(
+              builder: (context) {
+
+                //news list
+                List<Notice> list = context.select((DashboardState state) => state).noticeList;
+                List<TableRow> tableList = list.map((e) { return TableRow(children: [
+                  Container(
+                    padding: EdgeInsets.all(20),
+                    child: Text(e.title),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(20),
+                    child: Text(e.contents),
+                  ),
+                ]); }  ).toList();
+                tableList.insert(0, TableRow(children: [
+
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: Text("タイトル"),
+                    color: AppColors.thBackgroundColor,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: Text("コンテンツ"),
+                    color: AppColors.thBackgroundColor,
+                  ),
+                ]));
+
+                return MyCard(
+                    contents: Column(
+                      children: [
+                        H1Title(title: "お知らせ"),
+                        MyTable(
+                          columnWidths: {
+                            0 : FlexColumnWidth(1),
+                            1 : FlexColumnWidth(2)
+                          },
+                          rowList: tableList,
+                        ),
+                      ],
+                    ));
+              }
+            ),
           ],
         ),
       );

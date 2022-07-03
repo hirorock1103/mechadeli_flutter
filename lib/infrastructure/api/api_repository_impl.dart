@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' show MultipartFile;
 import 'package:mechadeli_flutter/common/enum.dart';
 import 'package:mechadeli_flutter/domain/entities/admin.dart';
+import 'package:mechadeli_flutter/domain/entities/notice.dart';
+import 'package:mechadeli_flutter/domain/entities/order.dart';
+import 'package:mechadeli_flutter/domain/entities/shop_area.dart';
+import 'package:mechadeli_flutter/domain/entities/shop_plan.dart';
 
 import '../../domain/entities/data_list.dart';
 import '../../domain/entities/map_response.dart';
@@ -130,6 +134,61 @@ class ApiRepositoryImpl implements ApiRepository {
     // }
     //throw UnimplementedError();
     return list;
+  }
+
+  @override
+  Future<List<Notice>> getNoticeList(int to) async {
+    List<Notice> list = [];
+
+    Notice notice = Notice();
+    notice = notice.copyWith(id: 1);
+    notice = notice.copyWith(title: "test title");
+    notice = notice.copyWith(contents: "test contnets");
+    notice = notice.copyWith(updated_at: "2020/02/01 12:11");
+    list.add(notice);
+    notice = Notice();
+    notice = notice.copyWith(id: 2);
+    notice = notice.copyWith(title: "test title2");
+    notice = notice.copyWith(contents: "test contnets2");
+    notice = notice.copyWith(updated_at: "2020/02/02 12:11");
+    list.add(notice);
+
+
+
+    return list;
+  }
+
+  @override
+  Future<List<Order>> getOrderListByUserId(int userId) async{
+
+    print("getOrderListByUserId");
+
+    List<Order> list = [];
+
+    Order order = Order();
+    order = order.copyWith(id: 1);
+    order = order.copyWith(first: "2022/12/22 12:30");
+    order = order.copyWith(second: "2022/12/22 12:30");
+    order = order.copyWith(third: "2022/12/22 12:30");
+    order = order.copyWith(created_at: "2022/12/22 12:30");
+    order = order.copyWith(progress: MechadeliFlowContents[MechadeliFlow.inContact]["id"]);
+
+    list.add(order);
+
+    return list;
+
+  }
+
+  @override
+  Future<List<ShopArea>> getShopAreaListByShopId(int shopId) {
+    // TODO: implement getShopAreaListByShopId
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<ShopPlan>> getShopPlanListByShopId(int shopId) {
+    // TODO: implement getShopPlanListByShopId
+    throw UnimplementedError();
   }
 
 }

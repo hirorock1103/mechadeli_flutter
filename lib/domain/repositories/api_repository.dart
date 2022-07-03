@@ -1,6 +1,11 @@
 
+import 'package:mechadeli_flutter/domain/entities/notice.dart';
+
 import '../entities/admin.dart';
+import '../entities/order.dart';
 import '../entities/shop.dart';
+import '../entities/shop_area.dart';
+import '../entities/shop_plan.dart';
 import '../entities/user.dart';
 
 abstract class ApiRepository {
@@ -8,6 +13,23 @@ abstract class ApiRepository {
   // Future<List<Admin>> adminList({String companyCode});
   // Future<Admin> getAdmin(String adminCode);
   // Future<Admin?> updateAdmin(Map<String, dynamic> data);
+  /***
+   *********************************
+   * Adminが利用するAPI
+   *********************************
+   */
+  /***
+   *********************************
+   * shop が利用するAPI
+   *********************************
+   */
+  /***
+   *********************************
+   * User が利用するAPI
+   *********************************
+   */
+
+
   /**
    * admin
    */
@@ -17,7 +39,10 @@ abstract class ApiRepository {
    * shop
    */
   Future<List<Shop>> shopList();
-
+  Future<List<ShopArea>> getShopAreaListByShopId(int shopId);
+  Future<List<ShopPlan>> getShopPlanListByShopId(int shopId);
+  Future<List<Order>> getOrderListByUserId(int userId);
+  Future<List<Notice>> getNoticeList(int to);
 
   /**
    *

@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$DashboardState {
   int get count => throw _privateConstructorUsedError;
+  List<Notice> get noticeList => throw _privateConstructorUsedError;
+  List<Order> get orderList => throw _privateConstructorUsedError;
   MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +31,11 @@ abstract class $DashboardStateCopyWith<$Res> {
   factory $DashboardStateCopyWith(
           DashboardState value, $Res Function(DashboardState) then) =
       _$DashboardStateCopyWithImpl<$Res>;
-  $Res call({int count, MechadeliFlow currentFlow});
+  $Res call(
+      {int count,
+      List<Notice> noticeList,
+      List<Order> orderList,
+      MechadeliFlow currentFlow});
 }
 
 /// @nodoc
@@ -44,6 +50,8 @@ class _$DashboardStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? count = freezed,
+    Object? noticeList = freezed,
+    Object? orderList = freezed,
     Object? currentFlow = freezed,
   }) {
     return _then(_value.copyWith(
@@ -51,6 +59,14 @@ class _$DashboardStateCopyWithImpl<$Res>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      noticeList: noticeList == freezed
+          ? _value.noticeList
+          : noticeList // ignore: cast_nullable_to_non_nullable
+              as List<Notice>,
+      orderList: orderList == freezed
+          ? _value.orderList
+          : orderList // ignore: cast_nullable_to_non_nullable
+              as List<Order>,
       currentFlow: currentFlow == freezed
           ? _value.currentFlow
           : currentFlow // ignore: cast_nullable_to_non_nullable
@@ -66,7 +82,11 @@ abstract class _$$_DashboardStateCopyWith<$Res>
           _$_DashboardState value, $Res Function(_$_DashboardState) then) =
       __$$_DashboardStateCopyWithImpl<$Res>;
   @override
-  $Res call({int count, MechadeliFlow currentFlow});
+  $Res call(
+      {int count,
+      List<Notice> noticeList,
+      List<Order> orderList,
+      MechadeliFlow currentFlow});
 }
 
 /// @nodoc
@@ -83,6 +103,8 @@ class __$$_DashboardStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? count = freezed,
+    Object? noticeList = freezed,
+    Object? orderList = freezed,
     Object? currentFlow = freezed,
   }) {
     return _then(_$_DashboardState(
@@ -90,6 +112,14 @@ class __$$_DashboardStateCopyWithImpl<$Res>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      noticeList: noticeList == freezed
+          ? _value._noticeList
+          : noticeList // ignore: cast_nullable_to_non_nullable
+              as List<Notice>,
+      orderList: orderList == freezed
+          ? _value._orderList
+          : orderList // ignore: cast_nullable_to_non_nullable
+              as List<Order>,
       currentFlow: currentFlow == freezed
           ? _value.currentFlow
           : currentFlow // ignore: cast_nullable_to_non_nullable
@@ -104,18 +134,39 @@ class _$_DashboardState
     with DiagnosticableTreeMixin
     implements _DashboardState {
   const _$_DashboardState(
-      {this.count = 0, this.currentFlow = MechadeliFlow.cancel});
+      {this.count = 0,
+      final List<Notice> noticeList = const <Notice>[],
+      final List<Order> orderList = const <Order>[],
+      this.currentFlow = MechadeliFlow.cancel})
+      : _noticeList = noticeList,
+        _orderList = orderList;
 
   @override
   @JsonKey()
   final int count;
+  final List<Notice> _noticeList;
+  @override
+  @JsonKey()
+  List<Notice> get noticeList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_noticeList);
+  }
+
+  final List<Order> _orderList;
+  @override
+  @JsonKey()
+  List<Order> get orderList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_orderList);
+  }
+
   @override
   @JsonKey()
   final MechadeliFlow currentFlow;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DashboardState(count: $count, currentFlow: $currentFlow)';
+    return 'DashboardState(count: $count, noticeList: $noticeList, orderList: $orderList, currentFlow: $currentFlow)';
   }
 
   @override
@@ -124,6 +175,8 @@ class _$_DashboardState
     properties
       ..add(DiagnosticsProperty('type', 'DashboardState'))
       ..add(DiagnosticsProperty('count', count))
+      ..add(DiagnosticsProperty('noticeList', noticeList))
+      ..add(DiagnosticsProperty('orderList', orderList))
       ..add(DiagnosticsProperty('currentFlow', currentFlow));
   }
 
@@ -134,6 +187,10 @@ class _$_DashboardState
             other is _$_DashboardState &&
             const DeepCollectionEquality().equals(other.count, count) &&
             const DeepCollectionEquality()
+                .equals(other._noticeList, _noticeList) &&
+            const DeepCollectionEquality()
+                .equals(other._orderList, _orderList) &&
+            const DeepCollectionEquality()
                 .equals(other.currentFlow, currentFlow));
   }
 
@@ -141,6 +198,8 @@ class _$_DashboardState
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(count),
+      const DeepCollectionEquality().hash(_noticeList),
+      const DeepCollectionEquality().hash(_orderList),
       const DeepCollectionEquality().hash(currentFlow));
 
   @JsonKey(ignore: true)
@@ -151,10 +210,17 @@ class _$_DashboardState
 
 abstract class _DashboardState implements DashboardState {
   const factory _DashboardState(
-      {final int count, final MechadeliFlow currentFlow}) = _$_DashboardState;
+      {final int count,
+      final List<Notice> noticeList,
+      final List<Order> orderList,
+      final MechadeliFlow currentFlow}) = _$_DashboardState;
 
   @override
   int get count => throw _privateConstructorUsedError;
+  @override
+  List<Notice> get noticeList => throw _privateConstructorUsedError;
+  @override
+  List<Order> get orderList => throw _privateConstructorUsedError;
   @override
   MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
   @override
