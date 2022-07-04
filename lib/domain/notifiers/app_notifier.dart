@@ -3,10 +3,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:mechadeli_flutter/domain/entities/user.dart';
 import 'package:provider/src/provider.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 import '../../infrastructure/services/shared_preferences_service.dart';
+import '../../infrastructure/wrappers/api_clients/header_interceptor.dart';
 
 part 'app_notifier.freezed.dart';
 
@@ -52,6 +54,15 @@ class AppNotifier extends StateNotifier<AppState> with LocatorMixin {
   void updateUserLoginStatus(UserLoginStatus status){
     state = state.copyWith(loginStatus: status);
   }
+
+  //ユーザーログアウト処理
+  void logoutUser(){
+    User.me = User();
+    myApiToken = "";
+    this.updateUserLoginStatus(UserLoginStatus.logout);
+  }
+
+
 
   @override
   void dispose() {

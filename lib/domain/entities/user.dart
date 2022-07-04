@@ -7,8 +7,9 @@ part 'user.g.dart';
 class User with _$User {
   factory User({
     @Default(0) int id,
-    @Default('') String user_name,
-    @Default(0) int company_id,
+    @Default('') String first_name,
+    @Default('') String last_name,
+    @Default('') String email,
     @Default('') String user_code,
     @Default('') String navigator_image,
     @Default('') String user_number,

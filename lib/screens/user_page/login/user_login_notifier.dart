@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mechadeli_flutter/common/enum.dart';
+import 'package:mechadeli_flutter/domain/entities/user.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:provider/provider.dart';
 
@@ -14,10 +15,11 @@ part 'user_login_notifier.freezed.dart';
 abstract class UserLoginPageState with _$UserLoginPageState {
   const factory UserLoginPageState({
     @Default(0) int count,
-
     @Default("") String email,
     @Default("") String password,
+    @Default("") String loginErrorMessage,
     @Default(MechadeliFlow.cancel) MechadeliFlow currentFlow,
+
   }) = _UserLoginPageState;
 }
 
@@ -54,18 +56,17 @@ class UserLoginPageNotifier extends StateNotifier<UserLoginPageState> with Locat
 
   Future<void> login(String email, String password) async{
 
-
-
-
     if(email.isNotEmpty && password.isNotEmpty ){
 
       Map<String , dynamic> data = { };
       data['email'] = email;
       data['password'] = password;
-      final result = await context.read<ApiUserRepository>().loginUser(data);
-      print(result);
-    }
+      final user = await context.read<ApiUserRepository>().loginUser(data);
+      if(User.me.id == 0){
+        state = state.copyWith(loginErrorMessage: "認証に失敗しました");
+      }
 
+    }
 
   }
 

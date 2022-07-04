@@ -44,11 +44,6 @@ class DashBoard extends StatelessWidget {
     if(context.read<AppState>().loginStatus != UserLoginStatus.login){
       Navigator.of(context).push(MaterialPageRoute(builder: (_){ return UserLoginPage.wrapped(); }));
     }
-
-    //sample user
-    User user = User();
-    user = user.copyWith(id: 1);
-    User.me = user;
     context.read<DashboardNotifier>().getNoticeList();
     context.read<DashboardNotifier>().getMyOrderList();
 

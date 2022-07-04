@@ -21,8 +21,9 @@ User _$UserFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$User {
   int get id => throw _privateConstructorUsedError;
-  String get user_name => throw _privateConstructorUsedError;
-  int get company_id => throw _privateConstructorUsedError;
+  String get first_name => throw _privateConstructorUsedError;
+  String get last_name => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   String get user_code => throw _privateConstructorUsedError;
   String get navigator_image => throw _privateConstructorUsedError;
   String get user_number => throw _privateConstructorUsedError;
@@ -39,8 +40,9 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res>;
   $Res call(
       {int id,
-      String user_name,
-      int company_id,
+      String first_name,
+      String last_name,
+      String email,
       String user_code,
       String navigator_image,
       String user_number,
@@ -58,8 +60,9 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? user_name = freezed,
-    Object? company_id = freezed,
+    Object? first_name = freezed,
+    Object? last_name = freezed,
+    Object? email = freezed,
     Object? user_code = freezed,
     Object? navigator_image = freezed,
     Object? user_number = freezed,
@@ -70,14 +73,18 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      user_name: user_name == freezed
-          ? _value.user_name
-          : user_name // ignore: cast_nullable_to_non_nullable
+      first_name: first_name == freezed
+          ? _value.first_name
+          : first_name // ignore: cast_nullable_to_non_nullable
               as String,
-      company_id: company_id == freezed
-          ? _value.company_id
-          : company_id // ignore: cast_nullable_to_non_nullable
-              as int,
+      last_name: last_name == freezed
+          ? _value.last_name
+          : last_name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       user_code: user_code == freezed
           ? _value.user_code
           : user_code // ignore: cast_nullable_to_non_nullable
@@ -105,8 +112,9 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   $Res call(
       {int id,
-      String user_name,
-      int company_id,
+      String first_name,
+      String last_name,
+      String email,
       String user_code,
       String navigator_image,
       String user_number,
@@ -125,8 +133,9 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? user_name = freezed,
-    Object? company_id = freezed,
+    Object? first_name = freezed,
+    Object? last_name = freezed,
+    Object? email = freezed,
     Object? user_code = freezed,
     Object? navigator_image = freezed,
     Object? user_number = freezed,
@@ -137,14 +146,18 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      user_name: user_name == freezed
-          ? _value.user_name
-          : user_name // ignore: cast_nullable_to_non_nullable
+      first_name: first_name == freezed
+          ? _value.first_name
+          : first_name // ignore: cast_nullable_to_non_nullable
               as String,
-      company_id: company_id == freezed
-          ? _value.company_id
-          : company_id // ignore: cast_nullable_to_non_nullable
-              as int,
+      last_name: last_name == freezed
+          ? _value.last_name
+          : last_name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       user_code: user_code == freezed
           ? _value.user_code
           : user_code // ignore: cast_nullable_to_non_nullable
@@ -170,8 +183,9 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 class _$_User extends _User {
   _$_User(
       {this.id = 0,
-      this.user_name = '',
-      this.company_id = 0,
+      this.first_name = '',
+      this.last_name = '',
+      this.email = '',
       this.user_code = '',
       this.navigator_image = '',
       this.user_number = '',
@@ -185,10 +199,13 @@ class _$_User extends _User {
   final int id;
   @override
   @JsonKey()
-  final String user_name;
+  final String first_name;
   @override
   @JsonKey()
-  final int company_id;
+  final String last_name;
+  @override
+  @JsonKey()
+  final String email;
   @override
   @JsonKey()
   final String user_code;
@@ -204,7 +221,7 @@ class _$_User extends _User {
 
   @override
   String toString() {
-    return 'User(id: $id, user_name: $user_name, company_id: $company_id, user_code: $user_code, navigator_image: $navigator_image, user_number: $user_number, use_license_count: $use_license_count)';
+    return 'User(id: $id, first_name: $first_name, last_name: $last_name, email: $email, user_code: $user_code, navigator_image: $navigator_image, user_number: $user_number, use_license_count: $use_license_count)';
   }
 
   @override
@@ -213,9 +230,10 @@ class _$_User extends _User {
         (other.runtimeType == runtimeType &&
             other is _$_User &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.user_name, user_name) &&
             const DeepCollectionEquality()
-                .equals(other.company_id, company_id) &&
+                .equals(other.first_name, first_name) &&
+            const DeepCollectionEquality().equals(other.last_name, last_name) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality().equals(other.user_code, user_code) &&
             const DeepCollectionEquality()
                 .equals(other.navigator_image, navigator_image) &&
@@ -230,8 +248,9 @@ class _$_User extends _User {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(user_name),
-      const DeepCollectionEquality().hash(company_id),
+      const DeepCollectionEquality().hash(first_name),
+      const DeepCollectionEquality().hash(last_name),
+      const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(user_code),
       const DeepCollectionEquality().hash(navigator_image),
       const DeepCollectionEquality().hash(user_number),
@@ -251,8 +270,9 @@ class _$_User extends _User {
 abstract class _User extends User {
   factory _User(
       {final int id,
-      final String user_name,
-      final int company_id,
+      final String first_name,
+      final String last_name,
+      final String email,
       final String user_code,
       final String navigator_image,
       final String user_number,
@@ -264,9 +284,11 @@ abstract class _User extends User {
   @override
   int get id => throw _privateConstructorUsedError;
   @override
-  String get user_name => throw _privateConstructorUsedError;
+  String get first_name => throw _privateConstructorUsedError;
   @override
-  int get company_id => throw _privateConstructorUsedError;
+  String get last_name => throw _privateConstructorUsedError;
+  @override
+  String get email => throw _privateConstructorUsedError;
   @override
   String get user_code => throw _privateConstructorUsedError;
   @override

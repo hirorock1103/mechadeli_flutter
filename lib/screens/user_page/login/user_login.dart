@@ -89,7 +89,7 @@ class UserLoginPage extends StatelessWidget {
   Widget signInButton() {
     return Builder(
       builder: (context) {
-        String loginError = context.select((UserLoginPageState state) => state).password;
+        String loginError = context.select((UserLoginPageState state) => state).loginErrorMessage;
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

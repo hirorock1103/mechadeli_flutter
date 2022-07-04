@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mechadeli_flutter/domain/notifiers/app_notifier.dart';
+import 'package:mechadeli_flutter/screens/user_page/login/user_login.dart';
+import 'package:provider/provider.dart';
 
 import '../../admin_page/login/login.dart';
 
@@ -30,8 +33,9 @@ class UserAppBar extends StatelessWidget with PreferredSizeWidget {
                   ))),
         InkWell(
           onTap: () {
+            context.read<AppNotifier>().logoutUser();
             Navigator.push(context, MaterialPageRoute(builder: (_) {
-              return LoginPage.wrapped();
+              return UserLoginPage.wrapped();
             }));
           },
           child: Container(
