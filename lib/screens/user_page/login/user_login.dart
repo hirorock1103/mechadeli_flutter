@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:mechadeli_flutter/common/colors.dart';
 import 'package:mechadeli_flutter/common/constants.dart';
+import 'package:mechadeli_flutter/domain/entities/user.dart';
+import 'package:mechadeli_flutter/domain/repositories/api_user_repository.dart';
 import 'package:mechadeli_flutter/main.dart';
+import 'package:mechadeli_flutter/screens/admin_page/login/login_notifier.dart';
 import 'package:mechadeli_flutter/screens/user_page/dashboard/dashboard.dart';
 import 'package:mechadeli_flutter/screens/user_page/my_home_page.dart';
 import 'package:mechadeli_flutter/screens/user_page/user_register/user_register.dart';
@@ -13,6 +16,8 @@ import '../../../domain/notifiers/app_notifier.dart';
 import 'user_login_notifier.dart';
 
 class UserLoginPage extends StatelessWidget {
+  TextEditingController userIdController = TextEditingController();
+  TextEditingController userPwController = TextEditingController();
   static Widget wrapped() {
     return MultiProvider(
       providers: [
@@ -26,12 +31,10 @@ class UserLoginPage extends StatelessWidget {
     );
   }
 
-  const UserLoginPage({Key? key}) : super(key: key);
+   UserLoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController userIdController = TextEditingController();
-    TextEditingController userPwController = TextEditingController();
 
     final size = MediaQuery.of(context).size;
     final contentWidth = size.width / 1.5;
@@ -86,6 +89,7 @@ class UserLoginPage extends StatelessWidget {
   Widget signInButton() {
     return Builder(
       builder: (context) {
+        String loginError = context.select((UserLoginPageState state) => state).password;
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -95,12 +99,13 @@ class UserLoginPage extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 80, vertical: 20),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30))),
-                onPressed: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (_){ return main(); }));
-                  // Navigator.push(context, MaterialPageRoute(builder: (_){ return MyHomePage(title: "Admin管理画面",); }));
-                  //login OK
-                  // context.read<ApiRepository>()
-                  Navigator.push(context, MaterialPageRoute(builder: (_){ return DashBoard.wrapped(); }));
+                onPressed: () async{
+                  String email = userIdController.text;
+                  String password = userPwController.text;
+                  await context.read<UserLoginPageNotifier>().login( email, password );
+                  if(User.me.id > 0){
+                    Navigator.push(context, MaterialPageRoute(builder: (_){ return DashBoard.wrapped(); }));
+                  }
                 },
                 child: Text(
                   "ログイン",
@@ -111,6 +116,9 @@ class UserLoginPage extends StatelessWidget {
             SizedBox(
               height: 60,
             ),
+
+            if(loginError.isNotEmpty)
+              Text("error"),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.end,

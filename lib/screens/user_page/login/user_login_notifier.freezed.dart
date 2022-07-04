@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$UserLoginPageState {
   int get count => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
   MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +31,8 @@ abstract class $UserLoginPageStateCopyWith<$Res> {
   factory $UserLoginPageStateCopyWith(
           UserLoginPageState value, $Res Function(UserLoginPageState) then) =
       _$UserLoginPageStateCopyWithImpl<$Res>;
-  $Res call({int count, MechadeliFlow currentFlow});
+  $Res call(
+      {int count, String email, String password, MechadeliFlow currentFlow});
 }
 
 /// @nodoc
@@ -44,6 +47,8 @@ class _$UserLoginPageStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? count = freezed,
+    Object? email = freezed,
+    Object? password = freezed,
     Object? currentFlow = freezed,
   }) {
     return _then(_value.copyWith(
@@ -51,6 +56,14 @@ class _$UserLoginPageStateCopyWithImpl<$Res>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: password == freezed
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
       currentFlow: currentFlow == freezed
           ? _value.currentFlow
           : currentFlow // ignore: cast_nullable_to_non_nullable
@@ -66,7 +79,8 @@ abstract class _$$_UserLoginPageStateCopyWith<$Res>
           $Res Function(_$_UserLoginPageState) then) =
       __$$_UserLoginPageStateCopyWithImpl<$Res>;
   @override
-  $Res call({int count, MechadeliFlow currentFlow});
+  $Res call(
+      {int count, String email, String password, MechadeliFlow currentFlow});
 }
 
 /// @nodoc
@@ -83,6 +97,8 @@ class __$$_UserLoginPageStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? count = freezed,
+    Object? email = freezed,
+    Object? password = freezed,
     Object? currentFlow = freezed,
   }) {
     return _then(_$_UserLoginPageState(
@@ -90,6 +106,14 @@ class __$$_UserLoginPageStateCopyWithImpl<$Res>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: password == freezed
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
       currentFlow: currentFlow == freezed
           ? _value.currentFlow
           : currentFlow // ignore: cast_nullable_to_non_nullable
@@ -104,18 +128,27 @@ class _$_UserLoginPageState
     with DiagnosticableTreeMixin
     implements _UserLoginPageState {
   const _$_UserLoginPageState(
-      {this.count = 0, this.currentFlow = MechadeliFlow.cancel});
+      {this.count = 0,
+      this.email = "",
+      this.password = "",
+      this.currentFlow = MechadeliFlow.cancel});
 
   @override
   @JsonKey()
   final int count;
   @override
   @JsonKey()
+  final String email;
+  @override
+  @JsonKey()
+  final String password;
+  @override
+  @JsonKey()
   final MechadeliFlow currentFlow;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserLoginPageState(count: $count, currentFlow: $currentFlow)';
+    return 'UserLoginPageState(count: $count, email: $email, password: $password, currentFlow: $currentFlow)';
   }
 
   @override
@@ -124,6 +157,8 @@ class _$_UserLoginPageState
     properties
       ..add(DiagnosticsProperty('type', 'UserLoginPageState'))
       ..add(DiagnosticsProperty('count', count))
+      ..add(DiagnosticsProperty('email', email))
+      ..add(DiagnosticsProperty('password', password))
       ..add(DiagnosticsProperty('currentFlow', currentFlow));
   }
 
@@ -133,6 +168,8 @@ class _$_UserLoginPageState
         (other.runtimeType == runtimeType &&
             other is _$_UserLoginPageState &&
             const DeepCollectionEquality().equals(other.count, count) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.password, password) &&
             const DeepCollectionEquality()
                 .equals(other.currentFlow, currentFlow));
   }
@@ -141,6 +178,8 @@ class _$_UserLoginPageState
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(count),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(password),
       const DeepCollectionEquality().hash(currentFlow));
 
   @JsonKey(ignore: true)
@@ -153,10 +192,16 @@ class _$_UserLoginPageState
 abstract class _UserLoginPageState implements UserLoginPageState {
   const factory _UserLoginPageState(
       {final int count,
+      final String email,
+      final String password,
       final MechadeliFlow currentFlow}) = _$_UserLoginPageState;
 
   @override
   int get count => throw _privateConstructorUsedError;
+  @override
+  String get email => throw _privateConstructorUsedError;
+  @override
+  String get password => throw _privateConstructorUsedError;
   @override
   MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
   @override

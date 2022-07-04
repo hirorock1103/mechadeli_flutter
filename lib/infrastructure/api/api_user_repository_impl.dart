@@ -191,4 +191,36 @@ class ApiUserRepositoryImpl implements ApiUserRepository {
     throw UnimplementedError();
   }
 
+  @override
+  Future<User?> loginUser(Map<String, dynamic> data) async{
+    // TODO: implement loginUser
+    User user = User();
+    //
+    try{
+
+      final response = await _apiClient.userLogin(data);
+
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          user = User.fromJson(result.auth);
+          String token = result.data['token'];
+          print(user);
+          print(token);
+          //User.me set
+          User.me = user;
+          myApiToken = token;
+
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+    return user;
+  }
+
 }

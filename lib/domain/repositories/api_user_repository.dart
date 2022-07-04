@@ -30,5 +30,6 @@ abstract class ApiUserRepository {
   Future<User> getUser(String userCode);
   Future<User?> updateUser(Map<String, dynamic> data);
   Future<User?> registerUser(Map<String, dynamic> data);
+  Future<User?> loginUser(Map<String, dynamic> data);
   Future<User?> updateImageTest(int userId, String imagePath);
 }

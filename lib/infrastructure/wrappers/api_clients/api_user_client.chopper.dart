@@ -34,7 +34,7 @@ class _$ApiUserClient extends ApiUserClient {
 
   @override
   Future<Response<dynamic>> userLogin(Map<String, dynamic> data) {
-    final $url = '/login';
+    final $url = '/api/login';
     final $body = data;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<dynamic, dynamic>($request);
