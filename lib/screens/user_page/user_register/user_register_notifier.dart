@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mechadeli_flutter/common/enum.dart';
-import 'package:mechadeli_flutter/domain/repositories/api_repository.dart';
+import 'package:mechadeli_flutter/domain/repositories/api_user_repository.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:provider/provider.dart';
 
@@ -67,7 +67,7 @@ class UserRegisterNotifier extends StateNotifier<UserRegisterState> with Locator
     data['password'] = password;
     data['password_confirmation'] = password_confirmation;
 
-    context.read<ApiRepository>().registerUser(data);
+    context.read<ApiUserRepository>().registerUser(data);
 
     //success snack barにしとく？
 

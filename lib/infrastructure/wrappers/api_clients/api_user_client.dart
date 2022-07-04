@@ -7,12 +7,6 @@ part 'api_user_client.chopper.dart';
 abstract class ApiUserClient extends ChopperService {
   static ApiUserClient create([ChopperClient? client]) => _$ApiUserClient(client);
 
-  //Admin
-  @Post(path: '/admin/userRegister')
-  Future<Response> registerAdmin(
-      @Body() Map<String, dynamic> data,
-      );
-
   /// Shop ( shop )
   @Get(path: '/admin/getShopList2')
   //Future<Response<Map<String, dynamic>>> getUserList();
@@ -20,20 +14,6 @@ abstract class ApiUserClient extends ChopperService {
     @Query() int? user_id,
   });
 
-  /// User ( 担当者 )
-  @Get(path: '/user/index')
-  //Future<Response<Map<String, dynamic>>> getUserList();
-  Future<Response> getUserList({
-    @Query() String? company_code,
-  });
-  @Post(path: '/user/show')
-  Future<Response> getUser(
-    @Body() Map<String, dynamic> data,
-  );
-  @Post(path: '/user/update')
-  Future<Response> updateUser(
-    @Body() Map<String, dynamic> data,
-  );
   @Post(path: '/api/userRegister')
   Future<Response> registerUser(
     @Body() Map<String, dynamic> data,

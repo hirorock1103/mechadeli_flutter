@@ -14,15 +14,15 @@ import '../../domain/entities/map_response.dart';
 import '../../domain/entities/shop.dart';
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/api_common_repository.dart';
-import '../../domain/repositories/api_repository.dart';
-import '../wrappers/api_clients/api_client.dart';
+import '../wrappers/api_clients/api_common_client.dart';
+import '../wrappers/api_clients/sample/api_client.dart';
 
 
 class ApiCommonRepositoryImpl implements ApiCommonRepository {
   ApiCommonRepositoryImpl(this._apiClient);
 
   static BuildContext? context;
-  final ApiClient _apiClient;
+  final ApiCommonClient _apiClient;
 
   static const _retryCount = 5;
 

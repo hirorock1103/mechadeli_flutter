@@ -3,11 +3,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mechadeli_flutter/common/enum.dart';
-import 'package:mechadeli_flutter/domain/repositories/api_repository.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../../../domain/entities/shop.dart';
+import '../../../domain/repositories/api_admin_repository.dart';
 
 part 'home_page_top_notifier.freezed.dart';
 
@@ -43,7 +43,7 @@ class HomePageTopNotifier extends StateNotifier<HomePageTopState> with LocatorMi
     state = state.copyWith(isLoading: true);
     print("getShopList");
     await Future.delayed(Duration(seconds: 1));
-    final shops = await context.read<ApiRepository>().shopList();
+    final shops = await context.read<ApiAdminRepository>().shopList();
     state = state.copyWith(shops: shops);
     print("getUserList");
 
@@ -56,7 +56,7 @@ class HomePageTopNotifier extends StateNotifier<HomePageTopState> with LocatorMi
     state = state.copyWith(isLoading: true);
     print("getShopList");
     await Future.delayed(Duration(seconds: 1));
-    final shops = await context.read<ApiRepository>().shopList();
+    final shops = await context.read<ApiAdminRepository>().shopList();
     state = state.copyWith(shops: shops);
 
 

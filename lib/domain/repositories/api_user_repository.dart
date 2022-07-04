@@ -9,31 +9,11 @@ import '../entities/shop_plan.dart';
 import '../entities/user.dart';
 
 abstract class ApiUserRepository {
-  //admin ( 担当者 )
-  // Future<List<Admin>> adminList({String companyCode});
-  // Future<Admin> getAdmin(String adminCode);
-  // Future<Admin?> updateAdmin(Map<String, dynamic> data);
-  /***
-   *********************************
-   * Adminが利用するAPI
-   *********************************
-   */
-  /***
-   *********************************
-   * shop が利用するAPI
-   *********************************
-   */
   /***
    *********************************
    * User が利用するAPI
    *********************************
    */
-
-
-  /**
-   * admin
-   */
-  Future<Admin?> registerAdmin(Map<String, dynamic> data);
 
   /**
    * shop
@@ -47,7 +27,6 @@ abstract class ApiUserRepository {
   /**
    *
    */
-  Future<List<User>> userList({String companyCode});
   Future<User> getUser(String userCode);
   Future<User?> updateUser(Map<String, dynamic> data);
   Future<User?> registerUser(Map<String, dynamic> data);

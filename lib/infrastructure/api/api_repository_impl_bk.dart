@@ -13,8 +13,8 @@ import '../../domain/entities/data_list.dart';
 import '../../domain/entities/map_response.dart';
 import '../../domain/entities/shop.dart';
 import '../../domain/entities/user.dart';
-import '../../domain/repositories/api_repository.dart';
-import '../wrappers/api_clients/api_client.dart';
+import '../../domain/repositories/api_repository_bk.dart';
+import '../wrappers/api_clients/sample/api_client.dart';
 
 
 class ApiRepositoryImpl implements ApiRepository {

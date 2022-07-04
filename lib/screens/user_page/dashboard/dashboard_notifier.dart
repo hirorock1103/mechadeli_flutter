@@ -5,11 +5,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mechadeli_flutter/domain/entities/notice.dart';
 import 'package:mechadeli_flutter/domain/entities/order.dart';
 import 'package:mechadeli_flutter/domain/entities/user.dart';
-import 'package:mechadeli_flutter/domain/repositories/api_repository.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/enum.dart';
+import '../../../domain/repositories/api_user_repository.dart';
 
 part 'dashboard_notifier.freezed.dart';
 
@@ -38,12 +38,12 @@ class DashboardNotifier extends StateNotifier<DashboardState> with LocatorMixin 
 
   void getNoticeList() async{
     int to = 1;
-    List<Notice> list = await context.read<ApiRepository>().getNoticeList(to);
+    List<Notice> list = await context.read<ApiUserRepository>().getNoticeList(to);
     state = state.copyWith(noticeList: list);
   }
 
   void getMyOrderList() async{
-    List<Order> list = await context.read<ApiRepository>().getOrderListByUserId(User.me.id);
+    List<Order> list = await context.read<ApiUserRepository>().getOrderListByUserId(User.me.id);
     state = state.copyWith(orderList: list);
   }
 

@@ -15,15 +15,15 @@ import '../../domain/entities/shop.dart';
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/api_admin_repository.dart';
 import '../../domain/repositories/api_common_repository.dart';
-import '../../domain/repositories/api_repository.dart';
-import '../wrappers/api_clients/api_client.dart';
+import '../wrappers/api_clients/api_admin_client.dart';
+import '../wrappers/api_clients/sample/api_client.dart';
 
 
 class ApiAdminRepositoryImpl implements ApiAdminRepository {
   ApiAdminRepositoryImpl(this._apiClient);
 
   static BuildContext? context;
-  final ApiClient _apiClient;
+  final ApiAdminClient _apiClient;
 
   static const _retryCount = 5;
 
@@ -37,36 +37,6 @@ class ApiAdminRepositoryImpl implements ApiAdminRepository {
     throw UnimplementedError();
   }
 
-  @override
-  Future<User?> registerUser(Map<String, dynamic> data) async {
-    // TODO: implement registerUser
-    User user = User();
-    //
-    try{
-
-      final response = await _apiClient.registerUser(data);
-
-      if (response.isSuccessful) {
-        final result = MapResponse.fromJson(response.body);
-        if(result.errorCode.isNotEmpty){
-          //例外発生！
-          throw Exception(result.errors);
-        }else{
-          user = User.fromJson(result.auth);
-          String token = result.data['token'];
-          print(token);
-          //User.me set
-          User.me = user;
-          myApiToken = token;
-
-        }
-      }
-    }on Exception catch(e){
-      print("exception");
-      print(e);
-    }
-    return user;
-  }
 
   @override
   Future<User?> updateImageTest(int userId, String imagePath) {
@@ -218,6 +188,12 @@ class ApiAdminRepositoryImpl implements ApiAdminRepository {
   @override
   Future<List<ShopPlan>> getShopPlanListByShopId(int shopId) {
     // TODO: implement getShopPlanListByShopId
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<User?> registerUser(Map<String, dynamic> data) {
+    // TODO: implement registerUser
     throw UnimplementedError();
   }
 

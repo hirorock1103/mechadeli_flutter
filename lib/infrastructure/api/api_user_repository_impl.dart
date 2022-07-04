@@ -7,6 +7,7 @@ import 'package:mechadeli_flutter/domain/entities/notice.dart';
 import 'package:mechadeli_flutter/domain/entities/order.dart';
 import 'package:mechadeli_flutter/domain/entities/shop_area.dart';
 import 'package:mechadeli_flutter/domain/entities/shop_plan.dart';
+import 'package:mechadeli_flutter/infrastructure/wrappers/api_clients/api_user_client.dart';
 import 'package:mechadeli_flutter/infrastructure/wrappers/api_clients/header_interceptor.dart';
 
 import '../../domain/entities/data_list.dart';
@@ -14,16 +15,15 @@ import '../../domain/entities/map_response.dart';
 import '../../domain/entities/shop.dart';
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/api_common_repository.dart';
-import '../../domain/repositories/api_repository.dart';
 import '../../domain/repositories/api_user_repository.dart';
-import '../wrappers/api_clients/api_client.dart';
+import '../wrappers/api_clients/sample/api_client.dart';
 
 
 class ApiUserRepositoryImpl implements ApiUserRepository {
   ApiUserRepositoryImpl(this._apiClient);
 
   static BuildContext? context;
-  final ApiClient _apiClient;
+  final ApiUserClient _apiClient;
 
   static const _retryCount = 5;
 
@@ -80,37 +80,7 @@ class ApiUserRepositoryImpl implements ApiUserRepository {
     throw UnimplementedError();
   }
 
-  @override
-  Future<List<User>> userList({String? companyCode}) {
-    // TODO: implement userList
-    throw UnimplementedError();
-  }
 
-  @override
-  Future<Admin?> registerAdmin(Map<String, dynamic> data) async {
-    // TODO: implement registerAdmin
-    Admin admin = Admin();
-
-    print(data);
-    //
-    final response = await _apiClient.registerAdmin(data);
-
-    print(response.statusCode);
-    print(response.error);
-    print(response.body);
-
-    if (response.isSuccessful) {
-      final body = response.body;
-      //print(body);
-      if (body != null) {
-        final result = MapResponse.fromJson(body);
-        admin = Admin.fromJson(result.data["user"]);
-      }
-    }
-    return admin;
-
-
-  }
 
   @override
   Future<List<Shop>> shopList() async {
