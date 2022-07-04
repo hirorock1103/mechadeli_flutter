@@ -6,23 +6,23 @@ import 'package:mechadeli_flutter/screens/admin_page/admin_home_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../../domain/notifiers/app_notifier.dart';
-import 'user_register_notifier.dart';
+import 'shop_register_notifier.dart';
 
-class UserRegister extends StatelessWidget {
+class ShopRegister extends StatelessWidget {
   static Widget wrapped() {
     return MultiProvider(
       providers: [
-        StateNotifierProvider<UserRegisterNotifier, UserRegisterState>(
-          create: (context) => UserRegisterNotifier(
+        StateNotifierProvider<ShopRegisterNotifier, ShopRegisterState>(
+          create: (context) => ShopRegisterNotifier(
             context: context,
           ),
         )
       ],
-      child: UserRegister(),
+      child: ShopRegister(),
     );
   }
 
-  const UserRegister({Key? key}) : super(key: key);
+  const ShopRegister({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +51,10 @@ class UserRegister extends StatelessWidget {
               SizedBox(
                 height: 30,
               ),
-              userInput(userIdController, "ID(メールアドレス)", TextInputType.text, (value){ context.read<UserRegisterNotifier>().updateId(value); }),
-              userInput(userPwController, "password(8文字以上)", TextInputType.text ,(value){ context.read<UserRegisterNotifier>().updatePw(value); }),
-              userInput(userPwConfirmController, "password(確認用)", TextInputType.text, (value){ context.read<UserRegisterNotifier>().updatePwConfirm(value); }),
-              userInput(userNameController, "お名前", TextInputType.text ,(value){ context.read<UserRegisterNotifier>().updateName(value); }),
+              userInput(userIdController, "ID(メールアドレス)", TextInputType.text, (value){ context.read<ShopRegisterNotifier>().updateId(value); }),
+              userInput(userPwController, "password(8文字以上)", TextInputType.text ,(value){ context.read<ShopRegisterNotifier>().updatePw(value); }),
+              userInput(userPwConfirmController, "password(確認用)", TextInputType.text, (value){ context.read<ShopRegisterNotifier>().updatePwConfirm(value); }),
+              userInput(userNameController, "お名前", TextInputType.text ,(value){ context.read<ShopRegisterNotifier>().updateName(value); }),
               const SizedBox(
                 height: 20,
               ),
@@ -76,7 +76,7 @@ class UserRegister extends StatelessWidget {
   Widget title() {
     return Container(
       child: Text(
-        "新規ユーザー登録",
+        "新規ショップ登録",
         style: TextStyle(fontSize: 30),
       ),
     );
@@ -97,12 +97,12 @@ class UserRegister extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30))),
                 onPressed: () {
                   // Navigator.push(context, MaterialPageRoute(builder: (_){ return main(); }));
-                  context.read<UserRegisterNotifier>().registerUser();
+                  context.read<ShopRegisterNotifier>().registerUser();
 
                   // Navigator.push(context, MaterialPageRoute(builder: (_){ return AdminHomePage(title: "Admin管理画面",); }));
                 },
                 child: Text(
-                  "管理者登録",
+                  "ショップ登録",
                   style: TextStyle(fontSize: 18),
                 ),
               ),

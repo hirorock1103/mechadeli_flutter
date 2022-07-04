@@ -2,40 +2,40 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:mechadeli_flutter/common/constants.dart';
-import 'package:mechadeli_flutter/screens/admin_page/admin_home_page.dart';
+import 'package:mechadeli_flutter/domain/entities/user.dart';
+import 'package:mechadeli_flutter/screens/shop_page/dashboard/dashboard.dart';
+import 'package:mechadeli_flutter/screens/shop_page/shop_register/shop_register.dart';
 import 'package:provider/provider.dart';
 
 import '../../../domain/notifiers/app_notifier.dart';
-import 'user_register_notifier.dart';
+import 'shop_login_notifier.dart';
 
-class UserRegister extends StatelessWidget {
+class ShopLoginPage extends StatelessWidget {
+  TextEditingController userIdController = TextEditingController();
+  TextEditingController userPwController = TextEditingController();
   static Widget wrapped() {
     return MultiProvider(
       providers: [
-        StateNotifierProvider<UserRegisterNotifier, UserRegisterState>(
-          create: (context) => UserRegisterNotifier(
+        StateNotifierProvider<ShopLoginPageNotifier, ShopLoginPageState>(
+          create: (context) => ShopLoginPageNotifier(
             context: context,
           ),
         )
       ],
-      child: UserRegister(),
+      child: ShopLoginPage(),
     );
   }
 
-  const UserRegister({Key? key}) : super(key: key);
+   ShopLoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController userIdController = TextEditingController();
-    TextEditingController userPwController = TextEditingController();
-    TextEditingController userPwConfirmController = TextEditingController();
-    TextEditingController userNameController = TextEditingController();
 
     final size = MediaQuery.of(context).size;
     final contentWidth = size.width / 1.5;
     return Scaffold(
       // appBar: AppBar(
-      //   title: Text("register"),
+      //   title: Text("login"),
       // ),
       body: Center(
         child: Container(
@@ -51,14 +51,12 @@ class UserRegister extends StatelessWidget {
               SizedBox(
                 height: 30,
               ),
-              userInput(userIdController, "ID(メールアドレス)", TextInputType.text, (value){ context.read<UserRegisterNotifier>().updateId(value); }),
-              userInput(userPwController, "password(8文字以上)", TextInputType.text ,(value){ context.read<UserRegisterNotifier>().updatePw(value); }),
-              userInput(userPwConfirmController, "password(確認用)", TextInputType.text, (value){ context.read<UserRegisterNotifier>().updatePwConfirm(value); }),
-              userInput(userNameController, "お名前", TextInputType.text ,(value){ context.read<UserRegisterNotifier>().updateName(value); }),
+              userInput(userIdController, "ID", TextInputType.text),
+              userInput(userPwController, "password", TextInputType.text),
               const SizedBox(
                 height: 20,
               ),
-              signInButton( ),
+              signInButton(),
               Spacer(flex: 1,),
               InkWell( onTap: (){ print("test"); } , child: Text("利用規約")),
               InkWell( onTap: (){ print("test"); } , child: Text("プライバシーポリシー")),
@@ -76,7 +74,7 @@ class UserRegister extends StatelessWidget {
   Widget title() {
     return Container(
       child: Text(
-        "新規ユーザー登録",
+        "Mechadeli ショップ Login",
         style: TextStyle(fontSize: 30),
       ),
     );
@@ -86,6 +84,7 @@ class UserRegister extends StatelessWidget {
   Widget signInButton() {
     return Builder(
       builder: (context) {
+        String loginError = context.select((ShopLoginPageState state) => state).loginErrorMessage;
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -95,14 +94,17 @@ class UserRegister extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 80, vertical: 20),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30))),
-                onPressed: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (_){ return main(); }));
-                  context.read<UserRegisterNotifier>().registerUser();
-
-                  // Navigator.push(context, MaterialPageRoute(builder: (_){ return AdminHomePage(title: "Admin管理画面",); }));
+                onPressed: () async{
+                  String email = userIdController.text;
+                  String password = userPwController.text;
+                  await context.read<ShopLoginPageNotifier>().login( email, password );
+                  if(User.me.id > 0){
+                    context.read<AppNotifier>().updateUserLoginStatus(UserLoginStatus.login);
+                    Navigator.push(context, MaterialPageRoute(builder: (_){ return DashBoard.wrapped(); }));
+                  }
                 },
                 child: Text(
-                  "管理者登録",
+                  "ログイン",
                   style: TextStyle(fontSize: 18),
                 ),
               ),
@@ -111,6 +113,34 @@ class UserRegister extends StatelessWidget {
               height: 60,
             ),
 
+            if(loginError.isNotEmpty)
+              Text("error"),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                CircleAvatar(
+                  radius: 10,
+                  child: ClipOval(child: Icon(Icons.arrow_forward, size: 12,)),
+                ),
+                SizedBox(width: 10,),
+                InkWell( onTap: (){print("test");}, child: Text("パスワードを忘れた方")),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                CircleAvatar(
+                  radius: 10,
+                  child: ClipOval(child: Icon(Icons.arrow_forward, size: 12,)),
+                ),
+                SizedBox(width: 10,),
+                InkWell( onTap: ( ){ Navigator.of(context).push(MaterialPageRoute(builder: (_){ return ShopRegister.wrapped(); }));  }, child: Text("新規shop登録")),
+              ],
+            )
           ],
         );
       }
@@ -119,9 +149,7 @@ class UserRegister extends StatelessWidget {
 
   ///input id
   Widget userInput(TextEditingController userInput, String hintTitle,
-      TextInputType keyboardType, ValueChanged onChanged ) {
-
-
+      TextInputType keyboardType) {
     return Builder(builder: (context) {
       return Container(
         height: 55,
@@ -134,7 +162,6 @@ class UserRegister extends StatelessWidget {
           autocorrect: false,
           enableSuggestions: false,
           autofocus: false,
-          onChanged: onChanged,
           decoration: InputDecoration(
             hintText: hintTitle,
             contentPadding: EdgeInsets.all(20),

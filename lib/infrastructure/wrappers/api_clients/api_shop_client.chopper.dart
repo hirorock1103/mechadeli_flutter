@@ -15,4 +15,20 @@ class _$ApiShopClient extends ApiShopClient {
 
   @override
   final definitionType = ApiShopClient;
+
+  @override
+  Future<Response<dynamic>> registerShop(Map<String, dynamic> data) {
+    final $url = '/shop/userRegister';
+    final $body = data;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> shopLogin(Map<String, dynamic> data) {
+    final $url = '/shop/login';
+    final $body = data;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<dynamic, dynamic>($request);
+  }
 }

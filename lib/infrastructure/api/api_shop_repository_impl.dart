@@ -31,5 +31,66 @@ class ApiShopRepositoryImpl implements ApiShopRepository {
     //log.d(response.error);
   }
 
+  @override
+  Future<Shop?> loginShop(Map<String, dynamic> data) async{
+    // TODO: implement loginShop
+    Shop shop = Shop();
+    //
+    try{
+
+      final response = await _apiClient.shopLogin(data);
+
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          shop = Shop.fromJson(result.auth);
+          String token = result.data['token'];
+          //Shop.me set
+          Shop.me = shop;
+          myApiToken = token;
+
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+    return shop;
+  }
+
+  @override
+  Future<Shop?> registerShop(Map<String, dynamic> data) async{
+    // TODO: implement registerShop
+    Shop shop = Shop();
+    //
+    try{
+
+      final response = await _apiClient.registerShop(data);
+
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          shop = Shop.fromJson(result.auth);
+          String token = result.data['token'];
+          print(token);
+          //Shop.me set
+          Shop.me = shop;
+          myApiToken = token;
+
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+    return shop;
+  }
+
 
 }

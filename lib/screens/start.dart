@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mechadeli_flutter/screens/admin_page/admin_home_page.dart';
 import 'package:mechadeli_flutter/screens/admin_page/login/login.dart';
-import 'package:mechadeli_flutter/screens/admin_page/top/home_page_top.dart';
 import 'package:mechadeli_flutter/screens/home_page/home_page.dart';
+import 'package:mechadeli_flutter/screens/shop_page/login/shop_login.dart';
 import 'package:mechadeli_flutter/screens/shop_page/shop_home_page.dart';
-import 'package:mechadeli_flutter/screens/user_page/dashboard/dashboard.dart';
 import 'package:mechadeli_flutter/screens/user_page/login/user_login.dart';
-import 'package:mechadeli_flutter/screens/user_page/my_home_page.dart';
 
 class Start extends StatefulWidget {
   const Start({Key? key}) : super(key: key);
@@ -52,9 +49,7 @@ class _StartState extends State<Start> {
               ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-                      return ShopHomePage(
-                        title: "shop",
-                      );
+                      return ShopLoginPage.wrapped();
                     }));
                   },
                   child: Text("Shop")),

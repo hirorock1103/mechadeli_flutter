@@ -14,4 +14,6 @@ abstract class ApiShopRepository {
    * shop が利用するAPI
    *********************************
    */
+  Future<Shop?> registerShop(Map<String, dynamic> data);
+  Future<Shop?> loginShop(Map<String, dynamic> data);
 }
