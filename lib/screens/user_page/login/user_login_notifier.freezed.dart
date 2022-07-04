@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'login_notifier.dart';
+part of 'user_login_notifier.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,31 +15,31 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$LoginPageState {
+mixin _$UserLoginPageState {
   int get count => throw _privateConstructorUsedError;
   MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $LoginPageStateCopyWith<LoginPageState> get copyWith =>
+  $UserLoginPageStateCopyWith<UserLoginPageState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LoginPageStateCopyWith<$Res> {
-  factory $LoginPageStateCopyWith(
-          LoginPageState value, $Res Function(LoginPageState) then) =
-      _$LoginPageStateCopyWithImpl<$Res>;
+abstract class $UserLoginPageStateCopyWith<$Res> {
+  factory $UserLoginPageStateCopyWith(
+          UserLoginPageState value, $Res Function(UserLoginPageState) then) =
+      _$UserLoginPageStateCopyWithImpl<$Res>;
   $Res call({int count, MechadeliFlow currentFlow});
 }
 
 /// @nodoc
-class _$LoginPageStateCopyWithImpl<$Res>
-    implements $LoginPageStateCopyWith<$Res> {
-  _$LoginPageStateCopyWithImpl(this._value, this._then);
+class _$UserLoginPageStateCopyWithImpl<$Res>
+    implements $UserLoginPageStateCopyWith<$Res> {
+  _$UserLoginPageStateCopyWithImpl(this._value, this._then);
 
-  final LoginPageState _value;
+  final UserLoginPageState _value;
   // ignore: unused_field
-  final $Res Function(LoginPageState) _then;
+  final $Res Function(UserLoginPageState) _then;
 
   @override
   $Res call({
@@ -60,32 +60,32 @@ class _$LoginPageStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_LoginPageStateCopyWith<$Res>
-    implements $LoginPageStateCopyWith<$Res> {
-  factory _$$_LoginPageStateCopyWith(
-          _$_LoginPageState value, $Res Function(_$_LoginPageState) then) =
-      __$$_LoginPageStateCopyWithImpl<$Res>;
+abstract class _$$_UserLoginPageStateCopyWith<$Res>
+    implements $UserLoginPageStateCopyWith<$Res> {
+  factory _$$_UserLoginPageStateCopyWith(_$_UserLoginPageState value,
+          $Res Function(_$_UserLoginPageState) then) =
+      __$$_UserLoginPageStateCopyWithImpl<$Res>;
   @override
   $Res call({int count, MechadeliFlow currentFlow});
 }
 
 /// @nodoc
-class __$$_LoginPageStateCopyWithImpl<$Res>
-    extends _$LoginPageStateCopyWithImpl<$Res>
-    implements _$$_LoginPageStateCopyWith<$Res> {
-  __$$_LoginPageStateCopyWithImpl(
-      _$_LoginPageState _value, $Res Function(_$_LoginPageState) _then)
-      : super(_value, (v) => _then(v as _$_LoginPageState));
+class __$$_UserLoginPageStateCopyWithImpl<$Res>
+    extends _$UserLoginPageStateCopyWithImpl<$Res>
+    implements _$$_UserLoginPageStateCopyWith<$Res> {
+  __$$_UserLoginPageStateCopyWithImpl(
+      _$_UserLoginPageState _value, $Res Function(_$_UserLoginPageState) _then)
+      : super(_value, (v) => _then(v as _$_UserLoginPageState));
 
   @override
-  _$_LoginPageState get _value => super._value as _$_LoginPageState;
+  _$_UserLoginPageState get _value => super._value as _$_UserLoginPageState;
 
   @override
   $Res call({
     Object? count = freezed,
     Object? currentFlow = freezed,
   }) {
-    return _then(_$_LoginPageState(
+    return _then(_$_UserLoginPageState(
       count: count == freezed
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -100,10 +100,10 @@ class __$$_LoginPageStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LoginPageState
+class _$_UserLoginPageState
     with DiagnosticableTreeMixin
-    implements _LoginPageState {
-  const _$_LoginPageState(
+    implements _UserLoginPageState {
+  const _$_UserLoginPageState(
       {this.count = 0, this.currentFlow = MechadeliFlow.cancel});
 
   @override
@@ -115,14 +115,14 @@ class _$_LoginPageState
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LoginPageState(count: $count, currentFlow: $currentFlow)';
+    return 'UserLoginPageState(count: $count, currentFlow: $currentFlow)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'LoginPageState'))
+      ..add(DiagnosticsProperty('type', 'UserLoginPageState'))
       ..add(DiagnosticsProperty('count', count))
       ..add(DiagnosticsProperty('currentFlow', currentFlow));
   }
@@ -131,7 +131,7 @@ class _$_LoginPageState
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LoginPageState &&
+            other is _$_UserLoginPageState &&
             const DeepCollectionEquality().equals(other.count, count) &&
             const DeepCollectionEquality()
                 .equals(other.currentFlow, currentFlow));
@@ -145,13 +145,15 @@ class _$_LoginPageState
 
   @JsonKey(ignore: true)
   @override
-  _$$_LoginPageStateCopyWith<_$_LoginPageState> get copyWith =>
-      __$$_LoginPageStateCopyWithImpl<_$_LoginPageState>(this, _$identity);
+  _$$_UserLoginPageStateCopyWith<_$_UserLoginPageState> get copyWith =>
+      __$$_UserLoginPageStateCopyWithImpl<_$_UserLoginPageState>(
+          this, _$identity);
 }
 
-abstract class _LoginPageState implements LoginPageState {
-  const factory _LoginPageState(
-      {final int count, final MechadeliFlow currentFlow}) = _$_LoginPageState;
+abstract class _UserLoginPageState implements UserLoginPageState {
+  const factory _UserLoginPageState(
+      {final int count,
+      final MechadeliFlow currentFlow}) = _$_UserLoginPageState;
 
   @override
   int get count => throw _privateConstructorUsedError;
@@ -159,6 +161,6 @@ abstract class _LoginPageState implements LoginPageState {
   MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_LoginPageStateCopyWith<_$_LoginPageState> get copyWith =>
+  _$$_UserLoginPageStateCopyWith<_$_UserLoginPageState> get copyWith =>
       throw _privateConstructorUsedError;
 }

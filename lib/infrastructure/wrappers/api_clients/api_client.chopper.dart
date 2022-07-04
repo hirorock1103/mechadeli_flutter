@@ -58,7 +58,7 @@ class _$ApiClient extends ApiClient {
 
   @override
   Future<Response<dynamic>> registerUser(Map<String, dynamic> data) {
-    final $url = '/user/register';
+    final $url = '/api/userRegister';
     final $body = data;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<dynamic, dynamic>($request);

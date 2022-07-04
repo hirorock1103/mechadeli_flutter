@@ -12,6 +12,7 @@ class Order with _$Order {
     @Default('') String code,
     @Default(0) int user_id ,
     @Default(0) int shop_id,
+    @Default('') String shop_name,
     @Default('') String first,
     @Default('') String second,
     @Default('') String third,

@@ -34,10 +34,11 @@ class DashBoard extends StatelessWidget {
       child: DashBoard(),
     );
   }
+
   DashBoard({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-
     //sample user
     User user = User();
     user = user.copyWith(id: 1);
@@ -49,148 +50,189 @@ class DashBoard extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       drawer: UserDrawer(),
-      appBar: UserAppBar( title: "test",size: size, ),
+      appBar: UserAppBar(
+        title: "test",
+        size: size,
+      ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          size.width > AppConstant.tabletMaxSize ? Container(child: Text("test"),width: 200,) : SideNavgation(),
+          size.width > AppConstant.tabletMaxSize
+              ? Container(
+                  child: Text("test"),
+                  width: 200,
+                )
+              : SideNavgation(),
           Expanded(
             child: buildContents(context),
           ),
         ],
       ),
     );
+
     ///ここまで共通
   }
 
-  Widget buildContents(BuildContext context){
+  Widget buildContents(BuildContext context) {
+    return SingleChildScrollView(
+      // padding: const EdgeInsets.only(left: 10),
+      child: Column(
+        children: [
+          PageTitle(title: "ダッシュボード"),
+          Builder(builder: (context) {
+            //watch selected flow
+            MechadeliFlow selectedFlow =
+                context.select((DashboardState state) => state).currentFlow;
+            //button list
+            List<Widget> list = MechadeliFlow.values
+                .map((e) => Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.all(5),
+                          child: SizedBox(
+                            width: 150,
+                            height: 40,
+                            child: ElevatedButton(
+                                style: selectedFlow == e
+                                    ? ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.cyan))
+                                    : null,
+                                onPressed: () {
+                                  context
+                                      .read<DashboardNotifier>()
+                                      .selectFlow(e);
+                                },
+                                child: Text(MechadeliFlowContents[e]['title']
+                                        .toString() +
+                                    " (2) ")),
+                          ),
+                        ),
+                        Wrap(children: [Text("説明文章が入ります,")])
+                      ],
+                    ))
+                .toList();
 
-    return
-      SingleChildScrollView(
-        // padding: const EdgeInsets.only(left: 10),
-        child: Column(
-          children: [
-            PageTitle(title: "ダッシュボード"),
-            Builder(builder: (context) {
-              //watch selected flow
-              MechadeliFlow selectedFlow =
-                  context.select((DashboardState state) => state).currentFlow;
-              //button list
-              List<Widget> list = MechadeliFlow.values
-                  .map((e) => Row(
+            return MyCard(
+              contents: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    margin: EdgeInsets.all(5),
-                    child: SizedBox(
-                      width: 150,
-                      height: 40,
-                      child: ElevatedButton(
-                          style: selectedFlow == e
-                              ? ButtonStyle(
-                              backgroundColor:
-                              MaterialStateProperty.all(Colors.cyan))
-                              : null,
-                          onPressed: () {
-                            context.read<DashboardNotifier>().selectFlow(e);
-                          },
-                          child: Text(
-                              MechadeliFlowContents[e]['title'].toString() + " (2) ")),
-                    ),
+                  H1Title(title: "予約状況"),
+                  Column(
+                    children: list,
                   ),
-                  Wrap(children:[Text("説明文章が入ります,")])
                 ],
-              ))
-                  .toList();
-
-              return MyCard(
-                contents: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    H1Title(title: "予約状況"),
-                    Column(
-                      children: list,
-                    ),
-                  ],
+              ),
+            );
+          }),
+          Builder(builder: (context) {
+            List<Order> list =
+                context.select((DashboardState state) => state).orderList;
+            print(list);
+            List<TableRow> orderList = list.map((e) {
+              return TableRow(children: [
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    children: [
+                      Text(e.shop_id.toString()),
+                      Text(e.created_at),
+                    ],
+                  ),
                 ),
-              );
-            }),
-            Builder(
-              builder: (context) {
-                List<Order> list = context.select((DashboardState state) => state).orderList;
-                print(list);
-                List<TableRow> orderList = list.map((e) {
-                  return
-                  TableRow(children: [
-                    Container( padding: EdgeInsets.all(20), child: Text(e.created_at), ),
-                    Container( padding: EdgeInsets.all(20), child: Text(e.progress.toString()), ),
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => OrderDetail()));
-                        },
-                        child: Text("chat"),
-                      ),
-                    ),
-                  ]);
-                }).toList();
+                Container(
+                  padding: EdgeInsets.all(20),
+                  child: Text(e.progress.toString()),
+                ),
+                Container(
+                  padding: EdgeInsets.all(20),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => OrderDetail()));
+                    },
+                    child: Text("chat"),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(20),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => OrderDetail()));
+                    },
+                    child: Text("chat"),
+                  ),
+                ),
+              ]);
+            }).toList();
 
-                orderList.insert(0,
-                  TableRow(children: [
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      child: Text("受信日時"),
-                      color: AppColors.thBackgroundColor,
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      child: Text("状態"),
-                      color: AppColors.thBackgroundColor,
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      child: Text("room"),
-                      color: AppColors.thBackgroundColor,
-                    ),
-                  ]),
-                );
+            orderList.insert(
+              0,
+              TableRow(children: [
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text("予約日時"),
+                  color: AppColors.thBackgroundColor,
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text("状態"),
+                  color: AppColors.thBackgroundColor,
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text("room"),
+                  color: AppColors.thBackgroundColor,
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text("詳細"),
+                  color: AppColors.thBackgroundColor,
+                ),
+              ]),
+            );
 
-
-                return MyCard(
+            return MyCard(
                 contents: Column(
-                children: [
+              children: [
                 H1Title(title: "予約一覧"),
                 MyTable(
-                columnWidths: {
-                            0 : FlexColumnWidth(1),
-                            1 : FlexColumnWidth(1),
-                            2 : FlexColumnWidth(1),
-                },
-                          rowList: orderList, ),
-                      ],
-                    ));
-              }
-            ),
-            Builder(
-              builder: (context) {
-
-                //news list
-                List<Notice> list = context.select((DashboardState state) => state).noticeList;
-                List<TableRow> tableList = list.map((e) { return TableRow(children: [
-                  Container(
-                    padding: EdgeInsets.all(20),
-                    child: Text(e.title),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(20),
-                    child: Text(e.contents),
-                  ),
-                ]); }  ).toList();
-                tableList.insert(0, TableRow(children: [
-
+                  columnWidths: {
+                    0: FlexColumnWidth(1),
+                    1: FlexColumnWidth(1),
+                    2: FlexColumnWidth(1),
+                    2: FlexColumnWidth(1),
+                  },
+                  rowList: orderList,
+                ),
+              ],
+            ));
+          }),
+          Builder(builder: (context) {
+            //news list
+            List<Notice> list =
+                context.select((DashboardState state) => state).noticeList;
+            List<TableRow> tableList = list.map((e) {
+              return TableRow(children: [
+                Container(
+                  padding: EdgeInsets.all(20),
+                  child: Text(e.title),
+                ),
+                Container(
+                  padding: EdgeInsets.all(20),
+                  child: Text(e.contents),
+                ),
+              ]);
+            }).toList();
+            tableList.insert(
+                0,
+                TableRow(children: [
                   Container(
                     padding: EdgeInsets.all(10),
                     child: Text("タイトル"),
@@ -203,24 +245,19 @@ class DashBoard extends StatelessWidget {
                   ),
                 ]));
 
-                return MyCard(
-                    contents: Column(
-                      children: [
-                        H1Title(title: "お知らせ"),
-                        MyTable(
-                          columnWidths: {
-                            0 : FlexColumnWidth(1),
-                            1 : FlexColumnWidth(2)
-                          },
-                          rowList: tableList,
-                        ),
-                      ],
-                    ));
-              }
-            ),
-          ],
-        ),
-      );
-
+            return MyCard(
+                contents: Column(
+              children: [
+                H1Title(title: "お知らせ"),
+                MyTable(
+                  columnWidths: {0: FlexColumnWidth(1), 1: FlexColumnWidth(2)},
+                  rowList: tableList,
+                ),
+              ],
+            ));
+          }),
+        ],
+      ),
+    );
   }
 }

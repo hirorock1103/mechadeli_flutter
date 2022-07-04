@@ -13,7 +13,8 @@ _$_MapResponse _$$_MapResponseFromJson(Map<String, dynamic> json) =>
       auth: json['auth'] as Map<String, dynamic>? ?? const <String, dynamic>{},
       data: json['data'] as Map<String, dynamic>? ?? const <String, dynamic>{},
       errorCode: json['error_code'] as String? ?? '',
-      errors: json['errors'] as List<dynamic>?,
+      errors:
+          json['errors'] as Map<String, dynamic>? ?? const <String, dynamic>{},
     );
 
 Map<String, dynamic> _$$_MapResponseToJson(_$_MapResponse instance) =>

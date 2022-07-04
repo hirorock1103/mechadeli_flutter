@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mechadeli_flutter/common/colors.dart';
 import 'package:mechadeli_flutter/common/constants.dart';
 import 'package:mechadeli_flutter/screens/shop_page/top/home_page_top.dart';
-import 'package:mechadeli_flutter/screens/user_page/login/login.dart';
+import 'package:mechadeli_flutter/screens/user_page/login/user_login.dart';
 
 // import 'dashboard/dashboard.dart';
 
@@ -58,7 +58,7 @@ class _ShopHomePageState extends State<ShopHomePage> {
           InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (_) {
-                return LoginPage.wrapped();
+                return UserLoginPage.wrapped();
               }));
             },
             child: Container(

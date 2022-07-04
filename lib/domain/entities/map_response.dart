@@ -12,7 +12,8 @@ class MapResponse with _$MapResponse {
     @Default(<String, dynamic>{}) Map<String, dynamic> auth,
     @Default(<String, dynamic>{}) Map<String, dynamic> data,
     @Default('') @JsonKey(name: 'error_code') String errorCode,
-    List<dynamic>? errors,
+    // List<dynamic>? errors,
+    @Default(<String, dynamic>{}) Map<String, dynamic> errors,
 
   }) = _MapResponse;
 

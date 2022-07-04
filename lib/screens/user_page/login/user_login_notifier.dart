@@ -5,20 +5,20 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mechadeli_flutter/common/enum.dart';
 import 'package:state_notifier/state_notifier.dart';
 
-part 'login_notifier.freezed.dart';
+part 'user_login_notifier.freezed.dart';
 
 @freezed
-abstract class LoginPageState with _$LoginPageState {
-  const factory LoginPageState({
+abstract class UserLoginPageState with _$UserLoginPageState {
+  const factory UserLoginPageState({
     @Default(0) int count,
     @Default(MechadeliFlow.cancel) MechadeliFlow currentFlow,
-  }) = _LoginPageState;
+  }) = _UserLoginPageState;
 }
 
-class LoginPageNotifier extends StateNotifier<LoginPageState> with LocatorMixin {
-  LoginPageNotifier({
+class UserLoginPageNotifier extends StateNotifier<UserLoginPageState> with LocatorMixin {
+  UserLoginPageNotifier({
     required this.context,
-  }) : super(const LoginPageState());
+  }) : super(const UserLoginPageState());
 
   final BuildContext context;
 

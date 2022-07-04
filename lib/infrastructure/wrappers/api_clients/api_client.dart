@@ -34,7 +34,7 @@ abstract class ApiClient extends ChopperService {
   Future<Response> updateUser(
     @Body() Map<String, dynamic> data,
   );
-  @Post(path: '/user/register')
+  @Post(path: '/api/userRegister')
   Future<Response> registerUser(
     @Body() Map<String, dynamic> data,
   );

@@ -25,8 +25,9 @@ mixin _$MapResponse {
   Map<String, dynamic> get auth => throw _privateConstructorUsedError;
   Map<String, dynamic> get data => throw _privateConstructorUsedError;
   @JsonKey(name: 'error_code')
-  String get errorCode => throw _privateConstructorUsedError;
-  List<dynamic>? get errors => throw _privateConstructorUsedError;
+  String get errorCode =>
+      throw _privateConstructorUsedError; // List<dynamic>? errors,
+  Map<String, dynamic> get errors => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +46,7 @@ abstract class $MapResponseCopyWith<$Res> {
       Map<String, dynamic> auth,
       Map<String, dynamic> data,
       @JsonKey(name: 'error_code') String errorCode,
-      List<dynamic>? errors});
+      Map<String, dynamic> errors});
 }
 
 /// @nodoc
@@ -89,7 +90,7 @@ class _$MapResponseCopyWithImpl<$Res> implements $MapResponseCopyWith<$Res> {
       errors: errors == freezed
           ? _value.errors
           : errors // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as Map<String, dynamic>,
     ));
   }
 }
@@ -107,7 +108,7 @@ abstract class _$$_MapResponseCopyWith<$Res>
       Map<String, dynamic> auth,
       Map<String, dynamic> data,
       @JsonKey(name: 'error_code') String errorCode,
-      List<dynamic>? errors});
+      Map<String, dynamic> errors});
 }
 
 /// @nodoc
@@ -153,7 +154,7 @@ class __$$_MapResponseCopyWithImpl<$Res> extends _$MapResponseCopyWithImpl<$Res>
       errors: errors == freezed
           ? _value._errors
           : errors // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as Map<String, dynamic>,
     ));
   }
 }
@@ -167,7 +168,7 @@ class _$_MapResponse extends _MapResponse {
       final Map<String, dynamic> auth = const <String, dynamic>{},
       final Map<String, dynamic> data = const <String, dynamic>{},
       @JsonKey(name: 'error_code') this.errorCode = '',
-      final List<dynamic>? errors})
+      final Map<String, dynamic> errors = const <String, dynamic>{}})
       : _auth = auth,
         _data = data,
         _errors = errors,
@@ -201,13 +202,14 @@ class _$_MapResponse extends _MapResponse {
   @override
   @JsonKey(name: 'error_code')
   final String errorCode;
-  final List<dynamic>? _errors;
+// List<dynamic>? errors,
+  final Map<String, dynamic> _errors;
+// List<dynamic>? errors,
   @override
-  List<dynamic>? get errors {
-    final value = _errors;
-    if (value == null) return null;
+  @JsonKey()
+  Map<String, dynamic> get errors {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableMapView(_errors);
   }
 
   @override
@@ -257,7 +259,7 @@ abstract class _MapResponse extends MapResponse {
       final Map<String, dynamic> auth,
       final Map<String, dynamic> data,
       @JsonKey(name: 'error_code') final String errorCode,
-      final List<dynamic>? errors}) = _$_MapResponse;
+      final Map<String, dynamic> errors}) = _$_MapResponse;
   _MapResponse._() : super._();
 
   factory _MapResponse.fromJson(Map<String, dynamic> json) =
@@ -274,8 +276,8 @@ abstract class _MapResponse extends MapResponse {
   @override
   @JsonKey(name: 'error_code')
   String get errorCode => throw _privateConstructorUsedError;
-  @override
-  List<dynamic>? get errors => throw _privateConstructorUsedError;
+  @override // List<dynamic>? errors,
+  Map<String, dynamic> get errors => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_MapResponseCopyWith<_$_MapResponse> get copyWith =>

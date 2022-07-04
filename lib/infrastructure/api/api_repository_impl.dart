@@ -7,6 +7,7 @@ import 'package:mechadeli_flutter/domain/entities/notice.dart';
 import 'package:mechadeli_flutter/domain/entities/order.dart';
 import 'package:mechadeli_flutter/domain/entities/shop_area.dart';
 import 'package:mechadeli_flutter/domain/entities/shop_plan.dart';
+import 'package:mechadeli_flutter/infrastructure/wrappers/api_clients/header_interceptor.dart';
 
 import '../../domain/entities/data_list.dart';
 import '../../domain/entities/map_response.dart';
@@ -35,9 +36,34 @@ class ApiRepositoryImpl implements ApiRepository {
   }
 
   @override
-  Future<User?> registerUser(Map<String, dynamic> data) {
+  Future<User?> registerUser(Map<String, dynamic> data) async {
     // TODO: implement registerUser
-    throw UnimplementedError();
+    User user = User();
+    //
+    try{
+
+      final response = await _apiClient.registerUser(data);
+
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          user = User.fromJson(result.auth);
+          String token = result.data['token'];
+          print(token);
+          //User.me set
+          User.me = user;
+          myApiToken = token;
+
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+    return user;
   }
 
   @override
@@ -67,7 +93,9 @@ class ApiRepositoryImpl implements ApiRepository {
     //
     final response = await _apiClient.registerAdmin(data);
 
-    print(response);
+    print(response.statusCode);
+    print(response.error);
+    print(response.body);
 
     if (response.isSuccessful) {
       final body = response.body;

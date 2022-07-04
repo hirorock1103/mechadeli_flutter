@@ -3,29 +3,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:mechadeli_flutter/common/colors.dart';
 import 'package:mechadeli_flutter/common/constants.dart';
+import 'package:mechadeli_flutter/domain/repositories/api_repository.dart';
 import 'package:mechadeli_flutter/main.dart';
 import 'package:mechadeli_flutter/screens/user_page/dashboard/dashboard.dart';
 import 'package:mechadeli_flutter/screens/user_page/my_home_page.dart';
+import 'package:mechadeli_flutter/screens/user_page/user_register/user_register.dart';
 import 'package:provider/provider.dart';
 
 import '../../../domain/notifiers/app_notifier.dart';
-import 'login_notifier.dart';
+import 'user_login_notifier.dart';
 
-class LoginPage extends StatelessWidget {
+class UserLoginPage extends StatelessWidget {
   static Widget wrapped() {
     return MultiProvider(
       providers: [
-        StateNotifierProvider<LoginPageNotifier, LoginPageState>(
-          create: (context) => LoginPageNotifier(
+        StateNotifierProvider<UserLoginPageNotifier, UserLoginPageState>(
+          create: (context) => UserLoginPageNotifier(
             context: context,
           ),
         )
       ],
-      child: LoginPage(),
+      child: UserLoginPage(),
     );
   }
 
-  const LoginPage({Key? key}) : super(key: key);
+  const UserLoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +98,10 @@ class LoginPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30))),
                 onPressed: () {
                   // Navigator.push(context, MaterialPageRoute(builder: (_){ return main(); }));
-                  Navigator.push(context, MaterialPageRoute(builder: (_){ return MyHomePage(title: "",); }));
+                  // Navigator.push(context, MaterialPageRoute(builder: (_){ return MyHomePage(title: "Admin管理画面",); }));
+                  //login OK
+                  // context.read<ApiRepository>()
+                  Navigator.push(context, MaterialPageRoute(builder: (_){ return DashBoard.wrapped(); }));
                 },
                 child: Text(
                   "ログイン",
@@ -122,19 +127,16 @@ class LoginPage extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            InkWell(
-              onTap: (){ print("ea"); },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  CircleAvatar(
-                    radius: 10,
-                    child: ClipOval(child: Icon(Icons.arrow_forward, size: 12,)),
-                  ),
-                  SizedBox(width: 10,),
-                  InkWell( onTap: (){print("test");}, child: Text("新規ユーザー登録")),
-                ],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                CircleAvatar(
+                  radius: 10,
+                  child: ClipOval(child: Icon(Icons.arrow_forward, size: 12,)),
+                ),
+                SizedBox(width: 10,),
+                InkWell( onTap: ( ){ Navigator.of(context).push(MaterialPageRoute(builder: (_){ return UserRegister.wrapped(); }));  }, child: Text("新規ユーザー登録")),
+              ],
             )
           ],
         );

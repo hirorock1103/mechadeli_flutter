@@ -26,6 +26,7 @@ mixin _$Order {
   String get code => throw _privateConstructorUsedError;
   int get user_id => throw _privateConstructorUsedError;
   int get shop_id => throw _privateConstructorUsedError;
+  String get shop_name => throw _privateConstructorUsedError;
   String get first => throw _privateConstructorUsedError;
   String get second => throw _privateConstructorUsedError;
   String get third => throw _privateConstructorUsedError;
@@ -68,6 +69,7 @@ abstract class $OrderCopyWith<$Res> {
       String code,
       int user_id,
       int shop_id,
+      String shop_name,
       String first,
       String second,
       String third,
@@ -111,6 +113,7 @@ class _$OrderCopyWithImpl<$Res> implements $OrderCopyWith<$Res> {
     Object? code = freezed,
     Object? user_id = freezed,
     Object? shop_id = freezed,
+    Object? shop_name = freezed,
     Object? first = freezed,
     Object? second = freezed,
     Object? third = freezed,
@@ -162,6 +165,10 @@ class _$OrderCopyWithImpl<$Res> implements $OrderCopyWith<$Res> {
           ? _value.shop_id
           : shop_id // ignore: cast_nullable_to_non_nullable
               as int,
+      shop_name: shop_name == freezed
+          ? _value.shop_name
+          : shop_name // ignore: cast_nullable_to_non_nullable
+              as String,
       first: first == freezed
           ? _value.first
           : first // ignore: cast_nullable_to_non_nullable
@@ -278,6 +285,7 @@ abstract class _$$_OrderCopyWith<$Res> implements $OrderCopyWith<$Res> {
       String code,
       int user_id,
       int shop_id,
+      String shop_name,
       String first,
       String second,
       String third,
@@ -322,6 +330,7 @@ class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res>
     Object? code = freezed,
     Object? user_id = freezed,
     Object? shop_id = freezed,
+    Object? shop_name = freezed,
     Object? first = freezed,
     Object? second = freezed,
     Object? third = freezed,
@@ -373,6 +382,10 @@ class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res>
           ? _value.shop_id
           : shop_id // ignore: cast_nullable_to_non_nullable
               as int,
+      shop_name: shop_name == freezed
+          ? _value.shop_name
+          : shop_name // ignore: cast_nullable_to_non_nullable
+              as String,
       first: first == freezed
           ? _value.first
           : first // ignore: cast_nullable_to_non_nullable
@@ -487,6 +500,7 @@ class _$_Order extends _Order {
       this.code = '',
       this.user_id = 0,
       this.shop_id = 0,
+      this.shop_name = '',
       this.first = '',
       this.second = '',
       this.third = '',
@@ -535,6 +549,9 @@ class _$_Order extends _Order {
   @override
   @JsonKey()
   final int shop_id;
+  @override
+  @JsonKey()
+  final String shop_name;
   @override
   @JsonKey()
   final String first;
@@ -613,7 +630,7 @@ class _$_Order extends _Order {
 
   @override
   String toString() {
-    return 'Order(id: $id, name: $name, email: $email, code: $code, user_id: $user_id, shop_id: $shop_id, first: $first, second: $second, third: $third, ok_date: $ok_date, post_number: $post_number, address: $address, phone: $phone, first_name: $first_name, last_name: $last_name, sub_total: $sub_total, tax: $tax, tax_rate: $tax_rate, total: $total, progress: $progress, visit_date: $visit_date, visit_start: $visit_start, visit_end: $visit_end, visit_schedule_date: $visit_schedule_date, visit_schedule_starttime: $visit_schedule_starttime, visit_schedule_endtime: $visit_schedule_endtime, contents: $contents, fix_price: $fix_price, fix_price_reason: $fix_price_reason, created_at: $created_at, updated_at: $updated_at)';
+    return 'Order(id: $id, name: $name, email: $email, code: $code, user_id: $user_id, shop_id: $shop_id, shop_name: $shop_name, first: $first, second: $second, third: $third, ok_date: $ok_date, post_number: $post_number, address: $address, phone: $phone, first_name: $first_name, last_name: $last_name, sub_total: $sub_total, tax: $tax, tax_rate: $tax_rate, total: $total, progress: $progress, visit_date: $visit_date, visit_start: $visit_start, visit_end: $visit_end, visit_schedule_date: $visit_schedule_date, visit_schedule_starttime: $visit_schedule_starttime, visit_schedule_endtime: $visit_schedule_endtime, contents: $contents, fix_price: $fix_price, fix_price_reason: $fix_price_reason, created_at: $created_at, updated_at: $updated_at)';
   }
 
   @override
@@ -627,6 +644,7 @@ class _$_Order extends _Order {
             const DeepCollectionEquality().equals(other.code, code) &&
             const DeepCollectionEquality().equals(other.user_id, user_id) &&
             const DeepCollectionEquality().equals(other.shop_id, shop_id) &&
+            const DeepCollectionEquality().equals(other.shop_name, shop_name) &&
             const DeepCollectionEquality().equals(other.first, first) &&
             const DeepCollectionEquality().equals(other.second, second) &&
             const DeepCollectionEquality().equals(other.third, third) &&
@@ -674,6 +692,7 @@ class _$_Order extends _Order {
         const DeepCollectionEquality().hash(code),
         const DeepCollectionEquality().hash(user_id),
         const DeepCollectionEquality().hash(shop_id),
+        const DeepCollectionEquality().hash(shop_name),
         const DeepCollectionEquality().hash(first),
         const DeepCollectionEquality().hash(second),
         const DeepCollectionEquality().hash(third),
@@ -720,6 +739,7 @@ abstract class _Order extends Order {
       final String code,
       final int user_id,
       final int shop_id,
+      final String shop_name,
       final String first,
       final String second,
       final String third,
@@ -761,6 +781,8 @@ abstract class _Order extends Order {
   int get user_id => throw _privateConstructorUsedError;
   @override
   int get shop_id => throw _privateConstructorUsedError;
+  @override
+  String get shop_name => throw _privateConstructorUsedError;
   @override
   String get first => throw _privateConstructorUsedError;
   @override
