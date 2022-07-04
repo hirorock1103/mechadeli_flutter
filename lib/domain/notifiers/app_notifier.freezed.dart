@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AppState {
-  LoginStatus get loginStatus =>
+  UserLoginStatus get loginStatus =>
       throw _privateConstructorUsedError; // @Default(FacilitatorType.woman) FacilitatorType facilitatorType,
 // @Default(FacilitatorType.woman) FacilitatorType clientFacilitatorType,
 // //企業関連
@@ -34,7 +34,7 @@ mixin _$AppState {
 abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res>;
-  $Res call({LoginStatus loginStatus, int count, int adminSelectShopId});
+  $Res call({UserLoginStatus loginStatus, int count, int adminSelectShopId});
 }
 
 /// @nodoc
@@ -55,7 +55,7 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
       loginStatus: loginStatus == freezed
           ? _value.loginStatus
           : loginStatus // ignore: cast_nullable_to_non_nullable
-              as LoginStatus,
+              as UserLoginStatus,
       count: count == freezed
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -74,7 +74,7 @@ abstract class _$$_AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
           _$_AppState value, $Res Function(_$_AppState) then) =
       __$$_AppStateCopyWithImpl<$Res>;
   @override
-  $Res call({LoginStatus loginStatus, int count, int adminSelectShopId});
+  $Res call({UserLoginStatus loginStatus, int count, int adminSelectShopId});
 }
 
 /// @nodoc
@@ -97,7 +97,7 @@ class __$$_AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
       loginStatus: loginStatus == freezed
           ? _value.loginStatus
           : loginStatus // ignore: cast_nullable_to_non_nullable
-              as LoginStatus,
+              as UserLoginStatus,
       count: count == freezed
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -114,13 +114,13 @@ class __$$_AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
 
 class _$_AppState implements _AppState {
   const _$_AppState(
-      {this.loginStatus = LoginStatus.logout,
+      {this.loginStatus = UserLoginStatus.logout,
       this.count = 0,
       this.adminSelectShopId = 0});
 
   @override
   @JsonKey()
-  final LoginStatus loginStatus;
+  final UserLoginStatus loginStatus;
 // @Default(FacilitatorType.woman) FacilitatorType facilitatorType,
 // @Default(FacilitatorType.woman) FacilitatorType clientFacilitatorType,
 // //企業関連
@@ -165,12 +165,12 @@ class _$_AppState implements _AppState {
 
 abstract class _AppState implements AppState {
   const factory _AppState(
-      {final LoginStatus loginStatus,
+      {final UserLoginStatus loginStatus,
       final int count,
       final int adminSelectShopId}) = _$_AppState;
 
   @override
-  LoginStatus get loginStatus => throw _privateConstructorUsedError;
+  UserLoginStatus get loginStatus => throw _privateConstructorUsedError;
   @override // @Default(FacilitatorType.woman) FacilitatorType facilitatorType,
 // @Default(FacilitatorType.woman) FacilitatorType clientFacilitatorType,
 // //企業関連

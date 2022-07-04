@@ -104,6 +104,7 @@ class UserLoginPage extends StatelessWidget {
                   String password = userPwController.text;
                   await context.read<UserLoginPageNotifier>().login( email, password );
                   if(User.me.id > 0){
+                    context.read<AppNotifier>().updateUserLoginStatus(UserLoginStatus.login);
                     Navigator.push(context, MaterialPageRoute(builder: (_){ return DashBoard.wrapped(); }));
                   }
                 },

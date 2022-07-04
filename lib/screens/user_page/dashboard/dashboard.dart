@@ -4,6 +4,7 @@ import 'package:mechadeli_flutter/common/colors.dart';
 import 'package:mechadeli_flutter/common/enum.dart';
 import 'package:mechadeli_flutter/domain/entities/order.dart';
 import 'package:mechadeli_flutter/domain/entities/user.dart';
+import 'package:mechadeli_flutter/screens/user_page/login/user_login.dart';
 import 'package:mechadeli_flutter/screens/user_page/widgets/app_bar.dart';
 import 'package:mechadeli_flutter/screens/user_page/widgets/drawer.dart';
 import 'package:mechadeli_flutter/widgets/common/layout/my_card.dart';
@@ -39,6 +40,11 @@ class DashBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    if(context.read<AppState>().loginStatus != UserLoginStatus.login){
+      Navigator.of(context).push(MaterialPageRoute(builder: (_){ return UserLoginPage.wrapped(); }));
+    }
+
     //sample user
     User user = User();
     user = user.copyWith(id: 1);

@@ -10,14 +10,14 @@ import '../../infrastructure/services/shared_preferences_service.dart';
 
 part 'app_notifier.freezed.dart';
 
-enum LoginStatus { logging, logout, companyLogin, userLogin }
+enum UserLoginStatus { logging, logout, login }
 enum ClientDataType { save, unsave }
 enum FacilitatorType { woman, man, robot, original }
 
 @freezed
 class AppState with _$AppState {
   const factory AppState({
-    @Default(LoginStatus.logout) LoginStatus loginStatus,
+    @Default(UserLoginStatus.logout) UserLoginStatus loginStatus,
     // @Default(FacilitatorType.woman) FacilitatorType facilitatorType,
     // @Default(FacilitatorType.woman) FacilitatorType clientFacilitatorType,
     // //企業関連
@@ -48,6 +48,9 @@ class AppNotifier extends StateNotifier<AppState> with LocatorMixin {
 
   void updateAdminSelectedShopId(int shopId){
     state = state.copyWith(adminSelectShopId: shopId);
+  }
+  void updateUserLoginStatus(UserLoginStatus status){
+    state = state.copyWith(loginStatus: status);
   }
 
   @override

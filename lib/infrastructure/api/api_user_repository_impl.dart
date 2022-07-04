@@ -208,8 +208,6 @@ class ApiUserRepositoryImpl implements ApiUserRepository {
         }else{
           user = User.fromJson(result.auth);
           String token = result.data['token'];
-          print(user);
-          print(token);
           //User.me set
           User.me = user;
           myApiToken = token;
