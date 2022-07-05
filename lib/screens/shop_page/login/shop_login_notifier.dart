@@ -7,6 +7,8 @@ import 'package:mechadeli_flutter/domain/entities/user.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:provider/provider.dart';
 
+import '../../../domain/entities/shop.dart';
+import '../../../domain/repositories/api_shop_repository.dart';
 import '../../../domain/repositories/api_user_repository.dart';
 
 part 'shop_login_notifier.freezed.dart';
@@ -61,8 +63,8 @@ class ShopLoginPageNotifier extends StateNotifier<ShopLoginPageState> with Locat
       Map<String , dynamic> data = { };
       data['email'] = email;
       data['password'] = password;
-      final user = await context.read<ApiUserRepository>().loginUser(data);
-      if(User.me.id == 0){
+      final shop = await context.read<ApiShopRepository>().loginShop(data);
+      if(Shop.me.id == 0){
         state = state.copyWith(loginErrorMessage: "認証に失敗しました");
       }
 

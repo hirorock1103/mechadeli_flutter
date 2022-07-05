@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:mechadeli_flutter/common/constants.dart';
-import 'package:mechadeli_flutter/domain/entities/user.dart';
+import 'package:mechadeli_flutter/domain/entities/shop.dart';
 import 'package:mechadeli_flutter/screens/shop_page/dashboard/dashboard.dart';
 import 'package:mechadeli_flutter/screens/shop_page/shop_register/shop_register.dart';
 import 'package:provider/provider.dart';
@@ -98,7 +98,7 @@ class ShopLoginPage extends StatelessWidget {
                   String email = userIdController.text;
                   String password = userPwController.text;
                   await context.read<ShopLoginPageNotifier>().login( email, password );
-                  if(User.me.id > 0){
+                  if(Shop.me.id > 0){
                     context.read<AppNotifier>().updateUserLoginStatus(UserLoginStatus.login);
                     Navigator.push(context, MaterialPageRoute(builder: (_){ return DashBoard.wrapped(); }));
                   }

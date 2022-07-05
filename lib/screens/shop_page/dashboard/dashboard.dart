@@ -80,6 +80,24 @@ class DashBoard extends StatelessWidget {
       child: Column(
         children: [
           PageTitle(title: "ダッシュボード"),
+          Builder(
+            builder: (context) {
+
+              context.read<DashboardNotifier>().checkApplyStatus();
+              ApplyStatus applyStatus = context.select((DashboardState state) => state).applyStatus;
+              String applyStatusTitle = context.read<DashboardNotifier>().getApplyStatusTitle();
+              String applyStatusMessage = context.read<DashboardNotifier>().getApplyStatusMessage();
+
+              return MyCard(contents: Column(children: [
+                H1Title(title: "審査状況: $applyStatusTitle"),
+                Wrap(children: [ Icon(Icons.error,), Text(applyStatusMessage)],),
+
+                if(applyStatus == ApplyStatus.notYet)
+                  SizedBox(height: 20,),
+                  ElevatedButton(onPressed: (){print("test");}, child: Text("基本情報入力"))
+              ],));
+            }
+          ),
           Builder(builder: (context) {
             //watch selected flow
             MechadeliFlow selectedFlow =
@@ -119,7 +137,7 @@ class DashBoard extends StatelessWidget {
               contents: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  H1Title(title: "予約状況"),
+                  H1Title(title: "予約ステータス毎の状況確認"),
                   Column(
                     children: list,
                   ),

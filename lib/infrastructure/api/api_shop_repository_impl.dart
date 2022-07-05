@@ -78,10 +78,12 @@ class ApiShopRepositoryImpl implements ApiShopRepository {
         }else{
           shop = Shop.fromJson(result.auth);
           String token = result.data['token'];
-          print(token);
           //Shop.me set
           Shop.me = shop;
           myApiToken = token;
+          
+          print(Shop.me);
+          
 
         }
       }

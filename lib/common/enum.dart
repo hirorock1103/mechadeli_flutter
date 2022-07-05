@@ -25,8 +25,8 @@ enum ApplyStatus { notYet, confirm, ng, ok }
 Map<dynamic, dynamic> ApplyStatusList = {
   ApplyStatus.notYet : { "id" : 0, "title":"未申請" },
   ApplyStatus.confirm : { "id" : 1, "title":"申請中" },
-  ApplyStatus.ok : { "id" : 2, "title":"申請OK" },
-  ApplyStatus.ng : { "id" : 9, "title":"申請NG" },
+  ApplyStatus.ng : { "id" : 2, "title":"申請NG" },
+  ApplyStatus.ok : { "id" : 9, "title":"申請OK" },
 };
 
 applyStatusToColor(ApplyStatus status){
@@ -48,9 +48,9 @@ applyStatusIntToString(int num){
     case 1:
       return "申請中";
     case 2:
-      return "申請OK";
-    case 9:
       return "申請NG";
+    case 9:
+      return "申請OK";
   }
 }
 applyStatusToInt(ApplyStatus status){
@@ -60,15 +60,15 @@ applyStatusToInt(ApplyStatus status){
       case ApplyStatus.confirm:
         return 1;
       case ApplyStatus.ok:
-        return 2;
-      case ApplyStatus.ng :
         return 9;
+      case ApplyStatus.ng :
+        return 2;
     }
   }
 
 Map<int, ApplyStatus> ApplyStatusMap = {
   0 : ApplyStatus.notYet,
   1 : ApplyStatus.confirm,
-  2 : ApplyStatus.ok,
-  9 : ApplyStatus.ng,
+  2 : ApplyStatus.ng,
+  9 : ApplyStatus.ok,
 };

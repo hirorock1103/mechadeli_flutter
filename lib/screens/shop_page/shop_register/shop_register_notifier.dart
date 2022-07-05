@@ -7,6 +7,8 @@ import 'package:mechadeli_flutter/domain/repositories/api_user_repository.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:provider/provider.dart';
 
+import '../../../domain/repositories/api_shop_repository.dart';
+
 part 'shop_register_notifier.freezed.dart';
 
 @freezed
@@ -62,12 +64,11 @@ class ShopRegisterNotifier extends StateNotifier<ShopRegisterState> with Locator
     String password_confirmation = state.inputPwConfirm;
 
     data['email'] = email;
-    data['first_name'] = name;
-    data['last_name'] = name;
+    data['name'] = name;
     data['password'] = password;
     data['password_confirmation'] = password_confirmation;
 
-    context.read<ApiUserRepository>().registerUser(data);
+    context.read<ApiShopRepository>().registerShop(data);
 
     //success snack barにしとく？
 

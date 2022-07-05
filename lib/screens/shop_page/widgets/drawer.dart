@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mechadeli_flutter/domain/entities/user.dart';
-import 'package:mechadeli_flutter/screens/user_page/dashboard/dashboard.dart';
-import 'package:mechadeli_flutter/screens/user_page/schedule/schedule.dart';
+import 'package:mechadeli_flutter/domain/entities/shop.dart';
+import 'package:mechadeli_flutter/screens/shop_page/basic_information/basic_information.dart';
+import 'package:mechadeli_flutter/screens/shop_page/dashboard/dashboard.dart';
+import 'package:mechadeli_flutter/screens/shop_page/schedule/schedule.dart';
 
 class UserDrawer extends StatelessWidget {
   const UserDrawer({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class UserDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
 
     print("build drawer");
-    print(User.me);
+    print(Shop.me);
 
     return Drawer(
       child: ListView(
@@ -21,7 +22,7 @@ class UserDrawer extends StatelessWidget {
               children: [
                 CircleAvatar(child: Icon(Icons.person),),
                 SizedBox(width: 10,),
-                Text(User.me.last_name, style: TextStyle(color: Colors.white),),
+                Text(Shop.me.name, style: TextStyle(color: Colors.white),),
               ],
             ),
             decoration: BoxDecoration(
@@ -62,6 +63,13 @@ class UserDrawer extends StatelessWidget {
               Navigator.pop(context);
             },
             title: Text("お問い合わせ"),
+            trailing: Icon(Icons.arrow_forward_ios_rounded),
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (_){ return BasicInformation(); }));
+            },
+            title: Text("基本情報"),
             trailing: Icon(Icons.arrow_forward_ios_rounded),
           ),
           ListTile(

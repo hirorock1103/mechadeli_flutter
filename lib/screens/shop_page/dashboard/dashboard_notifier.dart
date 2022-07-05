@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mechadeli_flutter/domain/entities/notice.dart';
 import 'package:mechadeli_flutter/domain/entities/order.dart';
+import 'package:mechadeli_flutter/domain/entities/shop.dart';
 import 'package:mechadeli_flutter/domain/entities/user.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +18,7 @@ part 'dashboard_notifier.freezed.dart';
 abstract class DashboardState with _$DashboardState {
   const factory DashboardState({
     @Default(0) int count,
+    @Default(ApplyStatus.notYet) ApplyStatus applyStatus,
     @Default(<Notice>[]) List<Notice> noticeList,
     @Default(<Order>[]) List<Order> orderList,
     @Default(MechadeliFlow.cancel) MechadeliFlow currentFlow,
@@ -34,6 +36,53 @@ class DashboardNotifier extends StateNotifier<DashboardState> with LocatorMixin 
   void dispose() {
     print('dispose');
     super.dispose();
+  }
+
+
+  String getApplyStatusTitle(){
+    return ApplyStatusList[state.applyStatus]['title'];
+  }
+  String getApplyStatusMessage(){
+
+    String message = "";
+    switch(state.applyStatus){
+      case ApplyStatus.notYet:
+        message = "ショップを公開するには基本情報を埋めて審査ボタンを押してください。";
+        break;
+      case ApplyStatus.confirm:
+        message = "只今提出中です";
+        break;
+      case ApplyStatus.ng:
+        message = "審査NGです";
+        break;
+      case ApplyStatus.ok:
+        message = "審査クリアです";
+        break;
+    }
+    return message;
+  }
+
+
+  void checkApplyStatus(){
+    int applyStatus = Shop.me.apply_status;
+    ApplyStatus status = ApplyStatus.notYet;
+    switch(applyStatus){
+      case 0 :
+        status = ApplyStatus.notYet;
+        break;
+      case 1 :
+        status = ApplyStatus.confirm;
+        break;
+      case 2 :
+        status = ApplyStatus.ng;
+        break;
+      case 9 :
+        status = ApplyStatus.ok;
+        break;
+    }
+
+    state = state.copyWith(applyStatus: status);
+
   }
 
   void getNoticeList() async{

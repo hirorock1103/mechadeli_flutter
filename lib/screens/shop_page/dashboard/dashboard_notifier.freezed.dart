@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$DashboardState {
   int get count => throw _privateConstructorUsedError;
+  ApplyStatus get applyStatus => throw _privateConstructorUsedError;
   List<Notice> get noticeList => throw _privateConstructorUsedError;
   List<Order> get orderList => throw _privateConstructorUsedError;
   MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
@@ -33,6 +34,7 @@ abstract class $DashboardStateCopyWith<$Res> {
       _$DashboardStateCopyWithImpl<$Res>;
   $Res call(
       {int count,
+      ApplyStatus applyStatus,
       List<Notice> noticeList,
       List<Order> orderList,
       MechadeliFlow currentFlow});
@@ -50,6 +52,7 @@ class _$DashboardStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? count = freezed,
+    Object? applyStatus = freezed,
     Object? noticeList = freezed,
     Object? orderList = freezed,
     Object? currentFlow = freezed,
@@ -59,6 +62,10 @@ class _$DashboardStateCopyWithImpl<$Res>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      applyStatus: applyStatus == freezed
+          ? _value.applyStatus
+          : applyStatus // ignore: cast_nullable_to_non_nullable
+              as ApplyStatus,
       noticeList: noticeList == freezed
           ? _value.noticeList
           : noticeList // ignore: cast_nullable_to_non_nullable
@@ -84,6 +91,7 @@ abstract class _$$_DashboardStateCopyWith<$Res>
   @override
   $Res call(
       {int count,
+      ApplyStatus applyStatus,
       List<Notice> noticeList,
       List<Order> orderList,
       MechadeliFlow currentFlow});
@@ -103,6 +111,7 @@ class __$$_DashboardStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? count = freezed,
+    Object? applyStatus = freezed,
     Object? noticeList = freezed,
     Object? orderList = freezed,
     Object? currentFlow = freezed,
@@ -112,6 +121,10 @@ class __$$_DashboardStateCopyWithImpl<$Res>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      applyStatus: applyStatus == freezed
+          ? _value.applyStatus
+          : applyStatus // ignore: cast_nullable_to_non_nullable
+              as ApplyStatus,
       noticeList: noticeList == freezed
           ? _value._noticeList
           : noticeList // ignore: cast_nullable_to_non_nullable
@@ -135,6 +148,7 @@ class _$_DashboardState
     implements _DashboardState {
   const _$_DashboardState(
       {this.count = 0,
+      this.applyStatus = ApplyStatus.notYet,
       final List<Notice> noticeList = const <Notice>[],
       final List<Order> orderList = const <Order>[],
       this.currentFlow = MechadeliFlow.cancel})
@@ -144,6 +158,9 @@ class _$_DashboardState
   @override
   @JsonKey()
   final int count;
+  @override
+  @JsonKey()
+  final ApplyStatus applyStatus;
   final List<Notice> _noticeList;
   @override
   @JsonKey()
@@ -166,7 +183,7 @@ class _$_DashboardState
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DashboardState(count: $count, noticeList: $noticeList, orderList: $orderList, currentFlow: $currentFlow)';
+    return 'DashboardState(count: $count, applyStatus: $applyStatus, noticeList: $noticeList, orderList: $orderList, currentFlow: $currentFlow)';
   }
 
   @override
@@ -175,6 +192,7 @@ class _$_DashboardState
     properties
       ..add(DiagnosticsProperty('type', 'DashboardState'))
       ..add(DiagnosticsProperty('count', count))
+      ..add(DiagnosticsProperty('applyStatus', applyStatus))
       ..add(DiagnosticsProperty('noticeList', noticeList))
       ..add(DiagnosticsProperty('orderList', orderList))
       ..add(DiagnosticsProperty('currentFlow', currentFlow));
@@ -187,6 +205,8 @@ class _$_DashboardState
             other is _$_DashboardState &&
             const DeepCollectionEquality().equals(other.count, count) &&
             const DeepCollectionEquality()
+                .equals(other.applyStatus, applyStatus) &&
+            const DeepCollectionEquality()
                 .equals(other._noticeList, _noticeList) &&
             const DeepCollectionEquality()
                 .equals(other._orderList, _orderList) &&
@@ -198,6 +218,7 @@ class _$_DashboardState
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(count),
+      const DeepCollectionEquality().hash(applyStatus),
       const DeepCollectionEquality().hash(_noticeList),
       const DeepCollectionEquality().hash(_orderList),
       const DeepCollectionEquality().hash(currentFlow));
@@ -211,12 +232,15 @@ class _$_DashboardState
 abstract class _DashboardState implements DashboardState {
   const factory _DashboardState(
       {final int count,
+      final ApplyStatus applyStatus,
       final List<Notice> noticeList,
       final List<Order> orderList,
       final MechadeliFlow currentFlow}) = _$_DashboardState;
 
   @override
   int get count => throw _privateConstructorUsedError;
+  @override
+  ApplyStatus get applyStatus => throw _privateConstructorUsedError;
   @override
   List<Notice> get noticeList => throw _privateConstructorUsedError;
   @override
