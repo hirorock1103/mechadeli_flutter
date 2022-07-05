@@ -94,5 +94,35 @@ class ApiShopRepositoryImpl implements ApiShopRepository {
     return shop;
   }
 
+  @override
+  Future<Shop?> updateShop(Map<String, dynamic> data, int shopId) async {
+    // TODO: implement updateShop
+    Shop shop = Shop();
+    //
+    try{
+      final response = await _apiClient.updateShop(data, shopId);
+
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          shop = Shop.fromJson(result.data);
+          print("update!");
+          print(shop);
+          //Shop.me set
+          Shop.me = shop;
+          print(Shop.me);
+
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+    return shop;
+  }
+
 
 }

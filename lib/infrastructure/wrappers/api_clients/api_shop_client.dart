@@ -10,9 +10,14 @@ abstract class ApiShopClient extends ChopperService {
   @Post(path: '/shop/userRegister')
   Future<Response> registerShop(
       @Body() Map<String, dynamic> data,
-      );
+    );
   @Post(path: '/shop/login')
   Future<Response> shopLogin(
       @Body() Map<String, dynamic> data,
-      );
+    );
+  @Post(path: '/shop/updateShop/{id}')
+  Future<Response> updateShop(
+      @Body() Map<String, dynamic> data,
+      @Path('id') int shopId,
+    );
 }

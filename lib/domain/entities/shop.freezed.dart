@@ -24,14 +24,18 @@ mixin _$Shop {
   String get shop_code => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  String get owner_name => throw _privateConstructorUsedError;
-  String get owner_name_kana => throw _privateConstructorUsedError;
+  String get shop_owner_name => throw _privateConstructorUsedError;
+  String get shop_owner_name_kana => throw _privateConstructorUsedError;
   String get shop_address_post_number => throw _privateConstructorUsedError;
   String get shop_address_pref => throw _privateConstructorUsedError;
   String get shop_address_city => throw _privateConstructorUsedError;
   String get shop_address_town => throw _privateConstructorUsedError;
   String get shop_address_buildings => throw _privateConstructorUsedError;
   int get apply_status => throw _privateConstructorUsedError;
+  String get catch_copy => throw _privateConstructorUsedError;
+  String get sales_time_str => throw _privateConstructorUsedError;
+  String get holiday_str => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,14 +51,18 @@ abstract class $ShopCopyWith<$Res> {
       String shop_code,
       String name,
       String email,
-      String owner_name,
-      String owner_name_kana,
+      String shop_owner_name,
+      String shop_owner_name_kana,
       String shop_address_post_number,
       String shop_address_pref,
       String shop_address_city,
       String shop_address_town,
       String shop_address_buildings,
-      int apply_status});
+      int apply_status,
+      String catch_copy,
+      String sales_time_str,
+      String holiday_str,
+      String message});
 }
 
 /// @nodoc
@@ -71,14 +79,18 @@ class _$ShopCopyWithImpl<$Res> implements $ShopCopyWith<$Res> {
     Object? shop_code = freezed,
     Object? name = freezed,
     Object? email = freezed,
-    Object? owner_name = freezed,
-    Object? owner_name_kana = freezed,
+    Object? shop_owner_name = freezed,
+    Object? shop_owner_name_kana = freezed,
     Object? shop_address_post_number = freezed,
     Object? shop_address_pref = freezed,
     Object? shop_address_city = freezed,
     Object? shop_address_town = freezed,
     Object? shop_address_buildings = freezed,
     Object? apply_status = freezed,
+    Object? catch_copy = freezed,
+    Object? sales_time_str = freezed,
+    Object? holiday_str = freezed,
+    Object? message = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -97,13 +109,13 @@ class _$ShopCopyWithImpl<$Res> implements $ShopCopyWith<$Res> {
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      owner_name: owner_name == freezed
-          ? _value.owner_name
-          : owner_name // ignore: cast_nullable_to_non_nullable
+      shop_owner_name: shop_owner_name == freezed
+          ? _value.shop_owner_name
+          : shop_owner_name // ignore: cast_nullable_to_non_nullable
               as String,
-      owner_name_kana: owner_name_kana == freezed
-          ? _value.owner_name_kana
-          : owner_name_kana // ignore: cast_nullable_to_non_nullable
+      shop_owner_name_kana: shop_owner_name_kana == freezed
+          ? _value.shop_owner_name_kana
+          : shop_owner_name_kana // ignore: cast_nullable_to_non_nullable
               as String,
       shop_address_post_number: shop_address_post_number == freezed
           ? _value.shop_address_post_number
@@ -129,6 +141,22 @@ class _$ShopCopyWithImpl<$Res> implements $ShopCopyWith<$Res> {
           ? _value.apply_status
           : apply_status // ignore: cast_nullable_to_non_nullable
               as int,
+      catch_copy: catch_copy == freezed
+          ? _value.catch_copy
+          : catch_copy // ignore: cast_nullable_to_non_nullable
+              as String,
+      sales_time_str: sales_time_str == freezed
+          ? _value.sales_time_str
+          : sales_time_str // ignore: cast_nullable_to_non_nullable
+              as String,
+      holiday_str: holiday_str == freezed
+          ? _value.holiday_str
+          : holiday_str // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -143,14 +171,18 @@ abstract class _$$_ShopCopyWith<$Res> implements $ShopCopyWith<$Res> {
       String shop_code,
       String name,
       String email,
-      String owner_name,
-      String owner_name_kana,
+      String shop_owner_name,
+      String shop_owner_name_kana,
       String shop_address_post_number,
       String shop_address_pref,
       String shop_address_city,
       String shop_address_town,
       String shop_address_buildings,
-      int apply_status});
+      int apply_status,
+      String catch_copy,
+      String sales_time_str,
+      String holiday_str,
+      String message});
 }
 
 /// @nodoc
@@ -168,14 +200,18 @@ class __$$_ShopCopyWithImpl<$Res> extends _$ShopCopyWithImpl<$Res>
     Object? shop_code = freezed,
     Object? name = freezed,
     Object? email = freezed,
-    Object? owner_name = freezed,
-    Object? owner_name_kana = freezed,
+    Object? shop_owner_name = freezed,
+    Object? shop_owner_name_kana = freezed,
     Object? shop_address_post_number = freezed,
     Object? shop_address_pref = freezed,
     Object? shop_address_city = freezed,
     Object? shop_address_town = freezed,
     Object? shop_address_buildings = freezed,
     Object? apply_status = freezed,
+    Object? catch_copy = freezed,
+    Object? sales_time_str = freezed,
+    Object? holiday_str = freezed,
+    Object? message = freezed,
   }) {
     return _then(_$_Shop(
       id: id == freezed
@@ -194,13 +230,13 @@ class __$$_ShopCopyWithImpl<$Res> extends _$ShopCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      owner_name: owner_name == freezed
-          ? _value.owner_name
-          : owner_name // ignore: cast_nullable_to_non_nullable
+      shop_owner_name: shop_owner_name == freezed
+          ? _value.shop_owner_name
+          : shop_owner_name // ignore: cast_nullable_to_non_nullable
               as String,
-      owner_name_kana: owner_name_kana == freezed
-          ? _value.owner_name_kana
-          : owner_name_kana // ignore: cast_nullable_to_non_nullable
+      shop_owner_name_kana: shop_owner_name_kana == freezed
+          ? _value.shop_owner_name_kana
+          : shop_owner_name_kana // ignore: cast_nullable_to_non_nullable
               as String,
       shop_address_post_number: shop_address_post_number == freezed
           ? _value.shop_address_post_number
@@ -226,6 +262,22 @@ class __$$_ShopCopyWithImpl<$Res> extends _$ShopCopyWithImpl<$Res>
           ? _value.apply_status
           : apply_status // ignore: cast_nullable_to_non_nullable
               as int,
+      catch_copy: catch_copy == freezed
+          ? _value.catch_copy
+          : catch_copy // ignore: cast_nullable_to_non_nullable
+              as String,
+      sales_time_str: sales_time_str == freezed
+          ? _value.sales_time_str
+          : sales_time_str // ignore: cast_nullable_to_non_nullable
+              as String,
+      holiday_str: holiday_str == freezed
+          ? _value.holiday_str
+          : holiday_str // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -238,14 +290,18 @@ class _$_Shop extends _Shop {
       this.shop_code = '',
       this.name = '',
       this.email = '',
-      this.owner_name = '',
-      this.owner_name_kana = '',
+      this.shop_owner_name = '',
+      this.shop_owner_name_kana = '',
       this.shop_address_post_number = '',
       this.shop_address_pref = '',
       this.shop_address_city = '',
       this.shop_address_town = '',
       this.shop_address_buildings = '',
-      this.apply_status = 0})
+      this.apply_status = 0,
+      this.catch_copy = '',
+      this.sales_time_str = '',
+      this.holiday_str = '',
+      this.message = ''})
       : super._();
 
   factory _$_Shop.fromJson(Map<String, dynamic> json) => _$$_ShopFromJson(json);
@@ -264,10 +320,10 @@ class _$_Shop extends _Shop {
   final String email;
   @override
   @JsonKey()
-  final String owner_name;
+  final String shop_owner_name;
   @override
   @JsonKey()
-  final String owner_name_kana;
+  final String shop_owner_name_kana;
   @override
   @JsonKey()
   final String shop_address_post_number;
@@ -286,10 +342,22 @@ class _$_Shop extends _Shop {
   @override
   @JsonKey()
   final int apply_status;
+  @override
+  @JsonKey()
+  final String catch_copy;
+  @override
+  @JsonKey()
+  final String sales_time_str;
+  @override
+  @JsonKey()
+  final String holiday_str;
+  @override
+  @JsonKey()
+  final String message;
 
   @override
   String toString() {
-    return 'Shop(id: $id, shop_code: $shop_code, name: $name, email: $email, owner_name: $owner_name, owner_name_kana: $owner_name_kana, shop_address_post_number: $shop_address_post_number, shop_address_pref: $shop_address_pref, shop_address_city: $shop_address_city, shop_address_town: $shop_address_town, shop_address_buildings: $shop_address_buildings, apply_status: $apply_status)';
+    return 'Shop(id: $id, shop_code: $shop_code, name: $name, email: $email, shop_owner_name: $shop_owner_name, shop_owner_name_kana: $shop_owner_name_kana, shop_address_post_number: $shop_address_post_number, shop_address_pref: $shop_address_pref, shop_address_city: $shop_address_city, shop_address_town: $shop_address_town, shop_address_buildings: $shop_address_buildings, apply_status: $apply_status, catch_copy: $catch_copy, sales_time_str: $sales_time_str, holiday_str: $holiday_str, message: $message)';
   }
 
   @override
@@ -302,9 +370,9 @@ class _$_Shop extends _Shop {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality()
-                .equals(other.owner_name, owner_name) &&
+                .equals(other.shop_owner_name, shop_owner_name) &&
             const DeepCollectionEquality()
-                .equals(other.owner_name_kana, owner_name_kana) &&
+                .equals(other.shop_owner_name_kana, shop_owner_name_kana) &&
             const DeepCollectionEquality().equals(
                 other.shop_address_post_number, shop_address_post_number) &&
             const DeepCollectionEquality()
@@ -316,7 +384,14 @@ class _$_Shop extends _Shop {
             const DeepCollectionEquality()
                 .equals(other.shop_address_buildings, shop_address_buildings) &&
             const DeepCollectionEquality()
-                .equals(other.apply_status, apply_status));
+                .equals(other.apply_status, apply_status) &&
+            const DeepCollectionEquality()
+                .equals(other.catch_copy, catch_copy) &&
+            const DeepCollectionEquality()
+                .equals(other.sales_time_str, sales_time_str) &&
+            const DeepCollectionEquality()
+                .equals(other.holiday_str, holiday_str) &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @JsonKey(ignore: true)
@@ -327,14 +402,18 @@ class _$_Shop extends _Shop {
       const DeepCollectionEquality().hash(shop_code),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(owner_name),
-      const DeepCollectionEquality().hash(owner_name_kana),
+      const DeepCollectionEquality().hash(shop_owner_name),
+      const DeepCollectionEquality().hash(shop_owner_name_kana),
       const DeepCollectionEquality().hash(shop_address_post_number),
       const DeepCollectionEquality().hash(shop_address_pref),
       const DeepCollectionEquality().hash(shop_address_city),
       const DeepCollectionEquality().hash(shop_address_town),
       const DeepCollectionEquality().hash(shop_address_buildings),
-      const DeepCollectionEquality().hash(apply_status));
+      const DeepCollectionEquality().hash(apply_status),
+      const DeepCollectionEquality().hash(catch_copy),
+      const DeepCollectionEquality().hash(sales_time_str),
+      const DeepCollectionEquality().hash(holiday_str),
+      const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -353,14 +432,18 @@ abstract class _Shop extends Shop {
       final String shop_code,
       final String name,
       final String email,
-      final String owner_name,
-      final String owner_name_kana,
+      final String shop_owner_name,
+      final String shop_owner_name_kana,
       final String shop_address_post_number,
       final String shop_address_pref,
       final String shop_address_city,
       final String shop_address_town,
       final String shop_address_buildings,
-      final int apply_status}) = _$_Shop;
+      final int apply_status,
+      final String catch_copy,
+      final String sales_time_str,
+      final String holiday_str,
+      final String message}) = _$_Shop;
   _Shop._() : super._();
 
   factory _Shop.fromJson(Map<String, dynamic> json) = _$_Shop.fromJson;
@@ -374,9 +457,9 @@ abstract class _Shop extends Shop {
   @override
   String get email => throw _privateConstructorUsedError;
   @override
-  String get owner_name => throw _privateConstructorUsedError;
+  String get shop_owner_name => throw _privateConstructorUsedError;
   @override
-  String get owner_name_kana => throw _privateConstructorUsedError;
+  String get shop_owner_name_kana => throw _privateConstructorUsedError;
   @override
   String get shop_address_post_number => throw _privateConstructorUsedError;
   @override
@@ -389,6 +472,14 @@ abstract class _Shop extends Shop {
   String get shop_address_buildings => throw _privateConstructorUsedError;
   @override
   int get apply_status => throw _privateConstructorUsedError;
+  @override
+  String get catch_copy => throw _privateConstructorUsedError;
+  @override
+  String get sales_time_str => throw _privateConstructorUsedError;
+  @override
+  String get holiday_str => throw _privateConstructorUsedError;
+  @override
+  String get message => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_ShopCopyWith<_$_Shop> get copyWith => throw _privateConstructorUsedError;

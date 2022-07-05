@@ -10,14 +10,18 @@ class Shop with _$Shop {
     @Default('') String shop_code,
     @Default('') String name,
     @Default('') String email,
-    @Default('') String owner_name,
-    @Default('') String owner_name_kana,
+    @Default('') String shop_owner_name,
+    @Default('') String shop_owner_name_kana,
     @Default('') String shop_address_post_number,
     @Default('') String shop_address_pref,
     @Default('') String shop_address_city,
     @Default('') String shop_address_town,
     @Default('') String shop_address_buildings,
     @Default(0) int apply_status,
+    @Default('') String catch_copy,
+    @Default('') String sales_time_str,
+    @Default('') String holiday_str,
+    @Default('') String message,
 
 
   }) = _Shop;

@@ -50,26 +50,6 @@ class _ProfileState extends State<Profile> {
                   H1Title(
                     title: "あなたのプロフィールを設定してください",
                   ),
-                  Row(
-                    children: [
-                      Expanded(flex: 1 , child: Text("お名前")),
-                      Expanded(flex: 5, child: MyTextForm(hintText: "姓名",))
-                    ],
-                  ),
-                  SizedBox(height: 10,),
-                  Row(
-                    children: [
-                      Expanded(flex: 1 , child: Text("住所")),
-                      Expanded(flex: 5, child: MyTextForm(hintText: "ご住所を入力してください",))
-                    ],
-                  ),
-                  SizedBox(height: 10,),
-                  Row(
-                    children: [
-                      Expanded(flex: 1 , child: Text("tel")),
-                      Expanded(flex: 5, child: MyTextForm(hintText: "ハイフンなし",))
-                    ],
-                  ),
                   SizedBox(height: 10,),
                   // Row(children: [
                   //   Text("お名前"),

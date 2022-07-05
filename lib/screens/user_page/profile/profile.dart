@@ -40,6 +40,12 @@ class _ProfileState extends State<Profile> {
   }
 
   Widget buildContents(BuildContext context){
+
+    TextEditingController userNameController = TextEditingController();
+    TextEditingController userTelController = TextEditingController();
+    TextEditingController userAddressController = TextEditingController();
+
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -53,21 +59,21 @@ class _ProfileState extends State<Profile> {
                   Row(
                     children: [
                       Expanded(flex: 1 , child: Text("お名前")),
-                      Expanded(flex: 5, child: MyTextForm(hintText: "姓名",))
+                      Expanded(flex: 5, child: MyTextForm(hintText: "姓名", controller: userNameController,))
                     ],
                   ),
                   SizedBox(height: 10,),
                   Row(
                     children: [
                       Expanded(flex: 1 , child: Text("住所")),
-                      Expanded(flex: 5, child: MyTextForm(hintText: "ご住所を入力してください",))
+                      Expanded(flex: 5, child: MyTextForm(hintText: "ご住所を入力してください", controller: userAddressController,))
                     ],
                   ),
                   SizedBox(height: 10,),
                   Row(
                     children: [
                       Expanded(flex: 1 , child: Text("tel")),
-                      Expanded(flex: 5, child: MyTextForm(hintText: "ハイフンなし",))
+                      Expanded(flex: 5, child: MyTextForm(hintText: "ハイフンなし", controller: userTelController,))
                     ],
                   ),
                   SizedBox(height: 10,),

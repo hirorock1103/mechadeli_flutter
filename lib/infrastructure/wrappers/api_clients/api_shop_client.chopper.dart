@@ -31,4 +31,12 @@ class _$ApiShopClient extends ApiShopClient {
     final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<dynamic, dynamic>($request);
   }
+
+  @override
+  Future<Response<dynamic>> updateShop(Map<String, dynamic> data, int shopId) {
+    final $url = '/shop/updateShop/${shopId}';
+    final $body = data;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<dynamic, dynamic>($request);
+  }
 }

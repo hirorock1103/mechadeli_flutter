@@ -31,6 +31,9 @@ class ShopLoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    userIdController.text = "mdiz1103@gmail.com";
+    userPwController.text = "11032189";
+
     final size = MediaQuery.of(context).size;
     final contentWidth = size.width / 1.5;
     return Scaffold(

@@ -67,7 +67,7 @@ class UserDrawer extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (_){ return BasicInformation(); }));
+              Navigator.of(context).push(MaterialPageRoute(builder: (_){ return BasicInformation.wrapped(); }));
             },
             title: Text("基本情報"),
             trailing: Icon(Icons.arrow_forward_ios_rounded),

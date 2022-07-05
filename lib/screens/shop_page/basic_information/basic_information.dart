@@ -6,20 +6,41 @@ import 'package:mechadeli_flutter/widgets/common/titles/h2_title.dart';
 import 'package:mechadeli_flutter/widgets/common/titles/page_title.dart';
 
 import '../../../common/constants.dart';
+import '../../../domain/entities/shop.dart';
 import '../widgets/app_bar.dart';
 import '../widgets/drawer.dart';
 import '../widgets/side_navi.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 
-class BasicInformation extends StatefulWidget {
+import 'basic_information_notifier.dart';
+
+class BasicInformation extends StatelessWidget {
+
+  static Widget wrapped() {
+    return MultiProvider(
+      providers: [
+        StateNotifierProvider<BasicInformationNotifier, BasicInformationState>(
+          create: (context) => BasicInformationNotifier(
+            context: context,
+          ),
+        )
+      ],
+      child: BasicInformation(),
+    );
+  }
   const BasicInformation({Key? key}) : super(key: key);
-
-  @override
-  _BasicInformationState createState() => _BasicInformationState();
-}
-
-class _BasicInformationState extends State<BasicInformation> {
+//   @override
+//   _BasicInformationState createState() => _BasicInformationState();
+// }
+//
+// class _BasicInformationState extends State<BasicInformation> {
   @override
   Widget build(BuildContext context) {
+
+    //set data
+
+
     ///ここから共通
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -48,6 +69,16 @@ class _BasicInformationState extends State<BasicInformation> {
   }
 
   Widget buildContents(BuildContext context) {
+
+
+    //textEditingControllerをセット
+    Shop shopFormat = Shop();
+    Map<String, TextEditingController> editMap = {};
+    shopFormat.toJson().entries.forEach((e) { editMap[e.key] = TextEditingController(); });
+    Shop shop = Shop.me;
+    shop.toJson().entries.forEach((e) { editMap[e.key]?.text = e.value.toString(); });
+
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -58,19 +89,29 @@ class _BasicInformationState extends State<BasicInformation> {
               H1Title(
                 title: "店舗基本情報",
               ),
-              buildRow("店舗コード", ""),
-              buildRow("店舗名", ""),
-              buildRow("店舗名（カナ）", ""),
-              buildRow("店長名", ""),
-              buildRow("住所（郵便番号）", ""),
-              buildRow("住所（都道府県）", ""),
-              buildRow("住所（市区町村）", ""),
-              buildRow("住所（町名・番地）", ""),
-              buildRow("住所（ビル名・部屋番号）", ""),
-              buildRow("電話番号", ""),
+              buildRow("店舗コード", "", editMap['shop_code']!),
+              buildRow("店舗名", "", editMap['name']!),
+              buildRow("店舗オーナー名", "", editMap['shop_owner_name']!),
+              buildRow("住所（郵便番号）", "", editMap['shop_address_post_number']!),
+              buildRow("住所（都道府県）", "", editMap['shop_address_pref']!),
+              buildRow("住所（市区町村）", "", editMap['shop_address_city']!),
+              buildRow("住所（番地）", "", editMap['shop_address_town']!),
+              buildRow("住所（建物名）", "", editMap['shop_address_buildings']!),
+              // buildRow("電話番号", ""),
               ElevatedButton(
-                  onPressed: () {
-                    print("tet");
+                  onPressed: () async{
+                    Map<String, dynamic> data = {};
+                    data["shop_code"] = editMap['shop_code']!.text;
+                    data["name"] = editMap['name']!.text;
+                    data["shop_owner_name"] = editMap['shop_owner_name']!.text;
+                    data["shop_address_post_number"] = editMap['shop_address_post_number']!.text;
+                    data["shop_address_pref"] = editMap['shop_address_pref']!.text;
+                    data["shop_address_city"] = editMap['shop_address_city']!.text;
+                    data["shop_address_town"] = editMap['shop_address_town']!.text;
+                    data["shop_address_buildings"] = editMap['shop_address_buildings']!.text;
+                    int shopId = Shop.me.id;
+                    context.read<BasicInformationNotifier>().updateShop(data, shopId);
+
                   },
                   child: Text("店舗基本情報の更新"))
             ],
@@ -81,13 +122,19 @@ class _BasicInformationState extends State<BasicInformation> {
               H1Title(
                 title: "店舗の営業情報",
               ),
-              buildRow("キャッチコピー", ""),
-              buildRow("営業時間", ""),
-              buildRow("定休日", ""),
-              buildRow("店舗概要", ""),
+              buildRow("キャッチコピー", "", editMap['catch_copy']!),
+              buildRow("営業時間", "", editMap['sales_time_str']!),
+              buildRow("定休日", "", editMap['holiday_str']!),
+              buildRow("コメント", "", editMap['message']!),
               ElevatedButton(
                   onPressed: () {
-                    print("tet");
+                    Map<String, dynamic> data = {};
+                    data["catch_copy"] = editMap['catch_copy']!.text;
+                    data["sales_time_str"] = editMap['sales_time_str']!.text;
+                    data["holiday_str"] = editMap['holiday_str']!.text;
+                    data["message"] = editMap['message']!.text;
+                    int shopId = Shop.me.id;
+                    context.read<BasicInformationNotifier>().updateShop(data, shopId);
                   },
                   child: Text("店舗営業情報の更新"))
             ],
@@ -150,9 +197,9 @@ class _BasicInformationState extends State<BasicInformation> {
                   H1Title(
                     title: "資格・許認可",
                   ),
-                  buildRow("運転免許", ""),
-                  buildRow("整備士免許", ""),
-                  buildRow("古物商許可証番号", ""),
+                  // buildRow("運転免許", ""),
+                  // buildRow("整備士免許", ""),
+                  // buildRow("古物商許可証番号", ""),
                   ElevatedButton(
                       onPressed: () {
                         print("tet");
@@ -165,7 +212,7 @@ class _BasicInformationState extends State<BasicInformation> {
     );
   }
 
-  Widget buildRow(String title, String hintText) {
+  Widget buildRow(String title, String hintText, TextEditingController controller) {
     return Builder(builder: (context) {
       Size size = MediaQuery.of(context).size;
       if (size.width <= AppConstant.phoneMaxSize) {
@@ -177,6 +224,7 @@ class _BasicInformationState extends State<BasicInformation> {
               Text(title),
               MyTextForm(
                 hintText: hintText,
+                controller: controller,
               )
             ],
           ),
@@ -191,6 +239,7 @@ class _BasicInformationState extends State<BasicInformation> {
                   flex: 5,
                   child: MyTextForm(
                     hintText: hintText,
+                    controller: controller,
                   ))
             ],
           ),

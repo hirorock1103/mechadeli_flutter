@@ -16,4 +16,5 @@ abstract class ApiShopRepository {
    */
   Future<Shop?> registerShop(Map<String, dynamic> data);
   Future<Shop?> loginShop(Map<String, dynamic> data);
+  Future<Shop?> updateShop(Map<String, dynamic> data, int shopId);
 }
