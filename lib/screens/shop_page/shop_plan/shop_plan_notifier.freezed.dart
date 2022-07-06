@@ -16,7 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ShopPlanState {
-  int get count => throw _privateConstructorUsedError;
+  int get count =>
+      throw _privateConstructorUsedError; // @Default(ApplyStatus.notYet) ApplyStatus applyStatus,
+// @Default(<Notice>[]) List<Notice> noticeList,
+// @Default(<Order>[]) List<Order> orderList,
+  List<ShopPlan> get shopPlanList => throw _privateConstructorUsedError;
+  List<SubCategory> get subCategoryList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ShopPlanStateCopyWith<ShopPlanState> get copyWith =>
@@ -28,7 +33,10 @@ abstract class $ShopPlanStateCopyWith<$Res> {
   factory $ShopPlanStateCopyWith(
           ShopPlanState value, $Res Function(ShopPlanState) then) =
       _$ShopPlanStateCopyWithImpl<$Res>;
-  $Res call({int count});
+  $Res call(
+      {int count,
+      List<ShopPlan> shopPlanList,
+      List<SubCategory> subCategoryList});
 }
 
 /// @nodoc
@@ -43,12 +51,22 @@ class _$ShopPlanStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? count = freezed,
+    Object? shopPlanList = freezed,
+    Object? subCategoryList = freezed,
   }) {
     return _then(_value.copyWith(
       count: count == freezed
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      shopPlanList: shopPlanList == freezed
+          ? _value.shopPlanList
+          : shopPlanList // ignore: cast_nullable_to_non_nullable
+              as List<ShopPlan>,
+      subCategoryList: subCategoryList == freezed
+          ? _value.subCategoryList
+          : subCategoryList // ignore: cast_nullable_to_non_nullable
+              as List<SubCategory>,
     ));
   }
 }
@@ -60,7 +78,10 @@ abstract class _$$_ShopPlanStateCopyWith<$Res>
           _$_ShopPlanState value, $Res Function(_$_ShopPlanState) then) =
       __$$_ShopPlanStateCopyWithImpl<$Res>;
   @override
-  $Res call({int count});
+  $Res call(
+      {int count,
+      List<ShopPlan> shopPlanList,
+      List<SubCategory> subCategoryList});
 }
 
 /// @nodoc
@@ -77,12 +98,22 @@ class __$$_ShopPlanStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? count = freezed,
+    Object? shopPlanList = freezed,
+    Object? subCategoryList = freezed,
   }) {
     return _then(_$_ShopPlanState(
       count: count == freezed
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      shopPlanList: shopPlanList == freezed
+          ? _value._shopPlanList
+          : shopPlanList // ignore: cast_nullable_to_non_nullable
+              as List<ShopPlan>,
+      subCategoryList: subCategoryList == freezed
+          ? _value._subCategoryList
+          : subCategoryList // ignore: cast_nullable_to_non_nullable
+              as List<SubCategory>,
     ));
   }
 }
@@ -90,15 +121,41 @@ class __$$_ShopPlanStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ShopPlanState with DiagnosticableTreeMixin implements _ShopPlanState {
-  const _$_ShopPlanState({this.count = 0});
+  const _$_ShopPlanState(
+      {this.count = 0,
+      final List<ShopPlan> shopPlanList = const <ShopPlan>[],
+      final List<SubCategory> subCategoryList = const <SubCategory>[]})
+      : _shopPlanList = shopPlanList,
+        _subCategoryList = subCategoryList;
 
   @override
   @JsonKey()
   final int count;
+// @Default(ApplyStatus.notYet) ApplyStatus applyStatus,
+// @Default(<Notice>[]) List<Notice> noticeList,
+// @Default(<Order>[]) List<Order> orderList,
+  final List<ShopPlan> _shopPlanList;
+// @Default(ApplyStatus.notYet) ApplyStatus applyStatus,
+// @Default(<Notice>[]) List<Notice> noticeList,
+// @Default(<Order>[]) List<Order> orderList,
+  @override
+  @JsonKey()
+  List<ShopPlan> get shopPlanList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_shopPlanList);
+  }
+
+  final List<SubCategory> _subCategoryList;
+  @override
+  @JsonKey()
+  List<SubCategory> get subCategoryList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_subCategoryList);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ShopPlanState(count: $count)';
+    return 'ShopPlanState(count: $count, shopPlanList: $shopPlanList, subCategoryList: $subCategoryList)';
   }
 
   @override
@@ -106,7 +163,9 @@ class _$_ShopPlanState with DiagnosticableTreeMixin implements _ShopPlanState {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ShopPlanState'))
-      ..add(DiagnosticsProperty('count', count));
+      ..add(DiagnosticsProperty('count', count))
+      ..add(DiagnosticsProperty('shopPlanList', shopPlanList))
+      ..add(DiagnosticsProperty('subCategoryList', subCategoryList));
   }
 
   @override
@@ -114,12 +173,19 @@ class _$_ShopPlanState with DiagnosticableTreeMixin implements _ShopPlanState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ShopPlanState &&
-            const DeepCollectionEquality().equals(other.count, count));
+            const DeepCollectionEquality().equals(other.count, count) &&
+            const DeepCollectionEquality()
+                .equals(other._shopPlanList, _shopPlanList) &&
+            const DeepCollectionEquality()
+                .equals(other._subCategoryList, _subCategoryList));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(count));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(count),
+      const DeepCollectionEquality().hash(_shopPlanList),
+      const DeepCollectionEquality().hash(_subCategoryList));
 
   @JsonKey(ignore: true)
   @override
@@ -128,10 +194,19 @@ class _$_ShopPlanState with DiagnosticableTreeMixin implements _ShopPlanState {
 }
 
 abstract class _ShopPlanState implements ShopPlanState {
-  const factory _ShopPlanState({final int count}) = _$_ShopPlanState;
+  const factory _ShopPlanState(
+      {final int count,
+      final List<ShopPlan> shopPlanList,
+      final List<SubCategory> subCategoryList}) = _$_ShopPlanState;
 
   @override
   int get count => throw _privateConstructorUsedError;
+  @override // @Default(ApplyStatus.notYet) ApplyStatus applyStatus,
+// @Default(<Notice>[]) List<Notice> noticeList,
+// @Default(<Order>[]) List<Order> orderList,
+  List<ShopPlan> get shopPlanList => throw _privateConstructorUsedError;
+  @override
+  List<SubCategory> get subCategoryList => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_ShopPlanStateCopyWith<_$_ShopPlanState> get copyWith =>

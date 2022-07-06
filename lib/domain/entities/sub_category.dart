@@ -9,6 +9,7 @@ class SubCategory with _$SubCategory {
     @Default(0) int id,
     @Default('') String title,
     @Default(0) int main_category_id,
+    @Default('') String main_category_title,
     @Default('') String updated_at,
     @Default('') String created_at,
 

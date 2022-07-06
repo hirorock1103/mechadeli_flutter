@@ -20,4 +20,23 @@ abstract class ApiShopClient extends ChopperService {
       @Body() Map<String, dynamic> data,
       @Path('id') int shopId,
     );
+  @Get(path: '/shop/getSubCategory')
+  Future<Response> getSubCategory(
+      // @Query() int client_id,
+      // @Path('id') int shopId,
+      );
+  @Get(path: '/shop/getShopPlanListByShopId/{id}')
+  Future<Response> getShopPlanListByShopId(
+    // @Query() int client_id,
+    @Path('id') int shopId,
+  );
+  @Post(path: '/shop/registerShopPlan')
+  Future<Response> registerShopPlan(
+      @Body() Map<String, dynamic> data,
+      );
+  @Post(path: '/shop/updateShopPlan/{id}')
+  Future<Response> updateShopPlan(
+      @Body() Map<String, dynamic> data,
+      @Path('id') int shopPlanId,
+      );
 }

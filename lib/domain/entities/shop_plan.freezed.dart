@@ -23,7 +23,9 @@ mixin _$ShopPlan {
   int get id => throw _privateConstructorUsedError;
   int get shop_id => throw _privateConstructorUsedError;
   int get main_category_id => throw _privateConstructorUsedError;
+  String get main_category_title => throw _privateConstructorUsedError;
   int get sub_category_id => throw _privateConstructorUsedError;
+  String get sub_category_title => throw _privateConstructorUsedError;
   int get plan_price => throw _privateConstructorUsedError;
   int get status => throw _privateConstructorUsedError;
   String get about => throw _privateConstructorUsedError;
@@ -53,7 +55,9 @@ abstract class $ShopPlanCopyWith<$Res> {
       {int id,
       int shop_id,
       int main_category_id,
+      String main_category_title,
       int sub_category_id,
+      String sub_category_title,
       int plan_price,
       int status,
       String about,
@@ -83,7 +87,9 @@ class _$ShopPlanCopyWithImpl<$Res> implements $ShopPlanCopyWith<$Res> {
     Object? id = freezed,
     Object? shop_id = freezed,
     Object? main_category_id = freezed,
+    Object? main_category_title = freezed,
     Object? sub_category_id = freezed,
+    Object? sub_category_title = freezed,
     Object? plan_price = freezed,
     Object? status = freezed,
     Object? about = freezed,
@@ -112,10 +118,18 @@ class _$ShopPlanCopyWithImpl<$Res> implements $ShopPlanCopyWith<$Res> {
           ? _value.main_category_id
           : main_category_id // ignore: cast_nullable_to_non_nullable
               as int,
+      main_category_title: main_category_title == freezed
+          ? _value.main_category_title
+          : main_category_title // ignore: cast_nullable_to_non_nullable
+              as String,
       sub_category_id: sub_category_id == freezed
           ? _value.sub_category_id
           : sub_category_id // ignore: cast_nullable_to_non_nullable
               as int,
+      sub_category_title: sub_category_title == freezed
+          ? _value.sub_category_title
+          : sub_category_title // ignore: cast_nullable_to_non_nullable
+              as String,
       plan_price: plan_price == freezed
           ? _value.plan_price
           : plan_price // ignore: cast_nullable_to_non_nullable
@@ -186,7 +200,9 @@ abstract class _$$_ShopPlanCopyWith<$Res> implements $ShopPlanCopyWith<$Res> {
       {int id,
       int shop_id,
       int main_category_id,
+      String main_category_title,
       int sub_category_id,
+      String sub_category_title,
       int plan_price,
       int status,
       String about,
@@ -218,7 +234,9 @@ class __$$_ShopPlanCopyWithImpl<$Res> extends _$ShopPlanCopyWithImpl<$Res>
     Object? id = freezed,
     Object? shop_id = freezed,
     Object? main_category_id = freezed,
+    Object? main_category_title = freezed,
     Object? sub_category_id = freezed,
+    Object? sub_category_title = freezed,
     Object? plan_price = freezed,
     Object? status = freezed,
     Object? about = freezed,
@@ -247,10 +265,18 @@ class __$$_ShopPlanCopyWithImpl<$Res> extends _$ShopPlanCopyWithImpl<$Res>
           ? _value.main_category_id
           : main_category_id // ignore: cast_nullable_to_non_nullable
               as int,
+      main_category_title: main_category_title == freezed
+          ? _value.main_category_title
+          : main_category_title // ignore: cast_nullable_to_non_nullable
+              as String,
       sub_category_id: sub_category_id == freezed
           ? _value.sub_category_id
           : sub_category_id // ignore: cast_nullable_to_non_nullable
               as int,
+      sub_category_title: sub_category_title == freezed
+          ? _value.sub_category_title
+          : sub_category_title // ignore: cast_nullable_to_non_nullable
+              as String,
       plan_price: plan_price == freezed
           ? _value.plan_price
           : plan_price // ignore: cast_nullable_to_non_nullable
@@ -318,7 +344,9 @@ class _$_ShopPlan extends _ShopPlan {
       {this.id = 0,
       this.shop_id = 0,
       this.main_category_id = 0,
+      this.main_category_title = '',
       this.sub_category_id = 0,
+      this.sub_category_title = '',
       this.plan_price = 0,
       this.status = 0,
       this.about = '',
@@ -349,7 +377,13 @@ class _$_ShopPlan extends _ShopPlan {
   final int main_category_id;
   @override
   @JsonKey()
+  final String main_category_title;
+  @override
+  @JsonKey()
   final int sub_category_id;
+  @override
+  @JsonKey()
+  final String sub_category_title;
   @override
   @JsonKey()
   final int plan_price;
@@ -395,7 +429,7 @@ class _$_ShopPlan extends _ShopPlan {
 
   @override
   String toString() {
-    return 'ShopPlan(id: $id, shop_id: $shop_id, main_category_id: $main_category_id, sub_category_id: $sub_category_id, plan_price: $plan_price, status: $status, about: $about, plan_title: $plan_title, sales_point: $sales_point, details: $details, tanni: $tanni, img_1: $img_1, img_2: $img_2, img_3: $img_3, img_4: $img_4, img_5: $img_5, created_at: $created_at, updated_at: $updated_at)';
+    return 'ShopPlan(id: $id, shop_id: $shop_id, main_category_id: $main_category_id, main_category_title: $main_category_title, sub_category_id: $sub_category_id, sub_category_title: $sub_category_title, plan_price: $plan_price, status: $status, about: $about, plan_title: $plan_title, sales_point: $sales_point, details: $details, tanni: $tanni, img_1: $img_1, img_2: $img_2, img_3: $img_3, img_4: $img_4, img_5: $img_5, created_at: $created_at, updated_at: $updated_at)';
   }
 
   @override
@@ -408,7 +442,11 @@ class _$_ShopPlan extends _ShopPlan {
             const DeepCollectionEquality()
                 .equals(other.main_category_id, main_category_id) &&
             const DeepCollectionEquality()
+                .equals(other.main_category_title, main_category_title) &&
+            const DeepCollectionEquality()
                 .equals(other.sub_category_id, sub_category_id) &&
+            const DeepCollectionEquality()
+                .equals(other.sub_category_title, sub_category_title) &&
             const DeepCollectionEquality()
                 .equals(other.plan_price, plan_price) &&
             const DeepCollectionEquality().equals(other.status, status) &&
@@ -432,26 +470,29 @@ class _$_ShopPlan extends _ShopPlan {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(shop_id),
-      const DeepCollectionEquality().hash(main_category_id),
-      const DeepCollectionEquality().hash(sub_category_id),
-      const DeepCollectionEquality().hash(plan_price),
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(about),
-      const DeepCollectionEquality().hash(plan_title),
-      const DeepCollectionEquality().hash(sales_point),
-      const DeepCollectionEquality().hash(details),
-      const DeepCollectionEquality().hash(tanni),
-      const DeepCollectionEquality().hash(img_1),
-      const DeepCollectionEquality().hash(img_2),
-      const DeepCollectionEquality().hash(img_3),
-      const DeepCollectionEquality().hash(img_4),
-      const DeepCollectionEquality().hash(img_5),
-      const DeepCollectionEquality().hash(created_at),
-      const DeepCollectionEquality().hash(updated_at));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(shop_id),
+        const DeepCollectionEquality().hash(main_category_id),
+        const DeepCollectionEquality().hash(main_category_title),
+        const DeepCollectionEquality().hash(sub_category_id),
+        const DeepCollectionEquality().hash(sub_category_title),
+        const DeepCollectionEquality().hash(plan_price),
+        const DeepCollectionEquality().hash(status),
+        const DeepCollectionEquality().hash(about),
+        const DeepCollectionEquality().hash(plan_title),
+        const DeepCollectionEquality().hash(sales_point),
+        const DeepCollectionEquality().hash(details),
+        const DeepCollectionEquality().hash(tanni),
+        const DeepCollectionEquality().hash(img_1),
+        const DeepCollectionEquality().hash(img_2),
+        const DeepCollectionEquality().hash(img_3),
+        const DeepCollectionEquality().hash(img_4),
+        const DeepCollectionEquality().hash(img_5),
+        const DeepCollectionEquality().hash(created_at),
+        const DeepCollectionEquality().hash(updated_at)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -469,7 +510,9 @@ abstract class _ShopPlan extends ShopPlan {
       {final int id,
       final int shop_id,
       final int main_category_id,
+      final String main_category_title,
       final int sub_category_id,
+      final String sub_category_title,
       final int plan_price,
       final int status,
       final String about,
@@ -495,7 +538,11 @@ abstract class _ShopPlan extends ShopPlan {
   @override
   int get main_category_id => throw _privateConstructorUsedError;
   @override
+  String get main_category_title => throw _privateConstructorUsedError;
+  @override
   int get sub_category_id => throw _privateConstructorUsedError;
+  @override
+  String get sub_category_title => throw _privateConstructorUsedError;
   @override
   int get plan_price => throw _privateConstructorUsedError;
   @override

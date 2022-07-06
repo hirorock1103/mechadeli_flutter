@@ -5,12 +5,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mechadeli_flutter/domain/entities/notice.dart';
 import 'package:mechadeli_flutter/domain/entities/order.dart';
 import 'package:mechadeli_flutter/domain/entities/shop.dart';
+import 'package:mechadeli_flutter/domain/entities/sub_category.dart';
 import 'package:mechadeli_flutter/domain/entities/user.dart';
 import 'package:mechadeli_flutter/domain/repositories/api_shop_repository.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/enum.dart';
+import '../../../domain/entities/shop_plan.dart';
 import '../../../domain/repositories/api_user_repository.dart';
 
 part 'shop_plan_notifier.freezed.dart';
@@ -22,6 +24,8 @@ abstract class ShopPlanState with _$ShopPlanState {
     // @Default(ApplyStatus.notYet) ApplyStatus applyStatus,
     // @Default(<Notice>[]) List<Notice> noticeList,
     // @Default(<Order>[]) List<Order> orderList,
+    @Default(<ShopPlan>[]) List<ShopPlan> shopPlanList,
+    @Default(<SubCategory>[]) List<SubCategory> subCategoryList,
     // @Default(MechadeliFlow.cancel) MechadeliFlow currentFlow,
   }) = _ShopPlanState;
 }
@@ -37,6 +41,46 @@ class ShopPlanNotifier extends StateNotifier<ShopPlanState> with LocatorMixin {
   void dispose() {
     print('dispose');
     super.dispose();
+  }
+
+  void getSubCategory() async{
+    print("subCategory");
+    final list = await context.read<ApiShopRepository>().getSubCategory();
+    print(list);
+    state = state.copyWith(subCategoryList: list ?? []);
+
+
+  }
+
+  void getShopPlanList() async{
+
+    List<ShopPlan>? shopPlanList = [];
+    int shopId = Shop.me.id;
+    shopPlanList = await context.read<ApiShopRepository>().getShopPlan(shopId);
+
+
+    // ShopPlan plan = ShopPlan();
+    // plan = plan.copyWith(plan_title: "速報！季節の盛り合わせ");
+    // plan = plan.copyWith(plan_price: 4300);
+    // shopPlanList.add(plan);
+    //
+    // ShopPlan plan2 = ShopPlan();
+    // plan2 = plan2.copyWith(plan_title: "まじで！季節の盛り合わせ");
+    // plan2 = plan2.copyWith(plan_price: 9300);
+    // shopPlanList.add(plan2);
+    //
+    // ShopPlan plan3 = ShopPlan();
+    // plan3 = plan3.copyWith(plan_title: "まじで！季節の盛り合わせ");
+    // plan3 = plan3.copyWith(plan_price: 9300);
+    // shopPlanList.add(plan3);
+    //
+    // ShopPlan plan4 = ShopPlan();
+    // plan4 = plan4.copyWith(plan_title: "まじで！季節の盛り合わせ");
+    // plan4 = plan4.copyWith(plan_price: 9400);
+    // shopPlanList.add(plan4);
+
+    state = state.copyWith(shopPlanList: shopPlanList ?? []);
+
   }
 
 

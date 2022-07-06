@@ -23,6 +23,7 @@ mixin _$SubCategory {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   int get main_category_id => throw _privateConstructorUsedError;
+  String get main_category_title => throw _privateConstructorUsedError;
   String get updated_at => throw _privateConstructorUsedError;
   String get created_at => throw _privateConstructorUsedError;
 
@@ -41,6 +42,7 @@ abstract class $SubCategoryCopyWith<$Res> {
       {int id,
       String title,
       int main_category_id,
+      String main_category_title,
       String updated_at,
       String created_at});
 }
@@ -58,6 +60,7 @@ class _$SubCategoryCopyWithImpl<$Res> implements $SubCategoryCopyWith<$Res> {
     Object? id = freezed,
     Object? title = freezed,
     Object? main_category_id = freezed,
+    Object? main_category_title = freezed,
     Object? updated_at = freezed,
     Object? created_at = freezed,
   }) {
@@ -74,6 +77,10 @@ class _$SubCategoryCopyWithImpl<$Res> implements $SubCategoryCopyWith<$Res> {
           ? _value.main_category_id
           : main_category_id // ignore: cast_nullable_to_non_nullable
               as int,
+      main_category_title: main_category_title == freezed
+          ? _value.main_category_title
+          : main_category_title // ignore: cast_nullable_to_non_nullable
+              as String,
       updated_at: updated_at == freezed
           ? _value.updated_at
           : updated_at // ignore: cast_nullable_to_non_nullable
@@ -97,6 +104,7 @@ abstract class _$$_SubCategoryCopyWith<$Res>
       {int id,
       String title,
       int main_category_id,
+      String main_category_title,
       String updated_at,
       String created_at});
 }
@@ -116,6 +124,7 @@ class __$$_SubCategoryCopyWithImpl<$Res> extends _$SubCategoryCopyWithImpl<$Res>
     Object? id = freezed,
     Object? title = freezed,
     Object? main_category_id = freezed,
+    Object? main_category_title = freezed,
     Object? updated_at = freezed,
     Object? created_at = freezed,
   }) {
@@ -132,6 +141,10 @@ class __$$_SubCategoryCopyWithImpl<$Res> extends _$SubCategoryCopyWithImpl<$Res>
           ? _value.main_category_id
           : main_category_id // ignore: cast_nullable_to_non_nullable
               as int,
+      main_category_title: main_category_title == freezed
+          ? _value.main_category_title
+          : main_category_title // ignore: cast_nullable_to_non_nullable
+              as String,
       updated_at: updated_at == freezed
           ? _value.updated_at
           : updated_at // ignore: cast_nullable_to_non_nullable
@@ -151,6 +164,7 @@ class _$_SubCategory extends _SubCategory {
       {this.id = 0,
       this.title = '',
       this.main_category_id = 0,
+      this.main_category_title = '',
       this.updated_at = '',
       this.created_at = ''})
       : super._();
@@ -169,6 +183,9 @@ class _$_SubCategory extends _SubCategory {
   final int main_category_id;
   @override
   @JsonKey()
+  final String main_category_title;
+  @override
+  @JsonKey()
   final String updated_at;
   @override
   @JsonKey()
@@ -176,7 +193,7 @@ class _$_SubCategory extends _SubCategory {
 
   @override
   String toString() {
-    return 'SubCategory(id: $id, title: $title, main_category_id: $main_category_id, updated_at: $updated_at, created_at: $created_at)';
+    return 'SubCategory(id: $id, title: $title, main_category_id: $main_category_id, main_category_title: $main_category_title, updated_at: $updated_at, created_at: $created_at)';
   }
 
   @override
@@ -188,6 +205,8 @@ class _$_SubCategory extends _SubCategory {
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality()
                 .equals(other.main_category_id, main_category_id) &&
+            const DeepCollectionEquality()
+                .equals(other.main_category_title, main_category_title) &&
             const DeepCollectionEquality()
                 .equals(other.updated_at, updated_at) &&
             const DeepCollectionEquality()
@@ -201,6 +220,7 @@ class _$_SubCategory extends _SubCategory {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(main_category_id),
+      const DeepCollectionEquality().hash(main_category_title),
       const DeepCollectionEquality().hash(updated_at),
       const DeepCollectionEquality().hash(created_at));
 
@@ -220,6 +240,7 @@ abstract class _SubCategory extends SubCategory {
       {final int id,
       final String title,
       final int main_category_id,
+      final String main_category_title,
       final String updated_at,
       final String created_at}) = _$_SubCategory;
   _SubCategory._() : super._();
@@ -233,6 +254,8 @@ abstract class _SubCategory extends SubCategory {
   String get title => throw _privateConstructorUsedError;
   @override
   int get main_category_id => throw _privateConstructorUsedError;
+  @override
+  String get main_category_title => throw _privateConstructorUsedError;
   @override
   String get updated_at => throw _privateConstructorUsedError;
   @override

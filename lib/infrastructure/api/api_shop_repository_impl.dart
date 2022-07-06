@@ -7,6 +7,7 @@ import 'package:mechadeli_flutter/domain/entities/notice.dart';
 import 'package:mechadeli_flutter/domain/entities/order.dart';
 import 'package:mechadeli_flutter/domain/entities/shop_area.dart';
 import 'package:mechadeli_flutter/domain/entities/shop_plan.dart';
+import 'package:mechadeli_flutter/domain/entities/sub_category.dart';
 import 'package:mechadeli_flutter/infrastructure/wrappers/api_clients/header_interceptor.dart';
 
 import '../../domain/entities/data_list.dart';
@@ -122,6 +123,121 @@ class ApiShopRepositoryImpl implements ApiShopRepository {
       print(e);
     }
     return shop;
+  }
+
+  @override
+  Future<List<ShopPlan>?> getShopPlan(int shopId) async{
+    List<ShopPlan> list = [];
+
+    Map<String, dynamic> data = {};
+
+    try{
+      final response = await _apiClient.getShopPlanListByShopId(shopId);
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          final dataList = DataList.fromJson(result.data);
+          final shopPlans= dataList.data.map((e) {
+            var shopPlan = ShopPlan.fromJson(e);
+            return shopPlan;
+          });
+          list = shopPlans.toList();
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+
+    return list;
+  }
+
+  @override
+  Future<ShopPlan?> registerShopPlan(Map<String, dynamic> data, int shopId) async{
+    ShopPlan plan = ShopPlan();
+
+    //shop id add
+    data['shop_id'] = shopId;
+
+    try{
+      final response = await _apiClient.registerShopPlan(data);
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          plan = ShopPlan.fromJson(result.data);
+          print("add new shop plan!");
+          print(plan);
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+
+
+    return plan;
+  }
+
+  @override
+  Future<List<SubCategory>?> getSubCategory() async{
+    List<SubCategory> list = [];
+    // Map<String, dynamic> data = {};
+
+    try{
+      final response = await _apiClient.getSubCategory();
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          final dataList = DataList.fromJson(result.data);
+          final categories= dataList.data.map((e) {
+            var subCategory = SubCategory.fromJson(e);
+            return subCategory;
+          });
+          list = categories.toList();
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+
+    return list;
+  }
+
+  @override
+  Future<ShopPlan?> updateShopPlan(Map<String, dynamic> data, int shopPlanId) async{
+    // TODO: implement updateShopPlan
+    ShopPlan plan = ShopPlan();
+
+    try{
+      final response = await _apiClient.updateShop(data, shopPlanId);
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          plan = ShopPlan.fromJson(result.data);
+          print("update shop plan!");
+          print(plan);
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+
+
+    return plan;
   }
 
 
