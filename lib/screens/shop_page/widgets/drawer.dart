@@ -3,6 +3,7 @@ import 'package:mechadeli_flutter/domain/entities/shop.dart';
 import 'package:mechadeli_flutter/screens/shop_page/basic_information/basic_information.dart';
 import 'package:mechadeli_flutter/screens/shop_page/dashboard/dashboard.dart';
 import 'package:mechadeli_flutter/screens/shop_page/schedule/schedule.dart';
+import 'package:mechadeli_flutter/screens/shop_page/shop_plan/shop_plan.dart';
 
 class UserDrawer extends StatelessWidget {
   const UserDrawer({Key? key}) : super(key: key);
@@ -74,9 +75,9 @@ class UserDrawer extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              Navigator.pop(context);
+              Navigator.of(context).push(MaterialPageRoute(builder: (_){ return ShopPlan.wrapped(); }));
             },
-            title: Text("プロフィール設定"),
+            title: Text("プラン管理"),
             trailing: Icon(Icons.arrow_forward_ios_rounded),
           ),
           ListTile(
