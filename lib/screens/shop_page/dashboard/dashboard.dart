@@ -18,6 +18,7 @@ import '../../../domain/entities/notice.dart';
 import '../../../domain/notifiers/app_notifier.dart';
 import '../order_detail/order_detail.dart';
 import '../widgets/side_navi.dart';
+import '../widgets/side_navi2.dart';
 import 'dashboard_notifier.dart';
 
 class DashBoard extends StatelessWidget {
@@ -40,9 +41,10 @@ class DashBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    if(context.read<AppState>().loginStatus != UserLoginStatus.login){
-      Navigator.of(context).push(MaterialPageRoute(builder: (_){ return ShopLoginPage.wrapped(); }));
+    if (context.read<AppState>().loginStatus != UserLoginStatus.login) {
+      Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+        return ShopLoginPage.wrapped();
+      }));
     }
     context.read<DashboardNotifier>().getNoticeList();
     context.read<DashboardNotifier>().getMyOrderList();
@@ -59,10 +61,7 @@ class DashBoard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           size.width > AppConstant.tabletMaxSize
-              ? Container(
-                  child: Text("test"),
-                  width: 200,
-                )
+              ? SideNavgation2()
               : SideNavgation(),
           Expanded(
             child: buildContents(context),
@@ -80,24 +79,39 @@ class DashBoard extends StatelessWidget {
       child: Column(
         children: [
           PageTitle(title: "ダッシュボード"),
-          Builder(
-            builder: (context) {
+          Builder(builder: (context) {
+            context.read<DashboardNotifier>().checkApplyStatus();
+            ApplyStatus applyStatus =
+                context.select((DashboardState state) => state).applyStatus;
+            String applyStatusTitle =
+                context.read<DashboardNotifier>().getApplyStatusTitle();
+            String applyStatusMessage =
+                context.read<DashboardNotifier>().getApplyStatusMessage();
 
-              context.read<DashboardNotifier>().checkApplyStatus();
-              ApplyStatus applyStatus = context.select((DashboardState state) => state).applyStatus;
-              String applyStatusTitle = context.read<DashboardNotifier>().getApplyStatusTitle();
-              String applyStatusMessage = context.read<DashboardNotifier>().getApplyStatusMessage();
-
-              return MyCard(contents: Column(children: [
+            return MyCard(
+                contents: Column(
+              children: [
                 H1Title(title: "審査状況: $applyStatusTitle"),
-                Wrap(children: [ Icon(Icons.error,), Text(applyStatusMessage)],),
-
-                if(applyStatus == ApplyStatus.notYet)
-                  SizedBox(height: 20,),
-                  ElevatedButton(onPressed: (){print("test");}, child: Text("基本情報入力"))
-              ],));
-            }
-          ),
+                Wrap(
+                  children: [
+                    Icon(
+                      Icons.error,
+                    ),
+                    Text(applyStatusMessage)
+                  ],
+                ),
+                if (applyStatus == ApplyStatus.notYet)
+                  SizedBox(
+                    height: 20,
+                  ),
+                ElevatedButton(
+                    onPressed: () {
+                      print("test");
+                    },
+                    child: Text("基本情報入力"))
+              ],
+            ));
+          }),
           Builder(builder: (context) {
             //watch selected flow
             MechadeliFlow selectedFlow =

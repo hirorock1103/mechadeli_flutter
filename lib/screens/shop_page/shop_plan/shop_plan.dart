@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mechadeli_flutter/domain/entities/sub_category.dart';
+import 'package:mechadeli_flutter/screens/shop_page/widgets/side_navi2.dart';
 import 'package:mechadeli_flutter/widgets/common/forms/my_text_edit_with_title.dart';
 import 'package:mechadeli_flutter/widgets/common/forms/my_text_form.dart';
 import 'package:mechadeli_flutter/widgets/common/layout/my_card.dart';
@@ -41,7 +42,6 @@ class ShopPlan extends StatelessWidget {
 // class _ShopPlanState extends State<ShopPlan> {
   @override
   Widget build(BuildContext context) {
-
     //get data
     context.read<ShopPlanNotifier>().getShopPlanList();
     context.read<ShopPlanNotifier>().getSubCategory();
@@ -59,10 +59,8 @@ class ShopPlan extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           size.width > AppConstant.tabletMaxSize
-              ? Container(
-                  child: Text("test"),
-                  width: 200,
-                )
+              ?
+              SideNavgation2()
               : SideNavgation(),
           Expanded(
             child: buildContents(context),
@@ -85,7 +83,7 @@ class ShopPlan extends StatelessWidget {
     shop.toJson().entries.forEach((e) {
       editMap[e.key]?.text = e.value.toString();
     });
-    
+
     TextEditingController planNameController = TextEditingController();
     TextEditingController planPriceController = TextEditingController();
 
@@ -93,137 +91,212 @@ class ShopPlan extends StatelessWidget {
       child: Column(
         children: [
           PageTitle(title: "ショッププラン管理"),
-          Builder(
-            builder: (context) {
-              //カテゴリリストを作成する
-              List<SubCategory> subCategoryList = context.select((ShopPlanState state) => state).subCategoryList;
-              List<DropdownMenuItem<String>> menu = subCategoryList.map((e) { return DropdownMenuItem(child: Text(e.title + "("+ e.main_category_title +")"), value: e.id.toString(),); }).toList();
-              return MyCard(
-                contents: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    H1Title(title: "登録プラン登録"),
-                    InkWell(
-                      onTap: (){
-                        //what to do
-                        //open dialog or move to other page
-                        showDialog(context: context, builder: (_){
-
-                          return AlertDialog(
-                            title: Center(child: Text("プラン登録")),
-                            content: Container(
-                              width: 600,
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  MyTextEditWithTitle(hintText: "", title: "①プランタイトル", controller: planNameController),
-                                  MyTextEditWithTitle(hintText: "", title: "②金額", controller: planPriceController),
-                                  MyTextEditWithTitle(hintText: "", title: "③詳細", controller: planNameController),
-                                  Row(
-                                    children: [
-                                      Expanded( child: Text("⑤表示ステータス",style: TextStyle(fontWeight: FontWeight.bold),), flex: 2,),
-                                      Expanded(child: SwitchListTile(value: true, onChanged: (value){ print(value); }), flex: 1,),
-                                    ],
-                                  ),
-                                  Container(width: double.infinity, child: Text("⑥カテゴリ選択（メイン・サブ）",style: TextStyle(fontWeight: FontWeight.bold), textAlign: TextAlign.left,)),
-                                  DropdownButton( items: menu, onChanged: (value){ print(value); },),
-                                ],),
-                            ),
-                            actions: [
-                              Center(child: ElevatedButton(onPressed: (){ print("register"); }, child: Text("登録"))),
-                            ],
-                          );
-                        });
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          CircleAvatar(child: Icon(Icons.add, color: Colors.white,),backgroundColor: Colors.lightBlueAccent,),
-                          SizedBox(width: 10,),
-                          Text("新しいプランを登録する")
-                        ],),
-                    ),
-                    Text("プラン登録方法", style: TextStyle(decoration:TextDecoration.underline),),
-                    Text("Mechadeliウェブサイト上で表示されるプランを登録してください。", softWrap: true,),
-
-
-                  ],
-                ),
+          Builder(builder: (context) {
+            //カテゴリリストを作成する
+            List<SubCategory> subCategoryList =
+                context.select((ShopPlanState state) => state).subCategoryList;
+            List<DropdownMenuItem<String>> menu = subCategoryList.map((e) {
+              return DropdownMenuItem(
+                child: Text(e.title + "(" + e.main_category_title + ")"),
+                value: e.id.toString(),
               );
-            }
-          ),
-          Builder(
-            builder: (context) {
-              //テスト
-              List<ShopPlanEntity.ShopPlan> shopPlanList = context.select((ShopPlanState state) => state).shopPlanList;
-
-              List<Widget> list = [];
-              list.add( H1Title(title: "登録プラン一覧") );
-              shopPlanList.forEach((shopPlan) { list.add(
-                Card(
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      side: BorderSide(width: 1, color: Colors.teal)
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ListTile(
-                      // leading: Container(child: Icon(Icons.check),),
-                      focusColor: Colors.grey,
-                      hoverColor: Colors.lightGreen,
-
-                      subtitle: Container(
-                        margin: EdgeInsets.only(top: 15),
-                        child: Row(
-                          children: [
-                            Text( shopPlan.plan_price.toString() + "円"),
-                            SizedBox(width: 10,),
-                            Container(
-                              child: Text(
-                                shopPlan.main_category_title,
-                                style: TextStyle( fontSize: 11, color: Colors.white),
+            }).toList();
+            return MyCard(
+              contents: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  H1Title(title: "登録プラン登録"),
+                  InkWell(
+                    onTap: () {
+                      //what to do
+                      //open dialog or move to other page
+                      showDialog(
+                          context: context,
+                          builder: (_) {
+                            return AlertDialog(
+                              title: Center(child: Text("プラン登録")),
+                              content: Container(
+                                width: 600,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    MyTextEditWithTitle(
+                                        hintText: "",
+                                        title: "①プランタイトル",
+                                        controller: planNameController),
+                                    MyTextEditWithTitle(
+                                        hintText: "",
+                                        title: "②金額",
+                                        controller: planPriceController),
+                                    MyTextEditWithTitle(
+                                        hintText: "",
+                                        title: "③詳細",
+                                        controller: planNameController),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            "⑤表示ステータス",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          flex: 2,
+                                        ),
+                                        Expanded(
+                                          child: SwitchListTile(
+                                              value: true,
+                                              onChanged: (value) {
+                                                print(value);
+                                              }),
+                                          flex: 1,
+                                        ),
+                                      ],
+                                    ),
+                                    Container(
+                                        width: double.infinity,
+                                        child: Text(
+                                          "⑥カテゴリ選択（メイン・サブ）",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                          textAlign: TextAlign.left,
+                                        )),
+                                    SizedBox(
+                                        width: double.infinity,
+                                        child: Container(
+                                          margin: EdgeInsets.only(top: 10, bottom: 15),
+                                          padding: EdgeInsets.symmetric(vertical: 10),
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: Colors.grey),
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: DropdownButtonHideUnderline(
+                                                child: DropdownButton(
+                                              items: menu,
+                                              onChanged: (value) {
+                                                print(value);
+                                              },
+                                              isDense: true,
+                                            )))),
+                                  ],
+                                ),
                               ),
-                              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.teal),
-                            ),
-                            SizedBox(width: 10,),
-                            Container(
-                              child: Text(
-                                shopPlan.sub_category_title,
-                                style: TextStyle(fontSize: 11,color: Colors.white),
-                              ),
-                              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.deepOrangeAccent),
-                            ),
-                          ],
+                              actions: [
+                                Center(
+                                    child: ElevatedButton(
+                                        onPressed: () {
+                                          print("register");
+                                        },
+                                        child: Text("登録"))),
+                              ],
+                            );
+                          });
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        CircleAvatar(
+                          child: Icon(
+                            Icons.add,
+                            color: Colors.white,
+                          ),
+                          backgroundColor: Colors.lightBlueAccent,
                         ),
-                      ),
-                      title: Row(
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text("新しいプランを登録する")
+                      ],
+                    ),
+                  ),
+                  Text(
+                    "プラン登録方法",
+                    style: TextStyle(decoration: TextDecoration.underline),
+                  ),
+                  Text(
+                    "Mechadeliウェブサイト上で表示されるプランを登録してください。",
+                    softWrap: true,
+                  ),
+                ],
+              ),
+            );
+          }),
+          Builder(builder: (context) {
+            //テスト
+            List<ShopPlanEntity.ShopPlan> shopPlanList =
+                context.select((ShopPlanState state) => state).shopPlanList;
+
+            List<Widget> list = [];
+            list.add(H1Title(title: "登録プラン一覧"));
+            shopPlanList.forEach((shopPlan) {
+              list.add(Card(
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    side: BorderSide(width: 1, color: Colors.teal)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListTile(
+                    // leading: Container(child: Icon(Icons.check),),
+                    focusColor: Colors.grey,
+                    hoverColor: Colors.lightGreen,
+
+                    subtitle: Container(
+                      margin: EdgeInsets.only(top: 15),
+                      child: Row(
                         children: [
-                          Text(shopPlan.plan_title),
+                          Text(shopPlan.plan_price.toString() + "円"),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            child: Text(
+                              shopPlan.main_category_title,
+                              style:
+                                  TextStyle(fontSize: 11, color: Colors.white),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 5),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.teal),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            child: Text(
+                              shopPlan.sub_category_title,
+                              style:
+                                  TextStyle(fontSize: 11, color: Colors.white),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 5),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.deepOrangeAccent),
+                          ),
                         ],
                       ),
-                      trailing: Icon(Icons.edit),
                     ),
+                    title: Row(
+                      children: [
+                        Text(shopPlan.plan_title),
+                      ],
+                    ),
+                    trailing: Icon(Icons.edit),
                   ),
-                )
-              ); });
-
-
-
-              return MyCard(
-                contents: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: list,
                 ),
-              );
-            }
-          ),
+              ));
+            });
+
+            return MyCard(
+              contents: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: list,
+              ),
+            );
+          }),
           /*
           MyCard(
               contents: Column(

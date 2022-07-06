@@ -13,6 +13,7 @@ import '../widgets/side_navi.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 
+import '../widgets/side_navi2.dart';
 import 'basic_information_notifier.dart';
 
 class BasicInformation extends StatelessWidget {
@@ -53,10 +54,7 @@ class BasicInformation extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           size.width > AppConstant.tabletMaxSize
-              ? Container(
-                  child: Text("test"),
-                  width: 200,
-                )
+              ? SideNavgation2()
               : SideNavgation(),
           Expanded(
             child: buildContents(context),

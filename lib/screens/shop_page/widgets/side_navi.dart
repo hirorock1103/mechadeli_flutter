@@ -5,6 +5,6 @@ class SideNavgation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(width: 1,child: Text("side",), color: Colors.lightGreen.shade100,);
   }
 }
