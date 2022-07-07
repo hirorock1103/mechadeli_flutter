@@ -400,7 +400,6 @@ class ShopPlan extends StatelessWidget {
                         print(status);
                         print("========");
 
-                        print("register");
                         Map<String, dynamic> data = {};
                         data['plan_title'] = planNameController.text;
                         data['plan_price'] = planPriceController.text;
@@ -412,15 +411,19 @@ class ShopPlan extends StatelessWidget {
 
                         //登録
                         if(mode == "new"){
+                          print(data);
+                          print("register");
                           context
                               .read<ShopPlanNotifier>()
                               .registerShopPlan(data, Shop.me.id);
                         }
                         //修正
-                        if(mode == "new"){
-                          // context
-                          //     .read<ShopPlanNotifier>()
-                          //     .regi(data, Shop.me.id);
+                        if(mode == "edit"){
+                          print(data);
+                          print("edit");
+                          context
+                              .read<ShopPlanNotifier>()
+                              .updateShopPlan(data, shopPlan.id);
                         }
                         Navigator.of(context).pop();
                       },

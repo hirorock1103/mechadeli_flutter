@@ -219,7 +219,8 @@ class ApiShopRepositoryImpl implements ApiShopRepository {
     ShopPlan plan = ShopPlan();
 
     try{
-      final response = await _apiClient.updateShop(data, shopPlanId);
+      final response = await _apiClient.updateShopPlan(data, shopPlanId);
+      print(response.body);
       if (response.isSuccessful) {
         final result = MapResponse.fromJson(response.body);
         if(result.errorCode.isNotEmpty){
