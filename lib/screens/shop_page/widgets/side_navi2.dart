@@ -17,7 +17,7 @@ class SideNavgation2 extends StatelessWidget {
     return Container(
       width: size.width * .2,
       child: Column(
-        mainAxisSize: MainAxisSize.max,
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(

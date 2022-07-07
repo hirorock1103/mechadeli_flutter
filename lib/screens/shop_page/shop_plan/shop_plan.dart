@@ -56,6 +56,7 @@ class ShopPlan extends StatelessWidget {
       ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,//navigation,main contents上部設定
         children: [
           size.width > AppConstant.tabletMaxSize
               ? SideNavgation2()
@@ -88,6 +89,8 @@ class ShopPlan extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
         children: [
           PageTitle(title: "ショッププラン管理"),
           Builder(builder: (context) {

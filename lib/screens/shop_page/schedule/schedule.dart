@@ -43,6 +43,7 @@ class Schedule extends StatelessWidget {
       appBar: UserAppBar( title: "test",size: size, ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,//navigation,main contents上部設定
         children: [
           size.width > AppConstant.tabletMaxSize ? Container(child: Text("test"),width: 200,) : SideNavgation(),
           Expanded(
