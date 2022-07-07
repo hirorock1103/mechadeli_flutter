@@ -96,152 +96,184 @@ class ShopPlan extends StatelessWidget {
             //カテゴリリストを作成する
             List<SubCategory> subCategoryList =
                 context.select((ShopPlanState state) => state).subCategoryList;
-            List<DropdownMenuItem<String>> menu = subCategoryList.map((e) {
+            List<DropdownMenuItem<int>> menu = subCategoryList.map((e) {
               return DropdownMenuItem(
                 child: Text(e.title + "(" + e.main_category_title + ")"),
-                value: e.id.toString(),
+                value: e.id,
               );
             }).toList();
+            menu.insert(0, DropdownMenuItem<int>(child: Text("未選択"), value: 0,));
+
+            print(menu);
 
             // String selectedValue = "";
             // if(subCategoryList.length > 0){
             //    selectedValue = subCategoryList[0].title + "("+ subCategoryList[0].main_category_title + ")";
             // }
-            return MyCard(
-              contents: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  H1Title(title: "登録プラン登録"),
-                  InkWell(
-                    onTap: () {
-                      //what to do
-                      //open dialog or move to other page
-                      showDialog(
-                          context: context,
-                          builder: (_) {
-                            return AlertDialog(
-                              title: Center(child: Text("プラン登録")),
-                              content: Container(
-                                width: 600,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    MyTextEditWithTitle(
-                                        hintText: "",
-                                        title: "①プランタイトル",
-                                        controller: planNameController),
-                                    MyTextEditWithTitle(
-                                        hintText: "",
-                                        title: "②金額",
-                                        controller: planPriceController),
-                                    MyTextEditWithTitle(
-                                        hintText: "",
-                                        title: "③詳細",
-                                        controller: planDetailController),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            "⑤表示ステータス",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          flex: 2,
+            return Builder(
+              builder: (context) {
+                // bool status = context.select((ShopPlanState state) => state).planDisplayStatus;
+                // print(status);
+                return MyCard(
+                  contents: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      H1Title(title: "登録プラン登録"),
+                      InkWell(
+                        onTap: () {
+                          //what to do
+                          //open dialog or move to other page
+                          showDialog(
+                              context: context,
+                              builder: (_) {
+                                bool status = false;
+                                int selectedValue = 0;
+                                return AlertDialog(
+                                  title: Center(child: Text("プラン登録")),
+                                  content: StatefulBuilder(
+                                    builder: (BuildContext context, StateSetter setState) {
+                                      var _setState = setState;
+                                      return Container(
+                                        width: 600,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            MyTextEditWithTitle(
+                                                hintText: "",
+                                                title: "①プランタイトル",
+                                                controller: planNameController),
+                                            MyTextEditWithTitle(
+                                                hintText: "",
+                                                title: "②金額",
+                                                controller: planPriceController),
+                                            MyTextEditWithTitle(
+                                                hintText: "",
+                                                title: "③詳細",
+                                                controller: planDetailController),
+                                                 Row(
+                                                  children: [
+                                                    Expanded(
+                                                      child: Text(
+                                                        "⑤表示ステータス",
+                                                        style: TextStyle(
+                                                            fontWeight: FontWeight.bold),
+                                                      ),
+                                                      flex: 2,
+                                                    ),
+                                                    Expanded(
+                                                      child: SwitchListTile(
+                                                          value: status,
+                                                          // title: Text("表示ステータス"),
+                                                          secondary: status == 0 ? Icon(Icons.visibility, ) : Icon(Icons.visibility_off),
+                                                          onChanged: (value) {
+                                                            //notifier側で管理
+                                                            // context.read<ShopPlanNotifier>().switchPlanStatus(value);
+                                                            _setState((){
+                                                              status = value;
+                                                            });
+
+                                                          }),
+                                                      flex: 1,
+                                                    ),
+                                                  ],
+                                                ),
+                                            Container(
+                                                width: double.infinity,
+                                                child: Text(
+                                                  "⑥カテゴリ選択（メイン・サブ）",
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold),
+                                                  textAlign: TextAlign.left,
+                                                )),
+                                            SizedBox(
+                                                width: double.infinity,
+                                                child: Container(
+                                                  margin: EdgeInsets.only(top: 10, bottom: 15),
+                                                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                            color: Colors.grey),
+                                                        borderRadius:
+                                                            BorderRadius.circular(10)),
+                                                    child: DropdownButtonHideUnderline(
+                                                        child: DropdownButton(
+                                                      items: menu,
+                                                      onChanged: (value) {
+                                                        _setState((){
+                                                          selectedValue = int.parse(value.toString());
+                                                        });
+                                                      },
+                                                        value: selectedValue,
+                                                      isDense: true,
+                                                    )))),
+                                          ],
                                         ),
-                                        Expanded(
-                                          child: SwitchListTile(
-                                              value: true,
-                                              onChanged: (value) {
-                                                print(value);
-                                              }),
-                                          flex: 1,
-                                        ),
-                                      ],
-                                    ),
-                                    Container(
-                                        width: double.infinity,
-                                        child: Text(
-                                          "⑥カテゴリ選択（メイン・サブ）",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.left,
-                                        )),
-                                    SizedBox(
-                                        width: double.infinity,
-                                        child: Container(
-                                          margin: EdgeInsets.only(top: 10, bottom: 15),
-                                          padding: EdgeInsets.symmetric(vertical: 10),
-                                            decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    color: Colors.grey),
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                            child: DropdownButtonHideUnderline(
-                                                child: DropdownButton(
-                                              items: menu,
-                                              onChanged: (value) {
-                                                print(value);
-                                              },
-                                              isDense: true,
-                                            )))),
+                                      );
+                                    }
+                                  ),
+                                  actions: [
+                                    Center(
+                                        child: ElevatedButton(
+                                            onPressed: () {
+
+                                              print("========");
+                                              print(selectedValue);
+                                              print(status);
+                                              print("========");
+
+                                              print("register");
+                                              Map<String, dynamic> data = {};
+                                              data['plan_title'] = planNameController.text;
+                                              data['plan_price'] = planPriceController.text;
+                                              data['details'] = planDetailController.text;
+                                              data['sub_category_id'] = selectedValue;
+                                              data['status'] = status;
+                                              data['main_category_id'] = 1;
+                                              data['shop_id'] = Shop.me.id;
+
+                                              context.read<ShopPlanNotifier>().registerShopPlan(data, Shop.me.id);
+                                              Navigator.of(context).pop();
+
+                                            },
+                                            child: Text("登録"))),
                                   ],
-                                ),
+                                );
+                              });
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircleAvatar(
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
                               ),
-                              actions: [
-                                Center(
-                                    child: ElevatedButton(
-                                        onPressed: () {
-                                          print("register");
-                                          Map<String, dynamic> data = {};
-                                          data['plan_title'] = planNameController.text;
-                                          data['plan_price'] = planPriceController.text;
-                                          data['details'] = planDetailController.text;
-                                          data['sub_category_id'] = 2;
-                                          data['main_category_id'] = 1;
-                                          data['shop_id'] = Shop.me.id;
-
-                                          context.read<ShopPlanNotifier>().registerShopPlan(data, Shop.me.id);
-
-                                          Navigator.of(context).pop();
-
-                                        },
-                                        child: Text("登録"))),
-                              ],
-                            );
-                          });
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        CircleAvatar(
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                          ),
-                          backgroundColor: Colors.lightBlueAccent,
+                              backgroundColor: Colors.lightBlueAccent,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text("新しいプランを登録する")
+                          ],
                         ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text("新しいプランを登録する")
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: 20,),
+                      Text(
+                        "プラン登録方法",
+                        style: TextStyle(decoration: TextDecoration.underline),
+                      ),
+                      Text(
+                        "Mechadeliウェブサイト上で表示されるプランを登録してください。",
+                        softWrap: true,
+                      ),
+                      Text(
+                        "ウェブサイト上への表示は表示ステータスのON・OFFを切り替えてください。",
+                        softWrap: true,
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 20,),
-                  Text(
-                    "プラン登録方法",
-                    style: TextStyle(decoration: TextDecoration.underline),
-                  ),
-                  Text(
-                    "Mechadeliウェブサイト上で表示されるプランを登録してください。",
-                    softWrap: true,
-                  ),
-                  Text(
-                    "ウェブサイト上への表示は表示ステータスのON・OFFを切り替えてください。",
-                    softWrap: true,
-                  ),
-                ],
-              ),
+                );
+              }
             );
           }),
           Builder(builder: (context) {

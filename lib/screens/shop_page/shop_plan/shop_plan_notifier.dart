@@ -21,6 +21,7 @@ part 'shop_plan_notifier.freezed.dart';
 abstract class ShopPlanState with _$ShopPlanState {
   const factory ShopPlanState({
     @Default(0) int count,
+    @Default(false) bool planDisplayStatus,
     // @Default(ApplyStatus.notYet) ApplyStatus applyStatus,
     // @Default(<Notice>[]) List<Notice> noticeList,
     // @Default(<Order>[]) List<Order> orderList,
@@ -41,6 +42,10 @@ class ShopPlanNotifier extends StateNotifier<ShopPlanState> with LocatorMixin {
   void dispose() {
     print('dispose');
     super.dispose();
+  }
+
+  void switchPlanStatus(bool value){
+    state = state.copyWith(planDisplayStatus: value) ;
   }
 
   void getSubCategory() async{
