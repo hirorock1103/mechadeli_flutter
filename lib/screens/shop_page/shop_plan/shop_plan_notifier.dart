@@ -48,7 +48,13 @@ class ShopPlanNotifier extends StateNotifier<ShopPlanState> with LocatorMixin {
     final list = await context.read<ApiShopRepository>().getSubCategory();
     print(list);
     state = state.copyWith(subCategoryList: list ?? []);
+  }
 
+  void registerShopPlan(Map<String, dynamic> data, int shopId) async{
+
+    final plan = await context.read<ApiShopRepository>().registerShopPlan(data, shopId);
+    print(plan);
+    this.getShopPlanList();
 
   }
 

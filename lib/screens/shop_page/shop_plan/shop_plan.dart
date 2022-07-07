@@ -86,6 +86,7 @@ class ShopPlan extends StatelessWidget {
 
     TextEditingController planNameController = TextEditingController();
     TextEditingController planPriceController = TextEditingController();
+    TextEditingController planDetailController = TextEditingController();
 
     return SingleChildScrollView(
       child: Column(
@@ -101,6 +102,11 @@ class ShopPlan extends StatelessWidget {
                 value: e.id.toString(),
               );
             }).toList();
+
+            // String selectedValue = "";
+            // if(subCategoryList.length > 0){
+            //    selectedValue = subCategoryList[0].title + "("+ subCategoryList[0].main_category_title + ")";
+            // }
             return MyCard(
               contents: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,7 +137,7 @@ class ShopPlan extends StatelessWidget {
                                     MyTextEditWithTitle(
                                         hintText: "",
                                         title: "③詳細",
-                                        controller: planNameController),
+                                        controller: planDetailController),
                                     Row(
                                       children: [
                                         Expanded(
@@ -186,6 +192,18 @@ class ShopPlan extends StatelessWidget {
                                     child: ElevatedButton(
                                         onPressed: () {
                                           print("register");
+                                          Map<String, dynamic> data = {};
+                                          data['plan_title'] = planNameController.text;
+                                          data['plan_price'] = planPriceController.text;
+                                          data['details'] = planDetailController.text;
+                                          data['sub_category_id'] = 2;
+                                          data['main_category_id'] = 1;
+                                          data['shop_id'] = Shop.me.id;
+
+                                          context.read<ShopPlanNotifier>().registerShopPlan(data, Shop.me.id);
+
+                                          Navigator.of(context).pop();
+
                                         },
                                         child: Text("登録"))),
                               ],
@@ -209,12 +227,17 @@ class ShopPlan extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(height: 20,),
                   Text(
                     "プラン登録方法",
                     style: TextStyle(decoration: TextDecoration.underline),
                   ),
                   Text(
                     "Mechadeliウェブサイト上で表示されるプランを登録してください。",
+                    softWrap: true,
+                  ),
+                  Text(
+                    "ウェブサイト上への表示は表示ステータスのON・OFFを切り替えてください。",
                     softWrap: true,
                   ),
                 ],
@@ -229,62 +252,74 @@ class ShopPlan extends StatelessWidget {
             List<Widget> list = [];
             list.add(H1Title(title: "登録プラン一覧"));
             shopPlanList.forEach((shopPlan) {
-              list.add(Card(
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    side: BorderSide(width: 1, color: Colors.teal)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListTile(
-                    // leading: Container(child: Icon(Icons.check),),
-                    focusColor: Colors.grey,
-                    hoverColor: Colors.lightGreen,
+              list.add(InkWell(
+                onTap: (){
+                  //show dialog
+                  print(shopPlan.plan_title);
 
-                    subtitle: Container(
-                      margin: EdgeInsets.only(top: 15),
-                      child: Row(
+                },
+                child: Card(
+                  elevation: 5,
+                  color: shopPlan.status == 1 ? Colors.grey.shade500 : Colors.grey.shade100 ,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      side: BorderSide(width: 1, color: Colors.blueGrey)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      // leading: Container(child: Icon(Icons.check),),
+                      focusColor: Colors.grey,
+                      hoverColor: Colors.lightGreen,
+
+                      subtitle: Container(
+                        margin: EdgeInsets.only(top: 15),
+                        child: Row(
+                          children: [
+                            Text(shopPlan.plan_price.toString() + "円"),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              child: Text(
+                                shopPlan.main_category_title,
+                                style:
+                                    TextStyle(fontSize: 11, color: Colors.white),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.teal),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              child: Text(
+                                shopPlan.sub_category_title,
+                                style:
+                                    TextStyle(fontSize: 11, color: Colors.white),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.deepOrangeAccent),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(shopPlan.created_at),
+                          ],
+                        ),
+                      ),
+                      title: Row(
                         children: [
-                          Text(shopPlan.plan_price.toString() + "円"),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            child: Text(
-                              shopPlan.main_category_title,
-                              style:
-                                  TextStyle(fontSize: 11, color: Colors.white),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 5),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.teal),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            child: Text(
-                              shopPlan.sub_category_title,
-                              style:
-                                  TextStyle(fontSize: 11, color: Colors.white),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 5),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.deepOrangeAccent),
-                          ),
+                          Text(shopPlan.plan_title, style: TextStyle(fontWeight: FontWeight.bold),),
                         ],
                       ),
+                      trailing: InkWell( onTap: (){ print("icon tap"); } , child: Icon(Icons.edit, color: Colors.blueAccent,)),
                     ),
-                    title: Row(
-                      children: [
-                        Text(shopPlan.plan_title),
-                      ],
-                    ),
-                    trailing: Icon(Icons.edit),
                   ),
                 ),
               ));
