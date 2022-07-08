@@ -22,7 +22,6 @@ mixin _$OptionPlanState {
 // @Default(<Notice>[]) List<Notice> noticeList,
 // @Default(<Order>[]) List<Order> orderList,
   List<OptionPlan> get optionPlanList => throw _privateConstructorUsedError;
-  List<SubCategory> get subCategoryList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OptionPlanStateCopyWith<OptionPlanState> get copyWith =>
@@ -35,10 +34,7 @@ abstract class $OptionPlanStateCopyWith<$Res> {
           OptionPlanState value, $Res Function(OptionPlanState) then) =
       _$OptionPlanStateCopyWithImpl<$Res>;
   $Res call(
-      {int count,
-      bool planDisplayStatus,
-      List<OptionPlan> optionPlanList,
-      List<SubCategory> subCategoryList});
+      {int count, bool planDisplayStatus, List<OptionPlan> optionPlanList});
 }
 
 /// @nodoc
@@ -55,7 +51,6 @@ class _$OptionPlanStateCopyWithImpl<$Res>
     Object? count = freezed,
     Object? planDisplayStatus = freezed,
     Object? optionPlanList = freezed,
-    Object? subCategoryList = freezed,
   }) {
     return _then(_value.copyWith(
       count: count == freezed
@@ -70,10 +65,6 @@ class _$OptionPlanStateCopyWithImpl<$Res>
           ? _value.optionPlanList
           : optionPlanList // ignore: cast_nullable_to_non_nullable
               as List<OptionPlan>,
-      subCategoryList: subCategoryList == freezed
-          ? _value.subCategoryList
-          : subCategoryList // ignore: cast_nullable_to_non_nullable
-              as List<SubCategory>,
     ));
   }
 }
@@ -86,10 +77,7 @@ abstract class _$$_OptionPlanStateCopyWith<$Res>
       __$$_OptionPlanStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int count,
-      bool planDisplayStatus,
-      List<OptionPlan> optionPlanList,
-      List<SubCategory> subCategoryList});
+      {int count, bool planDisplayStatus, List<OptionPlan> optionPlanList});
 }
 
 /// @nodoc
@@ -108,7 +96,6 @@ class __$$_OptionPlanStateCopyWithImpl<$Res>
     Object? count = freezed,
     Object? planDisplayStatus = freezed,
     Object? optionPlanList = freezed,
-    Object? subCategoryList = freezed,
   }) {
     return _then(_$_OptionPlanState(
       count: count == freezed
@@ -123,10 +110,6 @@ class __$$_OptionPlanStateCopyWithImpl<$Res>
           ? _value._optionPlanList
           : optionPlanList // ignore: cast_nullable_to_non_nullable
               as List<OptionPlan>,
-      subCategoryList: subCategoryList == freezed
-          ? _value._subCategoryList
-          : subCategoryList // ignore: cast_nullable_to_non_nullable
-              as List<SubCategory>,
     ));
   }
 }
@@ -139,10 +122,8 @@ class _$_OptionPlanState
   const _$_OptionPlanState(
       {this.count = 0,
       this.planDisplayStatus = false,
-      final List<OptionPlan> optionPlanList = const <OptionPlan>[],
-      final List<SubCategory> subCategoryList = const <SubCategory>[]})
-      : _optionPlanList = optionPlanList,
-        _subCategoryList = subCategoryList;
+      final List<OptionPlan> optionPlanList = const <OptionPlan>[]})
+      : _optionPlanList = optionPlanList;
 
   @override
   @JsonKey()
@@ -164,17 +145,9 @@ class _$_OptionPlanState
     return EqualUnmodifiableListView(_optionPlanList);
   }
 
-  final List<SubCategory> _subCategoryList;
-  @override
-  @JsonKey()
-  List<SubCategory> get subCategoryList {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_subCategoryList);
-  }
-
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'OptionPlanState(count: $count, planDisplayStatus: $planDisplayStatus, optionPlanList: $optionPlanList, subCategoryList: $subCategoryList)';
+    return 'OptionPlanState(count: $count, planDisplayStatus: $planDisplayStatus, optionPlanList: $optionPlanList)';
   }
 
   @override
@@ -184,8 +157,7 @@ class _$_OptionPlanState
       ..add(DiagnosticsProperty('type', 'OptionPlanState'))
       ..add(DiagnosticsProperty('count', count))
       ..add(DiagnosticsProperty('planDisplayStatus', planDisplayStatus))
-      ..add(DiagnosticsProperty('optionPlanList', optionPlanList))
-      ..add(DiagnosticsProperty('subCategoryList', subCategoryList));
+      ..add(DiagnosticsProperty('optionPlanList', optionPlanList));
   }
 
   @override
@@ -197,9 +169,7 @@ class _$_OptionPlanState
             const DeepCollectionEquality()
                 .equals(other.planDisplayStatus, planDisplayStatus) &&
             const DeepCollectionEquality()
-                .equals(other._optionPlanList, _optionPlanList) &&
-            const DeepCollectionEquality()
-                .equals(other._subCategoryList, _subCategoryList));
+                .equals(other._optionPlanList, _optionPlanList));
   }
 
   @override
@@ -207,8 +177,7 @@ class _$_OptionPlanState
       runtimeType,
       const DeepCollectionEquality().hash(count),
       const DeepCollectionEquality().hash(planDisplayStatus),
-      const DeepCollectionEquality().hash(_optionPlanList),
-      const DeepCollectionEquality().hash(_subCategoryList));
+      const DeepCollectionEquality().hash(_optionPlanList));
 
   @JsonKey(ignore: true)
   @override
@@ -220,8 +189,7 @@ abstract class _OptionPlanState implements OptionPlanState {
   const factory _OptionPlanState(
       {final int count,
       final bool planDisplayStatus,
-      final List<OptionPlan> optionPlanList,
-      final List<SubCategory> subCategoryList}) = _$_OptionPlanState;
+      final List<OptionPlan> optionPlanList}) = _$_OptionPlanState;
 
   @override
   int get count => throw _privateConstructorUsedError;
@@ -231,8 +199,6 @@ abstract class _OptionPlanState implements OptionPlanState {
 // @Default(<Notice>[]) List<Notice> noticeList,
 // @Default(<Order>[]) List<Order> orderList,
   List<OptionPlan> get optionPlanList => throw _privateConstructorUsedError;
-  @override
-  List<SubCategory> get subCategoryList => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_OptionPlanStateCopyWith<_$_OptionPlanState> get copyWith =>

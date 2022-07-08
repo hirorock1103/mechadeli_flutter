@@ -44,7 +44,6 @@ class OptionPlan extends StatelessWidget {
   Widget build(BuildContext context) {
     //get data
     context.read<OptionPlanNotifier>().getOptionPlanList();
-    context.read<OptionPlanNotifier>().getSubCategory();
 
     ///ここから共通
     Size size = MediaQuery.of(context).size;
@@ -92,25 +91,8 @@ class OptionPlan extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
         children: [
-          PageTitle(title: "ショッププラン管理"),
+          PageTitle(title: "オプションプラン管理"),
           Builder(builder: (context) {
-            //カテゴリリストを作成する
-            List<SubCategory> subCategoryList =
-                context.select((OptionPlanState state) => state).subCategoryList;
-            List<DropdownMenuItem<int>> menu = subCategoryList.map((e) {
-              return DropdownMenuItem(
-                child: Text(e.title + "(" + e.main_category_title + ")"),
-                value: e.id,
-              );
-            }).toList();
-            menu.insert(
-                0,
-                DropdownMenuItem<int>(
-                  child: Text("未選択"),
-                  value: 0,
-                ));
-
-            print(menu);
 
             return Builder(builder: (context) {
               // bool status = context.select((OptionPlanState state) => state).planDisplayStatus;
@@ -119,13 +101,13 @@ class OptionPlan extends StatelessWidget {
                 contents: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    H1Title(title: "登録プラン登録"),
+                    H1Title(title: "オプションプラン登録"),
                     InkWell(
                       onTap: () {
                         //what to do
                         //open dialog or move to other page
                         buildPlanFormDialog(context, OptionPlanEntity.OptionPlan(), planNameController,
-                            planPriceController, planDetailController, menu);
+                            planPriceController, planDetailController);
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -148,11 +130,15 @@ class OptionPlan extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      "プラン登録方法",
+                      "オプションプラン登録方法",
                       style: TextStyle(decoration: TextDecoration.underline),
                     ),
                     Text(
-                      "Mechadeliウェブサイト上で表示されるプランを登録してください。",
+                      "Mechadeliウェブサイト上で表示されるオプションプランを登録してください。",
+                      softWrap: true,
+                    ),
+                    Text(
+                      "オプションプランはショッププラン選択時に表示されます。",
                       softWrap: true,
                     ),
                     Text(
@@ -165,22 +151,6 @@ class OptionPlan extends StatelessWidget {
             });
           }),
           Builder(builder: (context) {
-            //カテゴリリストを作成する
-            List<SubCategory> subCategoryList =
-                context.select((OptionPlanState state) => state).subCategoryList;
-            List<DropdownMenuItem<int>> menu = subCategoryList.map((e) {
-              return DropdownMenuItem(
-                child: Text(e.title + "(" + e.main_category_title + ")"),
-                value: e.id,
-              );
-            }).toList();
-            menu.insert(
-                0,
-                DropdownMenuItem<int>(
-                  child: Text("未選択"),
-                  value: 0,
-                ));
-
             //テスト
             List<OptionPlanEntity.OptionPlan> optionPlanList =
                 context.select((OptionPlanState state) => state).optionPlanList;
@@ -231,7 +201,7 @@ class OptionPlan extends StatelessWidget {
                       trailing: InkWell(
                           onTap: () {
                             print("icon tap");
-                            buildPlanFormDialog(context, optionPlan, planNameController, planPriceController, planDetailController, menu);
+                            buildPlanFormDialog(context, optionPlan, planNameController, planPriceController, planDetailController);
                           },
                           child: Icon(
                             Icons.edit,
@@ -261,7 +231,7 @@ class OptionPlan extends StatelessWidget {
       TextEditingController planNameController,
       TextEditingController planPriceController,
       TextEditingController planDetailController,
-      List<DropdownMenuItem<int>> menu) {
+      ) {
     return showDialog(
         context: context,
         builder: (_) {
@@ -275,9 +245,9 @@ class OptionPlan extends StatelessWidget {
           planPriceController.text =mode == "new"  ?  "" : optionPlan.plan_price.toString();
           planDetailController.text =mode == "new"  ?  "" : optionPlan.details;
 
-          String title = "プラン登録";
+          String title = "オプションプラン登録";
           if(mode == "edit"){
-             title = "プラン内容修正";
+             title = "オプションプラン内容修正";
           }
 
 

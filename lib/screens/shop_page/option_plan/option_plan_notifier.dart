@@ -26,7 +26,6 @@ abstract class OptionPlanState with _$OptionPlanState {
     // @Default(<Notice>[]) List<Notice> noticeList,
     // @Default(<Order>[]) List<Order> orderList,
     @Default(<OptionPlan>[]) List<OptionPlan> optionPlanList,
-    @Default(<SubCategory>[]) List<SubCategory> subCategoryList,
     // @Default(MechadeliFlow.cancel) MechadeliFlow currentFlow,
   }) = _OptionPlanState;
 }
@@ -48,14 +47,9 @@ class OptionPlanNotifier extends StateNotifier<OptionPlanState> with LocatorMixi
     state = state.copyWith(planDisplayStatus: value) ;
   }
 
-  void getSubCategory() async{
-    print("subCategory");
-    final list = await context.read<ApiShopRepository>().getSubCategory();
-    print(list);
-    state = state.copyWith(subCategoryList: list ?? []);
-  }
-
   void registerOptionPlan(Map<String, dynamic> data, int shopId) async{
+
+    print("registerOptionPlan");
 
     final plan = await context.read<ApiShopRepository>().registerOptionPlan(data, shopId);
     print(plan);
@@ -75,27 +69,6 @@ class OptionPlanNotifier extends StateNotifier<OptionPlanState> with LocatorMixi
     List<OptionPlan>? optionPlanList = [];
     int shopId = Shop.me.id;
     optionPlanList = await context.read<ApiShopRepository>().getOptionPlan(shopId);
-
-
-    // OptionPlan plan = OptionPlan();
-    // plan = plan.copyWith(plan_title: "速報！季節の盛り合わせ");
-    // plan = plan.copyWith(plan_price: 4300);
-    // shopPlanList.add(plan);
-    //
-    // OptionPlan plan2 = OptionPlan();
-    // plan2 = plan2.copyWith(plan_title: "まじで！季節の盛り合わせ");
-    // plan2 = plan2.copyWith(plan_price: 9300);
-    // shopPlanList.add(plan2);
-    //
-    // OptionPlan plan3 = OptionPlan();
-    // plan3 = plan3.copyWith(plan_title: "まじで！季節の盛り合わせ");
-    // plan3 = plan3.copyWith(plan_price: 9300);
-    // shopPlanList.add(plan3);
-    //
-    // OptionPlan plan4 = OptionPlan();
-    // plan4 = plan4.copyWith(plan_title: "まじで！季節の盛り合わせ");
-    // plan4 = plan4.copyWith(plan_price: 9400);
-    // shopPlanList.add(plan4);
 
     state = state.copyWith(optionPlanList: optionPlanList ?? []);
 

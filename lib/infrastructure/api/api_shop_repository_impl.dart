@@ -261,6 +261,10 @@ class ApiShopRepositoryImpl implements ApiShopRepository {
       print(e);
     }
 
+
+    print("==========");
+    print(list);
+
     return list;
   }
 
@@ -280,7 +284,7 @@ class ApiShopRepositoryImpl implements ApiShopRepository {
           throw Exception(result.errors);
         }else{
           plan = OptionPlanEntity.OptionPlan.fromJson(result.data);
-          print("add new shop plan!");
+          print("add new option plan!");
           print(plan);
         }
       }
