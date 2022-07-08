@@ -22,6 +22,7 @@ mixin _$ShopPlanState {
 // @Default(<Notice>[]) List<Notice> noticeList,
 // @Default(<Order>[]) List<Order> orderList,
   List<ShopPlan> get shopPlanList => throw _privateConstructorUsedError;
+  List<OptionPlan> get optionPlanList => throw _privateConstructorUsedError;
   List<SubCategory> get subCategoryList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -38,6 +39,7 @@ abstract class $ShopPlanStateCopyWith<$Res> {
       {int count,
       bool planDisplayStatus,
       List<ShopPlan> shopPlanList,
+      List<OptionPlan> optionPlanList,
       List<SubCategory> subCategoryList});
 }
 
@@ -55,6 +57,7 @@ class _$ShopPlanStateCopyWithImpl<$Res>
     Object? count = freezed,
     Object? planDisplayStatus = freezed,
     Object? shopPlanList = freezed,
+    Object? optionPlanList = freezed,
     Object? subCategoryList = freezed,
   }) {
     return _then(_value.copyWith(
@@ -70,6 +73,10 @@ class _$ShopPlanStateCopyWithImpl<$Res>
           ? _value.shopPlanList
           : shopPlanList // ignore: cast_nullable_to_non_nullable
               as List<ShopPlan>,
+      optionPlanList: optionPlanList == freezed
+          ? _value.optionPlanList
+          : optionPlanList // ignore: cast_nullable_to_non_nullable
+              as List<OptionPlan>,
       subCategoryList: subCategoryList == freezed
           ? _value.subCategoryList
           : subCategoryList // ignore: cast_nullable_to_non_nullable
@@ -89,6 +96,7 @@ abstract class _$$_ShopPlanStateCopyWith<$Res>
       {int count,
       bool planDisplayStatus,
       List<ShopPlan> shopPlanList,
+      List<OptionPlan> optionPlanList,
       List<SubCategory> subCategoryList});
 }
 
@@ -108,6 +116,7 @@ class __$$_ShopPlanStateCopyWithImpl<$Res>
     Object? count = freezed,
     Object? planDisplayStatus = freezed,
     Object? shopPlanList = freezed,
+    Object? optionPlanList = freezed,
     Object? subCategoryList = freezed,
   }) {
     return _then(_$_ShopPlanState(
@@ -123,6 +132,10 @@ class __$$_ShopPlanStateCopyWithImpl<$Res>
           ? _value._shopPlanList
           : shopPlanList // ignore: cast_nullable_to_non_nullable
               as List<ShopPlan>,
+      optionPlanList: optionPlanList == freezed
+          ? _value._optionPlanList
+          : optionPlanList // ignore: cast_nullable_to_non_nullable
+              as List<OptionPlan>,
       subCategoryList: subCategoryList == freezed
           ? _value._subCategoryList
           : subCategoryList // ignore: cast_nullable_to_non_nullable
@@ -138,8 +151,10 @@ class _$_ShopPlanState with DiagnosticableTreeMixin implements _ShopPlanState {
       {this.count = 0,
       this.planDisplayStatus = false,
       final List<ShopPlan> shopPlanList = const <ShopPlan>[],
+      final List<OptionPlan> optionPlanList = const <OptionPlan>[],
       final List<SubCategory> subCategoryList = const <SubCategory>[]})
       : _shopPlanList = shopPlanList,
+        _optionPlanList = optionPlanList,
         _subCategoryList = subCategoryList;
 
   @override
@@ -162,6 +177,14 @@ class _$_ShopPlanState with DiagnosticableTreeMixin implements _ShopPlanState {
     return EqualUnmodifiableListView(_shopPlanList);
   }
 
+  final List<OptionPlan> _optionPlanList;
+  @override
+  @JsonKey()
+  List<OptionPlan> get optionPlanList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_optionPlanList);
+  }
+
   final List<SubCategory> _subCategoryList;
   @override
   @JsonKey()
@@ -172,7 +195,7 @@ class _$_ShopPlanState with DiagnosticableTreeMixin implements _ShopPlanState {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ShopPlanState(count: $count, planDisplayStatus: $planDisplayStatus, shopPlanList: $shopPlanList, subCategoryList: $subCategoryList)';
+    return 'ShopPlanState(count: $count, planDisplayStatus: $planDisplayStatus, shopPlanList: $shopPlanList, optionPlanList: $optionPlanList, subCategoryList: $subCategoryList)';
   }
 
   @override
@@ -183,6 +206,7 @@ class _$_ShopPlanState with DiagnosticableTreeMixin implements _ShopPlanState {
       ..add(DiagnosticsProperty('count', count))
       ..add(DiagnosticsProperty('planDisplayStatus', planDisplayStatus))
       ..add(DiagnosticsProperty('shopPlanList', shopPlanList))
+      ..add(DiagnosticsProperty('optionPlanList', optionPlanList))
       ..add(DiagnosticsProperty('subCategoryList', subCategoryList));
   }
 
@@ -197,6 +221,8 @@ class _$_ShopPlanState with DiagnosticableTreeMixin implements _ShopPlanState {
             const DeepCollectionEquality()
                 .equals(other._shopPlanList, _shopPlanList) &&
             const DeepCollectionEquality()
+                .equals(other._optionPlanList, _optionPlanList) &&
+            const DeepCollectionEquality()
                 .equals(other._subCategoryList, _subCategoryList));
   }
 
@@ -206,6 +232,7 @@ class _$_ShopPlanState with DiagnosticableTreeMixin implements _ShopPlanState {
       const DeepCollectionEquality().hash(count),
       const DeepCollectionEquality().hash(planDisplayStatus),
       const DeepCollectionEquality().hash(_shopPlanList),
+      const DeepCollectionEquality().hash(_optionPlanList),
       const DeepCollectionEquality().hash(_subCategoryList));
 
   @JsonKey(ignore: true)
@@ -219,6 +246,7 @@ abstract class _ShopPlanState implements ShopPlanState {
       {final int count,
       final bool planDisplayStatus,
       final List<ShopPlan> shopPlanList,
+      final List<OptionPlan> optionPlanList,
       final List<SubCategory> subCategoryList}) = _$_ShopPlanState;
 
   @override
@@ -229,6 +257,8 @@ abstract class _ShopPlanState implements ShopPlanState {
 // @Default(<Notice>[]) List<Notice> noticeList,
 // @Default(<Order>[]) List<Order> orderList,
   List<ShopPlan> get shopPlanList => throw _privateConstructorUsedError;
+  @override
+  List<OptionPlan> get optionPlanList => throw _privateConstructorUsedError;
   @override
   List<SubCategory> get subCategoryList => throw _privateConstructorUsedError;
   @override

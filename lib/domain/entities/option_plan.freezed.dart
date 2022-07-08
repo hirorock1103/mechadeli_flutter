@@ -24,6 +24,7 @@ mixin _$OptionPlan {
   int get shop_id => throw _privateConstructorUsedError;
   int get plan_price => throw _privateConstructorUsedError;
   int get status => throw _privateConstructorUsedError;
+  int get selected => throw _privateConstructorUsedError;
   String get about => throw _privateConstructorUsedError;
   String get plan_title => throw _privateConstructorUsedError;
   String get sales_point => throw _privateConstructorUsedError;
@@ -53,6 +54,7 @@ abstract class $OptionPlanCopyWith<$Res> {
       int shop_id,
       int plan_price,
       int status,
+      int selected,
       String about,
       String plan_title,
       String sales_point,
@@ -81,6 +83,7 @@ class _$OptionPlanCopyWithImpl<$Res> implements $OptionPlanCopyWith<$Res> {
     Object? shop_id = freezed,
     Object? plan_price = freezed,
     Object? status = freezed,
+    Object? selected = freezed,
     Object? about = freezed,
     Object? plan_title = freezed,
     Object? sales_point = freezed,
@@ -110,6 +113,10 @@ class _$OptionPlanCopyWithImpl<$Res> implements $OptionPlanCopyWith<$Res> {
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as int,
+      selected: selected == freezed
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
               as int,
       about: about == freezed
           ? _value.about
@@ -175,6 +182,7 @@ abstract class _$$_OptionPlanCopyWith<$Res>
       int shop_id,
       int plan_price,
       int status,
+      int selected,
       String about,
       String plan_title,
       String sales_point,
@@ -205,6 +213,7 @@ class __$$_OptionPlanCopyWithImpl<$Res> extends _$OptionPlanCopyWithImpl<$Res>
     Object? shop_id = freezed,
     Object? plan_price = freezed,
     Object? status = freezed,
+    Object? selected = freezed,
     Object? about = freezed,
     Object? plan_title = freezed,
     Object? sales_point = freezed,
@@ -234,6 +243,10 @@ class __$$_OptionPlanCopyWithImpl<$Res> extends _$OptionPlanCopyWithImpl<$Res>
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as int,
+      selected: selected == freezed
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
               as int,
       about: about == freezed
           ? _value.about
@@ -295,6 +308,7 @@ class _$_OptionPlan extends _OptionPlan {
       this.shop_id = 0,
       this.plan_price = 0,
       this.status = 0,
+      this.selected = 0,
       this.about = '',
       this.plan_title = '',
       this.sales_point = '',
@@ -324,6 +338,9 @@ class _$_OptionPlan extends _OptionPlan {
   @override
   @JsonKey()
   final int status;
+  @override
+  @JsonKey()
+  final int selected;
   @override
   @JsonKey()
   final String about;
@@ -363,7 +380,7 @@ class _$_OptionPlan extends _OptionPlan {
 
   @override
   String toString() {
-    return 'OptionPlan(id: $id, shop_id: $shop_id, plan_price: $plan_price, status: $status, about: $about, plan_title: $plan_title, sales_point: $sales_point, details: $details, tanni: $tanni, img_1: $img_1, img_2: $img_2, img_3: $img_3, img_4: $img_4, img_5: $img_5, created_at: $created_at, updated_at: $updated_at)';
+    return 'OptionPlan(id: $id, shop_id: $shop_id, plan_price: $plan_price, status: $status, selected: $selected, about: $about, plan_title: $plan_title, sales_point: $sales_point, details: $details, tanni: $tanni, img_1: $img_1, img_2: $img_2, img_3: $img_3, img_4: $img_4, img_5: $img_5, created_at: $created_at, updated_at: $updated_at)';
   }
 
   @override
@@ -376,6 +393,7 @@ class _$_OptionPlan extends _OptionPlan {
             const DeepCollectionEquality()
                 .equals(other.plan_price, plan_price) &&
             const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.selected, selected) &&
             const DeepCollectionEquality().equals(other.about, about) &&
             const DeepCollectionEquality()
                 .equals(other.plan_title, plan_title) &&
@@ -402,6 +420,7 @@ class _$_OptionPlan extends _OptionPlan {
       const DeepCollectionEquality().hash(shop_id),
       const DeepCollectionEquality().hash(plan_price),
       const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(selected),
       const DeepCollectionEquality().hash(about),
       const DeepCollectionEquality().hash(plan_title),
       const DeepCollectionEquality().hash(sales_point),
@@ -432,6 +451,7 @@ abstract class _OptionPlan extends OptionPlan {
       final int shop_id,
       final int plan_price,
       final int status,
+      final int selected,
       final String about,
       final String plan_title,
       final String sales_point,
@@ -457,6 +477,8 @@ abstract class _OptionPlan extends OptionPlan {
   int get plan_price => throw _privateConstructorUsedError;
   @override
   int get status => throw _privateConstructorUsedError;
+  @override
+  int get selected => throw _privateConstructorUsedError;
   @override
   String get about => throw _privateConstructorUsedError;
   @override

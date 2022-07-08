@@ -12,6 +12,7 @@ import 'package:state_notifier/state_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/enum.dart';
+import '../../../domain/entities/option_plan.dart';
 import '../../../domain/entities/shop_plan.dart';
 import '../../../domain/repositories/api_user_repository.dart';
 
@@ -26,6 +27,7 @@ abstract class ShopPlanState with _$ShopPlanState {
     // @Default(<Notice>[]) List<Notice> noticeList,
     // @Default(<Order>[]) List<Order> orderList,
     @Default(<ShopPlan>[]) List<ShopPlan> shopPlanList,
+    @Default(<OptionPlan>[]) List<OptionPlan> optionPlanList,
     @Default(<SubCategory>[]) List<SubCategory> subCategoryList,
     // @Default(MechadeliFlow.cancel) MechadeliFlow currentFlow,
   }) = _ShopPlanState;
@@ -70,33 +72,31 @@ class ShopPlanNotifier extends StateNotifier<ShopPlanState> with LocatorMixin {
 
   }
 
+  void getOptionPlanList() async{
+
+    List<OptionPlan>? optionPlanList = [];
+    int shopId = Shop.me.id;
+    optionPlanList = await context.read<ApiShopRepository>().getOptionPlan(shopId);
+    state = state.copyWith(optionPlanList: optionPlanList ?? []);
+
+  }
+  void getOptionPlanListByShopPlanId(int shopPlanId) async{
+
+    int shopId = Shop.me.id;
+    print("shopId:$shopId");
+    print("shopPlanId:$shopPlanId");
+    List<OptionPlan>? optionPlanList = [];
+    optionPlanList = await context.read<ApiShopRepository>().getOptionPlanByShopPlanId(shopPlanId);
+    state = state.copyWith(optionPlanList: optionPlanList ?? []);
+    print(optionPlanList);
+
+  }
+
   void getShopPlanList() async{
 
     List<ShopPlan>? shopPlanList = [];
     int shopId = Shop.me.id;
     shopPlanList = await context.read<ApiShopRepository>().getShopPlan(shopId);
-
-
-    // ShopPlan plan = ShopPlan();
-    // plan = plan.copyWith(plan_title: "速報！季節の盛り合わせ");
-    // plan = plan.copyWith(plan_price: 4300);
-    // shopPlanList.add(plan);
-    //
-    // ShopPlan plan2 = ShopPlan();
-    // plan2 = plan2.copyWith(plan_title: "まじで！季節の盛り合わせ");
-    // plan2 = plan2.copyWith(plan_price: 9300);
-    // shopPlanList.add(plan2);
-    //
-    // ShopPlan plan3 = ShopPlan();
-    // plan3 = plan3.copyWith(plan_title: "まじで！季節の盛り合わせ");
-    // plan3 = plan3.copyWith(plan_price: 9300);
-    // shopPlanList.add(plan3);
-    //
-    // ShopPlan plan4 = ShopPlan();
-    // plan4 = plan4.copyWith(plan_title: "まじで！季節の盛り合わせ");
-    // plan4 = plan4.copyWith(plan_price: 9400);
-    // shopPlanList.add(plan4);
-
     state = state.copyWith(shopPlanList: shopPlanList ?? []);
 
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mechadeli_flutter/domain/entities/option_plan.dart';
 import 'package:mechadeli_flutter/domain/entities/sub_category.dart';
 import 'package:mechadeli_flutter/screens/shop_page/widgets/side_navi2.dart';
 import 'package:mechadeli_flutter/widgets/common/forms/my_text_edit_with_title.dart';
@@ -44,6 +45,7 @@ class ShopPlan extends StatelessWidget {
   Widget build(BuildContext context) {
     //get data
     context.read<ShopPlanNotifier>().getShopPlanList();
+    context.read<ShopPlanNotifier>().getOptionPlanList();
     context.read<ShopPlanNotifier>().getSubCategory();
 
     ///ここから共通
@@ -56,7 +58,8 @@ class ShopPlan extends StatelessWidget {
       ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,//navigation,main contents上部設定
+        crossAxisAlignment: CrossAxisAlignment.start,
+        //navigation,main contents上部設定
         children: [
           size.width > AppConstant.tabletMaxSize
               ? SideNavgation2()
@@ -112,6 +115,10 @@ class ShopPlan extends StatelessWidget {
 
             print(menu);
 
+            //option plan menu
+            List<OptionPlan> options =
+                context.select((ShopPlanState state) => state).optionPlanList;
+
             return Builder(builder: (context) {
               // bool status = context.select((ShopPlanState state) => state).planDisplayStatus;
               // print(status);
@@ -124,8 +131,14 @@ class ShopPlan extends StatelessWidget {
                       onTap: () {
                         //what to do
                         //open dialog or move to other page
-                        buildPlanFormDialog(context, ShopPlanEntity.ShopPlan(), planNameController,
-                            planPriceController, planDetailController, menu);
+                        buildPlanFormDialog(
+                            context,
+                            ShopPlanEntity.ShopPlan(),
+                            planNameController,
+                            planPriceController,
+                            planDetailController,
+                            menu,
+                            options);
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -165,6 +178,9 @@ class ShopPlan extends StatelessWidget {
             });
           }),
           Builder(builder: (context) {
+
+            Size size =  MediaQuery.of(context).size;
+
             //カテゴリリストを作成する
             List<SubCategory> subCategoryList =
                 context.select((ShopPlanState state) => state).subCategoryList;
@@ -180,6 +196,10 @@ class ShopPlan extends StatelessWidget {
                   child: Text("未選択"),
                   value: 0,
                 ));
+
+            //option plan menu
+            List<OptionPlan> options =
+                context.select((ShopPlanState state) => state).optionPlanList;
 
             //テスト
             List<ShopPlanEntity.ShopPlan> shopPlanList =
@@ -246,7 +266,9 @@ class ShopPlan extends StatelessWidget {
                             SizedBox(
                               width: 10,
                             ),
-                            Text(shopPlan.created_at),
+                            //TODO
+                            if(size.width >= AppConstant.tabletMaxSize)
+                              Text(shopPlan.created_at),
                           ],
                         ),
                       ),
@@ -260,8 +282,17 @@ class ShopPlan extends StatelessWidget {
                       ),
                       trailing: InkWell(
                           onTap: () {
+                            //プランに紐づく、オプションプランを取得する
+                            context.read<ShopPlanNotifier>().getOptionPlanListByShopPlanId(shopPlan.id);
                             print("icon tap");
-                            buildPlanFormDialog(context, shopPlan, planNameController, planPriceController, planDetailController, menu);
+                            buildPlanFormDialog(
+                                context,
+                                shopPlan,
+                                planNameController,
+                                planPriceController,
+                                planDetailController,
+                                menu,
+                                options);
                           },
                           child: Icon(
                             Icons.edit,
@@ -286,111 +317,160 @@ class ShopPlan extends StatelessWidget {
   }
 
   Future<dynamic> buildPlanFormDialog(
-      BuildContext context,
-      ShopPlanEntity.ShopPlan shopPlan,
-      TextEditingController planNameController,
-      TextEditingController planPriceController,
-      TextEditingController planDetailController,
-      List<DropdownMenuItem<int>> menu) {
+    BuildContext context,
+    ShopPlanEntity.ShopPlan shopPlan,
+    TextEditingController planNameController,
+    TextEditingController planPriceController,
+    TextEditingController planDetailController,
+    List<DropdownMenuItem<int>> menu,
+    List<OptionPlan> optionList,
+  ) {
     return showDialog(
         context: context,
         builder: (_) {
           ///色々初期化
           String mode = shopPlan.id == 0 ? "new" : "edit";
           bool status = false;
-          if(mode == "edit"){
+          bool? optionChecked = false;
+          if (mode == "edit") {
             status = shopPlan.status == 1 ? true : false;
           }
-          int selectedValue = mode == "new" ? 0: shopPlan.sub_category_id;
-          planNameController.text =mode == "new"  ?  "" : shopPlan.plan_title;
-          planPriceController.text =mode == "new"  ?  "" : shopPlan.plan_price.toString();
-          planDetailController.text =mode == "new"  ?  "" : shopPlan.details;
+          int selectedValue = mode == "new" ? 0 : shopPlan.sub_category_id;
+          planNameController.text = mode == "new" ? "" : shopPlan.plan_title;
+          planPriceController.text =
+              mode == "new" ? "" : shopPlan.plan_price.toString();
+          planDetailController.text = mode == "new" ? "" : shopPlan.details;
 
           String title = "プラン登録";
-          if(mode == "edit"){
-             title = "プラン内容修正";
+          if (mode == "edit") {
+            title = "プラン内容修正";
           }
+          Map<int, bool> checkedList = {};
+          optionList.forEach((element) { checkedList[element.id] = element.selected == 1 ? true : false; });
 
 
           return AlertDialog(
-            title: Center(child: Text(title)),
-            content: StatefulBuilder(
-                builder: (BuildContext context, StateSetter setState) {
-              var _setState = setState;
+          title: Center(child: Text(title)),
+          content: StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+          var _setState = setState;
+          List<CheckboxListTile> optionItems =
+          optionList.map((e) {
+            return CheckboxListTile(
+                title: Text(e.plan_title),
+                subtitle: Row(children: [Text(e.plan_price.toString() + "円")],),
+                value: e.selected == 1 ? true : false,
+                onChanged: (value) {
+                  print(value);
+                  _setState((){
+                    int num =  value == true ? 1 : 0;
+                    e = e.copyWith(selected: num);
+                  });
+                });
+          }).toList();
               return Container(
                 width: 600,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    MyTextEditWithTitle(
-                        hintText: "",
-                        title: "①プランタイトル",
-                        controller: planNameController),
-                    MyTextEditWithTitle(
-                        hintText: "",
-                        title: "②金額",
-                        controller: planPriceController),
-                    MyTextEditWithTitle(
-                        hintText: "",
-                        title: "③詳細",
-                        controller: planDetailController),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "⑤表示ステータス",
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      MyTextEditWithTitle(
+                          hintText: "",
+                          title: "①プランタイトル",
+                          controller: planNameController),
+                      MyTextEditWithTitle(
+                          hintText: "",
+                          title: "②金額",
+                          controller: planPriceController),
+                      MyTextEditWithTitle(
+                          hintText: "",
+                          title: "③詳細",
+                          controller: planDetailController),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              "④表示ステータス",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            flex: 2,
                           ),
-                          flex: 2,
+                          Expanded(
+                            child: SwitchListTile(
+                                value: status,
+                                // title: Text("表示ステータス"),
+                                secondary: status == 0
+                                    ? Icon(
+                                        Icons.visibility,
+                                      )
+                                    : Icon(Icons.visibility_off),
+                                onChanged: (value) {
+                                  //notifier側で管理
+                                  // context.read<ShopPlanNotifier>().switchPlanStatus(value);
+                                  _setState(() {
+                                    status = value;
+                                  });
+                                }),
+                            flex: 1,
+                          ),
+                        ],
+                      ),
+                      Container(
+                          width: double.infinity,
+                          child: Text(
+                            "⑤カテゴリ選択（メイン・サブ）",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.left,
+                          )),
+                      SizedBox(
+                          width: double.infinity,
+                          child: Container(
+                              margin: EdgeInsets.only(top: 10, bottom: 15),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: DropdownButtonHideUnderline(
+                                  child: DropdownButton(
+                                items: menu,
+                                onChanged: (value) {
+                                  _setState(() {
+                                    selectedValue = int.parse(value.toString());
+                                  });
+                                },
+                                value: selectedValue,
+                                isDense: true,
+                              )))),
+                      Container(
+                          width: double.infinity,
+                          child: Text(
+                            "⑥オプションプラン設定",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.left,
+                          )),
+                      Container(
+                        child: ListView(
+                          shrinkWrap: true,
+                          children:
+                            optionList.map((e) {
+                              return CheckboxListTile(
+                                  title: Text(e.plan_title),
+                                  subtitle: Row(children: [Text(e.plan_price.toString() + "円")],),
+                                  value: checkedList[e.id] ,
+                                  onChanged: (value) {
+                                    print(value);
+                                    _setState((){
+                                      bool checked =  value == true ? true : false;
+                                      checkedList[e.id] = checked;
+                                      print(checkedList);
+                                    });
+                                  });
+                            }).toList(),
                         ),
-                        Expanded(
-                          child: SwitchListTile(
-                              value: status,
-                              // title: Text("表示ステータス"),
-                              secondary: status == 0
-                                  ? Icon(
-                                      Icons.visibility,
-                                    )
-                                  : Icon(Icons.visibility_off),
-                              onChanged: (value) {
-                                //notifier側で管理
-                                // context.read<ShopPlanNotifier>().switchPlanStatus(value);
-                                _setState(() {
-                                  status = value;
-                                });
-                              }),
-                          flex: 1,
-                        ),
-                      ],
-                    ),
-                    Container(
-                        width: double.infinity,
-                        child: Text(
-                          "⑥カテゴリ選択（メイン・サブ）",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.left,
-                        )),
-                    SizedBox(
-                        width: double.infinity,
-                        child: Container(
-                            margin: EdgeInsets.only(top: 10, bottom: 15),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: DropdownButtonHideUnderline(
-                                child: DropdownButton(
-                              items: menu,
-                              onChanged: (value) {
-                                _setState(() {
-                                  selectedValue = int.parse(value.toString());
-                                });
-                              },
-                              value: selectedValue,
-                              isDense: true,
-                            )))),
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               );
             }),
@@ -413,7 +493,7 @@ class ShopPlan extends StatelessWidget {
                         data['shop_id'] = Shop.me.id;
 
                         //登録
-                        if(mode == "new"){
+                        if (mode == "new") {
                           print(data);
                           print("register");
                           context
@@ -421,7 +501,7 @@ class ShopPlan extends StatelessWidget {
                               .registerShopPlan(data, Shop.me.id);
                         }
                         //修正
-                        if(mode == "edit"){
+                        if (mode == "edit") {
                           print(data);
                           print("edit");
                           context

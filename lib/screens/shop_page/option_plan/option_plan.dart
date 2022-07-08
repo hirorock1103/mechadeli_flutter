@@ -302,13 +302,6 @@ class OptionPlan extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Container(
-                        width: double.infinity,
-                        child: Text(
-                          "⑥カテゴリ選択（メイン・サブ）",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.left,
-                        )),
                   ],
                 ),
               );

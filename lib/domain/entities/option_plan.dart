@@ -10,6 +10,7 @@ class OptionPlan with _$OptionPlan {
     @Default(0) int shop_id,
     @Default(0) int plan_price,
     @Default(0) int status,
+    @Default(0) int selected,
     @Default('') String about,
     @Default('') String plan_title,
     @Default('') String sales_point,
