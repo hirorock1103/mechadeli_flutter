@@ -2,10 +2,6 @@ import 'package:chopper/chopper.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' show MultipartFile;
 import 'package:mechadeli_flutter/common/enum.dart';
-import 'package:mechadeli_flutter/domain/entities/admin.dart';
-import 'package:mechadeli_flutter/domain/entities/notice.dart';
-import 'package:mechadeli_flutter/domain/entities/order.dart';
-import 'package:mechadeli_flutter/domain/entities/shop_area.dart';
 import 'package:mechadeli_flutter/domain/entities/shop_plan.dart';
 import 'package:mechadeli_flutter/domain/entities/sub_category.dart';
 import 'package:mechadeli_flutter/infrastructure/wrappers/api_clients/header_interceptor.dart';
@@ -13,10 +9,8 @@ import 'package:mechadeli_flutter/infrastructure/wrappers/api_clients/header_int
 import '../../domain/entities/data_list.dart';
 import '../../domain/entities/map_response.dart';
 import '../../domain/entities/shop.dart';
-import '../../domain/entities/user.dart';
-import '../../domain/repositories/api_common_repository.dart';
+import '../../domain/entities/option_plan.dart' as OptionPlanEntity;
 import '../../domain/repositories/api_shop_repository.dart';
-import '../wrappers/api_clients/sample/api_client.dart';
 import '../wrappers/api_clients/api_shop_client.dart';
 
 
@@ -215,7 +209,6 @@ class ApiShopRepositoryImpl implements ApiShopRepository {
 
   @override
   Future<ShopPlan?> updateShopPlan(Map<String, dynamic> data, int shopPlanId) async{
-    // TODO: implement updateShopPlan
     ShopPlan plan = ShopPlan();
 
     try{
@@ -239,6 +232,122 @@ class ApiShopRepositoryImpl implements ApiShopRepository {
 
 
     return plan;
+  }
+
+  @override
+  Future<List<OptionPlanEntity.OptionPlan>?> getOptionPlan(int shopId) async{
+    List<OptionPlanEntity.OptionPlan> list = [];
+
+    Map<String, dynamic> data = {};
+
+    try{
+      final response = await _apiClient.getOptionPlanListByShopId(shopId);
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          final dataList = DataList.fromJson(result.data);
+          final shopPlans= dataList.data.map((e) {
+            var shopPlan = OptionPlanEntity.OptionPlan.fromJson(e);
+            return shopPlan;
+          });
+          list = shopPlans.toList();
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+
+    return list;
+  }
+
+  @override
+  Future<OptionPlanEntity.OptionPlan?> registerOptionPlan(Map<String, dynamic> data, int shopId) async{
+    OptionPlanEntity.OptionPlan plan = OptionPlanEntity.OptionPlan();
+
+    //shop id add
+    data['shop_id'] = shopId;
+
+    try{
+      final response = await _apiClient.registerOptionPlan(data);
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          plan = OptionPlanEntity.OptionPlan.fromJson(result.data);
+          print("add new shop plan!");
+          print(plan);
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+
+
+    return plan;
+  }
+
+  @override
+  Future<OptionPlanEntity.OptionPlan?> updateOptionPlan(Map<String, dynamic> data, int optionPlanId) async{
+    OptionPlanEntity.OptionPlan plan = OptionPlanEntity.OptionPlan();
+
+    try{
+      final response = await _apiClient.updateOptionPlan(data, optionPlanId);
+      print(response.body);
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          plan = OptionPlanEntity.OptionPlan.fromJson(result.data);
+          print("update shop plan!");
+          print(plan);
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+
+
+    return plan;
+  }
+
+  @override
+  Future<List<OptionPlanEntity.OptionPlan>?> getOptionPlanByShopPlanId(int shopPlanId) async{
+    List<OptionPlanEntity.OptionPlan> list = [];
+
+    Map<String, dynamic> data = {};
+
+    try{
+      final response = await _apiClient.getOptionPlanListByShopPlanId(shopPlanId);
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          final dataList = DataList.fromJson(result.data);
+          final shopPlans= dataList.data.map((e) {
+            var shopPlan = OptionPlanEntity.OptionPlan.fromJson(e);
+            return shopPlan;
+          });
+          list = shopPlans.toList();
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+
+    return list;
   }
 
 

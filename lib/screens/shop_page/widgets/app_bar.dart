@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mechadeli_flutter/domain/entities/shop.dart';
 import 'package:mechadeli_flutter/domain/notifiers/app_notifier.dart';
 import 'package:mechadeli_flutter/screens/user_page/login/user_login.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +21,7 @@ class UserAppBar extends StatelessWidget with PreferredSizeWidget {
       iconTheme: IconThemeData(color: Colors.lightBlueAccent),
       actions: [
         CircleAvatar(
-          child: Icon(Icons.person_add),
+          child: Icon(Icons.home_outlined),
         ),
         if (size.width > 800)
           Container(
@@ -28,8 +29,8 @@ class UserAppBar extends StatelessWidget with PreferredSizeWidget {
               margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
               child: Center(
                   child: Text(
-                    "Test テスト　様",
-                    style: TextStyle(color: Colors.black54),
+                    Shop.me.name,
+                    style: TextStyle(color: Colors.white),
                   ))),
         InkWell(
           onTap: () {

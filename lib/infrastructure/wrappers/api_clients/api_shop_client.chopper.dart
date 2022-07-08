@@ -70,4 +70,35 @@ class _$ApiShopClient extends ApiShopClient {
     final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<dynamic, dynamic>($request);
   }
+
+  @override
+  Future<Response<dynamic>> getOptionPlanListByShopPlanId(int shopPlanId) {
+    final $url = '/shop/getOptionPlanListByShopPlanId/${shopPlanId}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> getOptionPlanListByShopId(int shopId) {
+    final $url = '/shop/getOptionPlanListByShopId/${shopId}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> registerOptionPlan(Map<String, dynamic> data) {
+    final $url = '/shop/registerOptionPlan';
+    final $body = data;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> updateOptionPlan(
+      Map<String, dynamic> data, int optionPlanId) {
+    final $url = '/shop/updateOptionPlan/${optionPlanId}';
+    final $body = data;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<dynamic, dynamic>($request);
+  }
 }
