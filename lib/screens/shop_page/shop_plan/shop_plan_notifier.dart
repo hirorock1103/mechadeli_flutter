@@ -23,13 +23,9 @@ abstract class ShopPlanState with _$ShopPlanState {
   const factory ShopPlanState({
     @Default(0) int count,
     @Default(false) bool planDisplayStatus,
-    // @Default(ApplyStatus.notYet) ApplyStatus applyStatus,
-    // @Default(<Notice>[]) List<Notice> noticeList,
-    // @Default(<Order>[]) List<Order> orderList,
     @Default(<ShopPlan>[]) List<ShopPlan> shopPlanList,
     @Default(<OptionPlan>[]) List<OptionPlan> optionPlanList,
     @Default(<SubCategory>[]) List<SubCategory> subCategoryList,
-    // @Default(MechadeliFlow.cancel) MechadeliFlow currentFlow,
   }) = _ShopPlanState;
 }
 
@@ -44,6 +40,15 @@ class ShopPlanNotifier extends StateNotifier<ShopPlanState> with LocatorMixin {
   void dispose() {
     print('dispose');
     super.dispose();
+  }
+
+  Future<List<OptionPlan>> clearOptions() async{
+
+    List<OptionPlan> list = state.optionPlanList;
+    List<OptionPlan> newlist = list.map((e) => e = e.copyWith(selected: 0)).toList();
+    state = state.copyWith(optionPlanList: newlist);
+    return state.optionPlanList;
+
   }
 
   void switchPlanStatus(bool value){

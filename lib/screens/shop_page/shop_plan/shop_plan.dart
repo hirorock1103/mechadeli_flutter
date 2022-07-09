@@ -130,7 +130,13 @@ class ShopPlan extends StatelessWidget {
                   children: [
                     H1Title(title: "登録プラン登録"),
                     InkWell(
-                      onTap: () {
+                      onTap: () async {
+
+                        //clear options
+                        options = await context.read<ShopPlanNotifier>().clearOptions();
+                        // await Future.delayed(Duration(seconds: 1));
+
+
                         //what to do
                         //open dialog or move to other page
                         buildPlanFormDialog(
@@ -503,9 +509,28 @@ class ShopPlan extends StatelessWidget {
                         if (mode == "new") {
                           print(data);
                           print("register");
-                          context
+                          int newShopPlanId = await context
                               .read<ShopPlanNotifier>()
                               .registerShopPlan(data, Shop.me.id);
+
+                          //オプション用checkedListをチェック -> option_planに反映
+                          if(newShopPlanId > 0){
+                            Map<String, dynamic> map = {};
+                            map['shop_id'] = Shop.me.id;
+                            map['shop_plan_id'] = newShopPlanId;
+                            map['checked_options'] = [];
+
+                            List<int> selectedOptinId = [];
+                            checkedList.forEach((optionId, isSelected) {
+                              if(isSelected == true){
+                                selectedOptinId.add(optionId);
+                              }
+                            });
+                            map['checked_options'] = selectedOptinId.join(",");
+                            context.read<ShopPlanNotifier>().updatePlanMatrix(map);
+                          }
+
+
                         }
                         //修正
                         if (mode == "edit") {
