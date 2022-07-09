@@ -57,14 +57,19 @@ class ShopPlanNotifier extends StateNotifier<ShopPlanState> with LocatorMixin {
     state = state.copyWith(subCategoryList: list ?? []);
   }
 
-  void registerShopPlan(Map<String, dynamic> data, int shopId) async{
+  Future<int> registerShopPlan(Map<String, dynamic> data, int shopId) async{
 
+    int shopPlanId = 0;
     final plan = await context.read<ApiShopRepository>().registerShopPlan(data, shopId);
     print(plan);
     this.getShopPlanList();
 
+    shopPlanId = plan?.id ?? 0;
+
+    return shopPlanId;
+
   }
-  void updateShopPlan(Map<String, dynamic> data, int planId) async{
+  Future<void> updateShopPlan(Map<String, dynamic> data, int planId) async{
 
     final plan = await context.read<ApiShopRepository>().updateShopPlan(data, planId);
     print(plan);
@@ -80,8 +85,17 @@ class ShopPlanNotifier extends StateNotifier<ShopPlanState> with LocatorMixin {
     state = state.copyWith(optionPlanList: optionPlanList ?? []);
 
   }
-  void getOptionPlanListByShopPlanId(int shopPlanId) async{
 
+  void updatePlanMatrix(Map<String, dynamic> data) async{
+
+    print("updatePlanmatrx");
+    final result = await context.read<ApiShopRepository>().updatePlanMatrix(data);
+    print(result);
+  }
+
+  Future<void> getOptionPlanListByShopPlanId(int shopPlanId) async{
+
+    print("getOptionPlanListByShopPlanId");
     int shopId = Shop.me.id;
     print("shopId:$shopId");
     print("shopPlanId:$shopPlanId");

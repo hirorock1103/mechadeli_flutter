@@ -41,6 +41,11 @@ abstract class ApiShopClient extends ChopperService {
       @Body() Map<String, dynamic> data,
       @Path('id') int shopPlanId,
       );
+  @Post(path: '/shop/updatePlanMatrix')
+  Future<Response> updatePlanMatrix(
+      @Body() Map<String, dynamic> data,
+      // @Path('id') int shopPlanId,
+      );
 
   //option
   @Get(path: '/shop/getOptionPlanListByShopPlanId/{id}')

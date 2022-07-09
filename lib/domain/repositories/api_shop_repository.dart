@@ -1,5 +1,7 @@
 
+import 'package:mechadeli_flutter/domain/entities/data_list.dart';
 import 'package:mechadeli_flutter/domain/entities/notice.dart';
+import 'package:mechadeli_flutter/domain/entities/plan_matrix.dart';
 import 'package:mechadeli_flutter/domain/entities/sub_category.dart';
 
 import '../entities/admin.dart';
@@ -29,4 +31,6 @@ abstract class ApiShopRepository {
   Future<List<OptionPlan>?> getOptionPlanByShopPlanId(int shopPlanId);
   Future<OptionPlan?> registerOptionPlan(Map<String, dynamic> data, int shopId);
   Future<OptionPlan?> updateOptionPlan(Map<String, dynamic> data, int optionPlanId);
+  //matrix
+  Future<List<PlanMatrix>?> updatePlanMatrix(Map<String, dynamic> data);
 }

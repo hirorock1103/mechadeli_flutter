@@ -2,10 +2,12 @@ import 'package:chopper/chopper.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' show MultipartFile;
 import 'package:mechadeli_flutter/common/enum.dart';
+import 'package:mechadeli_flutter/domain/entities/plan_matrix.dart';
 import 'package:mechadeli_flutter/domain/entities/shop_plan.dart';
 import 'package:mechadeli_flutter/domain/entities/sub_category.dart';
 import 'package:mechadeli_flutter/infrastructure/wrappers/api_clients/header_interceptor.dart';
 
+import '../../domain/entities/array_response.dart';
 import '../../domain/entities/data_list.dart';
 import '../../domain/entities/map_response.dart';
 import '../../domain/entities/shop.dart';
@@ -350,6 +352,31 @@ class ApiShopRepositoryImpl implements ApiShopRepository {
       print("exception");
       print(e);
     }
+
+    return list;
+  }
+
+  @override
+  Future<List<PlanMatrix>?> updatePlanMatrix(Map<String, dynamic> data) async{
+
+    List<PlanMatrix> list = [];
+
+    try{
+      final response = await _apiClient.updatePlanMatrix(data);
+      if (response.isSuccessful) {
+        // print(response.body['status']);
+        List<dynamic> dataList = response.body['data'] as List<dynamic>;
+        final matrixes= dataList.map((e) {
+          var matrix = PlanMatrix.fromJson(e);
+          return matrix;
+        });
+        list = matrixes.toList();
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+
 
     return list;
   }

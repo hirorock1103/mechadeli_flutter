@@ -118,6 +118,8 @@ class ShopPlan extends StatelessWidget {
             //option plan menu
             List<OptionPlan> options =
                 context.select((ShopPlanState state) => state).optionPlanList;
+            print("option called 1");
+
 
             return Builder(builder: (context) {
               // bool status = context.select((ShopPlanState state) => state).planDisplayStatus;
@@ -201,6 +203,8 @@ class ShopPlan extends StatelessWidget {
             List<OptionPlan> options =
                 context.select((ShopPlanState state) => state).optionPlanList;
 
+            print("option called");
+
             //テスト
             List<ShopPlanEntity.ShopPlan> shopPlanList =
                 context.select((ShopPlanState state) => state).shopPlanList;
@@ -281,10 +285,12 @@ class ShopPlan extends StatelessWidget {
                         ],
                       ),
                       trailing: InkWell(
-                          onTap: () {
+                          onTap: () async{
                             //プランに紐づく、オプションプランを取得する
-                            context.read<ShopPlanNotifier>().getOptionPlanListByShopPlanId(shopPlan.id);
-                            print("icon tap");
+                            await context.read<ShopPlanNotifier>().getOptionPlanListByShopPlanId(shopPlan.id);
+                            options = context.read<ShopPlanState>().optionPlanList;
+
+                            //show dialog
                             buildPlanFormDialog(
                                 context,
                                 shopPlan,
@@ -477,7 +483,7 @@ class ShopPlan extends StatelessWidget {
             actions: [
               Center(
                   child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async{
                         print("========");
                         print(selectedValue);
                         print(status);
@@ -492,6 +498,7 @@ class ShopPlan extends StatelessWidget {
                         data['main_category_id'] = 1;
                         data['shop_id'] = Shop.me.id;
 
+
                         //登録
                         if (mode == "new") {
                           print(data);
@@ -504,9 +511,26 @@ class ShopPlan extends StatelessWidget {
                         if (mode == "edit") {
                           print(data);
                           print("edit");
-                          context
+                          await context
                               .read<ShopPlanNotifier>()
                               .updateShopPlan(data, shopPlan.id);
+
+
+                          //オプション用checkedListをチェック -> option_planに反映
+                          Map<String, dynamic> map = {};
+                          map['shop_id'] = Shop.me.id;
+                          map['shop_plan_id'] = shopPlan.id;
+                          map['checked_options'] = [];
+
+                          List<int> selectedOptinId = [];
+                          checkedList.forEach((optionId, isSelected) {
+                            if(isSelected == true){
+                              selectedOptinId.add(optionId);
+                            }
+                          });
+                          map['checked_options'] = selectedOptinId.join(",");
+                          context.read<ShopPlanNotifier>().updatePlanMatrix(map);
+
                         }
                         Navigator.of(context).pop();
                       },
