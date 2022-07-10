@@ -186,7 +186,7 @@ class DashBoard extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => OrderDetail()));
+                              builder: (context) => OrderDetail(order: Order(),)));
                     },
                     child: Text("chat"),
                   ),
@@ -198,7 +198,7 @@ class DashBoard extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => OrderDetail()));
+                              builder: (context) => OrderDetail(order: Order(),)));
                     },
                     child: Text("chat"),
                   ),

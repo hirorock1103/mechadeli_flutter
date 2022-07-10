@@ -56,6 +56,13 @@ class _$ApiShopClient extends ApiShopClient {
   }
 
   @override
+  Future<Response<dynamic>> getOrderChildListByOrderId(int orderId) {
+    final $url = '/shop/getOrderChildListByOrderId/${orderId}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
   Future<Response<dynamic>> getShopPlanListByShopId(int shopId) {
     final $url = '/shop/getShopPlanListByShopId/${shopId}';
     final $request = Request('GET', $url, client.baseUrl);

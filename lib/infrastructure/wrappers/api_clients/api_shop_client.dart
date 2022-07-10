@@ -32,6 +32,11 @@ abstract class ApiShopClient extends ChopperService {
       @Query() int shop_id,
       // @Path('id') int shopId,
       );
+  @Get(path: '/shop/getOrderChildListByOrderId/{id}')
+  Future<Response> getOrderChildListByOrderId(
+      // @Query() int shop_id,
+      @Path('id') int orderId,
+      );
   @Get(path: '/shop/getShopPlanListByShopId/{id}')
   Future<Response> getShopPlanListByShopId(
     // @Query() int client_id,

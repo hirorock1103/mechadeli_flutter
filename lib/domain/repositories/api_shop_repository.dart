@@ -1,6 +1,7 @@
 
 import 'package:mechadeli_flutter/domain/entities/data_list.dart';
 import 'package:mechadeli_flutter/domain/entities/notice.dart';
+import 'package:mechadeli_flutter/domain/entities/order_child.dart';
 import 'package:mechadeli_flutter/domain/entities/plan_matrix.dart';
 import 'package:mechadeli_flutter/domain/entities/sub_category.dart';
 
@@ -35,4 +36,5 @@ abstract class ApiShopRepository {
   Future<List<PlanMatrix>?> updatePlanMatrix(Map<String, dynamic> data);
   //order
   Future<List<Order>> getOrderListByShopId(int shopId);
+  Future<List<OrderChild>> getOrderChildListByOrderId(int orderId);
 }

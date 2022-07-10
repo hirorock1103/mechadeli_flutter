@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-enum MechadeliFlow { preContact, inContact, confirmRequest, scheduleOK, finishWork, cancel }
+enum MechadeliFlow { test, preContact, inContact, confirmRequest, scheduleOK, finishWork, cancel }
 //予約 (2)
 // 連絡中 (0)
 // 日程確定 (0)
@@ -11,12 +11,13 @@ enum MechadeliFlow { preContact, inContact, confirmRequest, scheduleOK, finishWo
 // キャンセル (0)
 
 Map<dynamic, dynamic> MechadeliFlowContents = {
-  MechadeliFlow.preContact : { "id" : 1, "title":"予約" },
-  MechadeliFlow.inContact : {"id": 2, "title": "連絡中"},
-  MechadeliFlow.confirmRequest : {"id": 3, "title": "確認依頼"},
-  MechadeliFlow.scheduleOK : {"id": 4, "title": "日程確定"},
-  MechadeliFlow.finishWork : {"id": 5, "title": "作業完了"},
-  MechadeliFlow.cancel : {"id": 6, "title": "キャンセル"},
+  MechadeliFlow.test : { "id" : 0, "title":"未設定", "msg":"msg"},
+  MechadeliFlow.preContact : { "id" : 1, "title":"予約", "msg":"msg"},
+  MechadeliFlow.inContact : {"id": 2, "title": "連絡中", "msg":"現在連絡中です。やり取りを通じて内容の決定をお願いします。"},
+  MechadeliFlow.confirmRequest : {"id": 3, "title": "確認依頼", "msg":"内容の確認をお願いします"},
+  MechadeliFlow.scheduleOK : {"id": 4, "title": "日程確定", "msg":"日程が確定しました。"},
+  MechadeliFlow.finishWork : {"id": 5, "title": "作業完了", "msg":"作業が終了しました"},
+  MechadeliFlow.cancel : {"id": 6, "title": "キャンセル", "msg":"キャンセルになった申し込みです"},
 };
 
 

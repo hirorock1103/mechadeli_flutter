@@ -11,6 +11,7 @@ import '../../../common/enum.dart';
 import '../../../widgets/common/layout/my_card.dart';
 import '../../../widgets/common/layout/my_table.dart';
 import '../../../widgets/common/titles/h1_title.dart';
+import '../../shop_page/order_detail/order_detail.dart';
 import '../widgets/app_bar.dart';
 import '../widgets/drawer.dart';
 import '../widgets/side_navi.dart';
@@ -18,7 +19,6 @@ import '../widgets/side_navi2.dart';
 import 'schedule_notifier.dart';
 
 class Schedule extends StatelessWidget {
-  PageController page = PageController();
 
   static Widget wrapped() {
     return MultiProvider(
@@ -121,7 +121,6 @@ class Schedule extends StatelessWidget {
                           ),
                           ElevatedButton(
                               onPressed: () {
-                                //別画面へ遷移(オーダー詳細)
 
                               },
                               child: Row(
@@ -168,57 +167,62 @@ class Schedule extends StatelessWidget {
                     itemCount: orderlist.length,
                     itemBuilder: (BuildContext context, int index) {
                       return InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_){ return OrderDetail.wrapped(orderlist[index]); }));
+                        },
                         child: Card(
                           elevation: 5,
-                          child: ListTile(
-                            title: Wrap(children: [
-                              Container(
-                                child: Text(
-                                  "日程確認中",
-                                  style: TextStyle(fontSize: 12),
-                                ),
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 5, vertical: 5),
-                                decoration: BoxDecoration(
-                                    color: Colors.lime.shade500,
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(color: Colors.lime)),
-                              ),
-                              Container(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListTile(
+                              title: Wrap(children: [
+                                Container(
+                                  child: Text(
+                                    "日程確認中",
+                                    style: TextStyle(fontSize: 12),
+                                  ),
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 5, vertical: 5),
-                                  child: Text("プラン：俺だけのスペシャルプラン"))
-                            ]),
-                            subtitle: Container(
-                              margin: EdgeInsets.only(top: 10),
-                              child: Wrap(
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(Icons.schedule),
-                                      Text("2022/05/01"),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(Icons.person),
-                                      Text(orderlist[index].user_last_name),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(Icons.pin_drop),
-                                      Text(orderlist[index].address),
-                                    ],
-                                  )
-                                ],
+                                  decoration: BoxDecoration(
+                                      color: Colors.lime.shade500,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(color: Colors.lime)),
+                                ),
+                                Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 5, vertical: 5),
+                                    child: Text("プラン：俺だけのスペシャルプラン"))
+                              ]),
+                              subtitle: Container(
+                                margin: EdgeInsets.only(top: 10),
+                                child: Wrap(
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(Icons.schedule),
+                                        Text("2022/05/01"),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(Icons.person),
+                                        Text(orderlist[index].user_last_name),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(Icons.pin_drop),
+                                        Text(orderlist[index].address),
+                                      ],
+                                    )
+                                  ],
+                                ),
                               ),
+                              trailing: Icon(Icons.arrow_forward_ios_rounded),
                             ),
-                            trailing: Icon(Icons.arrow_forward_ios_rounded),
                           ),
                         ),
                       );
