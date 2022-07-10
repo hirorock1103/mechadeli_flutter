@@ -2,6 +2,7 @@ import 'package:chopper/chopper.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' show MultipartFile;
 import 'package:mechadeli_flutter/common/enum.dart';
+import 'package:mechadeli_flutter/domain/entities/order.dart';
 import 'package:mechadeli_flutter/domain/entities/plan_matrix.dart';
 import 'package:mechadeli_flutter/domain/entities/shop_plan.dart';
 import 'package:mechadeli_flutter/domain/entities/sub_category.dart';
@@ -377,6 +378,36 @@ class ApiShopRepositoryImpl implements ApiShopRepository {
       print(e);
     }
 
+
+    return list;
+  }
+
+  @override
+  Future<List<Order>> getOrderListByShopId(int shopId) async{
+    List<Order> list = [];
+
+    Map<String, dynamic> data = {};
+
+    try{
+      final response = await _apiClient.getOrderListByShopId(shopId);
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          final dataList = DataList.fromJson(result.data);
+          final orders= dataList.data.map((e) {
+            var order = Order.fromJson(e);
+            return order;
+          });
+          list = orders.toList();
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
 
     return list;
   }

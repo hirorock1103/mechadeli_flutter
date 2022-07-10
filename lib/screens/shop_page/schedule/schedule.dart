@@ -1,23 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
-import 'package:mechadeli_flutter/screens/admin_page/shop_detail/shop_detail.dart';
+import 'package:mechadeli_flutter/domain/entities/order.dart';
+import 'package:mechadeli_flutter/widgets/common/forms/my_text_edit_with_title.dart';
 import 'package:mechadeli_flutter/widgets/common/titles/page_title.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/constants.dart';
 import '../../../common/enum.dart';
-import '../../../domain/notifiers/app_notifier.dart';
 import '../../../widgets/common/layout/my_card.dart';
 import '../../../widgets/common/layout/my_table.dart';
 import '../../../widgets/common/titles/h1_title.dart';
 import '../widgets/app_bar.dart';
 import '../widgets/drawer.dart';
 import '../widgets/side_navi.dart';
+import '../widgets/side_navi2.dart';
 import 'schedule_notifier.dart';
 
 class Schedule extends StatelessWidget {
   PageController page = PageController();
+
   static Widget wrapped() {
     return MultiProvider(
       providers: [
@@ -35,132 +37,197 @@ class Schedule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //get data
+    context.read<ScheduleNotifier>().getOrderList();
 
     ///ここから共通
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       drawer: UserDrawer(),
-      appBar: UserAppBar( title: "test",size: size, ),
+      appBar: UserAppBar(
+        title: "ショップページ",
+        size: size,
+      ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,//navigation,main contents上部設定
+        crossAxisAlignment: CrossAxisAlignment.start,
+        //navigation,main contents上部設定
         children: [
-          size.width > AppConstant.tabletMaxSize ? Container(child: Text("test"),width: 200,) : SideNavgation(),
+          size.width > AppConstant.tabletMaxSize
+              ? SideNavgation2()
+              : SideNavgation(),
           Expanded(
             child: buildContents(context),
           ),
         ],
       ),
     );
+
     ///ここまで共通
-
   }
 
-  Widget buildContents(BuildContext context){
+  Widget buildContents(BuildContext context) {
+    //初期化
+    String selectedItem = "1";
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          PageTitle(title: "予約一覧"),
+          // Builder(builder: (context) {
+          StatefulBuilder(builder: (context, _setState) {
+            //controller
+            TextEditingController customerNameController =
+                TextEditingController();
+            TextEditingController addressController = TextEditingController();
+            //selectedItem
 
-    return
-      SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            PageTitle(title: "予約一覧"),
-            Builder(builder: (context) {
-              //watch selected flow
-              MechadeliFlow selectedFlow =
-                  context.select((ScheduleState state) => state).currentFlow;
-              //button list
-              List<Widget> list = MechadeliFlow.values
-                  .map((e) => Container(
-                margin: EdgeInsets.all(5),
-                child: ElevatedButton(
-                    style: selectedFlow == e
-                        ? ButtonStyle(
-                        backgroundColor:
-                        MaterialStateProperty.all(Colors.blue))
-                        : null,
-                    onPressed: () {
-                      context.read<ScheduleNotifier>().selectFlow(e);
-                    },
-                    child: Text(
-                        MechadeliFlowContents[e]['title'].toString())),
-              ))
-                  .toList();
+            //button list
+            List<DropdownMenuItem<String>> menu = MechadeliFlow.values
+                .map((e) => DropdownMenuItem(
+                      child: Text(MechadeliFlowContents[e]['title'].toString()),
+                      value: MechadeliFlowContents[e]['id'].toString(),
+                    ))
+                .toList();
+            menu.insert(
+              0,
+              DropdownMenuItem(child: Text("ステータスを選択してください"), value: "0"),
+            );
 
-              return MyCard(
-                contents: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    H1Title(title: "予約状況"),
-                    Wrap(
-                      children: list,
-                    ),
-                  ],
-                ),
-              );
-            }),
-            MyCard(
-                contents: Column(
-                  children: [
-                    H1Title(title: "予約一覧"),
-                    MyTable(
-                      columnWidths: {
-                        0 : FlexColumnWidth(1),
-                        1 : FlexColumnWidth(2)
-                      },
-                      rowList: [
-                        TableRow(children: [
+            return MyCard(
+              contents: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  H1Title(title: "予約状況"),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "ステータス",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Row(
+                        children: [
                           Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("受信日時"),
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: DropdownButton(
+                                value: selectedItem,
+                                items: menu,
+                                onChanged: (value) {
+                                  _setState(() {
+                                    selectedItem = value.toString();
+                                  });
+                                }),
                           ),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("メッセージ"),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("予約ID"),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("room"),
-                          ),
-                        ]),
-                        TableRow(children: [
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("受信日時"),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("メッセージ"),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: Text("予約ID"),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            child: ElevatedButton(
+                          ElevatedButton(
                               onPressed: () {
-                                // page.jumpToPage(1);
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) => TalkRoom()));
+                                //別画面へ遷移(オーダー詳細)
+
                               },
-                              child: Text("chat room"),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [Icon(Icons.search), Text("絞り込み")],
+                              )),
+                        ],
+                      ),
+                    ],
+                  ),
+                  // Row(
+                  //   children: [
+                  //     Expanded(
+                  //         child: MyTextEditWithTitle(
+                  //             hintText: "",
+                  //             title: "顧客名",
+                  //             controller: customerNameController)),
+                  //     SizedBox(
+                  //       width: 10,
+                  //     ),
+                  //     Expanded(
+                  //         child: MyTextEditWithTitle(
+                  //             hintText: "",
+                  //             title: "都道府県",
+                  //             controller: addressController))
+                  //   ],
+                  // ),
+                ],
+              ),
+            );
+          }),
+          Builder(builder: (context) {
+            Size size = MediaQuery.of(context).size;
+
+            List<Order> orderlist =
+                context.select((ScheduleState state) => state).orderList;
+
+            return MyCard(
+                contents: Column(
+              children: [
+                H1Title(title: "予約一覧"),
+                ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: orderlist.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return InkWell(
+                        onTap: () {},
+                        child: Card(
+                          elevation: 5,
+                          child: ListTile(
+                            title: Wrap(children: [
+                              Container(
+                                child: Text(
+                                  "日程確認中",
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 5, vertical: 5),
+                                decoration: BoxDecoration(
+                                    color: Colors.lime.shade500,
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(color: Colors.lime)),
+                              ),
+                              Container(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 5, vertical: 5),
+                                  child: Text("プラン：俺だけのスペシャルプラン"))
+                            ]),
+                            subtitle: Container(
+                              margin: EdgeInsets.only(top: 10),
+                              child: Wrap(
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(Icons.schedule),
+                                      Text("2022/05/01"),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(Icons.person),
+                                      Text(orderlist[index].user_last_name),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(Icons.pin_drop),
+                                      Text(orderlist[index].address),
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
+                            trailing: Icon(Icons.arrow_forward_ios_rounded),
                           ),
-                        ])
-                      ],
-                    ),
-                  ],
-                )),
-          ],
-        ),
-      );
-
+                        ),
+                      );
+                    })
+              ],
+            ));
+          }),
+        ],
+      ),
+    );
   }
-
 }

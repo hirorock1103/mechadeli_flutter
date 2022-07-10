@@ -17,10 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ShopPlanState {
   int get count => throw _privateConstructorUsedError;
-  bool get planDisplayStatus =>
-      throw _privateConstructorUsedError; // @Default(ApplyStatus.notYet) ApplyStatus applyStatus,
-// @Default(<Notice>[]) List<Notice> noticeList,
-// @Default(<Order>[]) List<Order> orderList,
+  bool get planDisplayStatus => throw _privateConstructorUsedError;
   List<ShopPlan> get shopPlanList => throw _privateConstructorUsedError;
   List<OptionPlan> get optionPlanList => throw _privateConstructorUsedError;
   List<SubCategory> get subCategoryList => throw _privateConstructorUsedError;
@@ -163,13 +160,7 @@ class _$_ShopPlanState with DiagnosticableTreeMixin implements _ShopPlanState {
   @override
   @JsonKey()
   final bool planDisplayStatus;
-// @Default(ApplyStatus.notYet) ApplyStatus applyStatus,
-// @Default(<Notice>[]) List<Notice> noticeList,
-// @Default(<Order>[]) List<Order> orderList,
   final List<ShopPlan> _shopPlanList;
-// @Default(ApplyStatus.notYet) ApplyStatus applyStatus,
-// @Default(<Notice>[]) List<Notice> noticeList,
-// @Default(<Order>[]) List<Order> orderList,
   @override
   @JsonKey()
   List<ShopPlan> get shopPlanList {
@@ -253,9 +244,7 @@ abstract class _ShopPlanState implements ShopPlanState {
   int get count => throw _privateConstructorUsedError;
   @override
   bool get planDisplayStatus => throw _privateConstructorUsedError;
-  @override // @Default(ApplyStatus.notYet) ApplyStatus applyStatus,
-// @Default(<Notice>[]) List<Notice> noticeList,
-// @Default(<Order>[]) List<Order> orderList,
+  @override
   List<ShopPlan> get shopPlanList => throw _privateConstructorUsedError;
   @override
   List<OptionPlan> get optionPlanList => throw _privateConstructorUsedError;

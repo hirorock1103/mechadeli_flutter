@@ -33,4 +33,6 @@ abstract class ApiShopRepository {
   Future<OptionPlan?> updateOptionPlan(Map<String, dynamic> data, int optionPlanId);
   //matrix
   Future<List<PlanMatrix>?> updatePlanMatrix(Map<String, dynamic> data);
+  //order
+  Future<List<Order>> getOrderListByShopId(int shopId);
 }

@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ScheduleState {
   int get count => throw _privateConstructorUsedError;
+  List<Order> get orderList => throw _privateConstructorUsedError;
   MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +30,7 @@ abstract class $ScheduleStateCopyWith<$Res> {
   factory $ScheduleStateCopyWith(
           ScheduleState value, $Res Function(ScheduleState) then) =
       _$ScheduleStateCopyWithImpl<$Res>;
-  $Res call({int count, MechadeliFlow currentFlow});
+  $Res call({int count, List<Order> orderList, MechadeliFlow currentFlow});
 }
 
 /// @nodoc
@@ -44,6 +45,7 @@ class _$ScheduleStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? count = freezed,
+    Object? orderList = freezed,
     Object? currentFlow = freezed,
   }) {
     return _then(_value.copyWith(
@@ -51,6 +53,10 @@ class _$ScheduleStateCopyWithImpl<$Res>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      orderList: orderList == freezed
+          ? _value.orderList
+          : orderList // ignore: cast_nullable_to_non_nullable
+              as List<Order>,
       currentFlow: currentFlow == freezed
           ? _value.currentFlow
           : currentFlow // ignore: cast_nullable_to_non_nullable
@@ -66,7 +72,7 @@ abstract class _$$_ScheduleStateCopyWith<$Res>
           _$_ScheduleState value, $Res Function(_$_ScheduleState) then) =
       __$$_ScheduleStateCopyWithImpl<$Res>;
   @override
-  $Res call({int count, MechadeliFlow currentFlow});
+  $Res call({int count, List<Order> orderList, MechadeliFlow currentFlow});
 }
 
 /// @nodoc
@@ -83,6 +89,7 @@ class __$$_ScheduleStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? count = freezed,
+    Object? orderList = freezed,
     Object? currentFlow = freezed,
   }) {
     return _then(_$_ScheduleState(
@@ -90,6 +97,10 @@ class __$$_ScheduleStateCopyWithImpl<$Res>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      orderList: orderList == freezed
+          ? _value._orderList
+          : orderList // ignore: cast_nullable_to_non_nullable
+              as List<Order>,
       currentFlow: currentFlow == freezed
           ? _value.currentFlow
           : currentFlow // ignore: cast_nullable_to_non_nullable
@@ -102,18 +113,29 @@ class __$$_ScheduleStateCopyWithImpl<$Res>
 
 class _$_ScheduleState with DiagnosticableTreeMixin implements _ScheduleState {
   const _$_ScheduleState(
-      {this.count = 0, this.currentFlow = MechadeliFlow.cancel});
+      {this.count = 0,
+      final List<Order> orderList = const <Order>[],
+      this.currentFlow = MechadeliFlow.cancel})
+      : _orderList = orderList;
 
   @override
   @JsonKey()
   final int count;
+  final List<Order> _orderList;
+  @override
+  @JsonKey()
+  List<Order> get orderList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_orderList);
+  }
+
   @override
   @JsonKey()
   final MechadeliFlow currentFlow;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ScheduleState(count: $count, currentFlow: $currentFlow)';
+    return 'ScheduleState(count: $count, orderList: $orderList, currentFlow: $currentFlow)';
   }
 
   @override
@@ -122,6 +144,7 @@ class _$_ScheduleState with DiagnosticableTreeMixin implements _ScheduleState {
     properties
       ..add(DiagnosticsProperty('type', 'ScheduleState'))
       ..add(DiagnosticsProperty('count', count))
+      ..add(DiagnosticsProperty('orderList', orderList))
       ..add(DiagnosticsProperty('currentFlow', currentFlow));
   }
 
@@ -132,6 +155,8 @@ class _$_ScheduleState with DiagnosticableTreeMixin implements _ScheduleState {
             other is _$_ScheduleState &&
             const DeepCollectionEquality().equals(other.count, count) &&
             const DeepCollectionEquality()
+                .equals(other._orderList, _orderList) &&
+            const DeepCollectionEquality()
                 .equals(other.currentFlow, currentFlow));
   }
 
@@ -139,6 +164,7 @@ class _$_ScheduleState with DiagnosticableTreeMixin implements _ScheduleState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(count),
+      const DeepCollectionEquality().hash(_orderList),
       const DeepCollectionEquality().hash(currentFlow));
 
   @JsonKey(ignore: true)
@@ -149,10 +175,14 @@ class _$_ScheduleState with DiagnosticableTreeMixin implements _ScheduleState {
 
 abstract class _ScheduleState implements ScheduleState {
   const factory _ScheduleState(
-      {final int count, final MechadeliFlow currentFlow}) = _$_ScheduleState;
+      {final int count,
+      final List<Order> orderList,
+      final MechadeliFlow currentFlow}) = _$_ScheduleState;
 
   @override
   int get count => throw _privateConstructorUsedError;
+  @override
+  List<Order> get orderList => throw _privateConstructorUsedError;
   @override
   MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
   @override

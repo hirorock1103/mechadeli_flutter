@@ -102,7 +102,7 @@ class ShopPlan extends StatelessWidget {
                 context.select((ShopPlanState state) => state).subCategoryList;
             List<DropdownMenuItem<int>> menu = subCategoryList.map((e) {
               return DropdownMenuItem(
-                child: Text(e.title + "(" + e.main_category_title + ")"),
+                child: Text(e.main_category_title + " (" + e.title + ")"),
                 value: e.id,
               );
             }).toList();
@@ -194,7 +194,7 @@ class ShopPlan extends StatelessWidget {
                 context.select((ShopPlanState state) => state).subCategoryList;
             List<DropdownMenuItem<int>> menu = subCategoryList.map((e) {
               return DropdownMenuItem(
-                child: Text(e.title + "(" + e.main_category_title + ")"),
+                child: Text(e.main_category_title + " (" + e.title + ")"),
                 value: e.id,
               );
             }).toList();
