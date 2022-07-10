@@ -48,6 +48,7 @@ class ScheduleNotifier extends StateNotifier<ScheduleState> with LocatorMixin {
 
     print("getOrderList");
     int shopId = Shop.me.id;
+    print(shopId.toString());
     List<Order> list = await context.read<ApiShopRepository>().getOrderListByShopId(shopId);
     print(list);
     state = state.copyWith(orderList: list);

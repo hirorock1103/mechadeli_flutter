@@ -31,7 +31,9 @@ class OrderDetail extends StatelessWidget {
           ),
         )
       ],
-      child: OrderDetail(order: order,),
+      child: OrderDetail(
+        order: order,
+      ),
     );
   }
 
@@ -109,43 +111,90 @@ class OrderDetail extends StatelessWidget {
               H1Title(
                 title: "ご依頼詳細",
               ),
-              Builder(
-                builder: (context) {
-                  List<OrderChild> orderChildList = context.select((OrderDetailState state) => state).orderChildList;
-                  List<String> mainPlanList=[];
-                  List<String> optionPlanList=[];
-                  for (var child in orderChildList) {
-                    if(child.type == 0){
-                      mainPlanList.add( child.shop_plan_title_current + " ("+ child.price.toString()+"円)" );
-                    }else{
-                      optionPlanList.add( child.option_plan_title_current + " ("+ child.price.toString()+"円)" );
-                    }
+              Builder(builder: (context) {
+                List<OrderChild> orderChildList = context
+                    .select((OrderDetailState state) => state)
+                    .orderChildList;
+                List<String> mainPlanList = [];
+                List<String> optionPlanList = [];
+                for (var child in orderChildList) {
+                  if (child.type == 0) {
+                    mainPlanList.add(child.shop_plan_title_current +
+                        " (" +
+                        child.price.toString() +
+                        "円)");
+                  } else {
+                    optionPlanList.add(child.option_plan_title_current +
+                        " (" +
+                        child.price.toString() +
+                        "円)");
                   }
-
-                  String mainPlanText = mainPlanList.join("\n");
-                  String optionPlanText = optionPlanList.join("\n");
-                  return MyTable(
-                    columnWidths: {0: FlexColumnWidth(1), 1: FlexColumnWidth(2)},
-                    rowList: [
-                      buildTableRowByMap( titles: {"th":"予約作成日時", "td":order.created_at}),
-                      buildTableRowByMap( titles: {"th":"店舗", "td":order.shop_name}),
-                      buildTableRowByMap( titles: {"th":"顧客名", "td":order.user_last_name + order.user_first_name}, ontap: (){print("test"); }  ),
-                      buildTableRowByMap( titles: {"th":"住所", "td":order.address}),
-                      buildTableRowByMap( titles: {"th":"合計", "td":order.created_at}),
-                      buildTableRowByMap( titles: {"th":"メインプラン", "td":mainPlanText}, ontap: (){print("test"); } ),
-                      buildTableRowByMap( titles: {"th":"オプションプラン", "td":optionPlanText}, ontap: (){print("test"); } ),
-                      buildTableRowByMap( titles: {"th":"税込合計", "td":order.created_at}),
-                      buildTableRowByMap( titles: {"th":"予約作成日時", "td":order.created_at}),
-                      buildTableRowByMap( titles: {"th":"予約作成日時", "td":order.created_at}),
-                    ],
-                  );
                 }
-              ),
+
+                String mainPlanText = mainPlanList.join("\n");
+                String optionPlanText = optionPlanList.join("\n");
+                return MyTable(
+                  columnWidths: {0: FlexColumnWidth(1), 1: FlexColumnWidth(2)},
+                  rowList: [
+                    buildTableRowByMap(
+                        titles: {"th": "予約作成日時", "td": order.created_at}),
+                    buildTableRowByMap(
+                        titles: {"th": "店舗", "td": order.shop_name}),
+                    buildTableRowByMap(
+                        titles: {
+                          "th": "顧客名",
+                          "td": order.user_last_name + order.user_first_name
+                        },
+                        ontap: () async{
+
+                          //ユーザー情報の取得
+
+                          //ダイアログ表示
+                          showDialog(
+                              context: context,
+                              builder: (_) {
+                                return AlertDialog(
+                                  title: Text("顧客詳細情報"),
+                                  content: MyTable(
+                                    columnWidths: {
+                                      0 : FlexColumnWidth(1),
+                                      2 : FlexColumnWidth(1),
+                                    },
+                                    rowList: [
+                                      buildTableRowByMap(titles: { "th":  "test", "td" : "test" }),
+                                      buildTableRowByMap(titles: { "th":  "test", "td" : "test" }),
+                                    ],
+                                  ),
+                                );
+                              });
+                        }),
+                    buildTableRowByMap(
+                        titles: {"th": "住所", "td": order.address}),
+                    buildTableRowByMap(
+                        titles: {"th": "合計", "td": order.created_at}),
+                    buildTableRowByMap(
+                        titles: {"th": "メインプラン", "td": mainPlanText},
+                        ontap: () {
+                          print("test");
+                        }),
+                    buildTableRowByMap(
+                        titles: {"th": "オプションプラン", "td": optionPlanText},
+                        ontap: () {
+                          print("test");
+                        }),
+                    buildTableRowByMap(
+                        titles: {"th": "税込合計", "td": order.created_at}),
+                    buildTableRowByMap(
+                        titles: {"th": "予約作成日時", "td": order.created_at}),
+                    buildTableRowByMap(
+                        titles: {"th": "予約作成日時", "td": order.created_at}),
+                  ],
+                );
+              }),
             ],
           )),
         ],
       ),
     );
   }
-
 }
