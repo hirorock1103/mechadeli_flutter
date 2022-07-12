@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$OrderDetailState {
   int get count => throw _privateConstructorUsedError;
+  Order get order => throw _privateConstructorUsedError;
   List<Order> get orderList => throw _privateConstructorUsedError;
   List<OrderChild> get orderChildList => throw _privateConstructorUsedError;
   MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
@@ -33,9 +34,12 @@ abstract class $OrderDetailStateCopyWith<$Res> {
       _$OrderDetailStateCopyWithImpl<$Res>;
   $Res call(
       {int count,
+      Order order,
       List<Order> orderList,
       List<OrderChild> orderChildList,
       MechadeliFlow currentFlow});
+
+  $OrderCopyWith<$Res> get order;
 }
 
 /// @nodoc
@@ -50,6 +54,7 @@ class _$OrderDetailStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? count = freezed,
+    Object? order = freezed,
     Object? orderList = freezed,
     Object? orderChildList = freezed,
     Object? currentFlow = freezed,
@@ -59,6 +64,10 @@ class _$OrderDetailStateCopyWithImpl<$Res>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      order: order == freezed
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as Order,
       orderList: orderList == freezed
           ? _value.orderList
           : orderList // ignore: cast_nullable_to_non_nullable
@@ -73,6 +82,13 @@ class _$OrderDetailStateCopyWithImpl<$Res>
               as MechadeliFlow,
     ));
   }
+
+  @override
+  $OrderCopyWith<$Res> get order {
+    return $OrderCopyWith<$Res>(_value.order, (value) {
+      return _then(_value.copyWith(order: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -84,9 +100,13 @@ abstract class _$$_OrderDetailStateCopyWith<$Res>
   @override
   $Res call(
       {int count,
+      Order order,
       List<Order> orderList,
       List<OrderChild> orderChildList,
       MechadeliFlow currentFlow});
+
+  @override
+  $OrderCopyWith<$Res> get order;
 }
 
 /// @nodoc
@@ -103,6 +123,7 @@ class __$$_OrderDetailStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? count = freezed,
+    Object? order = freezed,
     Object? orderList = freezed,
     Object? orderChildList = freezed,
     Object? currentFlow = freezed,
@@ -112,6 +133,10 @@ class __$$_OrderDetailStateCopyWithImpl<$Res>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      order: order == freezed
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as Order,
       orderList: orderList == freezed
           ? _value._orderList
           : orderList // ignore: cast_nullable_to_non_nullable
@@ -135,6 +160,7 @@ class _$_OrderDetailState
     implements _OrderDetailState {
   const _$_OrderDetailState(
       {this.count = 0,
+      required this.order,
       final List<Order> orderList = const <Order>[],
       final List<OrderChild> orderChildList = const <OrderChild>[],
       this.currentFlow = MechadeliFlow.cancel})
@@ -144,6 +170,8 @@ class _$_OrderDetailState
   @override
   @JsonKey()
   final int count;
+  @override
+  final Order order;
   final List<Order> _orderList;
   @override
   @JsonKey()
@@ -166,7 +194,7 @@ class _$_OrderDetailState
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'OrderDetailState(count: $count, orderList: $orderList, orderChildList: $orderChildList, currentFlow: $currentFlow)';
+    return 'OrderDetailState(count: $count, order: $order, orderList: $orderList, orderChildList: $orderChildList, currentFlow: $currentFlow)';
   }
 
   @override
@@ -175,6 +203,7 @@ class _$_OrderDetailState
     properties
       ..add(DiagnosticsProperty('type', 'OrderDetailState'))
       ..add(DiagnosticsProperty('count', count))
+      ..add(DiagnosticsProperty('order', order))
       ..add(DiagnosticsProperty('orderList', orderList))
       ..add(DiagnosticsProperty('orderChildList', orderChildList))
       ..add(DiagnosticsProperty('currentFlow', currentFlow));
@@ -186,6 +215,7 @@ class _$_OrderDetailState
         (other.runtimeType == runtimeType &&
             other is _$_OrderDetailState &&
             const DeepCollectionEquality().equals(other.count, count) &&
+            const DeepCollectionEquality().equals(other.order, order) &&
             const DeepCollectionEquality()
                 .equals(other._orderList, _orderList) &&
             const DeepCollectionEquality()
@@ -198,6 +228,7 @@ class _$_OrderDetailState
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(count),
+      const DeepCollectionEquality().hash(order),
       const DeepCollectionEquality().hash(_orderList),
       const DeepCollectionEquality().hash(_orderChildList),
       const DeepCollectionEquality().hash(currentFlow));
@@ -211,12 +242,15 @@ class _$_OrderDetailState
 abstract class _OrderDetailState implements OrderDetailState {
   const factory _OrderDetailState(
       {final int count,
+      required final Order order,
       final List<Order> orderList,
       final List<OrderChild> orderChildList,
       final MechadeliFlow currentFlow}) = _$_OrderDetailState;
 
   @override
   int get count => throw _privateConstructorUsedError;
+  @override
+  Order get order => throw _privateConstructorUsedError;
   @override
   List<Order> get orderList => throw _privateConstructorUsedError;
   @override

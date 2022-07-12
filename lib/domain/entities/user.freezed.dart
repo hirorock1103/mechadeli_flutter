@@ -24,10 +24,9 @@ mixin _$User {
   String get first_name => throw _privateConstructorUsedError;
   String get last_name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  String get user_code => throw _privateConstructorUsedError;
-  String get navigator_image => throw _privateConstructorUsedError;
-  String get user_number => throw _privateConstructorUsedError;
-  int get use_license_count => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,10 +42,9 @@ abstract class $UserCopyWith<$Res> {
       String first_name,
       String last_name,
       String email,
-      String user_code,
-      String navigator_image,
-      String user_number,
-      int use_license_count});
+      String address,
+      String phone,
+      String password});
 }
 
 /// @nodoc
@@ -63,10 +61,9 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? first_name = freezed,
     Object? last_name = freezed,
     Object? email = freezed,
-    Object? user_code = freezed,
-    Object? navigator_image = freezed,
-    Object? user_number = freezed,
-    Object? use_license_count = freezed,
+    Object? address = freezed,
+    Object? phone = freezed,
+    Object? password = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -85,22 +82,18 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      user_code: user_code == freezed
-          ? _value.user_code
-          : user_code // ignore: cast_nullable_to_non_nullable
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String,
-      navigator_image: navigator_image == freezed
-          ? _value.navigator_image
-          : navigator_image // ignore: cast_nullable_to_non_nullable
+      phone: phone == freezed
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      user_number: user_number == freezed
-          ? _value.user_number
-          : user_number // ignore: cast_nullable_to_non_nullable
+      password: password == freezed
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
               as String,
-      use_license_count: use_license_count == freezed
-          ? _value.use_license_count
-          : use_license_count // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -115,10 +108,9 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String first_name,
       String last_name,
       String email,
-      String user_code,
-      String navigator_image,
-      String user_number,
-      int use_license_count});
+      String address,
+      String phone,
+      String password});
 }
 
 /// @nodoc
@@ -136,10 +128,9 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? first_name = freezed,
     Object? last_name = freezed,
     Object? email = freezed,
-    Object? user_code = freezed,
-    Object? navigator_image = freezed,
-    Object? user_number = freezed,
-    Object? use_license_count = freezed,
+    Object? address = freezed,
+    Object? phone = freezed,
+    Object? password = freezed,
   }) {
     return _then(_$_User(
       id: id == freezed
@@ -158,22 +149,18 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      user_code: user_code == freezed
-          ? _value.user_code
-          : user_code // ignore: cast_nullable_to_non_nullable
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String,
-      navigator_image: navigator_image == freezed
-          ? _value.navigator_image
-          : navigator_image // ignore: cast_nullable_to_non_nullable
+      phone: phone == freezed
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      user_number: user_number == freezed
-          ? _value.user_number
-          : user_number // ignore: cast_nullable_to_non_nullable
+      password: password == freezed
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
               as String,
-      use_license_count: use_license_count == freezed
-          ? _value.use_license_count
-          : use_license_count // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -186,10 +173,9 @@ class _$_User extends _User {
       this.first_name = '',
       this.last_name = '',
       this.email = '',
-      this.user_code = '',
-      this.navigator_image = '',
-      this.user_number = '',
-      this.use_license_count = 0})
+      this.address = '',
+      this.phone = '',
+      this.password = ''})
       : super._();
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
@@ -208,20 +194,17 @@ class _$_User extends _User {
   final String email;
   @override
   @JsonKey()
-  final String user_code;
+  final String address;
   @override
   @JsonKey()
-  final String navigator_image;
+  final String phone;
   @override
   @JsonKey()
-  final String user_number;
-  @override
-  @JsonKey()
-  final int use_license_count;
+  final String password;
 
   @override
   String toString() {
-    return 'User(id: $id, first_name: $first_name, last_name: $last_name, email: $email, user_code: $user_code, navigator_image: $navigator_image, user_number: $user_number, use_license_count: $use_license_count)';
+    return 'User(id: $id, first_name: $first_name, last_name: $last_name, email: $email, address: $address, phone: $phone, password: $password)';
   }
 
   @override
@@ -234,13 +217,9 @@ class _$_User extends _User {
                 .equals(other.first_name, first_name) &&
             const DeepCollectionEquality().equals(other.last_name, last_name) &&
             const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.user_code, user_code) &&
-            const DeepCollectionEquality()
-                .equals(other.navigator_image, navigator_image) &&
-            const DeepCollectionEquality()
-                .equals(other.user_number, user_number) &&
-            const DeepCollectionEquality()
-                .equals(other.use_license_count, use_license_count));
+            const DeepCollectionEquality().equals(other.address, address) &&
+            const DeepCollectionEquality().equals(other.phone, phone) &&
+            const DeepCollectionEquality().equals(other.password, password));
   }
 
   @JsonKey(ignore: true)
@@ -251,10 +230,9 @@ class _$_User extends _User {
       const DeepCollectionEquality().hash(first_name),
       const DeepCollectionEquality().hash(last_name),
       const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(user_code),
-      const DeepCollectionEquality().hash(navigator_image),
-      const DeepCollectionEquality().hash(user_number),
-      const DeepCollectionEquality().hash(use_license_count));
+      const DeepCollectionEquality().hash(address),
+      const DeepCollectionEquality().hash(phone),
+      const DeepCollectionEquality().hash(password));
 
   @JsonKey(ignore: true)
   @override
@@ -273,10 +251,9 @@ abstract class _User extends User {
       final String first_name,
       final String last_name,
       final String email,
-      final String user_code,
-      final String navigator_image,
-      final String user_number,
-      final int use_license_count}) = _$_User;
+      final String address,
+      final String phone,
+      final String password}) = _$_User;
   _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
@@ -290,13 +267,11 @@ abstract class _User extends User {
   @override
   String get email => throw _privateConstructorUsedError;
   @override
-  String get user_code => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
   @override
-  String get navigator_image => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
   @override
-  String get user_number => throw _privateConstructorUsedError;
-  @override
-  int get use_license_count => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

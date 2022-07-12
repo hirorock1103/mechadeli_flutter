@@ -10,10 +10,9 @@ class User with _$User {
     @Default('') String first_name,
     @Default('') String last_name,
     @Default('') String email,
-    @Default('') String user_code,
-    @Default('') String navigator_image,
-    @Default('') String user_number,
-    @Default(0) int use_license_count,
+    @Default('') String address,
+    @Default('') String phone,
+    @Default('') String password,
 
 
   }) = _User;

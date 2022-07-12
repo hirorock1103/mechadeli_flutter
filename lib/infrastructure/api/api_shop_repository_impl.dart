@@ -7,6 +7,7 @@ import 'package:mechadeli_flutter/domain/entities/order_child.dart';
 import 'package:mechadeli_flutter/domain/entities/plan_matrix.dart';
 import 'package:mechadeli_flutter/domain/entities/shop_plan.dart';
 import 'package:mechadeli_flutter/domain/entities/sub_category.dart';
+import 'package:mechadeli_flutter/domain/entities/user.dart';
 import 'package:mechadeli_flutter/infrastructure/wrappers/api_clients/header_interceptor.dart';
 
 import '../../domain/entities/array_response.dart';
@@ -441,6 +442,140 @@ class ApiShopRepositoryImpl implements ApiShopRepository {
     }
 
     return list;
+  }
+
+  @override
+  Future<User?> getUserById(int userId) async{
+
+    User user = User();
+
+    try{
+      final response = await _apiClient.getUserByUserId(userId);
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          user = User.fromJson(result.data);
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+
+    return user;
+  }
+
+  @override
+  Future<List<User>?> getUsersByShopId(int shopId) async{
+    List<User> list = [];
+
+    Map<String, dynamic> data = {};
+
+    try{
+      final response = await _apiClient.getUserListByShopId(shopId);
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          final dataList = DataList.fromJson(result.data);
+          final users= dataList.data.map((e) {
+            var user = User.fromJson(e);
+            return user;
+          });
+          list = users.toList();
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+
+    return list;
+  }
+
+  @override
+  Future<Order?> updateOrder(Map<String, dynamic> data, int orderId) async{
+    Order order = Order();
+
+    try{
+      final response = await _apiClient.updateOrder(data, orderId);
+      print(response.body);
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          order = Order.fromJson(result.data);
+          print("update order!");
+          print(order);
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+
+    return order;
+  }
+
+  @override
+  Future<List<OrderChild>?> updateOrderPlans(Map<String, dynamic> data, int orderId) async{
+
+    List<OrderChild> list = [];
+
+    try{
+      final response = await _apiClient.updateOrderPlans(data, orderId);
+      print(response.body);
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          final dataList = DataList.fromJson(result.data);
+          final childs= dataList.data.map((e) {
+            var child = OrderChild.fromJson(e);
+            return child;
+          });
+          list = childs.toList();
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+
+    return list;
+  }
+
+  @override
+  Future<Order?> getOrder(int orderId) async{
+    Order order = Order();
+
+    try{
+      final response = await _apiClient.getOrder(orderId);
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          order = Order.fromJson(result.data);
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+
+    return order;
+
   }
 
 

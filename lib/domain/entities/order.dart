@@ -20,10 +20,13 @@ class Order with _$Order {
     @Default('') String post_number,
     @Default('') String address,
     @Default('') String phone,
-    @Default('') String first_name,
-    @Default('') String last_name,
+    // @Default('') String first_name,
+    // @Default('') String last_name,
     @Default('') String user_first_name,
     @Default('') String user_last_name,
+    @Default('') String main_shop_plan_title,//動的に作成取得
+    @Default(0) int main_shop_plan_id,//動的に作成取得
+    // @Default(0) int main_shop_plan_order_child_id,//動的に作成取得
     // @Default('') String sub_total,
     @Default(0) int sub_total,
     @Default(0) int tax,

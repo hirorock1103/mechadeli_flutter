@@ -26,6 +26,13 @@ abstract class ApiShopClient extends ChopperService {
       // @Path('id') int shopId,
       );
 
+  //order
+  @Get(path: '/shop/getOrder/{id}')
+  Future<Response> getOrder(
+      // @Query() int client_id,
+      @Path('id') int orderId,
+      );
+
   //shop plan
   @Get(path: '/shop/getOrderList')
   Future<Response> getOrderListByShopId(
@@ -76,5 +83,27 @@ abstract class ApiShopClient extends ChopperService {
   Future<Response> updateOptionPlan(
       @Body() Map<String, dynamic> data,
       @Path('id') int optionPlanId,
+      );
+  @Post(path: '/shop/updateOrder/{id}')
+  Future<Response> updateOrder(
+      @Body() Map<String, dynamic> data,
+      @Path('id') int orderId,
+      );
+  @Post(path: '/shop/updateOrderPlans/{id}')
+  Future<Response> updateOrderPlans(
+      @Body() Map<String, dynamic> data,
+      @Path('id') int orderId,
+      );
+  //users
+
+  @Get(path: '/shop/getUserList')
+  Future<Response> getUserListByShopId(
+      @Query() int shop_id,
+      // @Path('id') int shopId,
+      );
+  @Get(path: '/shop/getUserByUserId/{id}')
+  Future<Response> getUserByUserId(
+      // @Query() int client_id,
+      @Path('id') int userId,
       );
 }

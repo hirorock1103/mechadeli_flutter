@@ -191,7 +191,7 @@ class Schedule extends StatelessWidget {
                                 Container(
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 5, vertical: 5),
-                                    child: Text("プラン：俺だけのスペシャルプラン"))
+                                    child: Text("プラン："+( orderlist[index].main_shop_plan_title.isNotEmpty ? orderlist[index].main_shop_plan_title : "メインプラン取得なし") ))
                               ]),
                               subtitle: Container(
                                 margin: EdgeInsets.only(top: 10),

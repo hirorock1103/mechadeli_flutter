@@ -17,6 +17,7 @@ part 'order_detail_notifier.freezed.dart';
 abstract class OrderDetailState with _$OrderDetailState {
   const factory OrderDetailState({
     @Default(0) int count,
+    required Order order,
     @Default(<Order>[]) List<Order> orderList,
     @Default(<OrderChild>[]) List<OrderChild> orderChildList,
     @Default(MechadeliFlow.cancel) MechadeliFlow currentFlow,
@@ -26,7 +27,7 @@ abstract class OrderDetailState with _$OrderDetailState {
 class OrderDetailNotifier extends StateNotifier<OrderDetailState> with LocatorMixin {
   OrderDetailNotifier({
     required this.context,
-  }) : super(const OrderDetailState());
+  }) : super( OrderDetailState(order: Order()));
 
   final BuildContext context;
 
@@ -50,6 +51,18 @@ class OrderDetailNotifier extends StateNotifier<OrderDetailState> with LocatorMi
     print(list);
     state = state.copyWith(orderChildList: list);
 
+  }
+
+  Future<void> getRecentOrder(int orderId) async{
+    Order? order = await context.read<ApiShopRepository>().getOrder(orderId);
+    print(order);
+    if(order != null){
+      state = state.copyWith(order: order);
+    }
+  }
+
+  void setOrder(Order order){
+    state = state.copyWith(order: order);
   }
 
   Future<void> getOrderList() async{

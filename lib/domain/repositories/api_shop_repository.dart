@@ -19,10 +19,18 @@ abstract class ApiShopRepository {
    * shop が利用するAPI
    *********************************
    */
+
+  //shop
   Future<Shop?> registerShop(Map<String, dynamic> data);
   Future<Shop?> loginShop(Map<String, dynamic> data);
   Future<Shop?> updateShop(Map<String, dynamic> data, int shopId);
   Future<List<SubCategory>?> getSubCategory();
+
+  //user
+  Future<List<User>?> getUsersByShopId(int shopId);
+  Future<User?> getUserById(int userId);
+
+
   //shop plan
   Future<List<ShopPlan>?> getShopPlan(int shopId);
   Future<ShopPlan?> registerShopPlan(Map<String, dynamic> data, int shopId);
@@ -36,5 +44,8 @@ abstract class ApiShopRepository {
   Future<List<PlanMatrix>?> updatePlanMatrix(Map<String, dynamic> data);
   //order
   Future<List<Order>> getOrderListByShopId(int shopId);
+  Future<Order?> getOrder(int orderId);
+  Future<Order?> updateOrder(Map<String, dynamic> data, int orderId);
+  Future<List<OrderChild>?> updateOrderPlans(Map<String, dynamic> data, int orderId);
   Future<List<OrderChild>> getOrderChildListByOrderId(int orderId);
 }

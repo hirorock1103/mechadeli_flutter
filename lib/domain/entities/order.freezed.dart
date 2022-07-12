@@ -33,12 +33,16 @@ mixin _$Order {
   String get ok_date => throw _privateConstructorUsedError;
   String get post_number => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
-  String get first_name => throw _privateConstructorUsedError;
-  String get last_name => throw _privateConstructorUsedError;
+  String get phone =>
+      throw _privateConstructorUsedError; // @Default('') String first_name,
+// @Default('') String last_name,
   String get user_first_name => throw _privateConstructorUsedError;
-  String get user_last_name =>
-      throw _privateConstructorUsedError; // @Default('') String sub_total,
+  String get user_last_name => throw _privateConstructorUsedError;
+  String get main_shop_plan_title =>
+      throw _privateConstructorUsedError; //動的に作成取得
+  int get main_shop_plan_id => throw _privateConstructorUsedError; //動的に作成取得
+// @Default(0) int main_shop_plan_order_child_id,//動的に作成取得
+// @Default('') String sub_total,
   int get sub_total => throw _privateConstructorUsedError;
   int get tax => throw _privateConstructorUsedError;
   int get tax_rate =>
@@ -81,10 +85,10 @@ abstract class $OrderCopyWith<$Res> {
       String post_number,
       String address,
       String phone,
-      String first_name,
-      String last_name,
       String user_first_name,
       String user_last_name,
+      String main_shop_plan_title,
+      int main_shop_plan_id,
       int sub_total,
       int tax,
       int tax_rate,
@@ -127,10 +131,10 @@ class _$OrderCopyWithImpl<$Res> implements $OrderCopyWith<$Res> {
     Object? post_number = freezed,
     Object? address = freezed,
     Object? phone = freezed,
-    Object? first_name = freezed,
-    Object? last_name = freezed,
     Object? user_first_name = freezed,
     Object? user_last_name = freezed,
+    Object? main_shop_plan_title = freezed,
+    Object? main_shop_plan_id = freezed,
     Object? sub_total = freezed,
     Object? tax = freezed,
     Object? tax_rate = freezed,
@@ -205,14 +209,6 @@ class _$OrderCopyWithImpl<$Res> implements $OrderCopyWith<$Res> {
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      first_name: first_name == freezed
-          ? _value.first_name
-          : first_name // ignore: cast_nullable_to_non_nullable
-              as String,
-      last_name: last_name == freezed
-          ? _value.last_name
-          : last_name // ignore: cast_nullable_to_non_nullable
-              as String,
       user_first_name: user_first_name == freezed
           ? _value.user_first_name
           : user_first_name // ignore: cast_nullable_to_non_nullable
@@ -221,6 +217,14 @@ class _$OrderCopyWithImpl<$Res> implements $OrderCopyWith<$Res> {
           ? _value.user_last_name
           : user_last_name // ignore: cast_nullable_to_non_nullable
               as String,
+      main_shop_plan_title: main_shop_plan_title == freezed
+          ? _value.main_shop_plan_title
+          : main_shop_plan_title // ignore: cast_nullable_to_non_nullable
+              as String,
+      main_shop_plan_id: main_shop_plan_id == freezed
+          ? _value.main_shop_plan_id
+          : main_shop_plan_id // ignore: cast_nullable_to_non_nullable
+              as int,
       sub_total: sub_total == freezed
           ? _value.sub_total
           : sub_total // ignore: cast_nullable_to_non_nullable
@@ -309,10 +313,10 @@ abstract class _$$_OrderCopyWith<$Res> implements $OrderCopyWith<$Res> {
       String post_number,
       String address,
       String phone,
-      String first_name,
-      String last_name,
       String user_first_name,
       String user_last_name,
+      String main_shop_plan_title,
+      int main_shop_plan_id,
       int sub_total,
       int tax,
       int tax_rate,
@@ -356,10 +360,10 @@ class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res>
     Object? post_number = freezed,
     Object? address = freezed,
     Object? phone = freezed,
-    Object? first_name = freezed,
-    Object? last_name = freezed,
     Object? user_first_name = freezed,
     Object? user_last_name = freezed,
+    Object? main_shop_plan_title = freezed,
+    Object? main_shop_plan_id = freezed,
     Object? sub_total = freezed,
     Object? tax = freezed,
     Object? tax_rate = freezed,
@@ -434,14 +438,6 @@ class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      first_name: first_name == freezed
-          ? _value.first_name
-          : first_name // ignore: cast_nullable_to_non_nullable
-              as String,
-      last_name: last_name == freezed
-          ? _value.last_name
-          : last_name // ignore: cast_nullable_to_non_nullable
-              as String,
       user_first_name: user_first_name == freezed
           ? _value.user_first_name
           : user_first_name // ignore: cast_nullable_to_non_nullable
@@ -450,6 +446,14 @@ class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res>
           ? _value.user_last_name
           : user_last_name // ignore: cast_nullable_to_non_nullable
               as String,
+      main_shop_plan_title: main_shop_plan_title == freezed
+          ? _value.main_shop_plan_title
+          : main_shop_plan_title // ignore: cast_nullable_to_non_nullable
+              as String,
+      main_shop_plan_id: main_shop_plan_id == freezed
+          ? _value.main_shop_plan_id
+          : main_shop_plan_id // ignore: cast_nullable_to_non_nullable
+              as int,
       sub_total: sub_total == freezed
           ? _value.sub_total
           : sub_total // ignore: cast_nullable_to_non_nullable
@@ -536,10 +540,10 @@ class _$_Order extends _Order {
       this.post_number = '',
       this.address = '',
       this.phone = '',
-      this.first_name = '',
-      this.last_name = '',
       this.user_first_name = '',
       this.user_last_name = '',
+      this.main_shop_plan_title = '',
+      this.main_shop_plan_id = 0,
       this.sub_total = 0,
       this.tax = 0,
       this.tax_rate = 0,
@@ -603,18 +607,23 @@ class _$_Order extends _Order {
   @override
   @JsonKey()
   final String phone;
-  @override
-  @JsonKey()
-  final String first_name;
-  @override
-  @JsonKey()
-  final String last_name;
+// @Default('') String first_name,
+// @Default('') String last_name,
   @override
   @JsonKey()
   final String user_first_name;
   @override
   @JsonKey()
   final String user_last_name;
+  @override
+  @JsonKey()
+  final String main_shop_plan_title;
+//動的に作成取得
+  @override
+  @JsonKey()
+  final int main_shop_plan_id;
+//動的に作成取得
+// @Default(0) int main_shop_plan_order_child_id,//動的に作成取得
 // @Default('') String sub_total,
   @override
   @JsonKey()
@@ -668,7 +677,7 @@ class _$_Order extends _Order {
 
   @override
   String toString() {
-    return 'Order(id: $id, name: $name, email: $email, code: $code, user_id: $user_id, shop_id: $shop_id, shop_name: $shop_name, first: $first, second: $second, third: $third, ok_date: $ok_date, post_number: $post_number, address: $address, phone: $phone, first_name: $first_name, last_name: $last_name, user_first_name: $user_first_name, user_last_name: $user_last_name, sub_total: $sub_total, tax: $tax, tax_rate: $tax_rate, total: $total, progress: $progress, visit_date: $visit_date, visit_start: $visit_start, visit_end: $visit_end, visit_schedule_date: $visit_schedule_date, visit_schedule_starttime: $visit_schedule_starttime, visit_schedule_endtime: $visit_schedule_endtime, contents: $contents, fix_price: $fix_price, fix_price_reason: $fix_price_reason, created_at: $created_at, updated_at: $updated_at)';
+    return 'Order(id: $id, name: $name, email: $email, code: $code, user_id: $user_id, shop_id: $shop_id, shop_name: $shop_name, first: $first, second: $second, third: $third, ok_date: $ok_date, post_number: $post_number, address: $address, phone: $phone, user_first_name: $user_first_name, user_last_name: $user_last_name, main_shop_plan_title: $main_shop_plan_title, main_shop_plan_id: $main_shop_plan_id, sub_total: $sub_total, tax: $tax, tax_rate: $tax_rate, total: $total, progress: $progress, visit_date: $visit_date, visit_start: $visit_start, visit_end: $visit_end, visit_schedule_date: $visit_schedule_date, visit_schedule_starttime: $visit_schedule_starttime, visit_schedule_endtime: $visit_schedule_endtime, contents: $contents, fix_price: $fix_price, fix_price_reason: $fix_price_reason, created_at: $created_at, updated_at: $updated_at)';
   }
 
   @override
@@ -692,12 +701,13 @@ class _$_Order extends _Order {
             const DeepCollectionEquality().equals(other.address, address) &&
             const DeepCollectionEquality().equals(other.phone, phone) &&
             const DeepCollectionEquality()
-                .equals(other.first_name, first_name) &&
-            const DeepCollectionEquality().equals(other.last_name, last_name) &&
-            const DeepCollectionEquality()
                 .equals(other.user_first_name, user_first_name) &&
             const DeepCollectionEquality()
                 .equals(other.user_last_name, user_last_name) &&
+            const DeepCollectionEquality()
+                .equals(other.main_shop_plan_title, main_shop_plan_title) &&
+            const DeepCollectionEquality()
+                .equals(other.main_shop_plan_id, main_shop_plan_id) &&
             const DeepCollectionEquality().equals(other.sub_total, sub_total) &&
             const DeepCollectionEquality().equals(other.tax, tax) &&
             const DeepCollectionEquality().equals(other.tax_rate, tax_rate) &&
@@ -742,10 +752,10 @@ class _$_Order extends _Order {
         const DeepCollectionEquality().hash(post_number),
         const DeepCollectionEquality().hash(address),
         const DeepCollectionEquality().hash(phone),
-        const DeepCollectionEquality().hash(first_name),
-        const DeepCollectionEquality().hash(last_name),
         const DeepCollectionEquality().hash(user_first_name),
         const DeepCollectionEquality().hash(user_last_name),
+        const DeepCollectionEquality().hash(main_shop_plan_title),
+        const DeepCollectionEquality().hash(main_shop_plan_id),
         const DeepCollectionEquality().hash(sub_total),
         const DeepCollectionEquality().hash(tax),
         const DeepCollectionEquality().hash(tax_rate),
@@ -791,10 +801,10 @@ abstract class _Order extends Order {
       final String post_number,
       final String address,
       final String phone,
-      final String first_name,
-      final String last_name,
       final String user_first_name,
       final String user_last_name,
+      final String main_shop_plan_title,
+      final int main_shop_plan_id,
       final int sub_total,
       final int tax,
       final int tax_rate,
@@ -843,15 +853,18 @@ abstract class _Order extends Order {
   String get address => throw _privateConstructorUsedError;
   @override
   String get phone => throw _privateConstructorUsedError;
-  @override
-  String get first_name => throw _privateConstructorUsedError;
-  @override
-  String get last_name => throw _privateConstructorUsedError;
-  @override
+  @override // @Default('') String first_name,
+// @Default('') String last_name,
   String get user_first_name => throw _privateConstructorUsedError;
   @override
   String get user_last_name => throw _privateConstructorUsedError;
-  @override // @Default('') String sub_total,
+  @override
+  String get main_shop_plan_title => throw _privateConstructorUsedError;
+  @override //動的に作成取得
+  int get main_shop_plan_id => throw _privateConstructorUsedError;
+  @override //動的に作成取得
+// @Default(0) int main_shop_plan_order_child_id,//動的に作成取得
+// @Default('') String sub_total,
   int get sub_total => throw _privateConstructorUsedError;
   @override
   int get tax => throw _privateConstructorUsedError;
