@@ -54,6 +54,7 @@ class OrderDetailNotifier extends StateNotifier<OrderDetailState> with LocatorMi
   }
 
   Future<void> getRecentOrder(int orderId) async{
+    print("getRecntorder");
     Order? order = await context.read<ApiShopRepository>().getOrder(orderId);
     print(order);
     if(order != null){
