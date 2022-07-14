@@ -240,23 +240,34 @@ class ShopPlan extends StatelessWidget {
 
                       subtitle: Container(
                         margin: EdgeInsets.only(top: 15),
-                        child: Row(
+                        child: Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
+                            CircleAvatar(child:
+
+                              Icon(Icons.currency_yen, size: 10,),
+                              radius: 10,
+                              ),
+                            SizedBox(width: 5,),
                             Text(shopPlan.plan_price.toString() + "円"),
                             SizedBox(
                               width: 10,
                             ),
-                            Container(
-                              child: Text(
-                                shopPlan.main_category_title,
-                                style: TextStyle(
-                                    fontSize: 11, color: Colors.white),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.teal),
+                            Row(
+                              children: [
+                                Container(
+                                  child: Text(
+                                    shopPlan.main_category_title,
+                                    style: TextStyle(
+                                        fontSize: 11, color: Colors.white),
+                                  ),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 5),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.teal),
+                                ),
+                              ],
                             ),
                             SizedBox(
                               width: 10,

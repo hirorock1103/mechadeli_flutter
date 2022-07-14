@@ -106,7 +106,7 @@ class Schedule extends StatelessWidget {
                         "ステータス",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Row(
+                      Wrap(
                         children: [
                           Container(
                             padding: EdgeInsets.symmetric(horizontal: 10),
@@ -173,7 +173,7 @@ class Schedule extends StatelessWidget {
                         child: Card(
                           elevation: 5,
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
                             child: ListTile(
                               title: Wrap(children: [
                                 Container(
@@ -200,28 +200,28 @@ class Schedule extends StatelessWidget {
                                     Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        Icon(Icons.schedule),
+                                        Icon(Icons.schedule, size: 15,),
                                         Text("2022/05/01"),
                                       ],
                                     ),
                                     Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        Icon(Icons.person),
-                                        Text(orderlist[index].user_last_name),
+                                        Icon(Icons.person, size: 15,),
+                                        Flexible(child: Text(orderlist[index].user_last_name)),
                                       ],
                                     ),
                                     Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        Icon(Icons.pin_drop),
+                                        Icon(Icons.pin_drop, size: 15,),
                                         Text(orderlist[index].address),
                                       ],
                                     )
                                   ],
                                 ),
                               ),
-                              trailing: Icon(Icons.arrow_forward_ios_rounded),
+                              // trailing: Icon(Icons.arrow_forward_ios_rounded),
                             ),
                           ),
                         ),

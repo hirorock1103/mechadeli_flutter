@@ -5,6 +5,7 @@ import 'package:mechadeli_flutter/common/constants.dart';
 import 'package:mechadeli_flutter/domain/entities/shop.dart';
 import 'package:mechadeli_flutter/screens/shop_page/dashboard/dashboard.dart';
 import 'package:mechadeli_flutter/screens/shop_page/shop_register/shop_register.dart';
+import 'package:mechadeli_flutter/widgets/common/methods/get_size_rate.dart';
 import 'package:provider/provider.dart';
 
 import '../../../domain/notifiers/app_notifier.dart';
@@ -13,6 +14,7 @@ import 'shop_login_notifier.dart';
 class ShopLoginPage extends StatelessWidget {
   TextEditingController userIdController = TextEditingController();
   TextEditingController userPwController = TextEditingController();
+  double sizeRate = 1.0;
   static Widget wrapped() {
     return MultiProvider(
       providers: [
@@ -35,22 +37,27 @@ class ShopLoginPage extends StatelessWidget {
     userPwController.text = "11032189";
 
     final size = MediaQuery.of(context).size;
-    final contentWidth = size.width / 1.5;
+    double contentMaxWidth = AppConstant.tabletMaxSize as double; //
+    double padding = 20.0;
+    sizeRate = getSizeRate(size);
+
     return Scaffold(
       // appBar: AppBar(
       //   title: Text("login"),
       // ),
       body: Center(
         child: Container(
-          width: contentWidth <= (AppConstant.tabletMaxSize as double)
-              ? contentWidth
-              : AppConstant.tabletMaxSize as double,
+          padding: EdgeInsets.all(padding),
+          width: contentMaxWidth,
+          // width: contentWidth <= (AppConstant.tabletMaxSize as double)
+          //     ? contentWidth
+          //     : AppConstant.tabletMaxSize as double,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Spacer(flex: 1,),
-              title(),
+              title(size),
               SizedBox(
                 height: 30,
               ),
@@ -74,11 +81,11 @@ class ShopLoginPage extends StatelessWidget {
   }
 
   ///title
-  Widget title() {
+  Widget title(Size size) {
     return Container(
       child: Text(
         "Mechadeli ショップ Login",
-        style: TextStyle(fontSize: 30),
+        style: TextStyle(fontSize: 30 * sizeRate) ,
       ),
     );
   }
@@ -94,7 +101,7 @@ class ShopLoginPage extends StatelessWidget {
             Container(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 80, vertical: 20),
+                    padding: EdgeInsets.symmetric(horizontal: 80*sizeRate, vertical: 20*sizeRate),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30))),
                 onPressed: () async{
@@ -108,7 +115,7 @@ class ShopLoginPage extends StatelessWidget {
                 },
                 child: Text(
                   "ログイン",
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize:  18),
                 ),
               ),
             ),
@@ -155,7 +162,7 @@ class ShopLoginPage extends StatelessWidget {
       TextInputType keyboardType) {
     return Builder(builder: (context) {
       return Container(
-        height: 55,
+        height: 55 * sizeRate,
         margin: EdgeInsets.only(bottom: 15),
         decoration: BoxDecoration(
             color: Colors.blueGrey[100],
@@ -167,7 +174,7 @@ class ShopLoginPage extends StatelessWidget {
           autofocus: false,
           decoration: InputDecoration(
             hintText: hintTitle,
-            contentPadding: EdgeInsets.all(20),
+            contentPadding: EdgeInsets.all(20 * sizeRate),
             border: InputBorder.none,
           ),
           keyboardType: keyboardType,

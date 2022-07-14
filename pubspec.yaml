@@ -49,6 +49,7 @@ dependencies:
   open_file:
   path_provider:
   uuid:
+  google_fonts: ^3.0.1
 
 
 

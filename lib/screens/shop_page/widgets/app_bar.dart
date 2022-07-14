@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mechadeli_flutter/common/constants.dart';
 import 'package:mechadeli_flutter/domain/entities/shop.dart';
 import 'package:mechadeli_flutter/domain/notifiers/app_notifier.dart';
 import 'package:mechadeli_flutter/screens/user_page/login/user_login.dart';
@@ -20,9 +21,25 @@ class UserAppBar extends StatelessWidget with PreferredSizeWidget {
       // automaticallyImplyLeading: false,
       iconTheme: IconThemeData(color: Colors.lightBlueAccent),
       actions: [
-        CircleAvatar(
-          child: Icon(Icons.home_outlined),
-        ),
+        if (size.width > AppConstant.phoneMaxSize)
+          CircleAvatar(
+            child: Icon(Icons.home_outlined),
+          ),
+        Container(),
+        if (size.width <= AppConstant.phoneMaxSize)
+          Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+              child: Center(
+                  child: Row(
+                    children: [
+                      Icon(Icons.home_outlined, size: 15,),
+                      Text(
+                        Shop.me.name,
+                        style: TextStyle(color: Colors.white, fontSize: 10),
+                      ),
+                    ],
+                  ))),
         if (size.width > 800)
           Container(
               padding: EdgeInsets.symmetric(horizontal: 10),
@@ -47,7 +64,7 @@ class UserAppBar extends StatelessWidget with PreferredSizeWidget {
               child: Center(
                   child: Text(
                     "ログアウト",
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white, fontSize: size.width <= AppConstant.phoneMaxSize ? 10 : null ),
                   ))),
         ),
       ],
@@ -57,7 +74,7 @@ class UserAppBar extends StatelessWidget with PreferredSizeWidget {
         },
         child: Text(
           title,
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white, fontSize: size.width <= AppConstant.phoneMaxSize ? 10 : null ),
         ),
       ),
       centerTitle: false,

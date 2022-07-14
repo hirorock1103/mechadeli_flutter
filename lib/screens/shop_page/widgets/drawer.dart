@@ -5,6 +5,7 @@ import 'package:mechadeli_flutter/screens/shop_page/dashboard/dashboard.dart';
 import 'package:mechadeli_flutter/screens/shop_page/option_plan/option_plan.dart';
 import 'package:mechadeli_flutter/screens/shop_page/schedule/schedule.dart';
 import 'package:mechadeli_flutter/screens/shop_page/shop_plan/shop_plan.dart';
+import 'package:mechadeli_flutter/widgets/common/methods/create_route.dart';
 
 class UserDrawer extends StatelessWidget {
   const UserDrawer({Key? key}) : super(key: key);
@@ -34,14 +35,16 @@ class UserDrawer extends StatelessWidget {
           ListTile(
             onTap: () {
 
-              Navigator.of(context).push(MaterialPageRoute(builder: (_){ return DashBoard.wrapped(); }));
+              //Navigator.of(context).push(MaterialPageRoute(builder: (_){ return DashBoard.wrapped(); }));
+              Navigator.of(context).push(createMyRoute(DashBoard.wrapped()));
             },
             title: Text("ダッシュボード"),
             trailing: Icon(Icons.arrow_forward_ios_rounded),
           ),
           ListTile(
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (_){ return Schedule.wrapped(); }));
+              // Navigator.of(context).push(MaterialPageRoute(builder: (_){ return Schedule.wrapped(); }));
+              Navigator.of(context).push(createMyRoute(Schedule.wrapped()));
             },
             title: Text("予約"),
             trailing: Icon(Icons.arrow_forward_ios_rounded),
@@ -55,21 +58,24 @@ class UserDrawer extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (_){ return BasicInformation.wrapped(); }));
+              // Navigator.of(context).push(MaterialPageRoute(builder: (_){ return BasicInformation.wrapped(); }));
+              Navigator.of(context).push(createMyRoute(BasicInformation.wrapped()));
             },
             title: Text("基本情報"),
             trailing: Icon(Icons.arrow_forward_ios_rounded),
           ),
           ListTile(
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (_){ return ShopPlan.wrapped(); }));
+              // Navigator.of(context).push(MaterialPageRoute(builder: (_){ return ShopPlan.wrapped(); }));
+              Navigator.of(context).push(createMyRoute(ShopPlan.wrapped()));
             },
             title: Text("プラン管理"),
             trailing: Icon(Icons.arrow_forward_ios_rounded),
           ),
           ListTile(
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (_){ return OptionPlan.wrapped(); }));
+              // Navigator.of(context).push(MaterialPageRoute(builder: (_){ return OptionPlan.wrapped(); }));
+              Navigator.of(context).push(createMyRoute(OptionPlan.wrapped()));
             },
             title: Text("オプションプラン管理"),
             trailing: Icon(Icons.arrow_forward_ios_rounded),

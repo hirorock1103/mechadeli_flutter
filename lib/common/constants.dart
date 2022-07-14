@@ -17,6 +17,8 @@ class AppConstant {
   static const int tabletMaxSize = 800;
   static const int webMaxSize = 1500;
 
+  static const double phoneTextSizeRate = 0.8;
+
   //font
   static const Color fontColorAlert = Colors.redAccent;
 
