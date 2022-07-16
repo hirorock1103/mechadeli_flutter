@@ -25,7 +25,7 @@ import 'infrastructure/wrappers/api_clients/client_creator.dart';
 Future<List<SingleChildWidget>> get providers async {
   return <SingleChildWidget>[
     Provider(create: (context) => GlobalKey<NavigatorState>()),
-    await _sharedPreferencesProvider,
+    // await _sharedPreferencesProvider,
     _repositoryProvider1,
     _repositoryProvider2,
     _repositoryProvider3,
