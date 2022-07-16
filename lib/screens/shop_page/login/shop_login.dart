@@ -33,13 +33,18 @@ class ShopLoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    print("★★1");
     userIdController.text = "mdiz1103@gmail.com";
     userPwController.text = "11032189";
 
+    print("★★2");
     final size = MediaQuery.of(context).size;
-    double contentMaxWidth = AppConstant.tabletMaxSize as double; //
+    print("★★3");
+    double contentMaxWidth = AppConstant.tabletMaxSize.toDouble(); //
+    print("★★4");
     double padding = 20.0;
-    sizeRate = getSizeRate(size);
+    // sizeRate = getSizeRate(size);
+
 
     return Scaffold(
       // appBar: AppBar(
