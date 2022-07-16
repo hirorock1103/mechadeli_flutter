@@ -113,6 +113,7 @@ class Schedule extends StatelessWidget {
                             child: DropdownButton(
                                 value: selectedItem,
                                 items: menu,
+                                // isExpanded: true,
                                 onChanged: (value) {
                                   _setState(() {
                                     selectedItem = value.toString();

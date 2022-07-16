@@ -213,6 +213,7 @@ class OrderDetail extends StatelessWidget {
                               List<DropdownMenuItem<String>> menu = shopPlanList
                                       ?.map((e) {
                                     return DropdownMenuItem(
+
                                         value: e.id.toString(),
                                         child: Column(
                                           mainAxisAlignment:
@@ -224,27 +225,32 @@ class OrderDetail extends StatelessWidget {
                                                 e.id.toString() +
                                                 " " +
                                                 e.plan_title),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  "price: ¥" +
-                                                      e.plan_price.toString(),
-                                                  style: TextStyle(fontSize: 12),
-                                                ),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                    "(" +
-                                                        e.main_category_title +
-                                                        "/" +
-                                                        e.sub_category_title +
-                                                        ")",
-                                                    style: TextStyle(fontSize: 12)),
-                                              ],
-                                            ),
+                                            if(MediaQuery.of(context).size.width > AppConstant.tabletMaxSize)
+                                              Row(
+                                                   children: [
+                                                   Text(
+                                                   "price: ¥" +
+                                                   e.plan_price.toString(),
+                                                   style: TextStyle(fontSize: 12),
+                                                   ),
+                                                   SizedBox(
+                                                   width: 10,
+                                                   ),
+                                                   Flexible(
+                                                   child: Text(
+                                                   "(" +
+                                                   e.main_category_title +
+                                                   "/" +
+                                                   e.sub_category_title +
+                                                   ")",
+                                                   style: TextStyle(fontSize: 12)),
+                                                   ),
+                                                   ],
+                                                   ),
                                           ],
-                                        ));
+                                        ),
+
+                                    );
                                   }).toList() ??
                                   [];
 
@@ -274,7 +280,7 @@ class OrderDetail extends StatelessWidget {
                                               Container(
                                                 child: Center(
                                                   child: DropdownButton(
-                                                      isExpanded: true,
+                                                      // isExpanded: true,
                                                       value: selectedValue,
                                                       items: menu,
                                                       onChanged: (value) {
