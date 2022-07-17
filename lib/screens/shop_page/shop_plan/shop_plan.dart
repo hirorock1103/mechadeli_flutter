@@ -418,22 +418,19 @@ class ShopPlan extends StatelessWidget {
                           controller: planDetailController),
                       Row(
                         children: [
-                          Expanded(
-                            child: Text(
-                              "④表示ステータス",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            flex: 2,
+                          Text(
+                            "④表示ステータス",
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           Expanded(
                             child: SwitchListTile(
                                 value: status,
                                 // title: Text("表示ステータス"),
-                                secondary: status == 0
-                                    ? Icon(
-                                        Icons.visibility,
-                                      )
-                                    : Icon(Icons.visibility_off),
+                                // secondary: status == 0
+                                //     ? Icon(
+                                //         Icons.visibility,
+                                //       )
+                                //     : Icon(Icons.visibility_off),
                                 onChanged: (value) {
                                   //notifier側で管理
                                   // context.read<ShopPlanNotifier>().switchPlanStatus(value);
@@ -441,7 +438,6 @@ class ShopPlan extends StatelessWidget {
                                     status = value;
                                   });
                                 }),
-                            flex: 1,
                           ),
                         ],
                       ),
@@ -464,6 +460,7 @@ class ShopPlan extends StatelessWidget {
                               child: DropdownButtonHideUnderline(
                                   child: DropdownButton(
                                 items: menu,
+                                isExpanded: true,
                                 onChanged: (value) {
                                   _setState(() {
                                     selectedValue = int.parse(value.toString());

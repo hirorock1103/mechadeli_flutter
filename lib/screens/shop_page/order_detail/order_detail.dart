@@ -300,25 +300,36 @@ class OrderDetail extends StatelessWidget {
                                 .getOptionPlanByShopPlanId(
                                     order.main_shop_plan_id);
                             //selectedのリストだけを抽出 上 getOptionPlanByShopPlanIdが選択中か未選択かをselected : true false で返す
-                            List<OptionPlan> optionListByMainPlan = optionList?.where((element) => element.selected == 1).toList() ?? [];
+                            List<OptionPlan> optionListByMainPlan = optionList
+                                    ?.where((element) => element.selected == 1)
+                                    .toList() ??
+                                [];
                             print("=== main plan ====");
-                            String num1 = optionListByMainPlan.length.toString() ;
+                            String num1 =
+                                optionListByMainPlan.length.toString();
                             String num2 = optionList?.length.toString() ?? "";
                             print(num1 + "/" + num2);
 
                             //オーダー情報取得
-                            List<OrderChild>? orderChilds = await context.read<ApiShopRepository>().getOrderChildListByOrderId(order.id);
+                            List<OrderChild>? orderChilds = await context
+                                .read<ApiShopRepository>()
+                                .getOrderChildListByOrderId(order.id);
                             // List<OrderChild> orderedOptionPlans = orderChilds.where((order) => order.option_plan_id > 0).toList();
 
                             ///ユーザーが申し込み中のオーダー ※メインプランに紐づく設定になっているはずだが・・
-                            Map<int, bool> checkedList = {};///optionPlanId : true or falseを格納
+                            Map<int, bool> checkedList = {};
+
+                            ///optionPlanId : true or falseを格納
                             optionListByMainPlan.forEach((option) {
-                                checkedList[option.id] = false;
-                                //orderChildsにデータがあればtrueにする
-                                final isExists = orderChilds.where((element) => element.option_plan_id == option.id ).isNotEmpty;
-                                if(isExists){
-                                  checkedList[option.id] = true;
-                                }
+                              checkedList[option.id] = false;
+                              //orderChildsにデータがあればtrueにする
+                              final isExists = orderChilds
+                                  .where((element) =>
+                                      element.option_plan_id == option.id)
+                                  .isNotEmpty;
+                              if (isExists) {
+                                checkedList[option.id] = true;
+                              }
                             });
                             //選択中のオプション表示
                             print(checkedList);
@@ -328,73 +339,105 @@ class OrderDetail extends StatelessWidget {
                                 builder: (_) {
                                   return AlertDialog(
                                     title: Text("メインプランのオプション設定"),
-                                    content: StatefulBuilder(
-                                      builder: (context, _setState) {
-                                        return Container(
-                                          width: 600,
-                                          child: SingleChildScrollView(
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Container(
-                                                    width: double.infinity,
-                                                    child: Text(
-                                                      "オプションプラン申し込み",
-                                                      style: TextStyle(
-                                                          fontWeight: FontWeight.bold),
-                                                      textAlign: TextAlign.left,
-                                                    )),
-
-                                                Container(
-                                                  child: ListView(
-                                                    shrinkWrap: true,
-                                                    children: optionListByMainPlan.map((e) {
-                                                      return CheckboxListTile(
-                                                          title: Text( "#" + e.id.toString() + " " + e.plan_title),
-                                                          subtitle: Row(
-                                                            children: [
-                                                              Text(e.plan_price.toString() + "円")
-                                                            ],
-                                                          ),
-                                                          value: checkedList[e.id],
-                                                          onChanged: (value) {
-                                                            _setState(() {
-                                                              bool checked = value == true ? true : false;
-                                                              checkedList[e.id] = checked;
-                                                            });
+                                    content: StatefulBuilder(builder:
+                                        (BuildContext _context, _setState) {
+                                      return Container(
+                                        width: 600,
+                                        child: SingleChildScrollView(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Container(
+                                                  width: double.infinity,
+                                                  child: Text(
+                                                    "オプションプラン申し込み",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                    textAlign: TextAlign.left,
+                                                  )),
+                                              Container(
+                                                child: ListView(
+                                                  shrinkWrap: true,
+                                                  children: optionListByMainPlan
+                                                      .map((e) {
+                                                    return CheckboxListTile(
+                                                        title: Text("#" +
+                                                            e.id.toString() +
+                                                            " " +
+                                                            e.plan_title),
+                                                        subtitle: Row(
+                                                          children: [
+                                                            Text(e.plan_price
+                                                                    .toString() +
+                                                                "円")
+                                                          ],
+                                                        ),
+                                                        value:
+                                                            checkedList[e.id],
+                                                        onChanged: (value) {
+                                                          _setState(() {
+                                                            bool checked =
+                                                                value == true
+                                                                    ? true
+                                                                    : false;
+                                                            checkedList[e.id] =
+                                                                checked;
                                                           });
-                                                    }).toList(),
-                                                  ),
+                                                        });
+                                                  }).toList(),
                                                 ),
-                                                ElevatedButton(onPressed: () async{
-                                                  print(checkedList);
+                                              ),
+                                              ElevatedButton(
+                                                  onPressed: () async {
+                                                    print(checkedList);
 
-                                                  ///api用データセット
-                                                  Map<String, dynamic> map = {};
-                                                  map['order_id'] = order.id;
-                                                  map['shop_id'] = Shop.me.id;
-                                                  map['checked_options'] = [];
-                                                  List<int> selectedOptinId = [];
-                                                  checkedList.forEach((optionId, isSelected) {
-                                                    if (isSelected == true) {
-                                                      selectedOptinId.add(optionId);
-                                                    }
-                                                  });
-                                                  map['checked_options'] = selectedOptinId.join(",");
+                                                    ///api用データセット
+                                                    Map<String, dynamic> map =
+                                                        {};
+                                                    map['order_id'] = order.id;
+                                                    map['shop_id'] = Shop.me.id;
+                                                    map['checked_options'] = [];
+                                                    List<int> selectedOptinId =
+                                                        [];
+                                                    checkedList.forEach(
+                                                        (optionId, isSelected) {
+                                                      if (isSelected == true) {
+                                                        selectedOptinId
+                                                            .add(optionId);
+                                                      }
+                                                    });
+                                                    map['checked_options'] =
+                                                        selectedOptinId
+                                                            .join(",");
 
-                                                  print(map);
-                                                  final result = await context.read<ApiShopRepository>().updateOrderOptionPlans(map, order.id );
-                                                  print(result);
+                                                    print(map);
+                                                    final result = await context
+                                                        .read<
+                                                            ApiShopRepository>()
+                                                        .updateOrderOptionPlans(
+                                                            map, order.id);
+                                                    print(result);
+                                                    await context
+                                                        .read<
+                                                            OrderDetailNotifier>()
+                                                        .getRecentOrder(
+                                                            order.id);
 
-
-
-                                                }, child: Text("登録")),
-                                              ],
-                                            ),
+                                                    context
+                                                        .read<
+                                                            OrderDetailNotifier>()
+                                                        .getOrderChildListByOrderId(
+                                                            order.id);
+                                                    Navigator.of(_context)
+                                                        .pop();
+                                                  },
+                                                  child: Text("登録")),
+                                            ],
                                           ),
-                                        );
-                                      }
-                                    ),
+                                        ),
+                                      );
+                                    }),
                                   );
                                 });
                           }),
