@@ -532,45 +532,45 @@ abstract class _ShopPlan extends ShopPlan {
   factory _ShopPlan.fromJson(Map<String, dynamic> json) = _$_ShopPlan.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
-  int get shop_id => throw _privateConstructorUsedError;
+  int get shop_id;
   @override
-  int get main_category_id => throw _privateConstructorUsedError;
+  int get main_category_id;
   @override
-  String get main_category_title => throw _privateConstructorUsedError;
+  String get main_category_title;
   @override
-  int get sub_category_id => throw _privateConstructorUsedError;
+  int get sub_category_id;
   @override
-  String get sub_category_title => throw _privateConstructorUsedError;
+  String get sub_category_title;
   @override
-  int get plan_price => throw _privateConstructorUsedError;
+  int get plan_price;
   @override
-  int get status => throw _privateConstructorUsedError;
+  int get status;
   @override
-  String get about => throw _privateConstructorUsedError;
+  String get about;
   @override
-  String get plan_title => throw _privateConstructorUsedError;
+  String get plan_title;
   @override
-  String get sales_point => throw _privateConstructorUsedError;
+  String get sales_point;
   @override
-  String get details => throw _privateConstructorUsedError;
+  String get details;
   @override
-  String get tanni => throw _privateConstructorUsedError;
+  String get tanni;
   @override
-  String get img_1 => throw _privateConstructorUsedError;
+  String get img_1;
   @override
-  String get img_2 => throw _privateConstructorUsedError;
+  String get img_2;
   @override
-  String get img_3 => throw _privateConstructorUsedError;
+  String get img_3;
   @override
-  String get img_4 => throw _privateConstructorUsedError;
+  String get img_4;
   @override
-  String get img_5 => throw _privateConstructorUsedError;
+  String get img_5;
   @override
-  String get created_at => throw _privateConstructorUsedError;
+  String get created_at;
   @override
-  String get updated_at => throw _privateConstructorUsedError;
+  String get updated_at;
   @override
   @JsonKey(ignore: true)
   _$$_ShopPlanCopyWith<_$_ShopPlan> get copyWith =>

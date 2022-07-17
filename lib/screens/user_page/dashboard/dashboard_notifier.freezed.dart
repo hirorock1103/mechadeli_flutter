@@ -216,13 +216,13 @@ abstract class _DashboardState implements DashboardState {
       final MechadeliFlow currentFlow}) = _$_DashboardState;
 
   @override
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
-  List<Notice> get noticeList => throw _privateConstructorUsedError;
+  List<Notice> get noticeList;
   @override
-  List<Order> get orderList => throw _privateConstructorUsedError;
+  List<Order> get orderList;
   @override
-  MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
+  MechadeliFlow get currentFlow;
   @override
   @JsonKey(ignore: true)
   _$$_DashboardStateCopyWith<_$_DashboardState> get copyWith =>

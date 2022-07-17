@@ -249,17 +249,17 @@ abstract class _PlanMatrix extends PlanMatrix {
       _$_PlanMatrix.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
-  int get shop_id => throw _privateConstructorUsedError;
+  int get shop_id;
   @override
-  int get shop_plan_id => throw _privateConstructorUsedError;
+  int get shop_plan_id;
   @override
-  int get option_plan_id => throw _privateConstructorUsedError;
+  int get option_plan_id;
   @override
-  String get created_at => throw _privateConstructorUsedError;
+  String get created_at;
   @override
-  String get updated_at => throw _privateConstructorUsedError;
+  String get updated_at;
   @override
   @JsonKey(ignore: true)
   _$$_PlanMatrixCopyWith<_$_PlanMatrix> get copyWith =>

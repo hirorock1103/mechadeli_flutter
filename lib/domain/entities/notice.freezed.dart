@@ -261,19 +261,19 @@ abstract class _Notice extends Notice {
   factory _Notice.fromJson(Map<String, dynamic> json) = _$_Notice.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
-  String get title => throw _privateConstructorUsedError;
+  String get title;
   @override
-  String get contents => throw _privateConstructorUsedError;
+  String get contents;
   @override
-  int get to => throw _privateConstructorUsedError;
+  int get to;
   @override
-  int get status => throw _privateConstructorUsedError;
+  int get status;
   @override
-  String get updated_at => throw _privateConstructorUsedError;
+  String get updated_at;
   @override
-  String get created_at => throw _privateConstructorUsedError;
+  String get created_at;
   @override
   @JsonKey(ignore: true)
   _$$_NoticeCopyWith<_$_Notice> get copyWith =>

@@ -47,5 +47,6 @@ abstract class ApiShopRepository {
   Future<Order?> getOrder(int orderId);
   Future<Order?> updateOrder(Map<String, dynamic> data, int orderId);
   Future<List<OrderChild>?> updateOrderPlans(Map<String, dynamic> data, int orderId);
+  Future<List<OrderChild>?> updateOrderOptionPlans(Map<String, dynamic> data, int orderId);
   Future<List<OrderChild>> getOrderChildListByOrderId(int orderId);
 }

@@ -826,76 +826,76 @@ abstract class _Order extends Order {
   factory _Order.fromJson(Map<String, dynamic> json) = _$_Order.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
-  String get code => throw _privateConstructorUsedError;
+  String get code;
   @override
-  int get user_id => throw _privateConstructorUsedError;
+  int get user_id;
   @override
-  int get shop_id => throw _privateConstructorUsedError;
+  int get shop_id;
   @override
-  String get shop_name => throw _privateConstructorUsedError;
+  String get shop_name;
   @override
-  String get first => throw _privateConstructorUsedError;
+  String get first;
   @override
-  String get second => throw _privateConstructorUsedError;
+  String get second;
   @override
-  String get third => throw _privateConstructorUsedError;
+  String get third;
   @override
-  String get ok_date => throw _privateConstructorUsedError;
+  String get ok_date;
   @override
-  String get post_number => throw _privateConstructorUsedError;
+  String get post_number;
   @override
-  String get address => throw _privateConstructorUsedError;
+  String get address;
   @override
-  String get phone => throw _privateConstructorUsedError;
+  String get phone;
   @override // @Default('') String first_name,
 // @Default('') String last_name,
-  String get user_first_name => throw _privateConstructorUsedError;
+  String get user_first_name;
   @override
-  String get user_last_name => throw _privateConstructorUsedError;
+  String get user_last_name;
   @override
-  String get main_shop_plan_title => throw _privateConstructorUsedError;
+  String get main_shop_plan_title;
   @override //動的に作成取得
-  int get main_shop_plan_id => throw _privateConstructorUsedError;
+  int get main_shop_plan_id;
   @override //動的に作成取得
 // @Default(0) int main_shop_plan_order_child_id,//動的に作成取得
 // @Default('') String sub_total,
-  int get sub_total => throw _privateConstructorUsedError;
+  int get sub_total;
   @override
-  int get tax => throw _privateConstructorUsedError;
+  int get tax;
   @override
-  int get tax_rate => throw _privateConstructorUsedError;
+  int get tax_rate;
   @override // @Default('') String tax_rate,
-  int get total => throw _privateConstructorUsedError;
+  int get total;
   @override
-  int get progress => throw _privateConstructorUsedError;
+  int get progress;
   @override
-  String get visit_date => throw _privateConstructorUsedError;
+  String get visit_date;
   @override
-  String get visit_start => throw _privateConstructorUsedError;
+  String get visit_start;
   @override
-  String get visit_end => throw _privateConstructorUsedError;
+  String get visit_end;
   @override
-  String get visit_schedule_date => throw _privateConstructorUsedError;
+  String get visit_schedule_date;
   @override
-  String get visit_schedule_starttime => throw _privateConstructorUsedError;
+  String get visit_schedule_starttime;
   @override
-  String get visit_schedule_endtime => throw _privateConstructorUsedError;
+  String get visit_schedule_endtime;
   @override
-  String get contents => throw _privateConstructorUsedError;
+  String get contents;
   @override
-  int get fix_price => throw _privateConstructorUsedError;
+  int get fix_price;
   @override
-  String get fix_price_reason => throw _privateConstructorUsedError;
+  String get fix_price_reason;
   @override
-  String get created_at => throw _privateConstructorUsedError;
+  String get created_at;
   @override
-  String get updated_at => throw _privateConstructorUsedError;
+  String get updated_at;
   @override
   @JsonKey(ignore: true)
   _$$_OrderCopyWith<_$_Order> get copyWith =>

@@ -492,11 +492,9 @@ class ShopPlan extends StatelessWidget {
                                 ),
                                 value: checkedList[e.id],
                                 onChanged: (value) {
-                                  print(value);
                                   _setState(() {
                                     bool checked = value == true ? true : false;
                                     checkedList[e.id] = checked;
-                                    print(checkedList);
                                   });
                                 });
                           }).toList(),

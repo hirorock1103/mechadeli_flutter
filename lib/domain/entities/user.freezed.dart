@@ -259,19 +259,19 @@ abstract class _User extends User {
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
-  String get first_name => throw _privateConstructorUsedError;
+  String get first_name;
   @override
-  String get last_name => throw _privateConstructorUsedError;
+  String get last_name;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
-  String get address => throw _privateConstructorUsedError;
+  String get address;
   @override
-  String get phone => throw _privateConstructorUsedError;
+  String get phone;
   @override
-  String get password => throw _privateConstructorUsedError;
+  String get password;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

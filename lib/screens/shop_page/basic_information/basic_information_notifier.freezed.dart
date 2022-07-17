@@ -136,7 +136,7 @@ abstract class _BasicInformationState implements BasicInformationState {
       _$_BasicInformationState;
 
   @override
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
   @JsonKey(ignore: true)
   _$$_BasicInformationStateCopyWith<_$_BasicInformationState> get copyWith =>

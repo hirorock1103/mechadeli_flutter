@@ -152,9 +152,9 @@ abstract class _ScheduleState implements ScheduleState {
       {final int count, final MechadeliFlow currentFlow}) = _$_ScheduleState;
 
   @override
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
-  MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
+  MechadeliFlow get currentFlow;
   @override
   @JsonKey(ignore: true)
   _$$_ScheduleStateCopyWith<_$_ScheduleState> get copyWith =>

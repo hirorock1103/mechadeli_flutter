@@ -212,15 +212,15 @@ abstract class _ShopArea extends ShopArea {
   factory _ShopArea.fromJson(Map<String, dynamic> json) = _$_ShopArea.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
-  int get shop_id => throw _privateConstructorUsedError;
+  int get shop_id;
   @override
-  int get ken_id => throw _privateConstructorUsedError;
+  int get ken_id;
   @override
-  int get city_id => throw _privateConstructorUsedError;
+  int get city_id;
   @override
-  int get status => throw _privateConstructorUsedError;
+  int get status;
   @override
   @JsonKey(ignore: true)
   _$$_ShopAreaCopyWith<_$_ShopArea> get copyWith =>

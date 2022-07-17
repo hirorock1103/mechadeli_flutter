@@ -392,31 +392,31 @@ abstract class _OrderChild extends OrderChild {
       _$_OrderChild.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
-  int get order_id => throw _privateConstructorUsedError;
+  int get order_id;
   @override
-  int get plan_id => throw _privateConstructorUsedError;
+  int get plan_id;
   @override
-  int get option_plan_id => throw _privateConstructorUsedError;
+  int get option_plan_id;
   @override
-  int get type => throw _privateConstructorUsedError;
+  int get type;
   @override
-  String get shop_plan_title => throw _privateConstructorUsedError;
+  String get shop_plan_title;
   @override
-  String get option_plan_title => throw _privateConstructorUsedError;
+  String get option_plan_title;
   @override
-  String get shop_plan_title_current => throw _privateConstructorUsedError;
+  String get shop_plan_title_current;
   @override
-  String get option_plan_title_current => throw _privateConstructorUsedError;
+  String get option_plan_title_current;
   @override
-  int get price => throw _privateConstructorUsedError;
+  int get price;
   @override
-  int get amount => throw _privateConstructorUsedError;
+  int get amount;
   @override
-  String get created_at => throw _privateConstructorUsedError;
+  String get created_at;
   @override
-  String get updated_at => throw _privateConstructorUsedError;
+  String get updated_at;
   @override
   @JsonKey(ignore: true)
   _$$_OrderChildCopyWith<_$_OrderChild> get copyWith =>

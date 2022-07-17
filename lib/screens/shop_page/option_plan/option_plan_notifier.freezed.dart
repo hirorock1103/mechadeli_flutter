@@ -192,13 +192,13 @@ abstract class _OptionPlanState implements OptionPlanState {
       final List<OptionPlan> optionPlanList}) = _$_OptionPlanState;
 
   @override
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
-  bool get planDisplayStatus => throw _privateConstructorUsedError;
+  bool get planDisplayStatus;
   @override // @Default(ApplyStatus.notYet) ApplyStatus applyStatus,
 // @Default(<Notice>[]) List<Notice> noticeList,
 // @Default(<Order>[]) List<Order> orderList,
-  List<OptionPlan> get optionPlanList => throw _privateConstructorUsedError;
+  List<OptionPlan> get optionPlanList;
   @override
   @JsonKey(ignore: true)
   _$$_OptionPlanStateCopyWith<_$_OptionPlanState> get copyWith =>

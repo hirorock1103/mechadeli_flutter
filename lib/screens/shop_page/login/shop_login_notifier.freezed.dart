@@ -225,15 +225,15 @@ abstract class _ShopLoginPageState implements ShopLoginPageState {
       final MechadeliFlow currentFlow}) = _$_ShopLoginPageState;
 
   @override
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
-  String get password => throw _privateConstructorUsedError;
+  String get password;
   @override
-  String get loginErrorMessage => throw _privateConstructorUsedError;
+  String get loginErrorMessage;
   @override
-  MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
+  MechadeliFlow get currentFlow;
   @override
   @JsonKey(ignore: true)
   _$$_ShopLoginPageStateCopyWith<_$_ShopLoginPageState> get copyWith =>

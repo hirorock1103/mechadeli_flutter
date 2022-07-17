@@ -17,6 +17,7 @@ part 'order_detail_notifier.freezed.dart';
 abstract class OrderDetailState with _$OrderDetailState {
   const factory OrderDetailState({
     @Default(0) int count,
+    @Default(0) int selectedMainShopPlanId,
     required Order order,
     @Default(<Order>[]) List<Order> orderList,
     @Default(<OrderChild>[]) List<OrderChild> orderChildList,
@@ -51,6 +52,10 @@ class OrderDetailNotifier extends StateNotifier<OrderDetailState> with LocatorMi
     print(list);
     state = state.copyWith(orderChildList: list);
 
+  }
+
+  void setSelectedMainPlanId(int value){
+    state = state.copyWith(selectedMainShopPlanId: value);
   }
 
   Future<void> getRecentOrder(int orderId) async{

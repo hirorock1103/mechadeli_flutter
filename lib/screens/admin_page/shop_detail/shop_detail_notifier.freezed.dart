@@ -205,13 +205,13 @@ abstract class _ShopDetailState implements ShopDetailState {
       final MechadeliFlow currentFlow}) = _$_ShopDetailState;
 
   @override
-  bool get isLoading => throw _privateConstructorUsedError;
+  bool get isLoading;
   @override
-  Shop get shop => throw _privateConstructorUsedError;
+  Shop get shop;
   @override
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
-  MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
+  MechadeliFlow get currentFlow;
   @override
   @JsonKey(ignore: true)
   _$$_ShopDetailStateCopyWith<_$_ShopDetailState> get copyWith =>

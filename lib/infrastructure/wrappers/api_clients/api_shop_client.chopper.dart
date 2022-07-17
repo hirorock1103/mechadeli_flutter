@@ -151,6 +151,15 @@ class _$ApiShopClient extends ApiShopClient {
   }
 
   @override
+  Future<Response<dynamic>> updateOrderOptionPlans(
+      Map<String, dynamic> data, int orderId) {
+    final $url = '/shop/updateOrderOptionPlans/${orderId}';
+    final $body = data;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
   Future<Response<dynamic>> getUserListByShopId(int shop_id) {
     final $url = '/shop/getUserList';
     final $params = <String, dynamic>{'shop_id': shop_id};
