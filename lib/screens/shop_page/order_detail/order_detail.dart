@@ -16,6 +16,7 @@ import 'package:provider/provider.dart';
 
 import '../../../domain/entities/order.dart';
 import '../../../domain/entities/user.dart';
+import '../../../widgets/common/forms/my_text_edit_with_title.dart';
 import '../../../widgets/common/layout/my_table.dart';
 import '../../../widgets/common/methods/tables.dart';
 import '../dashboard/dashboard_notifier.dart';
@@ -452,12 +453,31 @@ class OrderDetail extends StatelessWidget {
                             showDialog(
                                 context: context,
                                 builder: (_) {
+                                  TextEditingController fixPriceController = TextEditingController();
+                                  fixPriceController.text = order.fix_price.toString();
                                   return AlertDialog(
-                                    title: Text("顧客詳細情報"),
+                                    title: Text("調整金額の修正"),
                                     content: Container(
                                       width: 500,
                                       child: Column(
-                                        children: [],
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          MyTextEditWithTitle(
+                                              hintText: "",
+                                              title: "調整内容",
+                                              controller: fixPriceController),
+                                          ElevatedButton(onPressed: () async{
+                                            ///api用データセット
+                                            Map<String, dynamic> map = {};
+                                            map['order_id'] = order.id;
+                                            map['fix_price'] = int.parse(fixPriceController.text);
+                                            await context.read<ApiShopRepository>().updateOrder(map, order.id);
+                                            await context .read< OrderDetailNotifier>() .getRecentOrder( order.id);
+                                            context .read< OrderDetailNotifier>() .getOrderChildListByOrderId( order.id);
+                                            Navigator.of(context).pop();
+
+                                          }, child: Text("修正"))
+                                        ],
                                       ),
                                     ),
                                   );
@@ -474,12 +494,31 @@ class OrderDetail extends StatelessWidget {
                             showDialog(
                                 context: context,
                                 builder: (_) {
+                                  TextEditingController fixController = TextEditingController();
+                                  fixController.text = order.fix_price_reason;
                                   return AlertDialog(
-                                    title: Text("顧客詳細情報"),
+                                    title: Text("調整内容の修正"),
                                     content: Container(
                                       width: 500,
                                       child: Column(
-                                        children: [],
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          MyTextEditWithTitle(
+                                              hintText: "",
+                                              title: "調整内容",
+                                              controller: fixController),
+                                          ElevatedButton(onPressed: () async{
+                                            ///api用データセット
+                                            Map<String, dynamic> map = {};
+                                            map['order_id'] = order.id;
+                                            map['fix_price_reason'] = fixController.text;
+                                            await context.read<ApiShopRepository>().updateOrder(map, order.id);
+                                            await context .read< OrderDetailNotifier>() .getRecentOrder( order.id);
+                                            context .read< OrderDetailNotifier>() .getOrderChildListByOrderId( order.id);
+                                            Navigator.of(context).pop();
+
+                                          }, child: Text("修正"))
+                                        ],
                                       ),
                                     ),
                                   );
