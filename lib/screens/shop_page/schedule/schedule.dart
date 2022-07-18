@@ -202,14 +202,14 @@ class Schedule extends StatelessWidget {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Icon(Icons.schedule, size: 15,),
-                                        Text("2022/05/01"),
+                                        Text(orderlist[index].created_at),
                                       ],
                                     ),
                                     Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Icon(Icons.person, size: 15,),
-                                        Flexible(child: Text(orderlist[index].user_last_name)),
+                                        Flexible(child: Text(orderlist[index].user_first_name + "様")),
                                       ],
                                     ),
                                     Row(

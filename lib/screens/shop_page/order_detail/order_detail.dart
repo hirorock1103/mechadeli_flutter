@@ -108,6 +108,9 @@ class OrderDetail extends StatelessWidget {
                 Container(
                   child: Text(MechadeliFlowContents[currentFlow]['msg']),
                 ),
+                ElevatedButton(onPressed: (){
+
+                }, child: Text("やり取りを確認")),
                 Container(
                   margin: EdgeInsets.only(top: 30),
                   child: Text(order.toString()),

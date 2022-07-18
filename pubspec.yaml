@@ -46,7 +46,7 @@ dependencies:
   flutter_chat_ui:
   file_picker:
   image_picker:
-  open_file:
+  open_file: ^3.2.1
   path_provider:
   uuid:
   google_fonts: ^3.0.1

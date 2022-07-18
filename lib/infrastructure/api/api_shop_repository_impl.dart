@@ -613,5 +613,86 @@ class ApiShopRepositoryImpl implements ApiShopRepository {
     return list;
   }
 
+  @override
+  Future<List<User>?> getUserList() async{
+    List<User> list = [];
+
+    Map<String, dynamic> data = {};
+
+    try{
+      final response = await _apiClient.getUserList();
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          final dataList = DataList.fromJson(result.data);
+          final users= dataList.data.map((e) {
+            var user = User.fromJson(e);
+            return user;
+          });
+          list = users.toList();
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+
+    return list;
+  }
+
+  @override
+  Future<MapResponse?> deleteShopOrder(int shopId) async{
+
+    print("deleteShopOrder: shopId#" + shopId.toString());
+
+    try{
+      final response = await _apiClient.deleteShopOrder(shopId);
+      if (response.isSuccessful) {
+        // final result = ArrayResponse.fromJson(response.body);
+        final result = response.body;
+        String status = result['status'];
+        print(status);
+        print(result);
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+
+    return MapResponse();
+
+
+  }
+
+  @override
+  Future<Order?> makeOrder(Map<String, dynamic> data) async{
+
+    Order order = Order();
+
+    //data = { checked_options : 45 }
+
+    try{
+      final response = await _apiClient.makeOrder(data);
+      print(response.body);
+      if (response.isSuccessful) {
+        final result = MapResponse.fromJson(response.body);
+        if(result.errorCode.isNotEmpty){
+          //例外発生！
+          throw Exception(result.errors);
+        }else{
+          order = Order.fromJson(result.data);
+        }
+      }
+    }on Exception catch(e){
+      print("exception");
+      print(e);
+    }
+
+    return order;
+  }
+
 
 }

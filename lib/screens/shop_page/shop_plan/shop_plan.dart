@@ -401,6 +401,7 @@ class ShopPlan extends StatelessWidget {
               return Container(
                 width: 600,
                 child: SingleChildScrollView(
+                  // physics: const NeverScrollableScrollPhysics(),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
