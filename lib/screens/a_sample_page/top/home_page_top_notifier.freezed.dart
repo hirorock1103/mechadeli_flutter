@@ -154,9 +154,9 @@ abstract class _HomePageTopState implements HomePageTopState {
       {final int count, final MechadeliFlow currentFlow}) = _$_HomePageTopState;
 
   @override
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
-  MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
+  MechadeliFlow get currentFlow;
   @override
   @JsonKey(ignore: true)
   _$$_HomePageTopStateCopyWith<_$_HomePageTopState> get copyWith =>

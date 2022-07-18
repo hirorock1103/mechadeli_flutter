@@ -241,15 +241,15 @@ abstract class _ShopPlanState implements ShopPlanState {
       final List<SubCategory> subCategoryList}) = _$_ShopPlanState;
 
   @override
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
-  bool get planDisplayStatus => throw _privateConstructorUsedError;
+  bool get planDisplayStatus;
   @override
-  List<ShopPlan> get shopPlanList => throw _privateConstructorUsedError;
+  List<ShopPlan> get shopPlanList;
   @override
-  List<OptionPlan> get optionPlanList => throw _privateConstructorUsedError;
+  List<OptionPlan> get optionPlanList;
   @override
-  List<SubCategory> get subCategoryList => throw _privateConstructorUsedError;
+  List<SubCategory> get subCategoryList;
   @override
   @JsonKey(ignore: true)
   _$$_ShopPlanStateCopyWith<_$_ShopPlanState> get copyWith =>

@@ -5,33 +5,43 @@ import 'package:mechadeli_flutter/common/colors.dart';
 class MyTextForm extends StatelessWidget {
 
   String hintText;
-  TextEditingController controller;
-   MyTextForm({ required this.hintText, required this.controller, Key? key}) : super(key: key);
+  TextEditingController? controller;
+  ValueChanged? onChange;
 
-  @override
+   MyTextForm({ required this.hintText,this.controller, this.onChange, Key? key}) : super(key: key);
+
   Widget build(BuildContext context) {
 
-    return TextFormField(
-      controller: controller,
-      decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: const TextStyle(fontSize: 12, color: AppColors.primary),
-        fillColor: AppColors.primary[100],
-        filled: true,
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(
-            color: AppColors.primary,
-            width: 2.0,
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(
-            color: AppColors.primary[100]!,
-            width: 1.0,
-          ),
-        ),
+    if(controller != null){
+      controller!.selection = TextSelection.collapsed(offset: controller!.text.length);
+    }
+
+    return Form(
+      child: TextFormField(
+
+        style: TextStyle(fontSize: 12),
+        onChanged: onChange,
+        controller: controller ?? null,
+        // decoration: InputDecoration(
+        //   hintText: hintText,
+        //   hintStyle: const TextStyle(fontSize: 12, color: AppColors.primary),
+        //   fillColor: AppColors.primary[100],
+        //   filled: true,
+        //   focusedBorder: OutlineInputBorder(
+        //     borderRadius: BorderRadius.circular(16),
+        //     borderSide: const BorderSide(
+        //       color: AppColors.primary,
+        //       width: 2.0,
+        //     ),
+        //   ),
+        //   enabledBorder: OutlineInputBorder(
+        //     borderRadius: BorderRadius.circular(16),
+        //     borderSide: BorderSide(
+        //       color: AppColors.primary[100]!,
+        //       width: 1.0,
+        //     ),
+        //   ),
+        // ),
       ),
     );
   }

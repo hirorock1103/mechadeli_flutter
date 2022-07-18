@@ -151,9 +151,9 @@ abstract class _InquiryState implements InquiryState {
       {final int count, final MechadeliFlow currentFlow}) = _$_InquiryState;
 
   @override
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
-  MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
+  MechadeliFlow get currentFlow;
   @override
   @JsonKey(ignore: true)
   _$$_InquiryStateCopyWith<_$_InquiryState> get copyWith =>

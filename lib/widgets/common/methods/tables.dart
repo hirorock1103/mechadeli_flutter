@@ -3,16 +3,19 @@ import '../../../common/colors.dart';
 
 TableRow buildTableRowByMap(
     {required Map<String, String> titles, VoidCallback? ontap}) {
+
+  // final list2 = titles.entries.map((e) => TableCell(child: child)).toList();
+
   final list = titles.entries
       .map((e) => Container(
-            decoration: e.key == "th"
-                ? BoxDecoration(color: AppColors.thBackgroundColor)
-                : null,
+            // decoration: e.key == "th"
+            //     ? BoxDecoration(color: AppColors.thBackgroundColor)
+            //     : null,
             padding: EdgeInsets.all(20),
             child: Wrap(
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(e.value),
+                Text(e.value, style: TextStyle(fontWeight: e.key == "th" ? FontWeight.bold:null ),),
                 ontap != null && e.key == "td"
                     ? InkWell(
                         onTap: ontap,

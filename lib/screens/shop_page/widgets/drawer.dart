@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mechadeli_flutter/domain/entities/shop.dart';
 import 'package:mechadeli_flutter/screens/shop_page/basic_information/basic_information.dart';
+import 'package:mechadeli_flutter/screens/shop_page/chat/chat.dart';
 import 'package:mechadeli_flutter/screens/shop_page/dashboard/dashboard.dart';
 import 'package:mechadeli_flutter/screens/shop_page/option_plan/option_plan.dart';
 import 'package:mechadeli_flutter/screens/shop_page/schedule/schedule.dart';
@@ -51,7 +52,7 @@ class UserDrawer extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              Navigator.pop(context);
+              Navigator.of(context).push(createMyRoute(Chat()));
             },
             title: Text("chat"),
             trailing: Icon(Icons.arrow_forward_ios_rounded),

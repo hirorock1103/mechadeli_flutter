@@ -266,18 +266,18 @@ abstract class _MapResponse extends MapResponse {
       _$_MapResponse.fromJson;
 
   @override
-  String get status => throw _privateConstructorUsedError;
+  String get status;
   @override
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @override
-  Map<String, dynamic> get auth => throw _privateConstructorUsedError;
+  Map<String, dynamic> get auth;
   @override
-  Map<String, dynamic> get data => throw _privateConstructorUsedError;
+  Map<String, dynamic> get data;
   @override
   @JsonKey(name: 'error_code')
-  String get errorCode => throw _privateConstructorUsedError;
+  String get errorCode;
   @override // List<dynamic>? errors,
-  Map<String, dynamic> get errors => throw _privateConstructorUsedError;
+  Map<String, dynamic> get errors;
   @override
   @JsonKey(ignore: true)
   _$$_MapResponseCopyWith<_$_MapResponse> get copyWith =>

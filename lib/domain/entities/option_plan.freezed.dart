@@ -470,39 +470,39 @@ abstract class _OptionPlan extends OptionPlan {
       _$_OptionPlan.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
-  int get shop_id => throw _privateConstructorUsedError;
+  int get shop_id;
   @override
-  int get plan_price => throw _privateConstructorUsedError;
+  int get plan_price;
   @override
-  int get status => throw _privateConstructorUsedError;
+  int get status;
   @override
-  int get selected => throw _privateConstructorUsedError;
+  int get selected;
   @override
-  String get about => throw _privateConstructorUsedError;
+  String get about;
   @override
-  String get plan_title => throw _privateConstructorUsedError;
+  String get plan_title;
   @override
-  String get sales_point => throw _privateConstructorUsedError;
+  String get sales_point;
   @override
-  String get details => throw _privateConstructorUsedError;
+  String get details;
   @override
-  String get tanni => throw _privateConstructorUsedError;
+  String get tanni;
   @override
-  String get img_1 => throw _privateConstructorUsedError;
+  String get img_1;
   @override
-  String get img_2 => throw _privateConstructorUsedError;
+  String get img_2;
   @override
-  String get img_3 => throw _privateConstructorUsedError;
+  String get img_3;
   @override
-  String get img_4 => throw _privateConstructorUsedError;
+  String get img_4;
   @override
-  String get img_5 => throw _privateConstructorUsedError;
+  String get img_5;
   @override
-  String get created_at => throw _privateConstructorUsedError;
+  String get created_at;
   @override
-  String get updated_at => throw _privateConstructorUsedError;
+  String get updated_at;
   @override
   @JsonKey(ignore: true)
   _$$_OptionPlanCopyWith<_$_OptionPlan> get copyWith =>

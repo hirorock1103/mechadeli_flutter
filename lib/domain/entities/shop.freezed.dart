@@ -449,37 +449,37 @@ abstract class _Shop extends Shop {
   factory _Shop.fromJson(Map<String, dynamic> json) = _$_Shop.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
-  String get shop_code => throw _privateConstructorUsedError;
+  String get shop_code;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
-  String get shop_owner_name => throw _privateConstructorUsedError;
+  String get shop_owner_name;
   @override
-  String get shop_owner_name_kana => throw _privateConstructorUsedError;
+  String get shop_owner_name_kana;
   @override
-  String get shop_address_post_number => throw _privateConstructorUsedError;
+  String get shop_address_post_number;
   @override
-  String get shop_address_pref => throw _privateConstructorUsedError;
+  String get shop_address_pref;
   @override
-  String get shop_address_city => throw _privateConstructorUsedError;
+  String get shop_address_city;
   @override
-  String get shop_address_town => throw _privateConstructorUsedError;
+  String get shop_address_town;
   @override
-  String get shop_address_buildings => throw _privateConstructorUsedError;
+  String get shop_address_buildings;
   @override
-  int get apply_status => throw _privateConstructorUsedError;
+  int get apply_status;
   @override
-  String get catch_copy => throw _privateConstructorUsedError;
+  String get catch_copy;
   @override
-  String get sales_time_str => throw _privateConstructorUsedError;
+  String get sales_time_str;
   @override
-  String get holiday_str => throw _privateConstructorUsedError;
+  String get holiday_str;
   @override
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @override
   @JsonKey(ignore: true)
   _$$_ShopCopyWith<_$_Shop> get copyWith => throw _privateConstructorUsedError;

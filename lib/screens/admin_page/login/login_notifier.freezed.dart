@@ -154,9 +154,9 @@ abstract class _LoginPageState implements LoginPageState {
       {final int count, final MechadeliFlow currentFlow}) = _$_LoginPageState;
 
   @override
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
-  MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
+  MechadeliFlow get currentFlow;
   @override
   @JsonKey(ignore: true)
   _$$_LoginPageStateCopyWith<_$_LoginPageState> get copyWith =>

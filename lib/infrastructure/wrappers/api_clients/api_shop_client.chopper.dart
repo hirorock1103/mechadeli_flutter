@@ -151,6 +151,30 @@ class _$ApiShopClient extends ApiShopClient {
   }
 
   @override
+  Future<Response<dynamic>> updateOrderOptionPlans(
+      Map<String, dynamic> data, int orderId) {
+    final $url = '/shop/updateOrderOptionPlans/${orderId}';
+    final $body = data;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> makeOrder(Map<String, dynamic> data) {
+    final $url = '/shop/makeOrder';
+    final $body = data;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> deleteShopOrder(int shopId) {
+    final $url = '/shop/deleteShopOrder/${shopId}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
   Future<Response<dynamic>> getUserListByShopId(int shop_id) {
     final $url = '/shop/getUserList';
     final $params = <String, dynamic>{'shop_id': shop_id};
@@ -161,6 +185,13 @@ class _$ApiShopClient extends ApiShopClient {
   @override
   Future<Response<dynamic>> getUserByUserId(int userId) {
     final $url = '/shop/getUserByUserId/${userId}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> getUserList() {
+    final $url = '/shop/getUserList';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<dynamic, dynamic>($request);
   }

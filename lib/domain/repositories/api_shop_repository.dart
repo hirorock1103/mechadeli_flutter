@@ -1,5 +1,6 @@
 
 import 'package:mechadeli_flutter/domain/entities/data_list.dart';
+import 'package:mechadeli_flutter/domain/entities/map_response.dart';
 import 'package:mechadeli_flutter/domain/entities/notice.dart';
 import 'package:mechadeli_flutter/domain/entities/order_child.dart';
 import 'package:mechadeli_flutter/domain/entities/plan_matrix.dart';
@@ -27,6 +28,7 @@ abstract class ApiShopRepository {
   Future<List<SubCategory>?> getSubCategory();
 
   //user
+  Future<List<User>?> getUserList();
   Future<List<User>?> getUsersByShopId(int shopId);
   Future<User?> getUserById(int userId);
 
@@ -46,6 +48,9 @@ abstract class ApiShopRepository {
   Future<List<Order>> getOrderListByShopId(int shopId);
   Future<Order?> getOrder(int orderId);
   Future<Order?> updateOrder(Map<String, dynamic> data, int orderId);
+  Future<Order?> makeOrder(Map<String, dynamic> data);
+  Future<MapResponse?> deleteShopOrder(int shopId);
   Future<List<OrderChild>?> updateOrderPlans(Map<String, dynamic> data, int orderId);
+  Future<List<OrderChild>?> updateOrderOptionPlans(Map<String, dynamic> data, int orderId);
   Future<List<OrderChild>> getOrderChildListByOrderId(int orderId);
 }

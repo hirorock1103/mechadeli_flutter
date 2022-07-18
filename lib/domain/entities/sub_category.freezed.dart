@@ -249,17 +249,17 @@ abstract class _SubCategory extends SubCategory {
       _$_SubCategory.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
-  String get title => throw _privateConstructorUsedError;
+  String get title;
   @override
-  int get main_category_id => throw _privateConstructorUsedError;
+  int get main_category_id;
   @override
-  String get main_category_title => throw _privateConstructorUsedError;
+  String get main_category_title;
   @override
-  String get updated_at => throw _privateConstructorUsedError;
+  String get updated_at;
   @override
-  String get created_at => throw _privateConstructorUsedError;
+  String get created_at;
   @override
   @JsonKey(ignore: true)
   _$$_SubCategoryCopyWith<_$_SubCategory> get copyWith =>

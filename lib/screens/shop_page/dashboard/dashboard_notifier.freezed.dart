@@ -20,6 +20,8 @@ mixin _$DashboardState {
   ApplyStatus get applyStatus => throw _privateConstructorUsedError;
   List<Notice> get noticeList => throw _privateConstructorUsedError;
   List<Order> get orderList => throw _privateConstructorUsedError;
+  List<ShopPlan> get shopPlanList => throw _privateConstructorUsedError;
+  List<User> get userList => throw _privateConstructorUsedError;
   MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -37,6 +39,8 @@ abstract class $DashboardStateCopyWith<$Res> {
       ApplyStatus applyStatus,
       List<Notice> noticeList,
       List<Order> orderList,
+      List<ShopPlan> shopPlanList,
+      List<User> userList,
       MechadeliFlow currentFlow});
 }
 
@@ -55,6 +59,8 @@ class _$DashboardStateCopyWithImpl<$Res>
     Object? applyStatus = freezed,
     Object? noticeList = freezed,
     Object? orderList = freezed,
+    Object? shopPlanList = freezed,
+    Object? userList = freezed,
     Object? currentFlow = freezed,
   }) {
     return _then(_value.copyWith(
@@ -74,6 +80,14 @@ class _$DashboardStateCopyWithImpl<$Res>
           ? _value.orderList
           : orderList // ignore: cast_nullable_to_non_nullable
               as List<Order>,
+      shopPlanList: shopPlanList == freezed
+          ? _value.shopPlanList
+          : shopPlanList // ignore: cast_nullable_to_non_nullable
+              as List<ShopPlan>,
+      userList: userList == freezed
+          ? _value.userList
+          : userList // ignore: cast_nullable_to_non_nullable
+              as List<User>,
       currentFlow: currentFlow == freezed
           ? _value.currentFlow
           : currentFlow // ignore: cast_nullable_to_non_nullable
@@ -94,6 +108,8 @@ abstract class _$$_DashboardStateCopyWith<$Res>
       ApplyStatus applyStatus,
       List<Notice> noticeList,
       List<Order> orderList,
+      List<ShopPlan> shopPlanList,
+      List<User> userList,
       MechadeliFlow currentFlow});
 }
 
@@ -114,6 +130,8 @@ class __$$_DashboardStateCopyWithImpl<$Res>
     Object? applyStatus = freezed,
     Object? noticeList = freezed,
     Object? orderList = freezed,
+    Object? shopPlanList = freezed,
+    Object? userList = freezed,
     Object? currentFlow = freezed,
   }) {
     return _then(_$_DashboardState(
@@ -133,6 +151,14 @@ class __$$_DashboardStateCopyWithImpl<$Res>
           ? _value._orderList
           : orderList // ignore: cast_nullable_to_non_nullable
               as List<Order>,
+      shopPlanList: shopPlanList == freezed
+          ? _value._shopPlanList
+          : shopPlanList // ignore: cast_nullable_to_non_nullable
+              as List<ShopPlan>,
+      userList: userList == freezed
+          ? _value._userList
+          : userList // ignore: cast_nullable_to_non_nullable
+              as List<User>,
       currentFlow: currentFlow == freezed
           ? _value.currentFlow
           : currentFlow // ignore: cast_nullable_to_non_nullable
@@ -151,9 +177,13 @@ class _$_DashboardState
       this.applyStatus = ApplyStatus.notYet,
       final List<Notice> noticeList = const <Notice>[],
       final List<Order> orderList = const <Order>[],
+      final List<ShopPlan> shopPlanList = const <ShopPlan>[],
+      final List<User> userList = const <User>[],
       this.currentFlow = MechadeliFlow.cancel})
       : _noticeList = noticeList,
-        _orderList = orderList;
+        _orderList = orderList,
+        _shopPlanList = shopPlanList,
+        _userList = userList;
 
   @override
   @JsonKey()
@@ -177,13 +207,29 @@ class _$_DashboardState
     return EqualUnmodifiableListView(_orderList);
   }
 
+  final List<ShopPlan> _shopPlanList;
+  @override
+  @JsonKey()
+  List<ShopPlan> get shopPlanList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_shopPlanList);
+  }
+
+  final List<User> _userList;
+  @override
+  @JsonKey()
+  List<User> get userList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_userList);
+  }
+
   @override
   @JsonKey()
   final MechadeliFlow currentFlow;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DashboardState(count: $count, applyStatus: $applyStatus, noticeList: $noticeList, orderList: $orderList, currentFlow: $currentFlow)';
+    return 'DashboardState(count: $count, applyStatus: $applyStatus, noticeList: $noticeList, orderList: $orderList, shopPlanList: $shopPlanList, userList: $userList, currentFlow: $currentFlow)';
   }
 
   @override
@@ -195,6 +241,8 @@ class _$_DashboardState
       ..add(DiagnosticsProperty('applyStatus', applyStatus))
       ..add(DiagnosticsProperty('noticeList', noticeList))
       ..add(DiagnosticsProperty('orderList', orderList))
+      ..add(DiagnosticsProperty('shopPlanList', shopPlanList))
+      ..add(DiagnosticsProperty('userList', userList))
       ..add(DiagnosticsProperty('currentFlow', currentFlow));
   }
 
@@ -211,6 +259,9 @@ class _$_DashboardState
             const DeepCollectionEquality()
                 .equals(other._orderList, _orderList) &&
             const DeepCollectionEquality()
+                .equals(other._shopPlanList, _shopPlanList) &&
+            const DeepCollectionEquality().equals(other._userList, _userList) &&
+            const DeepCollectionEquality()
                 .equals(other.currentFlow, currentFlow));
   }
 
@@ -221,6 +272,8 @@ class _$_DashboardState
       const DeepCollectionEquality().hash(applyStatus),
       const DeepCollectionEquality().hash(_noticeList),
       const DeepCollectionEquality().hash(_orderList),
+      const DeepCollectionEquality().hash(_shopPlanList),
+      const DeepCollectionEquality().hash(_userList),
       const DeepCollectionEquality().hash(currentFlow));
 
   @JsonKey(ignore: true)
@@ -235,18 +288,24 @@ abstract class _DashboardState implements DashboardState {
       final ApplyStatus applyStatus,
       final List<Notice> noticeList,
       final List<Order> orderList,
+      final List<ShopPlan> shopPlanList,
+      final List<User> userList,
       final MechadeliFlow currentFlow}) = _$_DashboardState;
 
   @override
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
-  ApplyStatus get applyStatus => throw _privateConstructorUsedError;
+  ApplyStatus get applyStatus;
   @override
-  List<Notice> get noticeList => throw _privateConstructorUsedError;
+  List<Notice> get noticeList;
   @override
-  List<Order> get orderList => throw _privateConstructorUsedError;
+  List<Order> get orderList;
   @override
-  MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
+  List<ShopPlan> get shopPlanList;
+  @override
+  List<User> get userList;
+  @override
+  MechadeliFlow get currentFlow;
   @override
   @JsonKey(ignore: true)
   _$$_DashboardStateCopyWith<_$_DashboardState> get copyWith =>

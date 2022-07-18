@@ -170,15 +170,15 @@ abstract class _AppState implements AppState {
       final int adminSelectShopId}) = _$_AppState;
 
   @override
-  UserLoginStatus get loginStatus => throw _privateConstructorUsedError;
+  UserLoginStatus get loginStatus;
   @override // @Default(FacilitatorType.woman) FacilitatorType facilitatorType,
 // @Default(FacilitatorType.woman) FacilitatorType clientFacilitatorType,
 // //企業関連
 // @Default(<User>[]) List<User> companyUsers,
 // @Default(ClientDataType.save) ClientDataType clientDataType,
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
-  int get adminSelectShopId => throw _privateConstructorUsedError;
+  int get adminSelectShopId;
   @override
   @JsonKey(ignore: true)
   _$$_AppStateCopyWith<_$_AppState> get copyWith =>

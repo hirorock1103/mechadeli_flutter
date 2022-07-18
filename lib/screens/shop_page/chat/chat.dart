@@ -44,6 +44,8 @@ class _ChatState extends State<Chat> {
         children: [
           PageTitle(title: "chat"),
           MyChatCard(shopName: "testShop", message: "helllo-----------------------!", date: "today", shopImagePath: "assets/images/1.png"),
+          MyChatCard(shopName: "testShop", message: "helllo-----------------------!", date: "today", shopImagePath: "assets/images/1.png"),
+          MyChatCard(shopName: "testShop", message: "helllo-----------------------!", date: "today", shopImagePath: "assets/images/1.png"),
         ],
       ),
     );

@@ -275,22 +275,14 @@ class OptionPlan extends StatelessWidget {
                         controller: planDetailController),
                     Row(
                       children: [
-                        Expanded(
-                          child: Text(
-                            "⑤表示ステータス",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          flex: 2,
+                        Text(
+                          "⑤表示ステータス",
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Expanded(
                           child: SwitchListTile(
                               value: status,
                               // title: Text("表示ステータス"),
-                              secondary: status == 0
-                                  ? Icon(
-                                      Icons.visibility,
-                                    )
-                                  : Icon(Icons.visibility_off),
                               onChanged: (value) {
                                 //notifier側で管理
                                 // context.read<OptionPlanNotifier>().switchPlanStatus(value);

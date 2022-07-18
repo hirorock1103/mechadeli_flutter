@@ -266,18 +266,18 @@ abstract class _ArrayResponse extends ArrayResponse {
       _$_ArrayResponse.fromJson;
 
   @override
-  String get status => throw _privateConstructorUsedError;
+  String get status;
   @override
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @override
-  Map<String, dynamic> get auth => throw _privateConstructorUsedError;
+  Map<String, dynamic> get auth;
   @override
-  List<dynamic> get data => throw _privateConstructorUsedError;
+  List<dynamic> get data;
   @override
   @JsonKey(name: 'error_code')
-  String get errorCode => throw _privateConstructorUsedError;
+  String get errorCode;
   @override
-  List<dynamic>? get errors => throw _privateConstructorUsedError;
+  List<dynamic>? get errors;
   @override
   @JsonKey(ignore: true)
   _$$_ArrayResponseCopyWith<_$_ArrayResponse> get copyWith =>

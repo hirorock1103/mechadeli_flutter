@@ -297,21 +297,21 @@ abstract class _DataList extends DataList {
   factory _DataList.fromJson(Map<String, dynamic> json) = _$_DataList.fromJson;
 
   @override
-  int get current_page => throw _privateConstructorUsedError;
+  int get current_page;
   @override
-  String get first_page_url => throw _privateConstructorUsedError;
+  String get first_page_url;
   @override
-  String get last_page_url => throw _privateConstructorUsedError;
+  String get last_page_url;
   @override
-  int get total => throw _privateConstructorUsedError;
+  int get total;
   @override
-  int get from => throw _privateConstructorUsedError;
+  int get from;
   @override
-  int get to => throw _privateConstructorUsedError;
+  int get to;
   @override
-  List<dynamic> get data => throw _privateConstructorUsedError;
+  List<dynamic> get data;
   @override
-  List<dynamic>? get errors => throw _privateConstructorUsedError;
+  List<dynamic>? get errors;
   @override
   @JsonKey(ignore: true)
   _$$_DataListCopyWith<_$_DataList> get copyWith =>

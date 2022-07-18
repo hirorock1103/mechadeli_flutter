@@ -200,13 +200,13 @@ abstract class _MainCategory extends MainCategory {
       _$_MainCategory.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
-  String get title => throw _privateConstructorUsedError;
+  String get title;
   @override
-  String get updated_at => throw _privateConstructorUsedError;
+  String get updated_at;
   @override
-  String get created_at => throw _privateConstructorUsedError;
+  String get created_at;
   @override
   @JsonKey(ignore: true)
   _$$_MainCategoryCopyWith<_$_MainCategory> get copyWith =>

@@ -5,7 +5,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mechadeli_flutter/domain/entities/notice.dart';
 import 'package:mechadeli_flutter/domain/entities/order.dart';
 import 'package:mechadeli_flutter/domain/entities/shop.dart';
+import 'package:mechadeli_flutter/domain/entities/shop_plan.dart';
 import 'package:mechadeli_flutter/domain/entities/user.dart';
+import 'package:mechadeli_flutter/domain/repositories/api_shop_repository.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +23,8 @@ abstract class DashboardState with _$DashboardState {
     @Default(ApplyStatus.notYet) ApplyStatus applyStatus,
     @Default(<Notice>[]) List<Notice> noticeList,
     @Default(<Order>[]) List<Order> orderList,
+    @Default(<ShopPlan>[]) List<ShopPlan> shopPlanList,
+    @Default(<User>[]) List<User> userList,
     @Default(MechadeliFlow.cancel) MechadeliFlow currentFlow,
   }) = _DashboardState;
 }
@@ -36,6 +40,16 @@ class DashboardNotifier extends StateNotifier<DashboardState> with LocatorMixin 
   void dispose() {
     print('dispose');
     super.dispose();
+  }
+
+
+  void getShopPlanList(int shopId) async{
+    List<ShopPlan>? list = await context.read<ApiShopRepository>().getShopPlan(shopId);
+    state = state.copyWith(shopPlanList: list ?? []);
+  }
+  void getUserList() async{
+    List<User>? list = await context.read<ApiShopRepository>().getUserList();
+    state = state.copyWith(userList: list ?? []);
   }
 
 

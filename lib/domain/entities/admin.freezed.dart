@@ -167,11 +167,11 @@ abstract class _Admin extends Admin {
   factory _Admin.fromJson(Map<String, dynamic> json) = _$_Admin.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
   @JsonKey(ignore: true)
   _$$_AdminCopyWith<_$_Admin> get copyWith =>

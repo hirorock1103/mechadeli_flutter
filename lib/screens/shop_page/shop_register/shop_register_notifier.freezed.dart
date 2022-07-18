@@ -247,17 +247,17 @@ abstract class _ShopRegisterState implements ShopRegisterState {
       final MechadeliFlow currentFlow}) = _$_ShopRegisterState;
 
   @override
-  String get inputName => throw _privateConstructorUsedError;
+  String get inputName;
   @override
-  String get inputEmail => throw _privateConstructorUsedError;
+  String get inputEmail;
   @override
-  String get inputPw => throw _privateConstructorUsedError;
+  String get inputPw;
   @override
-  String get inputPwConfirm => throw _privateConstructorUsedError;
+  String get inputPwConfirm;
   @override
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
-  MechadeliFlow get currentFlow => throw _privateConstructorUsedError;
+  MechadeliFlow get currentFlow;
   @override
   @JsonKey(ignore: true)
   _$$_ShopRegisterStateCopyWith<_$_ShopRegisterState> get copyWith =>

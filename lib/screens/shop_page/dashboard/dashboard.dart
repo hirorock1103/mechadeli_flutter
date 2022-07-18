@@ -3,7 +3,10 @@ import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:mechadeli_flutter/common/colors.dart';
 import 'package:mechadeli_flutter/common/enum.dart';
 import 'package:mechadeli_flutter/domain/entities/order.dart';
+import 'package:mechadeli_flutter/domain/entities/shop.dart';
+import 'package:mechadeli_flutter/domain/entities/shop_plan.dart';
 import 'package:mechadeli_flutter/domain/entities/user.dart';
+import 'package:mechadeli_flutter/domain/repositories/api_shop_repository.dart';
 import 'package:mechadeli_flutter/screens/shop_page/login/shop_login.dart';
 import 'package:mechadeli_flutter/screens/shop_page/widgets/app_bar.dart';
 import 'package:mechadeli_flutter/screens/shop_page/widgets/drawer.dart';
@@ -48,6 +51,9 @@ class DashBoard extends StatelessWidget {
     }
     context.read<DashboardNotifier>().getNoticeList();
     context.read<DashboardNotifier>().getMyOrderList();
+    //テスト用ショッププラン取得
+    context.read<DashboardNotifier>().getShopPlanList(Shop.me.id);
+    context.read<DashboardNotifier>().getUserList();
 
     ///ここから共通
     Size size = MediaQuery.of(context).size;
@@ -59,7 +65,8 @@ class DashBoard extends StatelessWidget {
       ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,//navigation,main contents上部設定
+        crossAxisAlignment: CrossAxisAlignment.start,
+        //navigation,main contents上部設定
         children: [
           size.width > AppConstant.tabletMaxSize
               ? SideNavgation2()
@@ -75,11 +82,103 @@ class DashBoard extends StatelessWidget {
   }
 
   Widget buildContents(BuildContext context) {
+    String selectedPlan = "";
+    String selectedUser = "";
     return SingleChildScrollView(
       // padding: const EdgeInsets.only(left: 10),
       child: Column(
         children: [
           PageTitle(title: "ダッシュボード"),
+
+          /**
+           * ///お知らせ
+           */
+          StatefulBuilder(builder: (context, _setState) {
+            List<ShopPlan> shopPlanList =
+                context.select((DashboardState state) => state).shopPlanList;
+            List<User> userList =
+                context.select((DashboardState state) => state).userList;
+
+            //購入者プルダウン
+            List<DropdownMenuItem<String>> shopPlanMenu = shopPlanList
+                .map((e) => DropdownMenuItem(
+                      child: Text(e.plan_title),
+                      value: e.id.toString(),
+                    ))
+                .toList();
+            List<DropdownMenuItem<String>> userMenu = userList
+                .map((e) => DropdownMenuItem(
+                      child: Text(e.first_name),
+                      value: e.id.toString(),
+                    ))
+                .toList();
+            userMenu.insert(0, DropdownMenuItem(child: Text("未選択"), value: "",));
+            shopPlanMenu.insert(0, DropdownMenuItem(child: Text("未選択"), value: "",));
+
+            //結果
+            // String msg = context.select((DashboardState state) => state).
+
+            return MyCard(
+                contents: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                H1Title(title: "ユーザー申し込み（テスト)"),
+                // Text(shopPlanList.map((e) => e.id).toList().toString()),
+                // Text(userList.map((e) => e.first_name).toList().toString()),
+                Text(
+                  "テスト購入",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Row(children: [
+                  Text("user"),
+                  SizedBox(width: 10,),
+                  DropdownButton(
+                      value: selectedUser,
+                      items: userMenu,
+                      onChanged: (value) {
+                        print(value);
+                        _setState((){
+                          selectedUser = value.toString();
+                        });
+                      }),
+                  SizedBox(width: 20,),
+                  Text("plan"),
+                  SizedBox(width: 10,),
+                  DropdownButton(
+                      value: selectedPlan,
+                      items: shopPlanMenu,
+                      onChanged: (value) {
+                        print(value);
+                        _setState((){
+                          selectedPlan = value.toString();
+                        });
+                      }),
+                  SizedBox(width: 10,),
+                  ElevatedButton(onPressed: (){
+
+                    Map<String, dynamic> data = {};
+                    data['shop_id'] = Shop.me.id;
+                    data['user_id'] = selectedUser;
+                    data['shop_plan_id'] = selectedPlan;
+                    context.read<ApiShopRepository>().makeOrder(data);
+
+                  }, child: Text("テスト申し込み!")),
+
+                ],),
+                // Text(msg),
+
+                ElevatedButton(onPressed: () async{
+
+                  await context.read<ApiShopRepository>().deleteShopOrder(Shop.me.id);
+
+                }, child: Text("予約全削除!"))
+              ],
+            ));
+          }),
+          /**
+           * ///審査状況
+           */
           Builder(builder: (context) {
             context.read<DashboardNotifier>().checkApplyStatus();
             ApplyStatus applyStatus =
@@ -113,6 +212,10 @@ class DashBoard extends StatelessWidget {
               ],
             ));
           }),
+
+          /**
+           * ///予約ステータス
+           */
           Builder(builder: (context) {
             //watch selected flow
             MechadeliFlow selectedFlow =
@@ -160,6 +263,10 @@ class DashBoard extends StatelessWidget {
               ),
             );
           }),
+
+          /**
+           * ///予約一覧
+           */
           Builder(builder: (context) {
             List<Order> list =
                 context.select((DashboardState state) => state).orderList;
@@ -186,7 +293,9 @@ class DashBoard extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => OrderDetail(order: Order(),)));
+                              builder: (context) => OrderDetail(
+                                    order: Order(),
+                                  )));
                     },
                     child: Text("chat"),
                   ),
@@ -198,7 +307,9 @@ class DashBoard extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => OrderDetail(order: Order(),)));
+                              builder: (context) => OrderDetail(
+                                    order: Order(),
+                                  )));
                     },
                     child: Text("chat"),
                   ),
@@ -248,6 +359,10 @@ class DashBoard extends StatelessWidget {
               ],
             ));
           }),
+
+          /**
+           * ///お知らせ
+           */
           Builder(builder: (context) {
             //news list
             List<Notice> list =

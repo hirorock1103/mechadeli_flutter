@@ -87,6 +87,9 @@ class ShopPlanNotifier extends StateNotifier<ShopPlanState> with LocatorMixin {
     List<OptionPlan>? optionPlanList = [];
     int shopId = Shop.me.id;
     optionPlanList = await context.read<ApiShopRepository>().getOptionPlan(shopId);
+    print("=======");
+    print(optionPlanList);
+    print("=======");
     state = state.copyWith(optionPlanList: optionPlanList ?? []);
 
   }
